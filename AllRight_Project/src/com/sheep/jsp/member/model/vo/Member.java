@@ -12,7 +12,7 @@ public class Member implements Serializable{
 	
 	// 필드
 	
-	
+	private int a;
 	private int userNo;
 	private String userId;
 	private String userPwd;
