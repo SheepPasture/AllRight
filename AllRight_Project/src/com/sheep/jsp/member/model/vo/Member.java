@@ -1,8 +1,9 @@
 package com.sheep.jsp.member.model.vo;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Member {
+public class Member implements Serializable{
 
 	
 
@@ -19,6 +20,7 @@ public class Member {
 	private String email;
 	private String seloption;
 	private Date enrollDate;
+	private int point;
 	
 	
 	
@@ -48,7 +50,7 @@ public class Member {
 
 
 	public Member(int userNo, String userId, String userPwd, String userName, String email, String seloption,
-			Date enrollDate) {
+			Date enrollDate ,int point) {
 		super();
 		this.userNo = userNo;
 		this.userId = userId;
@@ -57,6 +59,7 @@ public class Member {
 		this.email = email;
 		this.seloption = seloption;
 		this.enrollDate = enrollDate;
+		this.point = point;
 	}
 
 	
@@ -132,11 +135,22 @@ public class Member {
 	public void setEnrollDate(Date enrollDate) {
 		this.enrollDate = enrollDate;
 	}
+	
+	public int getPoint(){
+		return point;
+	}
+	
+	public void setPoint(int point){
+		this.point = point;
+	}
+	
 
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	
 
 
 	
@@ -145,7 +159,7 @@ public class Member {
 	@Override
 	public String toString() {
 		return "Member [userNo=" + userNo + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
-				+ ", email=" + email + ", seloption=" + seloption + ", enrollDate=" + enrollDate + "]";
+				+ ", email=" + email + ", seloption=" + seloption + ", enrollDate=" + enrollDate + ", point=" + point + "]";
 	}
 
 	
