@@ -31,32 +31,7 @@
 	<script src="../../resources/js/animate.js" type="text/javascript"></script>
 	<script src="../../resources/js/jquery.BlackAndWhite.js"></script>
 	<script src="../../resources/js/myscript.js" type="text/javascript"></script>
-	<script>
-		
-		
-		//BlackAndWhite
-		$(window).load(function(){
-			$('.client_img').BlackAndWhite({
-				hoverEffect : true, // default true
-				// set the path to BnWWorker.js for a superfast implementation
-				webworkerPath : false,
-				// for the images with a fluid width and height 
-				responsive:true,
-				// to invert the hover effect
-				invertHoverEffect: false,
-				// this option works only on the modern browsers ( on IE lower than 9 it remains always 1)
-				intensity:1,
-				speed: { //this property could also be just speed: value for both fadeIn and fadeOut
-					fadeIn: 300, // 200ms for fadeIn animations
-					fadeOut: 300 // 800ms for fadeOut animations
-				},
-				onImageReady:function(img) {
-					// this callback gets executed anytime an image is converted
-				}
-			});
-		});
-		
-	</script>
+
 </head>
 <body>
 
@@ -99,9 +74,9 @@
 								<li class="sub-menu">
 									<a href="javascript:void(0);" >게시판</a>
 									<ul>
-										<li><a href="views/notice/noticeList.jsp" >공지사항</a></li>
-										<li><a href="views/community/communityList.jsp" >커뮤니티</a></li>
-										<li><a href="license/licenseinfo.jsp" >자격증정보</a></li>
+										<li><a href="../notice/noticeList.jsp" >공지사항</a></li>
+										<li><a href="../community/communityList.jsp" >커뮤니티</a></li>
+										<li><a href="../license/licenseinfo.jsp" >자격증정보</a></li>
 									</ul>
 								</li>
 							</ul>
@@ -115,17 +90,53 @@
 			<div class="row content">
 				<br>
 				<div class="col-sm-2 sidenav">
-					<p><a href="#">공지사항</a></p>
-					<p><a href="#">커뮤니티</a></p>
-					<p><a href="#">자격증정보</a></p>
+					<p><a href="../notice/noticeList.jsp">공지사항</a></p>
+					<p><a href="../community/communityList.jsp">커뮤니티</a></p>
+					<p><a href="../license/licenseinfo.jsp">자격증정보</a></p>
 				</div>
-				<div class="col-sm-8 text-center">
+				<div class="col-sm-8 text-left">
 					<br>
 					<h3 align="left">글쓰기</h3>
+					<div class="form-group"> 
+						<label for="subject">Title</label> 
+						<input type="text" class="form-control" name ="subject" id="subject" placeholder="Enter title"> 
+					</div> 
+					<div class="form-group"> 
+						<label for="File">File input</label> 
+						<input type="file" id="File"> 
+					</div> 
+					<div class="form-group"> 
+						<label for="content">Comment:</label> 
+						<textarea class="form-control" rows="10" name="content" id="content"></textarea> 
+					</div> 
 				</div>
 			</div>
+					<button type="submit">수정하기</button>
+			 		<button type="submit">작성하기</button>
+			 		<button type="button"><a href="../notice/noticeList.jsp" >되돌아가기</a></button>
 		</div>
-	
+					<!-- <div class="row">
+		 				<form method="post" action="writeAction.jsp">
+						<table class="table table-striped" style="text-align:center; border:1px; solid #dddddd">
+					 		<thead>
+								<tr>
+									<th colspan="1" style="background-color:#eeeeee; text-align: center;">게시판 글쓰기 양식</th>
+								</tr>		 		
+					 		</thead>
+					 		<tbody>
+					 			<tr>
+					 				<td><input type="text" class="form-control" placeholder="글제목" name="bbsTitle" maxlength="50"></td>
+					 			</tr>
+					 			<tr>	
+					 				<td><textarea class="form-control" placeholder="글 내용" name="bbsContent" maxlength="2048" style="height:350px"></textarea> </td>
+					 			</tr>	
+					 		</tbody>
+			 			</table>
+			 			<button type="button">수정하기</button>
+				 		<button type="button">작성하기</button>
+						</form>
+		 			</div> -->
+
 	<!-- FOOTER -->
 	<footer>
 			
