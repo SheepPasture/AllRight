@@ -34,7 +34,6 @@
 	<script src="resources/js/myscript.js" type="text/javascript"></script>
 	<script>
 		
-		
 		//BlackAndWhite
 		$(window).load(function(){
 			$('.client_img').BlackAndWhite({
@@ -56,12 +55,11 @@
 				}
 			});
 		});
-		
+	
 	</script>
 	
 </head>
 <body>
-
 	<!-- PAGE -->
 	<div id="page">
 	
@@ -126,7 +124,6 @@
 	<footer>
 			
 	</footer><!-- //FOOTER -->
-	
 
 </div>
 </body>
