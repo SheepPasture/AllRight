@@ -21,10 +21,9 @@
 				</div>
 				
 				<script>
+				
 					 $('.mUpdate').click(function (){
 						 $('#main').load($(this).attr('href')).show();
-						
-		
 					 });
 				</script>
 				

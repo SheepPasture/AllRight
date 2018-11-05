@@ -75,7 +75,8 @@
 							<th class="col-md-1">78</th>
 							<th class="col-md-1">2018-10-29</th>						
 						</tr>
-						
+					
+					
 						
 					</table> 
 </body>

@@ -96,7 +96,7 @@
           <hr>
         </div>
       </article>
-      <%-- <script>
+       <script>
      	function memberUpdate() {
 			$("#updateForm").submit();
 		}
@@ -105,7 +105,7 @@
 			location.href = "/allRight/mDelete.me?userId=<%=m.getUserId()%>";
 		}
       
-      </script>	 --%>
+      </script>	
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

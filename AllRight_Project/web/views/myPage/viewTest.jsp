@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-기출문제 오답
+기출문제 
 </body>
 </html>
