@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="/views/common/header.jsp" %>
 내게시글 확ㅇ니
 </body>
 </html>
