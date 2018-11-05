@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.sheep.jsp.member.model.vo.Member"%>
+
+<%
+	Member m = (Member)session.getAttribute("member");
+
+%>
 <!DOCTYPE html>
 <head>
 	
@@ -32,6 +37,10 @@
 	<script src="../../resources/js/animate.js" type="text/javascript"></script>
 	<script src="../../resources/js/jquery.BlackAndWhite.js"></script>
 	<script src="../../resources/js/myscript.js" type="text/javascript"></script>
+	
+	
+	
+	
 	
 </head>
 <body>
@@ -90,28 +99,49 @@
 		<div class="container-fluid text-center">    
 			<div class="row content">
 				<br>
-				<div class="col-sm-2 sidenav" >
-					<p><a href="updateMember.jsp">정보수정</a></p>
+				<div class="col-sm-2 sidenav"  style="display:inline-block;"  >
+					<p><a id="s" href="viewMemberInfo.jsp">정보관리</a></p>
 					<p><a href="schedule.jsp">일정관리</a></p>
 					<p><a href="viewboard.jsp">게시글 관리</a></p>
 					<p><a href="viewTest.jsp">기출문제 관리</a></p>
 				</div>
 			
-				
+				<div id="showView" style="width:70%;height:100%; display:inline-block; ">
+					<!-- <div src="viewMemberInfo.jsp"> -->
+				회원 정보	
+				아이디 : <%--= m.getUserId() --%> <br>
+				이름 : <%--= m.getUserName() --%> <br>
+				이메일 : <%--= m.getEmail --%> <br>
+				관심자격증 : <%--= m.getSeloption --%> <br> 
+				포인트	:	10/2000<br>
+				<button id="mUpdate" onclick="mUpdate();">정보 수정</div>
+				</button>
 			</div>
-			<div id = showView style="display:inline-block; background-color: '#FFFFF0';">asdasd</div>
+			
 		</div>
 		
 		<script>
 			$(function(){
-				$('.sidenav').click(function(){
-					console.log($('.sidenav').val());
-					$('#showView').load($(this).attr('href'),function(){
-
+				/* $('#showView').css("color","red"); */
+				$('#s').css("color","red"); 
+				
+				console.log($('div:last'));
+				$('.sidenav').children().click(function(){
+				/* 	console.log($(this).children().attr('href')); */
+					 console.log($(this));
+					
+						 $('#showView').load($(this).children().attr('href'),function(){
+						 
 					      $('#showView').show();
-				});
+						}); 
+					
 					return false;
-			});
+				});
+				
+		
+			$('#mUpdate').click(function(){
+				 $('#showView').load('updateMember.jsp');
+			})
 		
 
    		});
@@ -125,6 +155,6 @@
 	</footer><!-- //FOOTER -->
 	
 
-</div> 
+</div>
 </body>
 </html>

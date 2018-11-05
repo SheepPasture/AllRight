@@ -26,7 +26,7 @@
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">	
    	<link href="html/image_slider/css/style.css" rel="stylesheet" type="text/css" />
    	<link href = "https://fonts.googleapis.com/css?family= Open + Sans "rel = "stylesheet">
-   	
+   	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
    	<!-- CSS  -->
    	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <!-- 	<link href="/allRight/resources/css/flexslider.css" rel="stylesheet" type="text/css" />
@@ -51,8 +51,9 @@
 	color:#333;
     }
     .logo a span {
-	display:inline-block;
-	/* padding-right:18px;  */
+	/* display:inline-block; */
+	/* font-family: 'Roboto', sans-serif; */
+	/* padding-right:18px;  */ 
     }
     .logo a span.b1 {font-weight:900;}
     .logo a span.b2 {font-weight:700;}
@@ -66,7 +67,6 @@
 	margin:0;
 	padding:11px 0;
 	text-transform:none;
-	font-family: 'Roboto', sans-serif;
 	font-weight:300;
 	line-height:20px;
 	font-size: 13px;
@@ -259,7 +259,9 @@ jQuery(document).ready(function() {
             
             <!-- LOGO -->
             <div class="logo pull-left">
-                <a href="index.html" ><span class="b1">A</span><span class="b2">ll</span><span class="b3">Right</span></a>
+                <a href="index.html" ><span class="b1">A</span><span class="b2">L</span><span class="b2">L</span>
+                            <span class="b3">R</span><span class="b4">I</span><span class="b4">G</span>
+                            <span class="b4">H</span><span class="b5">T</span></a></a>
             </div><!-- //LOGO -->
             
             <!-- SEARCH FORM -->
@@ -273,17 +275,18 @@ jQuery(document).ready(function() {
             <div class="pull-right">
                 <nav class="navmenu center">
                     <ul>
-                        <li class="first scroll_btn"><a href="index.html">공지사항</a></li>
+                        <li class="first scroll_btn"><a href="<%= request.getContextPath() %>/views/notice/noticeList.jsp">공지사항</a></li>
                         <li class="sub-menu activ">
 							<a href="index.html#about">커뮤니티</a>
 						<ul>
-							<li class="active"><a href="">게시판 이동</a>
+							<li class="active"><a href="<%= request.getContextPath() %>/views/community/communityList.jsp">게시판</a>
 							</li>
+							<li><a href="<%= request.getContextPath() %>/views/notice/noticeList.jsp">자격증 정보</a></li>
 						</ul></li>
                         <li class="sub-menu active">
-                            <a href="javascript:void(0);">내정보</a>
+                            <a href="javascript:void(0);">마이페이지</a>
                             <ul>
-                                <li><a href="blog.html">회원정보수정</a></li>
+                                <li><a href="<%= request.getContextPath() %>/views/myPage/myPageMain.jsp">회원정보수정</a></li>
                                 <li><a href="blog-post.html">관심 자격증 정보</a></li>
                                 <li><a href="portfolio-post.html">일정 관리</a></li>
                             </ul>
