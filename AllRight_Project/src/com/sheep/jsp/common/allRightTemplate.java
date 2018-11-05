@@ -1,3 +1,5 @@
+package com.sheep.jsp.common;
+
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -13,7 +15,7 @@ public class allRightTemplate {
 	
 	public static Connection getConnection(){
 		Connection con = null;
-		String filePath = allRightTemplate.class.getResource("/config.driver.properties").getPath();
+		String filePath = allRightTemplate.class.getResource("/config/driver.properties").getPath();
 		
 		Properties prop = new Properties();
 		
