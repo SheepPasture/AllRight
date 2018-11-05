@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="/views/common/header.jsp" %>
 일정 관리
 
 </body>

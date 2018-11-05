@@ -64,29 +64,29 @@
 	<div id="page">
 	
 		<!-- HEADER -->
-		<header>
+		<!-- <header>
 			
-			<!-- MENU BLOCK -->
+			MENU BLOCK
 			<div class="menu_block">
 			
-				<!-- CONTAINER -->
+				CONTAINER
 				<div class="container clearfix">
 					
-					<!-- LOGO -->
+					LOGO
 					<div class="logo pull-left">
                         <a href="allRight/index.jsp" ><span class="b1">A</span><span class="b2">L</span><span class="b2">L</span>
                             <span class="b3">R</span><span class="b4">I</span><span class="b4">G</span>
                             <span class="b4">H</span><span class="b5">T</span></a>
-					</div><!-- //LOGO -->
+					</div>//LOGO
 					
-					<!-- SEARCH FORM -->
+					SEARCH FORM
 					<div id="search-form" class="pull-right">
 						<form method="get" action="#">
 							<input type="text" name="Search" value="Search" onFocus="if (this.value == 'Search') this.value = '';" onBlur="if (this.value == '') this.value = 'Search';" />
 						</form>
-					</div><!-- SEARCH FORM -->
+					</div>SEARCH FORM
 					
-					<!-- MENU -->
+					MENU
 					<div class="pull-right">
 						<nav class="navmenu center">
 							<ul>
@@ -106,10 +106,12 @@
 								</li>
 							</ul>
 						</nav>
-					</div><!-- //MENU -->
-				</div><!-- //MENU BLOCK -->
-			</div><!-- //CONTAINER -->
-		</header><!-- //HEADER -->
+					</div>//MENU
+				</div>//MENU BLOCK
+			</div>//CONTAINER
+		</header>//HEADER -->
+		
+		<%@ include file="views/common/header.jsp" %>
 		
 		
 		<!-- HOME -->
