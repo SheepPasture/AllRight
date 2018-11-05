@@ -1,5 +1,7 @@
 package com.sheep.jsp.announcement.model.dao;
 
+import static com.sheep.jsp.common.JDBCTemplate.*;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -11,13 +13,13 @@ import java.util.Properties;
 
 import com.sheep.jsp.announcement.model.vo.Announcement;
 
-import static com.sheep.jsp.common.JDBCTemplate.*;
-
 public class ANNDao {
 
 	private Properties prop = null;
 	
 	public ANNDao(){
+		
+		System.out.println("dao");
 		
 		prop = new Properties();
 		
@@ -33,6 +35,8 @@ public class ANNDao {
 	
 	public ArrayList<Announcement> selectList(Connection con) {
 		
+		System.out.println("selectList");
+		
 		ArrayList<Announcement> list = null;
 		Statement stmt = null;
 		ResultSet rset = null;
@@ -45,8 +49,10 @@ public class ANNDao {
 			
 			list = new ArrayList<Announcement>();
 			
+			System.out.println("Sel");
+			
 			while(rset.next()){
-				Announcement a = new Announcement();;
+				Announcement a = new Announcement();
 				
 				a.setAno(rset.getInt("ano"));
 				a.setAtitle(rset.getString("atitle"));
@@ -55,12 +61,14 @@ public class ANNDao {
 				
 				list.add(a);				
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(stmt);
 		}
+		
+		System.out.println("annDAo");
 		
 		return list;
 	}

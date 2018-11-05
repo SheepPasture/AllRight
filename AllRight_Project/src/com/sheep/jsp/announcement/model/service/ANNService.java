@@ -14,12 +14,13 @@ public class ANNService {
 
 	public ArrayList<Announcement> selectList() {
 		
+		System.out.println("annser");
+		
 		ArrayList<Announcement> list = null;
 		
 		Connection con = getConnection();
 		
 		list = aDao.selectList(con);
-		System.out.println(list);
 		
 		close(con);
 		

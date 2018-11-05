@@ -1,8 +1,9 @@
 package com.sheep.jsp.announcement.model.vo;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Announcement {
+public class Announcement implements Serializable {
 
 	private int ano;
 	private String atitle;

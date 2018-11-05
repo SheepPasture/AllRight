@@ -32,13 +32,12 @@ public class ANNListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		System.out.println("Service");
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
 		
 		ANNService as = new ANNService();
 		
 		list = as.selectList();
-		
-		System.out.println("list");
 		
 		String page = "";
 
@@ -50,7 +49,7 @@ public class ANNListServlet extends HttpServlet {
 		} else {
 			
 			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "공지사항 조회에 실패했습니다. /n 관리자에게 문의해주세요.");
+			request.setAttribute("msg", "공지사항 조회에 실패했습니다. 관리자에게 문의해주세요.");
 			
 		}
 		
