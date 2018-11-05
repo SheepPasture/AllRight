@@ -41,7 +41,7 @@
 						<nav class="navmenu center">
 							<ul>
 								<li class="first active scroll_btn"><a href="../../index.jsp" >홈페이지</a></li>
-								<li class="scroll_btn"><a href="../notice/noticeList.jsp" >공지사항</a></li>
+								<li class="scroll_btn"><a href="../announcement/ANNList.jsp" >공지사항</a></li>
 								<li class="scroll_btn"><a href="../community/communityList.jsp" >커뮤니티</a></li>
 								<li class="scroll_btn"><a href="../license/licenseinfo.jsp" >자격증정보</a></li>
 								<li class="scroll_btn"><a href="../news/newLists.jsp" >뉴스</a></li>
@@ -49,7 +49,7 @@
 								<li class="sub-menu">
 									<a href="javascript:void(0);" >게시판</a>
 									<ul>
-										<li><a href="views/notice/noticeList.jsp" >공지사항</a></li>
+										<li><a href="views/announcement/ANNList.jsp" >공지사항</a></li>
 										<li><a href="views/community/communityList.jsp" >커뮤니티</a></li>
 										<li><a href="license/licenseinfo.jsp" >자격증정보</a></li>
 									</ul>
@@ -113,7 +113,7 @@
 					</table> 
 				</div>
 				<div class="col-sm-10 text-right">
-					<button type="button"><a href="../notice/noticeWrite.jsp">작성하기</a></button>
+					<button type="button"><a href="../announcement/ANNInsertForm.jsp">작성하기</a></button>
 				<div>
 			</div>
 		</div>
