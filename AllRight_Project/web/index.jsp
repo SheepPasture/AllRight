@@ -94,7 +94,7 @@
 								<li class="scroll_btn"><a href="views/notice/noticeList.jsp" >공지사항</a></li>
 								<li class="scroll_btn"><a href="views/community/communityList.jsp" >커뮤니티</a></li>
 								<li class="scroll_btn"><a href="license/licenseinfo.jsp" >자격증정보</a></li>
-								<li class="scroll_btn"><a href="news/newLists.jsp" >뉴스</a></li>
+								<li class="scroll_btn"><a href="views/news/newLists.jsp" >뉴스</a></li>
 								<li class="scroll_btn last"><a href="myPage/myPageMain.jsp" >마이페이지</a></li>
 								<li class="sub-menu">
 									<a href="javascript:void(0);" >게시판</a>
