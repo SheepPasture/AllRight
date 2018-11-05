@@ -1,10 +1,10 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <head>
 	
 	<title>ALLRight</title>
-	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -90,14 +90,14 @@
 		
 		<div class="container-fluid text-center">    
 			<div class="row content">
-				<br>
+				<br />
 				<div class="col-sm-2 sidenav">
 					<p><a href="#">공지사항</a></p>
 					<p><a href="#">커뮤니티</a></p>
 					<p><a href="#">자격증정보</a></p>
 				</div>
 				<div class="col-sm-8 text-center">
-					<h2 align="left">IT Community</h2>
+					<h2 align="left">공지사항</h2>
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -139,16 +139,8 @@
 						</tbody>
 					</table> 
 				</div>
-				<div class="col-sm-10 text-center">
-					<select id="searchCondition" name="searchCondition">
-						<option value="">.    - - - </option>
-						<option value="writer">작성자</option>
-						<option value="title">제목</option>
-						<option value="content">내용</option>
-					</select>
-					<input type="search" id="keyword" placeholder="키워드를 입력하세요!"> 
-					<button type="button" onclick="search();">검색하기</button>
-					<button type="button"><a href="../noticeWrite.jsp">작성하기</a></button>
+				<div class="col-sm-10 text-right">
+					<button type="button"><a href="../notice/noticeWrite.jsp">작성하기</a></button>
 				<div>
 			</div>
 		</div>
