@@ -83,8 +83,8 @@ public class LicenseInfo {
 	// toString()
 	@Override
 	public String toString() {
-		return "LicenseInfo [lNo=" + lNo + ", lName=" + lName + ", lInfo=" + lInfo + ", lDate=" + lDate + ", lCategory="
-				+ lCategory + ", lCost=" + lCost + "]";
+		return "자격증 번호 =" + lNo + ", 자격증 명 =" + lName + ", 자격증 정보 =" + lInfo + ", 시험 일자 =" + lDate + ", 자격증 분류 ="
+				+ lCategory + ", 응시 비용 =" + lCost;
 	}
 	
 	//hashCode()
