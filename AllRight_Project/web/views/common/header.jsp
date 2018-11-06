@@ -259,9 +259,7 @@ jQuery(document).ready(function() {
             
             <!-- LOGO -->
             <div class="logo pull-left">
-                <a href="index.html" ><span class="b1">A</span><span class="b2">L</span><span class="b2">L</span>
-                            <span class="b3">R</span><span class="b4">I</span><span class="b4">G</span>
-                            <span class="b4">H</span><span class="b5">T</span></a></a>
+                <a href="<%= request.getContextPath() %>/index.jsp" ><span class="b1">A</span><span class="b2">L</span><span class="b2">L</span><span class="b3">R</span><span class="b4">I</span><span class="b4">G</span><span class="b4">H</span><span class="b5">T</span></a></a>
             </div><!-- //LOGO -->
             
             <!-- SEARCH FORM -->
@@ -275,11 +273,15 @@ jQuery(document).ready(function() {
             <div class="pull-right">
                 <nav class="navmenu center">
                     <ul>
-                        <li class="first scroll_btn" >
+                        <li class="sub-menu activ" >
                         	<a href="<%= request.getContextPath() %>/selectList.ann">공지사항</a>
+                        	<ul>
+                        	<li><a href="<%= request.getContextPath() %>/selectList.ann">공지사항</li>
+                        	<li><a href="<%= request.getContextPath() %>"></a>뉴스</li>
+                        	</ul>
                         </li>
                         <li class="sub-menu activ">
-							<a href="index.html#about">커뮤니티</a>
+							<a href="javascript:void(0)">커뮤니티</a>
 							<ul>
 								<li class="active"><a href="<%= request.getContextPath() %>/views/community/communityList.jsp">게시판</a>
 								</li>
