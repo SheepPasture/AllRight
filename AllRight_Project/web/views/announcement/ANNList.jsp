@@ -6,23 +6,10 @@
 <html>
 <head>
 <title>ALLRight</title>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author" content="">
     
 	 <!-- CSS -->
 	<link href="../../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<link href="../../resources/css/flexslider.css" rel="stylesheet" type="text/css" />
-	<link href="../../resources/css/prettyPhoto.css" rel="stylesheet" type="text/css" />
-	<link href="../../resources/css/animate.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="../../resources/css/owl.carousel.css" rel="stylesheet">
-	<link href="../../resources/css/style.css" rel="stylesheet" type="text/css" /> 
 
-	<!-- CSS -->
-	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
-   
-	
 </head>
 <body>
 	

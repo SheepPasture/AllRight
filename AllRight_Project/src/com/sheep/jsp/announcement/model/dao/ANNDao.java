@@ -5,6 +5,7 @@ import static com.sheep.jsp.common.JDBCTemplate.*;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -66,8 +67,38 @@ public class ANNDao {
 	}
 
 	public Announcement selectOne(Connection con, int ano) {
-		// TODO Auto-generated method stub
-		return null;
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Announcement a = null;
+		
+		String sql = prop.getProperty("selectOne");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, ano);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				a = new Announcement();
+				
+				a.setAno(ano);
+				a.setAtitle(rset.getString("atitle"));
+				a.setAcount(rset.getInt("acount"));
+				a.setAdate(rset.getDate("adate"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return a;
+		
 	}
 
 	public int updateCount(Connection con, int ano) {
