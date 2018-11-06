@@ -6,23 +6,15 @@
 <html>
 <head>
 <title>ALLRight</title>
+
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-    
-	 <!-- CSS -->
-	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<link href="/allRight/resources/css/flexslider.css" rel="stylesheet" type="text/css" />
-	<link href="/allRight/resources/css/prettyPhoto.css" rel="stylesheet" type="text/css" />
-	<link href="/allRight/resources/css/animate.css" rel="stylesheet" type="text/css" media="all" />
-    	<link href="/allRight/resources/css/owl.carousel.css" rel="stylesheet">
-	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" /> 
 
 	<!-- CSS -->
 	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
    
-	
 </head>
 <body>
 	
@@ -70,6 +62,18 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		$(function(){
+			$("#listArea td").mouseenter(function(){
+				$(this).parent().css({"cursor":"pointer"});
+			}).click(function(){
+				//console.log($(this).parent().children().eq(0).text());
+				var ano = $(this).parent().children().eq(0).text();
+				location.href="<%=request.getContextPath()%>/selectOne.ann?ano=" + ano;
+			});
+		});
+	</script>
+		
 	
 	<!-- FOOTER -->
 	<footer>
