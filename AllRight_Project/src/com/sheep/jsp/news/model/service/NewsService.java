@@ -1,6 +1,6 @@
 package com.sheep.jsp.news.model.service;
 
-import static com.sheep.jsp.common.allRightTemplate.*;
+import static com.sheep.jsp.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package com.sheep.jsp.news.model.dao;
 
-import static com.sheep.jsp.common.allRightTemplate.*;
+import static com.sheep.jsp.common.JDBCTemplate.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

@@ -11,11 +11,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-public class allRightTemplate {
+public class JDBCTemplate {
 	
 	public static Connection getConnection(){
 		Connection con = null;
-		String filePath = allRightTemplate.class.getResource("/config/driver.properties").getPath();
+		String filePath = JDBCTemplate.class.getResource("/config/driver.properties").getPath();
 		
 		Properties prop = new Properties();
 		
