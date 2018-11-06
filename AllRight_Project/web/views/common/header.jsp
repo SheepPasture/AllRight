@@ -294,6 +294,7 @@ jQuery(document).ready(function() {
                                 <li><a href="<%= request.getContextPath() %>/views/myPage/myPageMain.jsp">회원정보수정</a></li>
                                 <li><a href="blog-post.html">관심 자격증 정보</a></li>
                                 <li><a href="portfolio-post.html">일정 관리</a></li>
+                                <li><a href="answer.html">기출 문제</a></li>
                             </ul>
                         </li>
                     </ul>
