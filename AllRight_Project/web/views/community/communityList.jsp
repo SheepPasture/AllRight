@@ -148,7 +148,7 @@
 					</select>
 					<input type="search" id="keyword" placeholder="키워드를 입력하세요!"> 
 					<button type="button" onclick="search();">검색하기</button>
-					<button type="button"><a href="../noticeWrite.jsp">작성하기</a></button>
+					<button type="button"><a href="<%= request.getContextPath() %>/views/noticeWrite/noticeWrite.jsp">작성하기</a></button>
 				<div>
 			</div>
 		</div>
