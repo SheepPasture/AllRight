@@ -277,7 +277,7 @@ jQuery(document).ready(function() {
                         	<a href="<%= request.getContextPath() %>/selectList.ann">공지사항</a>
                         	<ul>
                         	<li><a href="<%= request.getContextPath() %>/selectList.ann">공지사항</a></li>
-                        	<li><a href="<%= request.getContextPath() %>">뉴스</a></li>
+                        	<li><a href="<%= request.getContextPath() %>/selectList.ne">뉴스</a></li>
                         	</ul>
                         </li>
                         <li class="sub-menu activ">

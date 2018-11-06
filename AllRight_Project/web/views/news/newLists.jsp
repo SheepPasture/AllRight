@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.sheep.jsp.news.model.vo.*, java.util.*"%>
+
+<% ArrayList<News> list = (ArrayList<News>)request.getAttribute("list"); %>
 <!DOCTYPE html>
 <head>
 	
@@ -39,52 +41,7 @@
 	<div id="page">
 	
 		<!-- HEADER -->
-		<header>
-			
-			<!-- MENU BLOCK -->
-			<div class="menu_block">
-			
-				<!-- CONTAINER -->
-				<div class="container clearfix">
-					
-					<!-- LOGO -->
-					<div class="logo pull-left">
-                        <a href="../../index.jsp" ><span class="b1">A</span><span class="b2">L</span><span class="b2">L</span>
-                            <span class="b3">R</span><span class="b4">I</span><span class="b4">G</span>
-                            <span class="b4">H</span><span class="b5">T</span></a>
-					</div><!-- //LOGO -->
-					
-					<!-- SEARCH FORM -->
-					<div id="search-form" class="pull-right">
-						<form method="get" action="#">
-							<input type="text" name="Search" value="Search" onFocus="if (this.value == 'Search') this.value = '';" onBlur="if (this.value == '') this.value = 'Search';" />
-						</form>
-					</div><!-- SEARCH FORM -->
-					
-					<!-- MENU -->
-					<div class="pull-right">
-						<nav class="navmenu center">
-							<ul>
-								<li class="first active scroll_btn"><a href="../../index.jsp" >홈페이지</a></li>
-								<li class="scroll_btn"><a href="../notice/noticeList.jsp" >공지사항</a></li>
-								<li class="scroll_btn"><a href="../community/communityList.jsp" >커뮤니티</a></li>
-								<li class="scroll_btn"><a href="../license/licenseinfo.jsp" >자격증정보</a></li>
-								<li class="scroll_btn"><a href="../news/newLists.jsp" >뉴스</a></li>
-								<li class="scroll_btn last"><a href="../myPage/myPageMain.jsp" >마이페이지</a></li>
-								<li class="sub-menu">
-									<a href="javascript:void(0);" >게시판</a>
-									<ul>
-										<li><a href="views/notice/noticeList.jsp" >공지사항</a></li>
-										<li><a href="views/community/communityList.jsp" >커뮤니티</a></li>
-										<li><a href="license/licenseinfo.jsp" >자격증정보</a></li>
-									</ul>
-								</li>
-							</ul>
-						</nav>
-					</div><!-- //MENU -->
-				</div><!-- //MENU BLOCK -->
-			</div><!-- //CONTAINER -->
-		</header><!-- //HEADER -->
+		<%@ include file ="/views/common/header.jsp" %>
 		
 		<div class="container-fluid text-center">    
 			<div class="row content">
@@ -96,7 +53,7 @@
 				</div>
 				<div class="col-sm-8 text-center">
 					<h2 align="left">뉴스</h2>
-					<table class="table table-hover">
+					<table class="table table-hover" >
 						<thead>
 							<tr>
 								<th class="col-md-1">글번호</th>
@@ -106,11 +63,21 @@
 								<th class="col-md-1">작성일</th>
 							</tr>
 						</thead>
-						
+						<tbody>
+  							<% for(News n: list){ %>
+						<tr>
+							<td class="col-md-1"><%= n.getNNO() %></td>
+							<td class="col-md-6 text-center"><%= n.getNTITLE() %></td>
+							<td>관리자</td>
+							<td><%= n.getNCOUNT() %></td>
+							<td><%= n.getNDATE() %></td>
+						</tr>
+							<% } %> 
+					</tbody>
 					</table> 
 				</div>
 				<div class="col-sm-10 text-right">
-					<button type="button"><a href="../notice/noticeWrite.jsp">작성하기</a></button>
+					<button type="button"><a href="views/news/newWrite.jsp">작성하기</a></button>
 				<div>
 			</div>
 		</div>
