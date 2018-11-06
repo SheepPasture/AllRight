@@ -12,9 +12,9 @@
 <title>Insert title here</title>
  <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- font awesome -->
-    <link rel="stylesheet" href="../../css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/allRight/css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
     <!-- Custom style -->
-    <link rel="stylesheet" href="../../css/style.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/allRight/css/style.css" media="screen" title="no title" charset="utf-8">
 
 
 
