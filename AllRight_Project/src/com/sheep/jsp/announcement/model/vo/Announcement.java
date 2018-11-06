@@ -1,99 +1,88 @@
 package com.sheep.jsp.announcement.model.vo;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Announcement {
-	
-	
-	
-	private int ANO;
-	private String ATITLE;
-	private int ACOUNT;
-	private String ACONTENT;
-	private Date ADATE;
-	
+public class Announcement implements Serializable {
 
-	// 생성자
+	private int ano;
+	private String atitle;
+	private int acount;
+	private String acontent;
+	private Date adate;
 	
 	public Announcement() {
 		super();
 	}
 
-
-	public Announcement(int aNO, String aTITLE, int aCOUNT, String aCONTENT, Date aDATE) {
+	public Announcement(int ano, String atitle, int acount, Date adate) {
 		super();
-		ANO = aNO;
-		ATITLE = aTITLE;
-		ACOUNT = aCOUNT;
-		ACONTENT = aCONTENT;
-		ADATE = aDATE;
+		this.ano = ano;
+		this.atitle = atitle;
+		this.acount = acount;
+		this.adate = adate;
 	}
 
-	
-	// getter & setter
-
-	public int getANO() {
-		return ANO;
+	public Announcement(int ano, String atitle, int acount, String acontent, Date adate) {
+		super();
+		this.ano = ano;
+		this.atitle = atitle;
+		this.acount = acount;
+		this.acontent = acontent;
+		this.adate = adate;
 	}
 
-
-	public void setANO(int aNO) {
-		ANO = aNO;
+	public int getAno() {
+		return ano;
 	}
 
-
-	public String getATITLE() {
-		return ATITLE;
+	public void setAno(int ano) {
+		this.ano = ano;
 	}
 
-
-	public void setATITLE(String aTITLE) {
-		ATITLE = aTITLE;
+	public String getAtitle() {
+		return atitle;
 	}
 
-
-	public int getACOUNT() {
-		return ACOUNT;
+	public void setAtitle(String atitle) {
+		this.atitle = atitle;
 	}
 
-
-	public void setACOUNT(int aCOUNT) {
-		ACOUNT = aCOUNT;
+	public int getAcount() {
+		return acount;
 	}
 
-
-	public String getACONTENT() {
-		return ACONTENT;
+	public void setAcount(int acount) {
+		this.acount = acount;
 	}
 
-
-	public void setACONTENT(String aCONTENT) {
-		ACONTENT = aCONTENT;
+	public String getAcontent() {
+		return acontent;
 	}
 
-
-	public Date getADATE() {
-		return ADATE;
+	public void setAcontent(String acontent) {
+		this.acontent = acontent;
 	}
 
-
-	public void setADATE(Date aDATE) {
-		ADATE = aDATE;
+	public Date getAdate() {
+		return adate;
 	}
 
+	public void setAdate(Date adate) {
+		this.adate = adate;
+	}
 
-	
-	// toString()
-	
 	@Override
 	public String toString() {
-		return "Announcement [ANO=" + ANO + ", ATITLE=" + ATITLE + ", ACOUNT=" + ACOUNT + ", ACONTENT=" + ACONTENT
-				+ ", ADATE=" + ADATE + "]";
+		return "Announcement [ano=" + ano + ", atitle=" + atitle + ", acount=" + acount + ", acontent=" + acontent
+				+ ", adate=" + adate + "]";
 	}
+	
+	
 
 
 	// hashCode()
-	
+/*	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -139,7 +128,7 @@ public class Announcement {
 	}
 	
 	
-	
+	*/
 	
 	
 	
