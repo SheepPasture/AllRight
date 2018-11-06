@@ -21,7 +21,7 @@ public class NewsDao {
 	public NewsDao() {
 		prop = new Properties();
 
-		String filePath = NewsDao.class.getResource("/config/notice-query.properties").getPath();
+		String filePath = NewsDao.class.getResource("/config/news-query.properties").getPath();
 
 		try {
 			
@@ -60,7 +60,6 @@ public class NewsDao {
 				
 				n.setNNO(rset.getInt("nno"));
 				n.setNTITLE(rset.getString("ntitle"));
-				n.setNCONTENT(rset.getString("ncontent"));
 				n.setNCOUNT(rset.getInt("ncount"));
 				n.setNDATE(rset.getDate("ndate"));
 				n.setNFILE(rset.getString("nfile"));
