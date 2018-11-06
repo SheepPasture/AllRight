@@ -3,16 +3,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-	
+
+	<title>ALLRight</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+    
+	<!-- CSS -->
+	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
+
 	<!-- SUMMERNOTE -->
-	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> 
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
-	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
-	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script> 
+   <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> 
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script> 
 
 </head>
 <body>
+	<%@ include file="/views/common/header.jsp" %>
 
 	<!-- PAGE -->
 	<div id="page">
@@ -26,10 +35,9 @@
 					<p><a href="../license/licenseinfo.jsp">자격증정보</a></p>
 				</div>
 				<div class="col-sm-8 text-left">
-					<br>
+					<br>	
 					<h3 align="left">글쓰기</h3>
 					  <div id="summernote"  class="col-sm-10" style="border: 1px solid tomato"></div>
-					  
 					  <script>
 					  	$('#summernote').summernote({
 				            lang: 'ko-KR',
@@ -50,11 +58,11 @@
 		 		<script>
 
 					function save(){
-						location.href='../announcement/ANNList.jsp';
+						location.href='/allRight/selectList.ann';
 					}
 					
 					function back(){
-						location.href="../announcement/ANNList.jsp";
+						location.href='/allRight/selectList.ann';
 					}
 					
 		 		</script> 

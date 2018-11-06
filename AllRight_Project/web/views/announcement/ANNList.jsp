@@ -6,10 +6,15 @@
 <html>
 <head>
 <title>ALLRight</title>
-    
-	 <!-- CSS -->
-	<link href="../../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!-- CSS -->
+	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
+   
 </head>
 <body>
 	
@@ -17,7 +22,7 @@
 	<div id="page">
 	
 	<!-- HEADER -->
-	<%@ include file ="../common/header.jsp" %>
+	<%@ include file ="/views/common/header.jsp" %>
 	<!-- HEADER-END -->
 		<div class="container-fluid text-center">    
 			<div class="row content">
@@ -57,6 +62,18 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		$(function(){
+			$("#listArea td").mouseenter(function(){
+				$(this).parent().css({"cursor":"pointer"});
+			}).click(function(){
+				//console.log($(this).parent().children().eq(0).text());
+				var ano = $(this).parent().children().eq(0).text();
+				location.href="<%=request.getContextPath()%>/selectOne.ann?ano=" + ano;
+			});
+		});
+	</script>
+		
 	
 	<!-- FOOTER -->
 	<footer>

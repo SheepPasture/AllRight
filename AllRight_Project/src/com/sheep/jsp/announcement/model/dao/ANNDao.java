@@ -84,10 +84,11 @@ public class ANNDao {
 			if(rset.next()){
 				a = new Announcement();
 				
-				a.setAno(ano);
-				a.setAtitle(rset.getString("atitle"));
-				a.setAcount(rset.getInt("acount"));
-				a.setAdate(rset.getDate("adate"));
+				a.setAno(rset.getInt(1));
+				a.setAtitle(rset.getString(2));
+				a.setAcount(rset.getInt(3));
+				a.setAcontent(rset.getString(4));
+				a.setAdate(rset.getDate(5));
 				
 			}
 		} catch (SQLException e) {
@@ -102,8 +103,26 @@ public class ANNDao {
 	}
 
 	public int updateCount(Connection con, int ano) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("updateCount");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, ano);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
 	}
 
 }
