@@ -1,4 +1,4 @@
-package com.sheep.jsp.announcement.controller;
+package com.sheep.jsp.news.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,21 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sheep.jsp.announcement.model.service.ANNService;
-import com.sheep.jsp.announcement.model.vo.Announcement;
+import com.sheep.jsp.news.model.service.NewsService;
+import com.sheep.jsp.news.model.vo.News;
 
 /**
- * Servlet implementation class ANNLIstServlet
+ * Servlet implementation class NewsListServlet
  */
-@WebServlet("/selectList.ann")
-public class ANNListServlet extends HttpServlet {
+@WebServlet("/selectList.ne")
+public class NewsListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ANNListServlet() {
+    public NewsListServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -31,34 +32,33 @@ public class ANNListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Announcement> list = new ArrayList<Announcement>();
+		// 뉴스 여러개를 받기 위한 리스트
+		ArrayList<News> list = new ArrayList<News>();
 		
-		ANNService as = new ANNService();
+		NewsService ns = new NewsService();
 		
-		list = as.selectList();
+		list = ns.selectList();
 		
 		String page = "";
-
+		
 		if(list != null){
 			
-			page = "views/announcement/ANNList.jsp";
+			page = "views/news/newLists.jsp";
 			request.setAttribute("list", list);
-			
 		} else {
 			
 			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "공지사항 조회에 실패했습니다. 관리자에게 문의해주세요.");
-			
+			request.setAttribute("msg", "뉴스 조회 실패");
 		}
 		
 		request.getRequestDispatcher(page).forward(request, response);
-		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

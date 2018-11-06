@@ -11,17 +11,13 @@ import java.sql.Statement;
 import java.util.Properties;
 
 public class JDBCTemplate {
-	
-	// 연결 객체 생성 메소드
 	public static Connection getConnection(){
-		
 		Connection con = null;
 		String filePath = JDBCTemplate.class.getResource("/config/driver.properties").getPath();
 		
-		Properties prop = new Properties();
-		
+		Properties prop = new Properties(){
 		try {
-			
+      
 			prop.load(new FileReader(filePath));
 			
 			String driver = prop.getProperty("driver");
@@ -34,8 +30,7 @@ public class JDBCTemplate {
 			con = DriverManager.getConnection(url, username, password);
 			
 			con.setAutoCommit(false);
-			
-			
+      
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -47,7 +42,6 @@ public class JDBCTemplate {
 		}
 		
 		return con;
-		
 	}
 	
 	public static void close(Connection con){
@@ -85,7 +79,6 @@ public class JDBCTemplate {
 	}
 	
 	public static void commit(Connection con){
-		
 		try {
 			if(con != null && !con.isClosed()){
 				con.commit();
@@ -107,5 +100,4 @@ public class JDBCTemplate {
 		}
 		
 	}
-	
 }

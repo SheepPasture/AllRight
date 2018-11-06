@@ -4,7 +4,6 @@
 <head>
 	
 	<title>ALLRight</title>
-	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -39,19 +38,18 @@
 	<!-- PAGE -->
 	<div id="page">
 	
-	
-		<%@ include file="/views/common/header.jsp" %>
+		<%@ include files="/views/common/header.jsp" %>
 		
 		<div class="container-fluid text-center">    
 			<div class="row content">
-				<br>
+				<br />
 				<div class="col-sm-2 sidenav">
 					<p><a href="#">공지사항</a></p>
 					<p><a href="#">커뮤니티</a></p>
 					<p><a href="#">자격증정보</a></p>
 				</div>
 				<div class="col-sm-8 text-center">
-					<h2 align="left">IT Community</h2>
+					<h2 align="left">뉴스</h2>
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -62,47 +60,11 @@
 								<th class="col-md-1">작성일</th>
 							</tr>
 						</thead>
-						<tbody>
-							<th class="col-md-1">1</th>
-							<th class="col-md-6 text-center">글제목입니다.</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">78</th>
-							<th class="col-md-1">2018-10-29</th>						
-						</tr>
-						<tr>
-							<th class="md-1 ">2</th>
-							<th class="col-md-6 text-center">글제목</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">351</th>
-							<th class="col-md-1">2018-10-29</th>	
-						</tr>
-						<tr>
-							<th class="md-1">3</th>
-							<th class="col-md-6 text-center">글제목</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">104</th>
-							<th class="col-md-1">2018-10-29</th>	
-						</tr>
-						<tr>
-							<th class="md-1">4</th>
-							<th class="col-md-6 text-center">글제목</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">15</th>
-							<th class="col-md-1">2018-10-29</th>	
-						</tr>
-						</tbody>
+						
 					</table> 
 				</div>
-				<div class="col-sm-10 text-center">
-					<select id="searchCondition" name="searchCondition">
-						<option value="">.    - - - </option>
-						<option value="writer">작성자</option>
-						<option value="title">제목</option>
-						<option value="content">내용</option>
-					</select>
-					<input type="search" id="keyword" placeholder="키워드를 입력하세요!"> 
-					<button type="button" onclick="search();">검색하기</button>
-					<button type="button"><a href="<%= request.getContextPath() %>/views/noticeWrite/noticeWrite.jsp">작성하기</a></button>
+				<div class="col-sm-10 text-right">
+					<button type="button"><a href="../notice/noticeWrite.jsp">작성하기</a></button>
 				<div>
 			</div>
 		</div>

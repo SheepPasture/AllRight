@@ -1,22 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.sheep.jsp.member.model.vo.Member"%>
 
-<%
+<%-- <%
 	Member m = (Member)session.getAttribute("member");
 
-%>
+%> --%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
- <link href="css/bootstrap.min.css" rel="stylesheet">
+ 	<link href="/allRight/css/bootstrap.min.css" rel="stylesheet">
     <!-- font awesome -->
-    <link rel="stylesheet" href="../../css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/allRight/css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
     <!-- Custom style -->
-    <link rel="stylesheet" href="../../css/style.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/allRight/css/style.css" media="screen" title="no title" charset="utf-8">
 
-
+ 
+<style>
+	.outer{
+		width:600px;
+		height:500px;
+		background:black;
+		color:white;
+		margin-left:auto;
+		margin-right:auto;
+		margin-top:50px;
+	}
+	
+	#idCheck, #ckZip, #goMain, #updateBtn, #deleteBtn {
+		background:orangered;
+		border-radius:5px;
+		width:80px;
+		height:25px;
+		text-align:center;
+	}
+	
+	#idCheck:hover, #ckZip:hover, #updateBtn:hover, #goMain:hover, , #deleteBtn:hover {
+		cursor:pointer;
+	}
+	td {
+		text-align:right;
+	}
+	#ckZip, #updateBtn {
+		background:lightgreen;
+		color:black;
+	}
+	#updateBtn, #goMain, #deleteBtn {
+		display:inline-block;
+	}
+</style>
 
 </head>
 <article class="container">
@@ -49,7 +85,7 @@
              </div>
           </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label" for="inputName">이름</label>
+            <label class="col-sm-3 control-label" for="inputName">닉네임</label>
           <div class="col-sm-6">
             <input class="form-control" id="inputName" type="text" placeholder="이름">
           </div>
@@ -103,9 +139,9 @@
 			$("#updateForm").submit();
 		}
 		
-		function memberDelete() {
+		<%-- function memberDelete() {
 			location.href = "/allRight/mDelete.me?userId=<%=m.getUserId()%>";
-		}
+		} --%>
       
       </script>	
 

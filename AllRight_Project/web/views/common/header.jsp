@@ -17,7 +17,14 @@
 	<script src="/allRight/resources/js/jquery.flexslider-min.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/jquery.BlackAndWhite.js"></script>
 	
+	<!-- calendar -->
+	<link href='/allRight/resources/css/fullcalendar.min.css' rel='stylesheet' />
+	<link href='/allRight/resources/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+	<script src='/allRight/resources/js/moment.min.js'></script> 
+	<!-- <script src='/allRight/resources/js/jquery.min.js'></script>  -->
+	<script src='/allRight/resources/js/fullcalendar.min.js'></script>
 	
+	 
 	<!-- bootstrap -->
 	<script src="/allRight/resources/js/bootstrap.min.js" type="text/javascript"></script>
 	
@@ -27,13 +34,36 @@
    	<link href="html/image_slider/css/style.css" rel="stylesheet" type="text/css" />
    	<link href = "https://fonts.googleapis.com/css?family= Open + Sans "rel = "stylesheet">
    	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+   	
    	<!-- CSS  -->
    	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<!-- 	<link href="/allRight/resources/css/flexslider.css" rel="stylesheet" type="text/css" />
+	<!-- <link href="/allRight/resources/css/flexslider.css" rel="stylesheet" type="text/css" />
 	<link href="/allRight/resources/css/prettyPhoto.css" rel="stylesheet" type="text/css" />
 	<link href="/allRight/resources/css/animate.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/allRight/resources/css/owl.carousel.css" rel="stylesheet"> -->
 	<!-- <link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" /> -->
+
+	<!-- FONTS -->
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500italic,700,500,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">	
+
+	
+	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/jquery.prettyPhoto.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/jquery.nicescroll.min.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/superfish.min.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/jquery.flexslider-min.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/owl.carousel.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/animate.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/jquery.BlackAndWhite.js"></script>
+	<script src="/allRight/resources/js/myscript.js" type="text/javascript"></script>
+	
+	
+	
+	
+	
+	
 	
 	
   <style>
@@ -260,9 +290,7 @@ jQuery(document).ready(function() {
             
             <!-- LOGO -->
             <div class="logo pull-left">
-                <a href="index.html" ><span class="b1">A</span><span class="b2">L</span><span class="b2">L</span>
-                            <span class="b3">R</span><span class="b4">I</span><span class="b4">G</span>
-                            <span class="b4">H</span><span class="b5">T</span></a></a>
+                <a href="<%= request.getContextPath() %>/index.jsp" ><span class="b1">A</span><span class="b2">L</span><span class="b2">L</span><span class="b3">R</span><span class="b4">I</span><span class="b4">G</span><span class="b4">H</span><span class="b5">T</span></a></a>
             </div><!-- //LOGO -->
             
             <!-- SEARCH FORM -->
@@ -276,14 +304,21 @@ jQuery(document).ready(function() {
             <div class="pull-right">
                 <nav class="navmenu center">
                     <ul>
-                        <li class="first scroll_btn"><a href="<%= request.getContextPath() %>/views/announcement/ANNList.jsp">공지사항</a></li>
+                        <li class="sub-menu activ" >
+                        	<a href="<%= request.getContextPath() %>/selectList.ann">공지사항</a>
+                        	<ul>
+                        	<li><a href="<%= request.getContextPath() %>/selectList.ann">공지사항</a></li>
+                        	<li><a href="<%= request.getContextPath() %>">뉴스</a></li>
+                        	</ul>
+                        </li>
                         <li class="sub-menu activ">
-							<a href="index.html#about">커뮤니티</a>
-						<ul>
-							<li class="active"><a href="<%= request.getContextPath() %>/views/community/communityList.jsp">게시판</a>
-							</li>
-							<li><a href="<%= request.getContextPath() %>/views/announcement/ANNList.jsp">자격증 정보</a></li>
-						</ul></li>
+							<a href="javascript:void(0)">커뮤니티</a>
+							<ul>
+								<li class="active"><a href="<%= request.getContextPath() %>/views/community/communityList.jsp">게시판</a>
+								</li>
+								<li><a href="<%= request.getContextPath() %>/views/announcement/ANNList.jsp">자격증 정보</a></li>
+							</ul>
+						</li>
                         <li class="sub-menu active">
                             <a href="javascript:void(0)">마이페이지</a>
                             <ul>
@@ -296,6 +331,7 @@ jQuery(document).ready(function() {
                     </ul>
                 </nav>
             </div><!-- //MENU -->
+            
         </div><!-- //MENU BLOCK -->
     </div><!-- //CONTAINER -->
 

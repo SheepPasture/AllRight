@@ -4,7 +4,6 @@
 <head>
 	
 	<title>ALLRight</title>
-	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -32,81 +31,66 @@
 	<script src="/allRight/resources/js/animate.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/jquery.BlackAndWhite.js"></script>
 	<script src="/allRight/resources/js/myscript.js" type="text/javascript"></script>
-	
+
 </head>
 <body>
 
 	<!-- PAGE -->
 	<div id="page">
 	
-	
-		<%@ include file="/views/common/header.jsp" %>
+		<%@ include files ="/views/common/header.jsp" %>
 		
 		<div class="container-fluid text-center">    
 			<div class="row content">
 				<br>
 				<div class="col-sm-2 sidenav">
-					<p><a href="#">공지사항</a></p>
-					<p><a href="#">커뮤니티</a></p>
-					<p><a href="#">자격증정보</a></p>
+					<p><a href="../notice/noticeList.jsp">공지사항</a></p>
+					<p><a href="../community/communityList.jsp">커뮤니티</a></p>
+					<p><a href="../license/licenseinfo.jsp">자격증정보</a></p>
 				</div>
-				<div class="col-sm-8 text-center">
-					<h2 align="left">IT Community</h2>
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th class="col-md-1">글번호</th>
-								<th class="col-md-6 text-center">글제목</td>
-								<th class="col-md-1">작성자</th>
-								<th class="col-md-1">조회수</th>
-								<th class="col-md-1">작성일</th>
-							</tr>
-						</thead>
-						<tbody>
-							<th class="col-md-1">1</th>
-							<th class="col-md-6 text-center">글제목입니다.</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">78</th>
-							<th class="col-md-1">2018-10-29</th>						
-						</tr>
-						<tr>
-							<th class="md-1 ">2</th>
-							<th class="col-md-6 text-center">글제목</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">351</th>
-							<th class="col-md-1">2018-10-29</th>	
-						</tr>
-						<tr>
-							<th class="md-1">3</th>
-							<th class="col-md-6 text-center">글제목</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">104</th>
-							<th class="col-md-1">2018-10-29</th>	
-						</tr>
-						<tr>
-							<th class="md-1">4</th>
-							<th class="col-md-6 text-center">글제목</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">15</th>
-							<th class="col-md-1">2018-10-29</th>	
-						</tr>
-						</tbody>
-					</table> 
+				<div class="col-sm-8 text-left">
+					<br>
+					<h3 align="left">글쓰기</h3>
+					<div class="form-group"> 
+						<label for="subject">Title</label> 
+						<input type="text" class="form-control" name ="subject" id="subject" placeholder="Enter title"> 
+					</div> 
+					<div class="form-group"> 
+						<label for="File">File input</label> 
+						<input type="file" id="File"> 
+					</div> 
+					<div class="form-group"> 
+						<label for="content">Comment:</label> 
+						<textarea class="form-control" rows="10" name="content" id="content"></textarea> 
+					</div> 
 				</div>
-				<div class="col-sm-10 text-center">
-					<select id="searchCondition" name="searchCondition">
-						<option value="">.    - - - </option>
-						<option value="writer">작성자</option>
-						<option value="title">제목</option>
-						<option value="content">내용</option>
-					</select>
-					<input type="search" id="keyword" placeholder="키워드를 입력하세요!"> 
-					<button type="button" onclick="search();">검색하기</button>
-					<button type="button"><a href="<%= request.getContextPath() %>/views/noticeWrite/noticeWrite.jsp">작성하기</a></button>
-				<div>
 			</div>
+					<button type="submit">수정하기</button>
+			 		<button type="submit">작성하기</button>
+			 		<button type="button"><a href="../notice/noticeList.jsp" >되돌아가기</a></button>
 		</div>
-	
+					<!-- <div class="row">
+		 				<form method="post" action="writeAction.jsp">
+						<table class="table table-striped" style="text-align:center; border:1px; solid #dddddd">
+					 		<thead>
+								<tr>
+									<th colspan="1" style="background-color:#eeeeee; text-align: center;">게시판 글쓰기 양식</th>
+								</tr>		 		
+					 		</thead>
+					 		<tbody>
+					 			<tr>
+					 				<td><input type="text" class="form-control" placeholder="글제목" name="bbsTitle" maxlength="50"></td>
+					 			</tr>
+					 			<tr>	
+					 				<td><textarea class="form-control" placeholder="글 내용" name="bbsContent" maxlength="2048" style="height:350px"></textarea> </td>
+					 			</tr>	
+					 		</tbody>
+			 			</table>
+			 			<button type="button">수정하기</button>
+				 		<button type="button">작성하기</button>
+						</form>
+		 			</div> -->
+
 	<!-- FOOTER -->
 	<footer>
 			

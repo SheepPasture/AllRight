@@ -12,6 +12,7 @@ public class Board implements Serializable{
 
 	
 	// 필드 
+	// test
 	
 	private int bId;
 	private int bNO;

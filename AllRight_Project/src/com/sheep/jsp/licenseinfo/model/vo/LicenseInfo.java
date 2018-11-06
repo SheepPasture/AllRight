@@ -14,7 +14,6 @@ public class LicenseInfo {
 	
 	
 	public LicenseInfo() {
-		super();
 	}
 
 	public LicenseInfo(int lNo, String lName, String lInfo, String lDate, String lCategory, int lCost1, int lCost2) {

@@ -19,6 +19,14 @@ public class News {
 	
 	
 
+	public News(String nTITLE, String nCONTENT) {
+		super();
+		NTITLE = nTITLE;
+		NCONTENT = nCONTENT;
+	}
+
+
+
 	public News(int nNO, String nTITLE, String nCONTENT, int nCOUNT, Date nDATE, String nFILE) {
 		super();
 		NNO = nNO;
