@@ -275,14 +275,17 @@ jQuery(document).ready(function() {
             <div class="pull-right">
                 <nav class="navmenu center">
                     <ul>
-                        <li class="first scroll_btn"><a href="<%= request.getContextPath() %>/views/announcement/ANNList.jsp">공지사항</a></li>
+                        <li class="first scroll_btn" >
+                        	<a href="<%= request.getContextPath() %>/selectList.ann">공지사항</a>
+                        </li>
                         <li class="sub-menu activ">
 							<a href="index.html#about">커뮤니티</a>
-						<ul>
-							<li class="active"><a href="<%= request.getContextPath() %>/views/community/communityList.jsp">게시판</a>
-							</li>
-							<li><a href="<%= request.getContextPath() %>/views/announcement/ANNList.jsp">자격증 정보</a></li>
-						</ul></li>
+							<ul>
+								<li class="active"><a href="<%= request.getContextPath() %>/views/community/communityList.jsp">게시판</a>
+								</li>
+								<li><a href="<%= request.getContextPath() %>/views/announcement/ANNList.jsp">자격증 정보</a></li>
+							</ul>
+						</li>
                         <li class="sub-menu active">
                             <a href="javascript:void(0);">마이페이지</a>
                             <ul>
@@ -294,6 +297,7 @@ jQuery(document).ready(function() {
                     </ul>
                 </nav>
             </div><!-- //MENU -->
+            
         </div><!-- //MENU BLOCK -->
     </div><!-- //CONTAINER -->
 

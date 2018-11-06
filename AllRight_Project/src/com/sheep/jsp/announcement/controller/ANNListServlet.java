@@ -32,7 +32,6 @@ public class ANNListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("Service");
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
 		
 		ANNService as = new ANNService();
