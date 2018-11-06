@@ -276,13 +276,13 @@ jQuery(document).ready(function() {
             <div class="pull-right">
                 <nav class="navmenu center">
                     <ul>
-                        <li class="first scroll_btn"><a href="<%= request.getContextPath() %>/views/notice/noticeList.jsp">공지사항</a></li>
+                        <li class="first scroll_btn"><a href="<%= request.getContextPath() %>/views/announcement/ANNList.jsp">공지사항</a></li>
                         <li class="sub-menu activ">
 							<a href="index.html#about">커뮤니티</a>
 						<ul>
 							<li class="active"><a href="<%= request.getContextPath() %>/views/community/communityList.jsp">게시판</a>
 							</li>
-							<li><a href="<%= request.getContextPath() %>/views/notice/noticeList.jsp">자격증 정보</a></li>
+							<li><a href="<%= request.getContextPath() %>/views/announcement/ANNList.jsp">자격증 정보</a></li>
 						</ul></li>
                         <li class="sub-menu active">
                             <a href="<%= request.getContextPath() %>/views/myPage/myPageMain.jsp">마이페이지</a>
