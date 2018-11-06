@@ -41,7 +41,7 @@
 	<div id="page">
 	
 		<!-- HEADER -->
-		<%@ include file ="/views/common/header.jsp" %>
+		<%@ include files="/views/common/header.jsp" %>
 		
 		<div class="container-fluid text-center">    
 			<div class="row content">
