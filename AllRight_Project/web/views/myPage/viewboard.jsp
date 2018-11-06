@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.sheep.jsp.board.model.vo.*,com.sheep.jsp.boardComment.model.vo.*"%>
+    pageEncoding="UTF-8" import="com.sheep.jsp.board.model.vo.*,com.sheep.jsp.boardComment.model.vo.*, java.util.*"%>
+<%
+ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list"); 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,13 +49,17 @@
 								<th class="col-md-1">작성일</th>
 							</tr>
 						</thead>
+						
 						<tbody>
-							<th class="col-md-1">1</th>
-							<th class="col-md-6 text-center">글제목입니다.</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">78</th>
-							<th class="col-md-1">2018-10-29</th>						
+						<% for(Board b : list){ %>
+						<tr>
+							<td class="col-md-1"><%= b.getbNO() %></th>
+							<td class="col-md-6 text-center"><%= b.getbTitle() %></td>
+							<td class="col-md-1"><%= b.getbWriter() %></th>
+							<td class="col-md-1"><%= b.getbCount() %></th>
+							<td class="col-md-1"><%= b.getbDate() %></th>						
 						</tr>
+						<%}%>
 						<tr>
 						<td>
 						</tr>

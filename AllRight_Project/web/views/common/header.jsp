@@ -285,11 +285,12 @@ jQuery(document).ready(function() {
 							<li><a href="<%= request.getContextPath() %>/views/announcement/ANNList.jsp">자격증 정보</a></li>
 						</ul></li>
                         <li class="sub-menu active">
-                            <a href="<%= request.getContextPath() %>/views/myPage/myPageMain.jsp">마이페이지</a>
+                            <a href="javascript:void(0)">마이페이지</a>
                             <ul>
                                 <li><a href="<%= request.getContextPath() %>/views/myPage/myPageMain.jsp">회원정보수정</a></li>
-                                <li><a href="<%= request.getContextPath() %>/views/myPage/myPageMain.jsp">관심 자격증 정보</a></li>
-                                <li><a href="<%= request.getContextPath() %>/views/myPage/myPageMain.jsp">일정 관리</a></li>
+                                <li><a href="<%= request.getContextPath() %>/views/myPage/schedule.jsp">관심 자격증 정보</a></li>
+                                <li><a href="<%= request.getContextPath() %>/views/myPage/viewBoard.jsp">게시글 관리</a></li>
+                                <li><a href="<%= request.getContextPath() %>/views/myPage/viewTest.jsp">기출문제 관리</a></li>
                             </ul>
                         </li>
                     </ul>

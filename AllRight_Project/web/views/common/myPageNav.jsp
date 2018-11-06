@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.sheep.jsp.member.model.vo.Member"%>
-
-<%
-	Member m = (Member)session.getAttribute("member");
-%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
 <head>
 	
 	<title>ALLRight</title>
@@ -37,19 +36,9 @@
 	<script src="../../resources/js/jquery.BlackAndWhite.js"></script>
 	<script src="../../resources/js/myscript.js" type="text/javascript"></script>
 </head>
-<body>
 
-	<!-- PAGE -->
-	<div id="page">
-	
-	<!-- HEADER -->
-		<%-- <form id="joinForm" action="<%=request.getContextPath()%>/mInsert.me" method="post"> --%>
-		<header>
-		<%-- <a href="<%= request.getContextPath() %>/> --%>
-		<%@ include file="/views/common/header.jsp" %>
-		</header>
-	<!-- HEADER-END -->
-		<div class="container-fluid text-center">    
+<body>
+	<div class="container-fluid text-center">    
 			<div class="row content">
 				<br>
 				<div class="col-sm-2 sidenav"  style="display:inline-block;"  >
@@ -58,58 +47,9 @@
 					<p><a href="/allRight/myPage/bMyList.bo" >게시글 관리</a></p>
 					<p><a href="/allRight/myPage/viewTest.jsp">기출문제 관리</a></p>
 				</div>
-			<%-- 
-				<div id="showView" style="width:70%;height:100%; display:inline-block; ">
-					<!-- <div src="viewMemberInfo.jsp"> -->
-				회원 정보	
-				아이디 : = m.getUserId() <br>
-				이름 : = m.getUserName() <br>
-				이메일 : = m.getEmail <br>
-				관심자격증 : = m.getSeloption <br> 
-				포인트	:	10/2000<br>
-				<button id="mUpdate" onclick="mUpdate();">정보 수정</div>
-				</button> --%>
+		
 			</div>
 			
 		</div>
-		
-		<script>
-		function mUpdate(){
-			
-		}
-		/* 	$(function(){
-				/* $('#showView').css("color","red"); 
-				$('#s').css("color","red"); 
-				
-				console.log($('div:last'));
-				$('.sidenav').children().click(function(){
-				/* 	console.log($(this).children().attr('href')); 
-					 console.log($(this));
-					
-						 $('#showView').load($(this).children().attr('href'),function(){
-						 
-					      $('#showView').show();
-						}); 
-					
-					return false;
-				});
-				
-		
-			$('#mUpdate').click(function(){
-				 $('#showView').load('updateMember.jsp');
-			})
-	
-   			}); */
-
-   
-		</script>	
-	
-	<!-- FOOTER -->
-	<footer>
-			
-	</footer><!-- //FOOTER -->
-	
-
-</div>
 </body>
 </html>
