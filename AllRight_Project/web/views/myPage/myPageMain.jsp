@@ -3,7 +3,6 @@
 
 <%
 	Member m = (Member)session.getAttribute("member");
-
 %>
 <!DOCTYPE html>
 <head>
@@ -37,11 +36,6 @@
 	<script src="../../resources/js/animate.js" type="text/javascript"></script>
 	<script src="../../resources/js/jquery.BlackAndWhite.js"></script>
 	<script src="../../resources/js/myscript.js" type="text/javascript"></script>
-	
-	
-	
-	
-	
 </head>
 <body>
 
@@ -49,7 +43,11 @@
 	<div id="page">
 	
 	<!-- HEADER -->
-		<%@ include file="../common/header.jsp" %>
+		<%-- <form id="joinForm" action="<%=request.getContextPath()%>/mInsert.me" method="post"> --%>
+		<header>
+		<%-- <a href="<%= request.getContextPath() %>/> --%>
+		<%@ include file="/views/common/header.jsp" %>
+		</header>
 	<!-- HEADER-END -->
 		<div class="container-fluid text-center">    
 			<div class="row content">

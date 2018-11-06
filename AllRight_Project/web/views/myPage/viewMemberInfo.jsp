@@ -19,7 +19,7 @@
 				포인트	:	10/2000
 				<button class="mUpdate" href="updateMember.jsp">정보 수정</button>
 				</div>
-				
+
 				<script>
 				
 					 $('.mUpdate').click(function (){

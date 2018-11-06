@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <link href='../../resources/css/fullcalendar.min.css' rel='stylesheet' />
 <link href='../../resources/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-<script src='../../resources/js/moment.min.js'></script>
-<script src='../../resources/js/jquery.min.js'></script>
+<script src='../../resources/js/moment.min.js'></script> 
+<script src='../../resources/js/jquery.min.js'></script> 
 <script src='../../resources/js/fullcalendar.min.js'></script>
 <script>
 
@@ -60,12 +60,12 @@
 
 </script>
 <style>
-  body {
+/*   body {
     margin: 40px 10px;
     padding: 0;
     font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
     font-size: 14px;
-  }
+  } */
 
   #calendar {
     max-width: 900px;

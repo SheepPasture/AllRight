@@ -217,6 +217,7 @@ jQuery(document).ready(function() {
 			jQuery('header .navmenu').slideToggle(300);
 		});
 	}
+	
 		
 	// if single_page
 	if (jQuery("#page").hasClass("single_page")) {			
@@ -284,11 +285,11 @@ jQuery(document).ready(function() {
 							<li><a href="<%= request.getContextPath() %>/views/notice/noticeList.jsp">자격증 정보</a></li>
 						</ul></li>
                         <li class="sub-menu active">
-                            <a href="javascript:void(0);">마이페이지</a>
+                            <a href="<%= request.getContextPath() %>/views/myPage/myPageMain.jsp">마이페이지</a>
                             <ul>
                                 <li><a href="<%= request.getContextPath() %>/views/myPage/myPageMain.jsp">회원정보수정</a></li>
-                                <li><a href="blog-post.html">관심 자격증 정보</a></li>
-                                <li><a href="portfolio-post.html">일정 관리</a></li>
+                                <li><a href="<%= request.getContextPath() %>/views/myPage/myPageMain.jsp">관심 자격증 정보</a></li>
+                                <li><a href="<%= request.getContextPath() %>/views/myPage/myPageMain.jsp">일정 관리</a></li>
                             </ul>
                         </li>
                     </ul>
