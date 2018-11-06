@@ -49,7 +49,7 @@
 	<div id="page">
 	
 	<!-- HEADER -->
-		<%@ include file="../common/header.jsp" %>
+		<%@ include file="/views/common/header.jsp" %>
 	<!-- HEADER-END -->
 		<div class="container-fluid text-center">    
 			<div class="row content">
