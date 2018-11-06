@@ -2,6 +2,7 @@ package com.sheep.jsp.common.util;
 
 import java.util.ArrayList;
 
+import javax.management.ListenerNotFoundException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -26,18 +27,19 @@ import com.sheep.jsp.licenseinfo.model.vo.LicenseInfo;
 public class ParseApi {
 
 	private String getTagValue(String tag, Element eElement) {
+		
 		NodeList nlList = eElement.getElementsByTagName(tag).item(0).getChildNodes();
 		Node nValue = (Node) nlList.item(0);
 		if (nValue == null)
 			return null;
 		return nValue.getNodeValue();
 	}
-	
-	private NodeList common(String url){
-		
+
+	private NodeList common(String url) {
+
 		NodeList nList = null;
 		try {
-			
+
 			DocumentBuilderFactory dbFactoty = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactoty.newDocumentBuilder();
 			Document doc = dBuilder.parse(url);
@@ -49,132 +51,144 @@ public class ParseApi {
 
 			// 파싱할 tag
 			nList = doc.getElementsByTagName("item");
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return nList;
 	}
 	
-	public ArrayList<LicenseInfo> getApiName(){
+	public ArrayList<LicenseInfo> getApiNo(){
 		
-		ArrayList<LicenseInfo> listName = new ArrayList<LicenseInfo>();
-		
-		try {
+		ArrayList<LicenseInfo> listNo = new ArrayList<LicenseInfo>();
 
-			// parsing할 url 지정(API 키 포함해서)
-			String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryListNationalQualifcationSVC/getList?serviceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
-//			String url2 = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getFeeList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
-//			url2 += "&jmCd=1320";
-			
-			NodeList nList = common(url);
+		// parsing할 url 지정(API 키 포함해서)
+		String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryListNationalQualifcationSVC/getList?serviceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
+		// String url2 =
+		// "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getFeeList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
+		// url2 += "&jmCd=1320";
 
-			LicenseInfo l = null;
-			
+		NodeList nList = common(url);
 
-			for (int i = 0; i < nList.getLength(); i++) {
-				Node nNode = nList.item(i);
-				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+		LicenseInfo l = null;
 
-					Element eElement = (Element) nNode;
-					// System.out.println("#################################");
-					// System.out.println(eElement.getTextContent());
-					// System.out.println(getTagValue("jmfldnm", eElement));
-					
-					l = new LicenseInfo(getTagValue("jmfldnm", eElement));
+		for (int i = 0; i < nList.getLength(); i++) {
+			Node nNode = nList.item(i);
+			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
-					listName.add(l);
+				Element eElement = (Element) nNode;
+				// System.out.println("#################################");
+				// System.out.println(eElement.getTextContent());
+				// System.out.println(getTagValue("jmfldnm", eElement));
 
-				} // for end
-			} // if end
-			
+				l = new LicenseInfo(getTagValue("jmcd", eElement));
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		} // try~catch end
-		
-		return listName;
+				listNo.add(l);
+
+			} // for end
+		} // if end
+
+		return listNo;
 		
 	}
-	
-	public ArrayList<LicenseInfo> getApiCategory(){
-		
+
+	public ArrayList<LicenseInfo> getApiName() {
+
+		ArrayList<LicenseInfo> listName = new ArrayList<LicenseInfo>();
+
+		// parsing할 url 지정(API 키 포함해서)
+		String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryListNationalQualifcationSVC/getList?serviceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
+		// String url2 =
+		// "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getFeeList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
+		// url2 += "&jmCd=1320";
+
+		NodeList nList = common(url);
+
+		LicenseInfo l = null;
+
+		for (int i = 0; i < nList.getLength(); i++) {
+			Node nNode = nList.item(i);
+			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+				Element eElement = (Element) nNode;
+				// System.out.println("#################################");
+				// System.out.println(eElement.getTextContent());
+				// System.out.println(getTagValue("jmfldnm", eElement));
+
+				l = new LicenseInfo(getTagValue("jmfldnm", eElement));
+
+				listName.add(l);
+
+			} // for end
+		} // if end
+
+		return listName;
+
+	}
+
+	public ArrayList<LicenseInfo> getApiCategory() {
+
 		ArrayList<LicenseInfo> listCategory = new ArrayList<LicenseInfo>();
-		
-		try {
 
-			// parsing할 url 지정(API 키 포함해서)
-			String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryListNationalQualifcationSVC/getList?serviceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
-//			String url2 = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getFeeList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
-//			url2 += "&jmCd=1320";
-			
-			NodeList nList = common(url);
+		// parsing할 url 지정(API 키 포함해서)
+		String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryListNationalQualifcationSVC/getList?serviceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
+		// String url2 =
+		// "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getFeeList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
+		// url2 += "&jmCd=1320";
 
-			LicenseInfo l = null;
-			
+		NodeList nList = common(url);
 
-			for (int i = 0; i < nList.getLength(); i++) {
-				Node nNode = nList.item(i);
-				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+		LicenseInfo l = null;
 
-					Element eElement = (Element) nNode;
-					// System.out.println("#################################");
-					// System.out.println(eElement.getTextContent());
-					// System.out.println(getTagValue("jmfldnm", eElement));
-					
-					l = new LicenseInfo(getTagValue("obligfldnm", eElement));
+		for (int i = 0; i < nList.getLength(); i++) {
+			Node nNode = nList.item(i);
+			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
-					listCategory.add(l);
+				Element eElement = (Element) nNode;
+				// System.out.println("#################################");
+				// System.out.println(eElement.getTextContent());
+				// System.out.println(getTagValue("jmfldnm", eElement));
 
-				} // for end
-			} // if end
-			
+				l = new LicenseInfo(getTagValue("obligfldnm", eElement));
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		} // try~catch end
-		
-		
+				listCategory.add(l);
+
+			} // for end
+		} // if end
+
 		return listCategory;
 	}
-	
-	public ArrayList<LicenseInfo> getApiInfo(){
-		
-		
+
+	public ArrayList<LicenseInfo> getApiInfo() {
+
 		ArrayList<LicenseInfo> listInfo = new ArrayList<LicenseInfo>();
 		
-		try {
+		String temp = getApiNo().get(0).getlName();
 
-			String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryInformationTradeNTQSVC/getList?jmCd=1320&ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
-			
-			NodeList nList = common(url);
+		String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryInformationTradeNTQSVC/getList?jmCd=";
+		url += temp+"&ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
 
-			LicenseInfo l = null;
-			
+		NodeList nList = common(url);
 
-			for (int i = 0; i < nList.getLength(); i++) {
-				Node nNode = nList.item(i);
-				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+		LicenseInfo l = null;
 
-					Element eElement = (Element) nNode;
-					// System.out.println("#################################");
-					// System.out.println(eElement.getTextContent());
-					// System.out.println(getTagValue("jmfldnm", eElement));
-					
-					l = new LicenseInfo(getTagValue("contents", eElement));
+		for (int i = 0; i < nList.getLength(); i++) {
+			Node nNode = nList.item(i);
+			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
-					listInfo.add(l);
+				Element eElement = (Element) nNode;
+				// System.out.println("#################################");
+				// System.out.println(eElement.getTextContent());
+				// System.out.println(getTagValue("jmfldnm", eElement));
 
-				} // for end
-			} // if end
-			
+				l = new LicenseInfo(getTagValue("contents", eElement));
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		} // try~catch end
-		
-		
+				listInfo.add(l);
+
+			} // for end
+		} // if end
+
 		return listInfo;
 	}
 }
