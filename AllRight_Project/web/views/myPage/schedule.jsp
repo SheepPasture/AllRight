@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href='../../resources/css/fullcalendar.min.css' rel='stylesheet' />
-<link href='../../resources/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-<script src='../../resources/js/moment.min.js'></script>
-<script src='../../resources/js/jquery.min.js'></script>
-<script src='../../resources/js/fullcalendar.min.js'></script>
+<link href='/allRight/resources/css/fullcalendar.min.css' rel='stylesheet' />
+<link href='/allRight/resources/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+<script src='/allRight/resources/js/moment.min.js'></script>
+<script src='/allRight/resources/js/jquery.min.js'></script>
+<script src='/allRight/resources/js/fullcalendar.min.js'></script>
 <script>
 
   $(document).ready(function() {

@@ -14,7 +14,7 @@
 	<meta name="author" content="">
     
 	<!-- CSS -->
-	<link href="../../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="../../resources/css/flexslider.css" rel="stylesheet" type="text/css" />
 	<link href="../../resources/css/prettyPhoto.css" rel="stylesheet" type="text/css" />
 	<link href="../../resources/css/animate.css" rel="stylesheet" type="text/css" media="all" />
