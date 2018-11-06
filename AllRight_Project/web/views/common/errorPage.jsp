@@ -14,7 +14,9 @@
 	<meta name="author" content="">
     
 	<!-- CSS -->
+
 	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
 	<link href="/allRight/resources/css/flexslider.css" rel="stylesheet" type="text/css" />
 	<link href="/allRight/resources/css/prettyPhoto.css" rel="stylesheet" type="text/css" />
 	<link href="/allRight/resources/css/animate.css" rel="stylesheet" type="text/css" media="all" />
@@ -43,7 +45,9 @@
 	<!-- PAGE -->
 	<div id="page">
 	
+
 		<%@ include file="/views/common/header.jsp" %>
+
 		
 		<div class="container-fluid text-center">    
 			<div class="row content">

@@ -9,6 +9,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 </head>
+<html>
 <body>
 	<!-- PAGE -->
 	<div id="page">

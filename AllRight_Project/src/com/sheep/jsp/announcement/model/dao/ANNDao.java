@@ -65,4 +65,14 @@ public class ANNDao {
 		return list;
 	}
 
+	public Announcement selectOne(Connection con, int ano) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int updateCount(Connection con, int ano) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
