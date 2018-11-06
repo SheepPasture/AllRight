@@ -19,8 +19,6 @@ public class ANNDao {
 	
 	public ANNDao(){
 		
-		System.out.println("dao");
-		
 		prop = new Properties();
 		
 		String filePath = ANNDao.class.getResource("/config/ANN-query.properties").getPath();
@@ -35,8 +33,6 @@ public class ANNDao {
 	
 	public ArrayList<Announcement> selectList(Connection con) {
 		
-		System.out.println("selectList");
-		
 		ArrayList<Announcement> list = null;
 		Statement stmt = null;
 		ResultSet rset = null;
@@ -48,8 +44,6 @@ public class ANNDao {
 			rset = stmt.executeQuery(sql);
 			
 			list = new ArrayList<Announcement>();
-			
-			System.out.println("Sel");
 			
 			while(rset.next()){
 				Announcement a = new Announcement();
@@ -67,9 +61,7 @@ public class ANNDao {
 			close(rset);
 			close(stmt);
 		}
-		
-		System.out.println("annDAo");
-		
+
 		return list;
 	}
 
