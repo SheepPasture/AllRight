@@ -1,6 +1,5 @@
 package com.sheep.jsp.common;
 
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,20 +11,18 @@ import java.sql.Statement;
 import java.util.Properties;
 
 public class JDBCTemplate {
-	
 	public static Connection getConnection(){
 		Connection con = null;
 		String filePath = JDBCTemplate.class.getResource("/config/driver.properties").getPath();
 		
-		Properties prop = new Properties();
-		
-		try{
-			
+		Properties prop = new Properties(){
+		try {
+      
 			prop.load(new FileReader(filePath));
 			
 			String driver = prop.getProperty("driver");
 			String url = prop.getProperty("url");
-			String username = prop.getProperty("username");
+			String username= prop.getProperty("username");
 			String password = prop.getProperty("password");
 			
 			Class.forName(driver);
@@ -33,11 +30,11 @@ public class JDBCTemplate {
 			con = DriverManager.getConnection(url, username, password);
 			
 			con.setAutoCommit(false);
-			
+      
 		} catch (FileNotFoundException e) {
-		 	e.printStackTrace();
+			e.printStackTrace();
 		} catch (IOException e) {
-		 	e.printStackTrace();
+			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -48,59 +45,59 @@ public class JDBCTemplate {
 	}
 	
 	public static void close(Connection con){
-		try{
+		
+		try {
 			if(con != null && !con.isClosed()){
-				
 				con.close();
 			}
-		} catch (SQLException e){
-			
+		} catch (SQLException e) {
 			e.printStackTrace();
-			
 		}
+		
 	}
 	
 	public static void close(Statement stmt){
-		try{
+		
+		try {
 			if(stmt != null && !stmt.isClosed()){
 				stmt.close();
 			}
-		} catch (SQLException e){
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public static void close(ResultSet rset){
-		
-		try{
+		try {
 			if(rset != null && !rset.isClosed()){
 				rset.close();
 			}
-		} catch (SQLException e){
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public static void commit(Connection con){
-		try{
-			
-			if(con != null && !con.isClosed()) con.commit();
-		} catch (SQLException e){
+		try {
+			if(con != null && !con.isClosed()){
+				con.commit();
+			}
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public static void rollback(Connection con){
-		try {
-			
-			if(con != null && ! con.isClosed() ) con.rollback();
-			
-		} catch (SQLException e) {
 		
+		try {
+			if(con != null && !con.isClosed()){
+				con.rollback();
+			}
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 	}
-	
-	
-
 }
