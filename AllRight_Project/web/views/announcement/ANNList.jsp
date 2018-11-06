@@ -12,12 +12,12 @@
 	<meta name="author" content="">
     
 	 <!-- CSS -->
-	<link href="../../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<link href="../../resources/css/flexslider.css" rel="stylesheet" type="text/css" />
-	<link href="../../resources/css/prettyPhoto.css" rel="stylesheet" type="text/css" />
-	<link href="../../resources/css/animate.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="../../resources/css/owl.carousel.css" rel="stylesheet">
-	<link href="../../resources/css/style.css" rel="stylesheet" type="text/css" /> 
+	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="/allRight/resources/css/flexslider.css" rel="stylesheet" type="text/css" />
+	<link href="/allRight/resources/css/prettyPhoto.css" rel="stylesheet" type="text/css" />
+	<link href="/allRight/resources/css/animate.css" rel="stylesheet" type="text/css" media="all" />
+    	<link href="/allRight/resources/css/owl.carousel.css" rel="stylesheet">
+	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" /> 
 
 	<!-- CSS -->
 	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
@@ -30,7 +30,7 @@
 	<div id="page">
 	
 	<!-- HEADER -->
-	<%@ include file ="../common/header.jsp" %>
+	<%@ include file ="/views/common/header.jsp" %>
 	<!-- HEADER-END -->
 		<div class="container-fluid text-center">    
 			<div class="row content">
