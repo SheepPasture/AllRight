@@ -26,5 +26,27 @@ public class NewsService {
 		
 	}
 
+	public News selectOne(int nno) {
+		
+		//뉴스 상세 보기 조회시
+		
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		News n = nDao.selectOne(con, nno);
+		
+		if(n != null){
+			result = nDao.updateCount(con, nno);
+			
+			if(result > 0 ) commit(con);
+			else rollback(con);
+		}
+		
+		close(con);
+		
+		return n;
+	}
+
 
 }

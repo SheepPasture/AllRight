@@ -53,14 +53,14 @@
 				</div>
 				<div class="col-sm-8 text-center">
 					<h2 align="left">뉴스</h2>
-					<table class="table table-hover" >
+					<table class="table table-hover" id="listArea">
 						<thead>
 							<tr>
-								<th class="col-md-1">글번호</th>
+								<th class="col-md-1 text-center">글번호</th>
 								<th class="col-md-6 text-center">글제목</td>
-								<th class="col-md-1">작성자</th>
-								<th class="col-md-1">조회수</th>
-								<th class="col-md-1">작성일</th>
+								<th class="col-md-1 text-center">작성자</th>
+								<th class="col-md-1 text-center">조회수</th>
+								<th class="col-md-2 text-center">작성일</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -81,6 +81,19 @@
 				<div>
 			</div>
 		</div>
+		
+		<script>
+			
+			$(function(){
+				$("#listArea td").mouseenter(function(){
+					$(this).parent().css({"cursor":"pointer"});
+				}).click(function(){
+					
+					var nno = $(this).parent().find("input").val();
+					location.href="<%=request.getContextPath()%>/selectOne.ne?nno=" + nno;
+				});
+			});
+		</script>
 	
 	<!-- FOOTER -->
 	<footer>
