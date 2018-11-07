@@ -285,7 +285,7 @@ jQuery(document).ready(function() {
 							<ul>
 								<li class="active"><a href="<%= request.getContextPath() %>/views/community/communityList.jsp">게시판</a>
 								</li>
-								<li><a href="<%= request.getContextPath() %>/views/announcement/ANNList.jsp">자격증 정보</a></li>
+								<li><a href="<%= request.getContextPath() %>/views/licenseinfo/licenseinfoList.jsp">자격증 정보</a></li>
 							</ul>
 						</li>
                         <li class="sub-menu active">
