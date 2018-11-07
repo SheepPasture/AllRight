@@ -1,28 +1,26 @@
-package com.sheep.jsp.news.controller;
+package com.sheep.jsp.announcement.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sheep.jsp.news.model.service.NewsService;
-import com.sheep.jsp.news.model.vo.News;
+import com.sheep.jsp.announcement.model.service.ANNService;
+import com.sheep.jsp.announcement.model.vo.Announcement;
 
 /**
- * Servlet implementation class NewsListServlet
+ * Servlet implementation class ANNSelectOneServlet
  */
-@WebServlet("/selectList.ne")
-public class NewsListServlet extends HttpServlet {
+@WebServlet("/selectOne.ann")
+public class ANNSelectOneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NewsListServlet() {
+    public ANNSelectOneServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,27 +29,25 @@ public class NewsListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		int ano = Integer.parseInt(request.getParameter("ano"));
 		
-		// 뉴스 여러개를 받기 위한 리스트
-		ArrayList<News> list = new ArrayList<News>();
+		ANNService as = new ANNService();
 		
-		NewsService ns = new NewsService();
-		
-		list = ns.selectList();
+		Announcement a = as.selectOne(ano);
 		
 		String page = "";
 		
-		if(list != null){
-			
-			page = "/views/news/newLists.jsp";
-			request.setAttribute("list", list);
-		} else {
-			
-			page = "/views/common/errorPage.jsp";
-			request.setAttribute("msg", "뉴스 조회 실패");
+		if(a != null){
+			page = "/views/announcement/ANNDetail.jsp";
+			request.setAttribute("Announcement", a);
+		} else{
+			page="/views/common/errorPage.jsp";
+			request.setAttribute("msg", "공지사항 상세보기에 실패하였습니다. 관리자에게 문의바랍니다.");
 		}
 		
 		request.getRequestDispatcher(page).forward(request, response);
+		
 	}
 
 	/**

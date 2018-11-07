@@ -7,27 +7,28 @@ public class LicenseInfo {
 	private String lInfo;
 	private String lDate;
 	private String lCategory;
-	private int lCost1;
-	private int lCost2;
+	private String lCost;
 	
 	// 생성자
 	
 	
-	public LicenseInfo() {
-	}
+	public LicenseInfo() {}
 
-	public LicenseInfo(int lNo, String lName, String lInfo, String lDate, String lCategory, int lCost1, int lCost2) {
+	public LicenseInfo(int lNo, String lName, String lInfo, String lDate, String lCategory, String lCost) {
 		super();
 		this.lNo = lNo;
 		this.lName = lName;
 		this.lInfo = lInfo;
 		this.lDate = lDate;
 		this.lCategory = lCategory;
-		this.lCost1 = lCost1;
-		this.lCost2 = lCost2;
+		this.lCost = lCost;
+	}
+	
+	public LicenseInfo(String lName) {
+		super();
+		this.lName = lName;
 	}
 
-	
 	// getter & setter
 	
 	public int getlNo() {
@@ -70,39 +71,29 @@ public class LicenseInfo {
 		this.lCategory = lCategory;
 	}
 
-	public int getlCost1() {
-		return lCost1;
+	public String getlCost() {
+		return lCost;
 	}
 
-	public void setlCost1(int lCost1) {
-		this.lCost1 = lCost1;
+	public void setlCost(String lCost) {
+		this.lCost = lCost;
 	}
 
-	public int getlCost2() {
-		return lCost2;
-	}
 
-	public void setlCost2(int lCost2) {
-		this.lCost2 = lCost2;
-	}
-
-	
 	// toString()
 	@Override
 	public String toString() {
-		return "LicenseInfo [lNo=" + lNo + ", lName=" + lName + ", lInfo=" + lInfo + ", lDate=" + lDate + ", lCategory="
-				+ lCategory + ", lCost1=" + lCost1 + ", lCost2=" + lCost2 + "]";
+		return "자격증 번호 =" + lNo + ", 자격증 명 =" + lName + ", 자격증 정보 =" + lInfo + ", 시험 일자 =" + lDate + ", 자격증 분류 ="
+				+ lCategory + ", 응시 비용 =" + lCost;
 	}
 	
 	//hashCode()
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((lCategory == null) ? 0 : lCategory.hashCode());
-		result = prime * result + lCost1;
-		result = prime * result + lCost2;
+		result = prime * result + ((lCost == null) ? 0 : lCost.hashCode());
 		result = prime * result + ((lDate == null) ? 0 : lDate.hashCode());
 		result = prime * result + ((lInfo == null) ? 0 : lInfo.hashCode());
 		result = prime * result + ((lName == null) ? 0 : lName.hashCode());
@@ -124,9 +115,10 @@ public class LicenseInfo {
 				return false;
 		} else if (!lCategory.equals(other.lCategory))
 			return false;
-		if (lCost1 != other.lCost1)
-			return false;
-		if (lCost2 != other.lCost2)
+		if (lCost == null) {
+			if (other.lCost != null)
+				return false;
+		} else if (!lCost.equals(other.lCost))
 			return false;
 		if (lDate == null) {
 			if (other.lDate != null)
@@ -147,9 +139,6 @@ public class LicenseInfo {
 			return false;
 		return true;
 	}
-	
-	
-	
 	
 
 }

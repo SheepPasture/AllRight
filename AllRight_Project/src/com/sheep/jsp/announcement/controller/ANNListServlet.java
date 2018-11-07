@@ -41,12 +41,12 @@ public class ANNListServlet extends HttpServlet {
 
 		if(list != null){
 			
-			page = "views/announcement/ANNList.jsp";
+			page = "/views/announcement/ANNList.jsp";
 			request.setAttribute("list", list);
 			
 		} else {
 			
-			page = "views/common/errorPage.jsp";
+			page = "/views/common/errorPage.jsp";
 			request.setAttribute("msg", "공지사항 조회에 실패했습니다. 관리자에게 문의해주세요.");
 			
 		}

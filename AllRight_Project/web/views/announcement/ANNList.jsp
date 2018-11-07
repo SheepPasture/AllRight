@@ -3,30 +3,27 @@
  <% ArrayList<Announcement> list = (ArrayList<Announcement>)request.getAttribute("list"); %>
  
 <!DOCTYPE html>
+<html>
 <head>
-<meta charset="UTF-8">	
 <title>ALLRight</title>
-<%-- <script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script> --%>
-    
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
 	<!-- CSS -->
-	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<link href="/allRight/resources/css/flexslider.css" rel="stylesheet" type="text/css" />
 	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
-    
-	<!-- FONTS -->
-	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500italic,700,500,700italic,900,900italic' rel='stylesheet' type='text/css'>
-	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">	
-	
-	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
-	<script src="/allRight/resources/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="/allRight/resources/js/jquery.flexslider-min.js" type="text/javascript"></script>
-	<script src="/allRight/resources/js/myscript.js" type="text/javascript"></script>
-	
+   
 </head>
 <body>
 	
+	<!-- PAGE -->
+	<div id="page">
+	
+	<!-- HEADER -->
 	<%@ include file ="/views/common/header.jsp" %>
-		
+	<!-- HEADER-END -->
 		<div class="container-fluid text-center">    
 			<div class="row content">
 				<br />
@@ -61,10 +58,22 @@
 				</table>  
 			</div>
 		 	<div class="col-sm-10 text-right">
-				<button type="button"><a href="<%= request.getContextPath() %>/views/announcement/ANNInsertForm.jsp">작성하기</a></button>
+				<button type="button"><a href="<%= request.getContextPath()%>/views/announcement/ANNInsertForm.jsp">작성하기</a></button>
 			</div>
 		</div>
 	</div>
+	<script>
+		$(function(){
+			$("#listArea td").mouseenter(function(){
+				$(this).parent().css({"cursor":"pointer"});
+			}).click(function(){
+				//console.log($(this).parent().children().eq(0).text());
+				var ano = $(this).parent().children().eq(0).text();
+				location.href="<%=request.getContextPath()%>/selectOne.ann?ano=" + ano;
+			});
+		});
+	</script>
+		
 	
 	<!-- FOOTER -->
 	<footer>
