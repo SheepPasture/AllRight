@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.sheep.jsp.board.model.vo.*,com.sheep.jsp.boardComment.model.vo.*, java.util.*"%>
 <%
-ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list"); 
+ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+ArrayList<BoardComment> lc = (ArrayList<BoardComment>)request.getAttribute("listComment"); 
 %>
 <!DOCTYPE html>
 <html>
@@ -44,9 +45,9 @@ ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
 			<div class="container-fluid text-center">    
 			<div class="row content">
 				<div class="col-sm-2 sidenav"  style="display:inline-block; "  >
-					<p><a id="s" href="/allRight/views/myPage/myPageMain.jsp">정보관리</a></p>
-					<p><a href="/allRight/views/myPage/schedule.jsp">일정관리</a></p>
-					<p><a href="/allRight/views/myPage/viewBoard.jsp" >게시글 관리</a></p>
+					<p><a id="s" href="/allRight/views/myPage/myPageMain.jsp">회원정보수정</a></p>
+					<p><a href="/allRight/views/myPage/schedule.jsp">관심자격증 정보</a></p>
+					<p><a href="<%= request.getContextPath() %>/bMyList.bo" >게시글 관리</a></p>
 					<p><a href="/allRight/views/myPage/viewTest.jsp">기출문제 관리</a></p>
 				</div>
 				<br>
@@ -71,149 +72,7 @@ ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
 						</thead>
 						
 						<tbody>
-						% for(Board b : list){ %>
-						<tr>
-							<td class="col-md-1">%= b.getbNO() %></th>
-							<td class="col-md-6 text-center">%= b.getbTitle() %></td>
-							<td class="col-md-1">%= b.getbWriter() %></th>
-							<td class="col-md-1">%= b.getbCount() %></th>
-							<td class="col-md-1">%= b.getbDate() %></th>						
-						</tr>
-						%}%>
-						<tr>
-						<td>
-						</tr>
-						
-					</table> 
-					<hr>
-					<h1><small>댓글 확인</small></h1>	
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th class="col-md-1">글번호</th>
-								<th class="col-md-6 text-center">글제목</td>
-								<th class="col-md-1">작성자</th>
-								<th class="col-md-1">조회수</th>
-								<th class="col-md-1">작성일</th>
-							</tr>
-						</thead>
-						<tbody>
-							<th class="col-md-1">1</th>
-							<th class="col-md-6 text-center">글제목입니다.</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">78</th>
-							<th class="col-md-1">2018-10-29</th>						
-						</tr>
-					
-					
-						
-					</table> 
-
-				<h1><small>댓글 확인</small></h1>	
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th class="col-md-1">글번호</th>
-								<th class="col-md-6 text-center">글제목</td>
-								<th class="col-md-1">작성자</th>
-								<th class="col-md-1">조회수</th>
-								<th class="col-md-1">작성일</th>
-							</tr>
-						</thead>
-					 	<tbody>
-							<th class="col-md-1">1</th>
-							<th class="col-md-6 text-center">글제목입니다.</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">78</th>
-							<th class="col-md-1">2018-10-29</th> 						
-						</tr>
-					
-					
-						
-					</table> 
-
-
-
-
-
-
-					</div> 
-				</div>
-			
-		</div>
-	
-	<%-- <div>
-		<div style="display:inline-block; background:ivory"><%@ include file="/views/common/myPageNav.jsp" %></div>
-		<div style="display:inline-block; background:lightblue" >
-
-				<h1><small>댓글 확인</small></h1>	
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th class="col-md-1">글번호</th>
-								<th class="col-md-6 text-center">글제목</td>
-								<th class="col-md-1">작성자</th>
-								<th class="col-md-1">조회수</th>
-								<th class="col-md-1">작성일</th>
-							</tr>
-						</thead>
-					 	<tbody>
-							<th class="col-md-1">1</th>
-							<th class="col-md-6 text-center">글제목입니다.</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">78</th>
-							<th class="col-md-1">2018-10-29</th> 						
-						</tr>
-					
-					
-						
-					</table> 
-
-
-		</div>
-	</div> --%>
-	
-	
-	<%-- <div class="container-fluid text-center">    
-			<div class="row content">
-				<br>
-				<div class="col-sm-2 sidenav"  style="display:inline-block; background:ivory"  >
-						
-				</div>
-			
-			  	<!-- <div id="showView" style="width:70%;height:100%; display:inline-block; ">
-					<div>
-					
-					<button id="mUpdate" onclick="mUpdate();">정보 수정</button> 
-					</div>
-				</div> -->
-			
-		</div>
-	</div> --%>
-	
-	
-	
-	<div >
-	
-	<%-- 	<div  style="display:inline-block; background:ivory" >
-		<%@ include file="/views/common/myPageNav.jsp" %>
-		</div>	
-
-		<div  style="display:inline-block; background:ivory" >
-		<table class="table table-hover">
- 					<h1><small>게시글 확인</small></h1>	
-						<thead>
-							<tr>
-								<th class="col-md-1">글번호</th>
-								<th class="col-md-6 text-center">글제목</td>
-								<th class="col-md-1">작성자</th>
-								<th class="col-md-1">조회수</th>
-								<th class="col-md-1">작성일</th>
-							</tr>
-						</thead>
-						
-						<tbody>
-						<% for(Board b : list){ %>
+						 <% for(Board b : list){ %>
 						<tr>
 							<td class="col-md-1"><%= b.getbNO() %></th>
 							<td class="col-md-6 text-center"><%= b.getbTitle() %></td>
@@ -221,7 +80,7 @@ ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
 							<td class="col-md-1"><%= b.getbCount() %></th>
 							<td class="col-md-1"><%= b.getbDate() %></th>						
 						</tr>
-						<%}%>
+						<%}%> 
 						<tr>
 						<td>
 						</tr>
@@ -231,27 +90,36 @@ ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
 					<h1><small>댓글 확인</small></h1>	
 					<table class="table table-hover">
 						<thead>
+						
 							<tr>
-								<th class="col-md-1">글번호</th>
-								<th class="col-md-6 text-center">글제목</td>
-								<th class="col-md-1">작성자</th>
-								<th class="col-md-1">조회수</th>
+								<th class="col-md-1">분야</th>
+								<th class="col-md-1">글번호</td>
+								<th class="col-md-1">댓글번호</th>
+								<th class="col-md-6 text-center">댓글내용</th>
 								<th class="col-md-1">작성일</th>
 							</tr>
 						</thead>
 						<tbody>
-							<th class="col-md-1">1</th>
-							<th class="col-md-6 text-center">글제목입니다.</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">78</th>
-							<th class="col-md-1">2018-10-29</th>						
+						<%--  <%for(BoardComment l : lc){%>
+						<tr>
+							<th class="col-md-1"><%= l.getbNo() %></th>
+							<th class="col-md-1"><%= l.getbId() %></td>
+							<th class="col-md-1"><%= l.getcNo() %></th>
+							<th class="col-md-6 text-center"><%= l.getcContent() %></th>
+							<th class="col-md-1"><%= l.getcDate() %></th>						
 						</tr>
-					
+						<%}%>   --%>
 					
 						
 					</table> 
-		</div> --%>
+
+					</div> 
+				</div>
+			
+		</div>
 	
+	<div >
+
 	</div>
 </body>
 </html>

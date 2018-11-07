@@ -1,4 +1,4 @@
-package com.sheep.jsp.board.controller;
+package com.sheep.jsp.boardComment.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sheep.jsp.board.model.service.MypageService;
-import com.sheep.jsp.board.model.vo.Board;
+import com.sheep.jsp.boardComment.model.service.MyCommentService;
+import com.sheep.jsp.boardComment.model.vo.BoardComment;
 
 /**
- * Servlet implementation class BoardMyListServlet
+ * Servlet implementation class CommentMyListServlet
  */
-@WebServlet("/bMyList.bo")
-public class BoardMyListServlet extends HttpServlet {
+@WebServlet("/CommentMyListServlet")
+public class CommentMyListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardMyListServlet() {
+    public CommentMyListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,22 +31,22 @@ public class BoardMyListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Board> list = new ArrayList<Board>();
+		ArrayList<BoardComment> list = new ArrayList<BoardComment>();
 		
-		MypageService ms = new MypageService();
-
-		list = ms.selectMyList();
-	
-		String page="";
-
-		if(list != null){
+		MyCommentService mcs= new MyCommentService();
+		list = mcs.selectMyCommnetList();
+		String page = "";
+		page = "/views/myPage/viewBoard.jsp";
+		request.setAttribute("listComment", list);
+		/*if(list !=null){
 			page = "/views/myPage/viewBoard.jsp";
-			request.setAttribute("list", list);
+			request.setAttribute("listComment", list);
 		}else{
-			System.out.println("myBoardList Error");
-		}
-		
+			System.out.println("boardComment Error");
+		}*/
 		request.getRequestDispatcher(page).forward(request, response);
+		
+		
 	}
 
 	/**

@@ -5,23 +5,21 @@
 <head>
 <meta charset="UTF-8">
 	<!-- CSS -->
- 	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+ <!-- 	<!-- <link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
 	<link href="/allRight/resources/css/flexslider.css" rel="stylesheet" type="text/css" />
 	<link href="/allRight/resources/css/prettyPhoto.css" rel="stylesheet" type="text/css" />
 	<link href="/allRight/resources/css/animate.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/allRight/resources/css/owl.carousel.css" rel="stylesheet">
 	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
-  
-<link href='/allRight/resources/css/fullcalendar.min.css' rel='stylesheet' />
-<link href='/allRight/resources/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-<!-- <script src='/allRight/resources/js/moment.min.js'></script>  -->
-<script src='/allRight/resources/js/jquery.min.js'></script>   <!--이거..풀켈린더받아옴  -->
-<script src='/allRight/resources/js/fullcalendar.min.js'></script>
+   
+	<link href='/allRight/resources/css/fullcalendar.min.css' rel='stylesheet' />
+	<link href='/allRight/resources/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+	<script src='/allRight/resources/js/moment.min.js'></script> 
+	<script src='/allRight/resources/js/jquery.min.js'></script>   <!--이거..풀켈린더받아옴  -->
+	<script src='/allRight/resources/js/fullcalendar.min.js'></script>
 <script>
-
   $(document).ready(function() {
 	  console.log($('#info').children().children().text);
-
 	  var year=2018;
 	  var month=11;
 	  var date=20;
@@ -63,9 +61,7 @@
        
       ]
     });
-
   });
-
 </script>
 <style>
 /*   body {
@@ -74,7 +70,6 @@
     font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
     font-size: 14px;
   } */
-
   #calendar {
     max-width: 900px;
     margin: 0 auto;
@@ -90,15 +85,15 @@
 <body>
 	<!-- HEADER -->
 	
-		<%@ include file="/views/common/header.jsp" %>
+	<%@ include file="/views/common/header.jsp" %>
 	<!-- HEADER-END -->
 	<br>
 	 	<div class="container-fluid text-center">    
 			<div class="row content">
 				<div class="col-sm-2 sidenav"  style="display:inline-block; "  >
-					<p><a id="s" href="/allRight/views/myPage/myPageMain.jsp">정보관리</a></p>
-					<p><a href="/allRight/views/myPage/schedule.jsp">일정관리</a></p>
-					<p><a href="/allRight/views/myPage/viewBoard.jsp" >게시글 관리</a></p>
+					<p><a id="s" href="/allRight/views/myPage/myPageMain.jsp">회원정보수정</a></p>
+					<p><a href="/allRight/views/myPage/schedule.jsp">관심자격증 정보</a></p>
+					<p><a href="<%= request.getContextPath() %>/bMyList.bo" >게시글 관리</a></p>
 					<p><a href="/allRight/views/myPage/viewTest.jsp">기출문제 관리</a></p>
 				</div>
 				<br>
