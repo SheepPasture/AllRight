@@ -4,28 +4,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+ <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
  <link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
- 
-  	<!-- jquery -->
+
+   	<!-- jquery --> 
   	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/jquery.prettyPhoto.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/jquery.nicescroll.min.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/superfish.min.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/jquery.flexslider-min.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/jquery.BlackAndWhite.js"></script>
-	
-	<!-- calendar -->
-	<!-- <link href='/allRight/resources/css/fullcalendar.min.css' rel='stylesheet' />
+	 
+
+	<link href='/allRight/resources/css/fullcalendar.min.css' rel='stylesheet' />
 	<link href='/allRight/resources/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 	<script src='/allRight/resources/js/moment.min.js'></script> 
 	<script src='/allRight/resources/js/jquery.min.js'></script> 
 	<script src='/allRight/resources/js/fullcalendar.min.js'></script>
-	 -->
-	 
+	
+	
 	<!-- bootstrap -->
 	<script src="/allRight/resources/js/bootstrap.min.js" type="text/javascript"></script>
 	
@@ -35,21 +35,19 @@
    	<link href="html/image_slider/css/style.css" rel="stylesheet" type="text/css" />
    	<link href = "https://fonts.googleapis.com/css?family= Open + Sans "rel = "stylesheet">
    	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-   	
+   	 
    	<!-- CSS  -->
    	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<!-- <link href="/allRight/resources/css/flexslider.css" rel="stylesheet" type="text/css" />
+	<link href="/allRight/resources/css/flexslider.css" rel="stylesheet" type="text/css" />
 	<link href="/allRight/resources/css/prettyPhoto.css" rel="stylesheet" type="text/css" />
 	<link href="/allRight/resources/css/animate.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="/allRight/resources/css/owl.carousel.css" rel="stylesheet"> -->
-	<!-- <link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" /> -->
+    <link href="/allRight/resources/css/owl.carousel.css" rel="stylesheet">
+	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
 
 	<!-- FONTS -->
 	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500italic,700,500,700italic,900,900italic' rel='stylesheet' type='text/css'>
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">	
 
-	
-	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/jquery.prettyPhoto.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/jquery.nicescroll.min.js" type="text/javascript"></script>
@@ -60,8 +58,8 @@
 	<script src="/allRight/resources/js/jquery.BlackAndWhite.js"></script>
 	<script src="/allRight/resources/js/myscript.js" type="text/javascript"></script>
 	
-	
-	
+	 
+	 
 	
 	
 	
