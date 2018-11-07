@@ -56,24 +56,32 @@
 							<td>작성일</td>
 							<td><label><%= n.getNDATE() %></label>
 						</tr>
-						</table>
-						
-							<span class="image featured"><img alt="" src="/allRight/resources/newsUploadFiles/newsImage1.jpg" /></span>
-							<br><br>
-							<p><span><%= n.getNCONTENT().charAt(0) %></span><%= n.getNCONTENT().substring(1) %></p>
-							
-							
-								<div align="center">
+						<tr>
+							<td colspan = "6">
+								<div id="titleImgArea" align="center">
+									<img alt="" src="/allRight/resources/newsUploadFiles/newsImage1.jpg" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="6">
+								<p id="contentArea"><%= n.getNCONTENT() %></p>
+							</td>
+						</tr>
+						<tr>
+							<td colspan = "6">
 								<button onclick="location.href='selectList.ne'">뉴스메뉴로 돌아가기</button>
-								<button onclick="location.href='nUpView.no?nno=<%=n.getNNO()%>'">수정하기</button>
-								
-								<br><br><br> 
-								<br><br><br>
+								<button onclick="location.href='nUpView.ne?nno=<%=n.getNNO()%>'">수정하기</button>
+								<button onclick="location.href='<%= request.getContextPath() %>/nDelete.ne?nno='+<%= n.getNNO()%>">삭제하기</button>
+							</td>
+						</tr>
+						</table>
+
+					
 								<br><br><br>
 							</div>
 							
-						
-					
+
 					</div>
 					<!-- 
 					<table>
@@ -108,10 +116,7 @@
 			</div>
 		</div>
 	
-		<!-- FOOTER -->
-		<footer>
-				
-		</footer><!-- //FOOTER -->
+	
 	
 	</div>
 </body>
