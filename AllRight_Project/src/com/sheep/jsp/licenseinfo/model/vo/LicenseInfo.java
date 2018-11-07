@@ -2,7 +2,7 @@ package com.sheep.jsp.licenseinfo.model.vo;
 
 public class LicenseInfo {
 
-	private int lNo;
+	private String lNo;
 	private String lName;
 	private String lInfo;
 	private String lDate;
@@ -14,7 +14,7 @@ public class LicenseInfo {
 	
 	public LicenseInfo() {}
 
-	public LicenseInfo(int lNo, String lName, String lInfo, String lDate, String lCategory, String lCost) {
+	public LicenseInfo(String lNo, String lName, String lInfo, String lDate, String lCategory, String lCost) {
 		super();
 		this.lNo = lNo;
 		this.lName = lName;
@@ -24,18 +24,20 @@ public class LicenseInfo {
 		this.lCost = lCost;
 	}
 	
-	public LicenseInfo(String lName) {
+	public LicenseInfo(String lNo, String lName, String lCategory) {
 		super();
+		this.lNo = lNo;
 		this.lName = lName;
+		this.lCategory = lCategory;
 	}
 
 	// getter & setter
 	
-	public int getlNo() {
+	public String getlNo() {
 		return lNo;
 	}
 
-	public void setlNo(int lNo) {
+	public void setlNo(String lNo) {
 		this.lNo = lNo;
 	}
 
@@ -86,7 +88,7 @@ public class LicenseInfo {
 		return "자격증 번호 =" + lNo + ", 자격증 명 =" + lName + ", 자격증 정보 =" + lInfo + ", 시험 일자 =" + lDate + ", 자격증 분류 ="
 				+ lCategory + ", 응시 비용 =" + lCost;
 	}
-	
+
 	//hashCode()
 	@Override
 	public int hashCode() {
@@ -97,7 +99,7 @@ public class LicenseInfo {
 		result = prime * result + ((lDate == null) ? 0 : lDate.hashCode());
 		result = prime * result + ((lInfo == null) ? 0 : lInfo.hashCode());
 		result = prime * result + ((lName == null) ? 0 : lName.hashCode());
-		result = prime * result + lNo;
+		result = prime * result + ((lNo == null) ? 0 : lNo.hashCode());
 		return result;
 	}
 
@@ -135,7 +137,10 @@ public class LicenseInfo {
 				return false;
 		} else if (!lName.equals(other.lName))
 			return false;
-		if (lNo != other.lNo)
+		if (lNo == null) {
+			if (other.lNo != null)
+				return false;
+		} else if (!lNo.equals(other.lNo))
 			return false;
 		return true;
 	}

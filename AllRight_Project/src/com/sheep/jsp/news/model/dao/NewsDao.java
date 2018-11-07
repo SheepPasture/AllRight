@@ -96,7 +96,7 @@ public class NewsDao {
 			if(rset.next()){
 				n = new News();
 				
-				n.setNNO(nno);
+				n.setNNO(rset.getInt("NNO"));
 				n.setNTITLE(rset.getString("NTITLE"));
 				n.setNCONTENT(rset.getString(3));
 				n.setNCOUNT(rset.getInt(4));
