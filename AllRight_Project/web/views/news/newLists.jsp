@@ -89,7 +89,7 @@
 					$(this).parent().css({"cursor":"pointer"});
 				}).click(function(){
 					
-					var nno = $(this).parent().find("input").val();
+					var nno = $(this).parent().children().eq(0).text();
 					location.href="<%=request.getContextPath()%>/selectOne.ne?nno=" + nno;
 				});
 			});
