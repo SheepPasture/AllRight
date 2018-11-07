@@ -21,7 +21,7 @@
 
 </head>
 <body>
-	<%@ include file="/views/common/header.jsp" %>
+	 <%-- <%@ include file="/views/common/header.jsp" %> --%>
 
 	<!-- PAGE -->
 	<div id="page">
@@ -30,7 +30,7 @@
 			<div class="row content">
 				<br>
 				<div class="col-sm-2 sidenav">
-					<p><a href="../announcement/ANNList.jsp">공지사항</a></p>
+					<p><a href="/allRight/selectList.ann">공지사항</a></p>
 					<p><a href="../community/communityList.jsp">커뮤니티</a></p>
 					<p><a href="../license/licenseinfo.jsp">자격증정보</a></p>
 				</div>
