@@ -32,6 +32,8 @@ public class NewsSelectOneServlet extends HttpServlet {
 		
 		int nno = Integer.parseInt(request.getParameter("nno"));
 		
+		System.out.println("nno : " + nno);
+		
 		NewsService ns = new NewsService();
 		
 		News n = ns.selectOne(nno);
