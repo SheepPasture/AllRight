@@ -1,26 +1,28 @@
-package com.sheep.jsp.news.controller;
+package com.sheep.jsp.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sheep.jsp.news.model.service.NewsService;
-import com.sheep.jsp.news.model.vo.News;
+
+import com.sheep.jsp.board.model.vo.Board;
 
 /**
- * Servlet implementation class NewsSelectOneServlet
+ * Servlet implementation class BoardMyListServlet
  */
-@WebServlet("/selectOne.ne")
-public class NewsSelectOneServlet extends HttpServlet {
+@WebServlet("/bMyList.bo")
+public class BoardMyListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NewsSelectOneServlet() {
+    public BoardMyListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,25 +31,16 @@ public class NewsSelectOneServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ArrayList<Board> list = new ArrayList<Board>();
 		
-		int nno = Integer.parseInt(request.getParameter("nno"));
+//		MypageService ms = new MyPageService();
 		
-		System.out.println("nno : " + nno);
-		
-		NewsService ns = new NewsService();
-		
-		News n = ns.selectOne(nno);
-		
-		String page = "";
-		
-		if(n != null){
-			
-			page = "/views/news/newsDetail.jsp";
-			request.setAttribute("news", n);
-		} else{
-			
-			page = "/views/common/errorPage.jsp";
-			request.setAttribute("msg", "뉴스 상세보기 실패");
+		String page="";
+		if(list != null){
+			page = "views/myPage/viewboard.jsp";
+			request.setAttribute("list", list);
+		}else{
+			System.out.println("myBoardList Error");
 		}
 		
 		request.getRequestDispatcher(page).forward(request, response);

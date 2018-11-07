@@ -4,10 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
+	<!-- CSS -->
+ 	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="/allRight/resources/css/flexslider.css" rel="stylesheet" type="text/css" />
+	<link href="/allRight/resources/css/prettyPhoto.css" rel="stylesheet" type="text/css" />
+	<link href="/allRight/resources/css/animate.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/allRight/resources/css/owl.carousel.css" rel="stylesheet">
+	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
+  
 <link href='/allRight/resources/css/fullcalendar.min.css' rel='stylesheet' />
 <link href='/allRight/resources/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-<script src='/allRight/resources/js/moment.min.js'></script>
-<script src='/allRight/resources/js/jquery.min.js'></script>
+<!-- <script src='/allRight/resources/js/moment.min.js'></script>  -->
+<script src='/allRight/resources/js/jquery.min.js'></script>   <!--이거..풀켈린더받아옴  -->
 <script src='/allRight/resources/js/fullcalendar.min.js'></script>
 <script>
 
@@ -60,12 +68,12 @@
 
 </script>
 <style>
-  body {
+/*   body {
     margin: 40px 10px;
     padding: 0;
     font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
     font-size: 14px;
-  }
+  } */
 
   #calendar {
     max-width: 900px;
@@ -80,29 +88,56 @@
 </style>
 </head>
 <body>
-	<h1>일정관리</h1>
-	일정정보
-	<div style="background-color:ivory">
-	<table id="info"border=1; style="width:100%;heigh:100px;">
-	<thead>
-	<tr style="text-align:center"><th></th><th>자격증 이름</th><th>일정</th><th>시행처</th><th>남은기간</th>
-	</tr>
-	</thead>
+	<!-- HEADER -->
 	
-	<tr>
-	<th>1</th>
-	<td>정처기</td><td>2018-12-30</td><td>큐넷</td><td>D-</td>
-	</tr>
-	<th>2</th>
-	<td>정기시험</td><td>2018-12-30</td><td>큐넷</td><td>D-</td>
-	</tr>
-	</table>
-	</div>
+		<%@ include file="/views/common/header.jsp" %>
+	<!-- HEADER-END -->
 	<br>
-	<hr>
-	<br>
-  <div id='calendar'></div>
-	
+	 	<div class="container-fluid text-center">    
+			<div class="row content">
+				<div class="col-sm-2 sidenav"  style="display:inline-block; "  >
+					<p><a id="s" href="/allRight/views/myPage/myPageMain.jsp">정보관리</a></p>
+					<p><a href="/allRight/views/myPage/schedule.jsp">일정관리</a></p>
+					<p><a href="/allRight/views/myPage/viewBoard.jsp" >게시글 관리</a></p>
+					<p><a href="/allRight/views/myPage/viewTest.jsp">기출문제 관리</a></p>
+				</div>
+				<br>
+				<div class="col-sm-2 sidenav"  style="display:inline-block; background:ivory"  >
+				
+			<%-- 	<%@ include file="/views/common/myPageNav.jsp" %> --%>
+				
+				 </div> 
+			
+			  	<div id="showView" style="width:70%;height:100%; display:inline-block; ">
+					<div>
+		<h1>일정관리</h1>
+		일정정보
+		<div style="background-color:ivory">
+		<table id="info"border=1; style="width:100%;heigh:100px;">
+		<thead>
+		<tr style="text-align:center"><th></th><th>자격증 이름</th><th>일정</th><th>시행처</th><th>남은기간</th>
+		</tr>
+		</thead>
+		
+		<tr>
+		<th>1</th>
+		<td>정처기</td><td>2018-12-30</td><td>큐넷</td><td>D-</td>
+		</tr>
+		<th>2</th>
+		<td>정기시험</td><td>2018-12-30</td><td>큐넷</td><td>D-</td>
+		</tr>
+		</table>
+		</div>
+		<br>
+		<hr>
+		<br>
+	 	 <div id='calendar'></div>
+	</div> 
+				</div>
+			
+		</div>
+	 
+	 
 	<!-- <div id="test">
 		<p id ="sdate">2018-11-20</p>
 		<p id="edate">2018-11-25</p>

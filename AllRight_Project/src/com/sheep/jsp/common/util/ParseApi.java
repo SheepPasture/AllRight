@@ -59,9 +59,9 @@ public class ParseApi {
 		return nList;
 	}
 	
-	public ArrayList<LicenseInfo> getApiNo(){
+	public ArrayList<LicenseInfo> getApi(){
 		
-		ArrayList<LicenseInfo> listNo = new ArrayList<LicenseInfo>();
+		ArrayList<LicenseInfo> list = new ArrayList<LicenseInfo>();
 
 		// parsing할 url 지정(API 키 포함해서)
 		String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryListNationalQualifcationSVC/getList?serviceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
@@ -82,113 +82,15 @@ public class ParseApi {
 				// System.out.println(eElement.getTextContent());
 				// System.out.println(getTagValue("jmfldnm", eElement));
 
-				l = new LicenseInfo(getTagValue("jmcd", eElement));
+				l = new LicenseInfo(getTagValue("jmcd", eElement), getTagValue("jmfldnm", eElement), getTagValue("obligfldnm", eElement));
 
-				listNo.add(l);
+				list.add(l);
 
 			} // for end
 		} // if end
 
-		return listNo;
+		return list;
 		
 	}
 
-	public ArrayList<LicenseInfo> getApiName() {
-
-		ArrayList<LicenseInfo> listName = new ArrayList<LicenseInfo>();
-
-		// parsing할 url 지정(API 키 포함해서)
-		String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryListNationalQualifcationSVC/getList?serviceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
-		// String url2 =
-		// "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getFeeList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
-		// url2 += "&jmCd=1320";
-
-		NodeList nList = common(url);
-
-		LicenseInfo l = null;
-
-		for (int i = 0; i < nList.getLength(); i++) {
-			Node nNode = nList.item(i);
-			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-				Element eElement = (Element) nNode;
-				// System.out.println("#################################");
-				// System.out.println(eElement.getTextContent());
-				// System.out.println(getTagValue("jmfldnm", eElement));
-
-				l = new LicenseInfo(getTagValue("jmfldnm", eElement));
-
-				listName.add(l);
-
-			} // for end
-		} // if end
-
-		return listName;
-
-	}
-
-	public ArrayList<LicenseInfo> getApiCategory() {
-
-		ArrayList<LicenseInfo> listCategory = new ArrayList<LicenseInfo>();
-
-		// parsing할 url 지정(API 키 포함해서)
-		String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryListNationalQualifcationSVC/getList?serviceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
-		// String url2 =
-		// "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getFeeList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
-		// url2 += "&jmCd=1320";
-
-		NodeList nList = common(url);
-
-		LicenseInfo l = null;
-
-		for (int i = 0; i < nList.getLength(); i++) {
-			Node nNode = nList.item(i);
-			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-				Element eElement = (Element) nNode;
-				// System.out.println("#################################");
-				// System.out.println(eElement.getTextContent());
-				// System.out.println(getTagValue("jmfldnm", eElement));
-
-				l = new LicenseInfo(getTagValue("obligfldnm", eElement));
-
-				listCategory.add(l);
-
-			} // for end
-		} // if end
-
-		return listCategory;
-	}
-
-	public ArrayList<LicenseInfo> getApiInfo() {
-
-		ArrayList<LicenseInfo> listInfo = new ArrayList<LicenseInfo>();
-		
-		String temp = getApiNo().get(0).getlName();
-
-		String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryInformationTradeNTQSVC/getList?jmCd=";
-		url += temp+"&ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
-
-		NodeList nList = common(url);
-
-		LicenseInfo l = null;
-
-		for (int i = 0; i < nList.getLength(); i++) {
-			Node nNode = nList.item(i);
-			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-				Element eElement = (Element) nNode;
-				// System.out.println("#################################");
-				// System.out.println(eElement.getTextContent());
-				// System.out.println(getTagValue("jmfldnm", eElement));
-
-				l = new LicenseInfo(getTagValue("contents", eElement));
-
-				listInfo.add(l);
-
-			} // for end
-		} // if end
-
-		return listInfo;
-	}
 }
