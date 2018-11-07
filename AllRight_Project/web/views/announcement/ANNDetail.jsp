@@ -9,6 +9,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 </head>
+<html>
 <body>
 	<!-- PAGE -->
 	<div id="page">
@@ -25,8 +26,9 @@
 				</div>
 				<div class="col-sm-8 text-center">
 					<h2 align="left">공지사항</h2>
-					<table class="table table-hover">
-						<thead>
+					
+					<div class="tableArea col-sm-10 text-center" style="border: 1px solid tomato">
+						<table>
 							<tr>
 								<th class="col-md-1">글번호</th>
 								<th class="col-md-6 text-center">글제목</td>
@@ -34,40 +36,13 @@
 								<th class="col-md-1">조회수</th>
 								<th class="col-md-1">작성일</th>
 							</tr>
-						</thead>
-						<tbody>
-							<th class="col-md-1">1</th>
-							<th class="col-md-6 text-center">글제목입니다.</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">78</th>
-							<th class="col-md-1">2018-10-29</th>						
-						</tr>
-						<tr>
-							<th class="md-1 ">2</th>
-							<th class="col-md-6 text-center">글제목</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">351</th>
-							<th class="col-md-1">2018-10-29</th>	
-						</tr>
-						<tr>
-							<th class="md-1">3</th>
-							<th class="col-md-6 text-center">글제목</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">104</th>
-							<th class="col-md-1">2018-10-29</th>	
-						</tr>
-						<tr>
-							<th class="md-1">4</th>
-							<th class="col-md-6 text-center">글제목</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">15</th>
-							<th class="col-md-1">2018-10-29</th>	
-						</tr>
-						</tbody>
-					</table> 
+						</table>
+					</div>
+					
 				</div>
-				<div class="col-sm-10 text-right">
-					<button type="button"><a href="<%= request.getContextPath() %>views/announcement/ANNInsertForm.jsp">작성하기</a></button>
+				
+				<div class="col-sm-10 center">
+					<button type="button"><a href="<%= request.getContextPath() %>/selectList.ann">돌아가기</a></button>
 				<div>
 			</div>
 		</div>

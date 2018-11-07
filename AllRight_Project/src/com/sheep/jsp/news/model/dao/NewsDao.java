@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,7 +22,7 @@ public class NewsDao {
 	public NewsDao() {
 		prop = new Properties();
 
-		String filePath = NewsDao.class.getResource("/config/notice-query.properties").getPath();
+		String filePath = NewsDao.class.getResource("/config/news-query.properties").getPath();
 
 		try {
 			
@@ -60,7 +61,6 @@ public class NewsDao {
 				
 				n.setNNO(rset.getInt("nno"));
 				n.setNTITLE(rset.getString("ntitle"));
-				n.setNCONTENT(rset.getString("ncontent"));
 				n.setNCOUNT(rset.getInt("ncount"));
 				n.setNDATE(rset.getDate("ndate"));
 				n.setNFILE(rset.getString("nfile"));
@@ -75,6 +75,69 @@ public class NewsDao {
 			close(stmt);
 		}
 		return list;
+	}
+
+	public News selectOne(Connection con, int nno) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		News n = null;
+		
+		String sql = prop.getProperty("selectOne");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, nno);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				n = new News();
+				
+				n.setNNO(nno);
+				n.setNTITLE(rset.getString("NTITLE"));
+				n.setNCONTENT(rset.getString(3));
+				n.setNCOUNT(rset.getInt(4));
+				n.setNDATE(rset.getDate(5));
+				n.setNFILE(rset.getString(6));
+			}
+			
+			System.out.println("news 한개 : " + n);
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return n;
+	}
+
+	public int updateCount(Connection con, int nno) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("updateCount");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, nno);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		return result;
 	}
 
 }

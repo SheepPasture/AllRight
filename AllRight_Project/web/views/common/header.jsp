@@ -308,7 +308,7 @@ jQuery(document).ready(function() {
                         	<a href="<%= request.getContextPath() %>/selectList.ann">공지사항</a>
                         	<ul>
                         	<li><a href="<%= request.getContextPath() %>/selectList.ann">공지사항</a></li>
-                        	<li><a href="<%= request.getContextPath() %>">뉴스</a></li>
+                        	<li><a href="<%= request.getContextPath() %>/selectList.ne">뉴스</a></li>
                         	</ul>
                         </li>
                         <li class="sub-menu activ">
@@ -323,9 +323,11 @@ jQuery(document).ready(function() {
                             <a href="javascript:void(0)">마이페이지</a>
                             <ul>
                                 <li><a href="<%= request.getContextPath() %>/views/myPage/myPageMain.jsp">회원정보수정</a></li>
+
                                 <li><a href="<%= request.getContextPath() %>/views/myPage/schedule.jsp">관심 자격증 정보</a></li>
                                 <li><a href="<%= request.getContextPath() %>/views/myPage/viewBoard.jsp">게시글 관리</a></li>
                                 <li><a href="<%= request.getContextPath() %>/views/myPage/viewTest.jsp">기출문제 관리</a></li>
+
                             </ul>
                         </li>
                     </ul>
