@@ -34,49 +34,32 @@
 						<thead>
 							<tr>
 								<td>제목 : </td>
+								<td colspan="3"><%= n.getNTITLE() %></td>
 							</tr>
 							<tr>
-								<th class="col-md-1">글번호</th>
-								<th class="col-md-6 text-center">글제목</td>
-								<th class="col-md-1">작성자</th>
-								<th class="col-md-1">조회수</th>
-								<th class="col-md-1">작성일</th>
+								<td>작성자 : </td>
+								<td>관리자</td>
+								<td>작성일 : </td>
+								<td><%= n.getNDATE() %></td>
 							</tr>
+							<tr>
+								<td>내용</td>
+							</tr>
+							<tr>
+								<td colspan="4"><br>
+									<span><%= n.getNCONTENT().charAt(0) %></span><%= n.getNCONTENT().substring(1) %>
+								</td>
+							</tr>
+							<br>
+							<div align="center">
+								<button onclick="location.href='selectList.ne'">뉴스메뉴로 돌아가기</button>
+								<button onclick="location.href='nUpView.no?nno=<%=n.getNNO()%>'"></button>
+							</div>
+							
 						</thead>
-						<tbody>
-							<th class="col-md-1">1</th>
-							<th class="col-md-6 text-center">글제목입니다.</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">78</th>
-							<th class="col-md-1">2018-10-29</th>						
-						</tr>
-						<tr>
-							<th class="md-1 ">2</th>
-							<th class="col-md-6 text-center">글제목</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">351</th>
-							<th class="col-md-1">2018-10-29</th>	
-						</tr>
-						<tr>
-							<th class="md-1">3</th>
-							<th class="col-md-6 text-center">글제목</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">104</th>
-							<th class="col-md-1">2018-10-29</th>	
-						</tr>
-						<tr>
-							<th class="md-1">4</th>
-							<th class="col-md-6 text-center">글제목</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">15</th>
-							<th class="col-md-1">2018-10-29</th>	
-						</tr>
-						</tbody>
+						
 					</table> 
 				</div>
-				<div class="col-sm-10 text-right">
-					<button type="button"><a href="<%= request.getContextPath() %>views/announcement/ANNInsertForm.jsp">작성하기</a></button>
-				<div>
 			</div>
 		</div>
 	
