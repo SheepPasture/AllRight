@@ -51,9 +51,9 @@
 			<div class="container-fluid text-center">    
 			<div class="row content">
 				<div class="col-sm-2 sidenav"  style="display:inline-block; "  >
-					<p><a id="s" href="/allRight/views/myPage/myPageMain.jsp">정보관리</a></p>
-					<p><a href="/allRight/views/myPage/schedule.jsp">일정관리</a></p>
-					<p><a href="/allRight/views/myPage/viewBoard.jsp" >게시글 관리</a></p>
+					<p><a id="s" href="/allRight/views/myPage/myPageMain.jsp">회원정보수정</a></p>
+					<p><a href="/allRight/views/myPage/schedule.jsp">관심자격증 정보</a></p>
+					<p><a href="<%= request.getContextPath() %>/bMyList.bo" >게시글 관리</a></p>
 					<p><a href="/allRight/views/myPage/viewTest.jsp">기출문제 관리</a></p>
 				</div>
 				<br>
@@ -71,7 +71,7 @@
 						이메일 : = m.getEmail <br>
 						관심자격증 : = m.getSeloption <br> 
 						포인트	:	10/2000<br>
-						<button id="mUpdate" onclick="mUpdate();">정보 수정</button> 
+						<button id="mUpdateMember" onclick="mUpdate();">정보 수정</button> 
 					</div> 
 				</div>
 			
@@ -110,8 +110,12 @@
 		
 		<script>
 		function mUpdate(){
-			location.href="/allRight/updateMember.jsp";
+			location.href="/allRight/views/myPage/updateMember.jsp";
 		}
+	
+		/* function changeInfo(){
+			location.href="/myWeb/views/member/memberUpdateForm.jsp";
+		} */
 	/* 	/* 	$(function(){
 				/* $('#showView').css("color","red"); 
 				$('#s').css("color","red"); 
@@ -134,9 +138,8 @@
 				 $('#showView').load('updateMember.jsp');
 			}) */
 	
-   			/* }); */ */
+   			/* }); */ 
 
-   
 		</script>	
 	
 	<!-- FOOTER -->

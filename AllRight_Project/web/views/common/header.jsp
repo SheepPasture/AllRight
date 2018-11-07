@@ -18,11 +18,12 @@
 	<script src="/allRight/resources/js/jquery.BlackAndWhite.js"></script>
 	
 	<!-- calendar -->
-	<link href='/allRight/resources/css/fullcalendar.min.css' rel='stylesheet' />
+	<!-- <link href='/allRight/resources/css/fullcalendar.min.css' rel='stylesheet' />
 	<link href='/allRight/resources/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 	<script src='/allRight/resources/js/moment.min.js'></script> 
-	<!-- <script src='/allRight/resources/js/jquery.min.js'></script>  -->
+	<script src='/allRight/resources/js/jquery.min.js'></script> 
 	<script src='/allRight/resources/js/fullcalendar.min.js'></script>
+	 -->
 	 
 	<!-- bootstrap -->
 	<script src="/allRight/resources/js/bootstrap.min.js" type="text/javascript"></script>
@@ -71,7 +72,6 @@
         height:120px;
         background-color:#fff;
     }
-
     .logo {float:left;}
     .logo a {
 	text-transform:uppercase;
@@ -89,7 +89,6 @@
     .logo a span.b3 {font-weight:400;}
     .logo a span.b4 {font-weight:300;}
     .logo a span.b5 {font-weight:100;}
-
     #search-form input {
     width:42px;
     height: 40px;
@@ -112,7 +111,6 @@
 	}
 	.logo a {font-size:22px;}
 	
-
 #search-form form {
 	position:relative;
 	height:40px;
@@ -164,7 +162,6 @@
 	.navmenu li.active a {
 		color:#333;
 	}
-
 	/* Sub menu */
 	.sub-menu ul {
 		display: none;
@@ -189,7 +186,6 @@
 		border-right: 7px solid transparent;
 		border-bottom: 6px solid #1c1c1c;
 	}
-
 	.sub-menu ul li  {
 		margin:0;
 		padding:0;
@@ -208,13 +204,7 @@
 		border-bottom:1px solid #282828;
 	}
 	.sub-menu ul li:last-child a {border-bottom:0;}
-
 	.sub-menu ul li.active a, .sub-menu ul li a:hover {color:#fff !important; background:#161616;}
-
-
-
-
-
     </style>
     
     <script>
@@ -236,7 +226,6 @@
 		}
 	})
 };
-
 jQuery(document).ready(function() {
 	//MobileMenu
 	if ($(window).width() < 768){
@@ -261,8 +250,6 @@ jQuery(document).ready(function() {
 		});
 	};
 });
-
-
 /* Superfish */
 jQuery(document).ready(function() {
 	if ($(window).width() >= 768){
@@ -315,17 +302,17 @@ jQuery(document).ready(function() {
 							<ul>
 								<li class="active"><a href="<%= request.getContextPath() %>/views/community/communityList.jsp">게시판</a>
 								</li>
-								<li><a href="<%= request.getContextPath() %>/views/licenseinfo/licenseinfoList.jsp">자격증 정보</a></li>
+								<li><a href="<%= request.getContextPath() %>/views/announcement/ANNList.jsp">자격증 정보</a></li>
 							</ul>
 						</li>
                         <li class="sub-menu active">
                             <a href="javascript:void(0)">마이페이지</a>
                             <ul>
                                 <li><a href="<%= request.getContextPath() %>/views/myPage/myPageMain.jsp">회원정보수정</a></li>
-
                                 <li><a href="<%= request.getContextPath() %>/views/myPage/schedule.jsp">관심 자격증 정보</a></li>
-                                <li><a href="<%= request.getContextPath() %>/views/myPage/viewBoard.jsp">게시글 관리</a></li>
+                                <li><a href="<%= request.getContextPath() %>/bMyList.bo">게시글 관리</a></li>
                                 <li><a href="<%= request.getContextPath() %>/views/myPage/viewTest.jsp">기출문제 관리</a></li>
+                                <li><a href="<%= request.getContextPath() %>/views/answer/answerList.jsp">기출문제 정보</a></li>
 
                             </ul>
                         </li>
