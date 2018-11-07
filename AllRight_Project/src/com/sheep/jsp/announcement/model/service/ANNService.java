@@ -14,8 +14,6 @@ public class ANNService {
 
 	public ArrayList<Announcement> selectList() {
 		
-		System.out.println("annser");
-		
 		ArrayList<Announcement> list = null;
 		
 		Connection con = getConnection();
@@ -26,5 +24,25 @@ public class ANNService {
 		
 		return list;
 	}
+	
+	public Announcement selectOne(int ano){
+		
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		Announcement a = aDao.selectOne(con, ano);
+		
+		if( a!=null){
+			result = aDao.updateCount(con, ano);
+			
+			if(result>0) commit(con);
+			else rollback(con);
+		}
+		close(con);
+		
+		return a;
+	}
+
 
 }

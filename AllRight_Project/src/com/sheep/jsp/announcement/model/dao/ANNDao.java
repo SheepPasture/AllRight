@@ -5,6 +5,7 @@ import static com.sheep.jsp.common.JDBCTemplate.*;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,8 +19,6 @@ public class ANNDao {
 	private Properties prop = null;
 	
 	public ANNDao(){
-		
-		System.out.println("dao");
 		
 		prop = new Properties();
 		
@@ -35,8 +34,6 @@ public class ANNDao {
 	
 	public ArrayList<Announcement> selectList(Connection con) {
 		
-		System.out.println("selectList");
-		
 		ArrayList<Announcement> list = null;
 		Statement stmt = null;
 		ResultSet rset = null;
@@ -48,8 +45,6 @@ public class ANNDao {
 			rset = stmt.executeQuery(sql);
 			
 			list = new ArrayList<Announcement>();
-			
-			System.out.println("Sel");
 			
 			while(rset.next()){
 				Announcement a = new Announcement();
@@ -67,10 +62,67 @@ public class ANNDao {
 			close(rset);
 			close(stmt);
 		}
-		
-		System.out.println("annDAo");
-		
+
 		return list;
+	}
+
+	public Announcement selectOne(Connection con, int ano) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Announcement a = null;
+		
+		String sql = prop.getProperty("selectOne");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, ano);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				a = new Announcement();
+				
+				a.setAno(rset.getInt(1));
+				a.setAtitle(rset.getString(2));
+				a.setAcount(rset.getInt(3));
+				a.setAcontent(rset.getString(4));
+				a.setAdate(rset.getDate(5));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return a;
+		
+	}
+
+	public int updateCount(Connection con, int ano) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("updateCount");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, ano);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
 	}
 
 }

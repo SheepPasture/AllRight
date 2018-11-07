@@ -11,11 +11,12 @@ import java.sql.Statement;
 import java.util.Properties;
 
 public class JDBCTemplate {
+	
 	public static Connection getConnection(){
 		Connection con = null;
 		String filePath = JDBCTemplate.class.getResource("/config/driver.properties").getPath();
 		
-		Properties prop = new Properties(){
+		Properties prop = new Properties();
 		try {
       
 			prop.load(new FileReader(filePath));

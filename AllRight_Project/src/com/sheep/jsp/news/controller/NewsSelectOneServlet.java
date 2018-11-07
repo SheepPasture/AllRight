@@ -1,8 +1,6 @@
 package com.sheep.jsp.news.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,16 +11,16 @@ import com.sheep.jsp.news.model.service.NewsService;
 import com.sheep.jsp.news.model.vo.News;
 
 /**
- * Servlet implementation class NewsListServlet
+ * Servlet implementation class NewsSelectOneServlet
  */
-@WebServlet("/selectList.ne")
-public class NewsListServlet extends HttpServlet {
+@WebServlet("/selectOne.ne")
+public class NewsSelectOneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NewsListServlet() {
+    public NewsSelectOneServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,23 +30,24 @@ public class NewsListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 뉴스 여러개를 받기 위한 리스트
-		ArrayList<News> list = new ArrayList<News>();
+		int nno = Integer.parseInt(request.getParameter("nno"));
+		
+		System.out.println("nno : " + nno);
 		
 		NewsService ns = new NewsService();
 		
-		list = ns.selectList();
+		News n = ns.selectOne(nno);
 		
 		String page = "";
 		
-		if(list != null){
+		if(n != null){
 			
-			page = "/views/news/newLists.jsp";
-			request.setAttribute("list", list);
-		} else {
+			page = "/views/news/newsDetail.jsp";
+			request.setAttribute("news", n);
+		} else{
 			
 			page = "/views/common/errorPage.jsp";
-			request.setAttribute("msg", "뉴스 조회 실패");
+			request.setAttribute("msg", "뉴스 상세보기 실패");
 		}
 		
 		request.getRequestDispatcher(page).forward(request, response);

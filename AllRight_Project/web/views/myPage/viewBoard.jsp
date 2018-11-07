@@ -1,20 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.sheep.jsp.member.model.vo.Member"%>
-
+    pageEncoding="UTF-8" import="com.sheep.jsp.board.model.vo.*,com.sheep.jsp.boardComment.model.vo.*, java.util.*"%>
 <%
-	Member m = (Member)session.getAttribute("member");
+ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+ArrayList<BoardComment> lc = (ArrayList<BoardComment>)request.getAttribute("listComment"); 
 %>
 <!DOCTYPE html>
+<html>
 <head>
-	
-	<title>ALLRight</title>
-	<meta charset="utf-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-    
-	<!-- CSS -->
- 	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="/allRight/resources/css/flexslider.css" rel="stylesheet" type="text/css" />
 	<link href="/allRight/resources/css/prettyPhoto.css" rel="stylesheet" type="text/css" />
 	<link href="/allRight/resources/css/animate.css" rel="stylesheet" type="text/css" media="all" />
@@ -36,12 +33,9 @@
 	<script src="/allRight/resources/js/animate.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/jquery.BlackAndWhite.js"></script>
 	<script src="/allRight/resources/js/myscript.js" type="text/javascript"></script>
+
 </head>
 <body>
-
-	<!-- PAGE -->
-	<div id="page">
-	
 	<!-- HEADER -->
 	
 		<%@ include file="/views/common/header.jsp" %>
@@ -65,89 +59,67 @@
 			
 			  	<div id="showView" style="width:70%;height:100%; display:inline-block; ">
 					<div src="viewMemberInfo.jsp">
-						회원 정보	
-						아이디 : = m.getUserId() <br>
-						이름 : = m.getUserName() <br>
-						이메일 : = m.getEmail <br>
-						관심자격증 : = m.getSeloption <br> 
-						포인트	:	10/2000<br>
-						<button id="mUpdateMember" onclick="mUpdate();">정보 수정</button> 
+						<table class="table table-hover">
+ 					<h1><small>게시글 확인</small></h1>	
+						<thead>
+							<tr>
+								<th class="col-md-1">글번호</th>
+								<th class="col-md-6 text-center">글제목</td>
+								<th class="col-md-1">작성자</th>
+								<th class="col-md-1">조회수</th>
+								<th class="col-md-1">작성일</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+						 <% for(Board b : list){ %>
+						<tr>
+							<td class="col-md-1"><%= b.getbNO() %></th>
+							<td class="col-md-6 text-center"><%= b.getbTitle() %></td>
+							<td class="col-md-1"><%= b.getbWriter() %></th>
+							<td class="col-md-1"><%= b.getbCount() %></th>
+							<td class="col-md-1"><%= b.getbDate() %></th>						
+						</tr>
+						<%}%> 
+						<tr>
+						<td>
+						</tr>
+						
+					</table> 
+					<hr>
+					<h1><small>댓글 확인</small></h1>	
+					<table class="table table-hover">
+						<thead>
+						
+							<tr>
+								<th class="col-md-1">분야</th>
+								<th class="col-md-1">글번호</td>
+								<th class="col-md-1">댓글번호</th>
+								<th class="col-md-6 text-center">댓글내용</th>
+								<th class="col-md-1">작성일</th>
+							</tr>
+						</thead>
+						<tbody>
+						<%--  <%for(BoardComment l : lc){%>
+						<tr>
+							<th class="col-md-1"><%= l.getbNo() %></th>
+							<th class="col-md-1"><%= l.getbId() %></td>
+							<th class="col-md-1"><%= l.getcNo() %></th>
+							<th class="col-md-6 text-center"><%= l.getcContent() %></th>
+							<th class="col-md-1"><%= l.getcDate() %></th>						
+						</tr>
+						<%}%>   --%>
+					
+						
+					</table> 
+
 					</div> 
 				</div>
 			
 		</div>
-	<%-- <div class="container-fluid text-center">    
-	<%@ include file="/views/common/myPageNav.jsp" %>
-		<div class="container-fluid text-center" style="background:ivory">    
-			<div class="row content">
-				<br>
-			<!-- 		<div class="col-sm-2 sidenav"  style="display:inline-block;"  > -->
-						<p><a id="s" href="/allRight/myPage/viewMemberInfo.jsp">정보관리</a></p>
-						<p><a href="/allRight/myPage/schedule.jsp">일정관리</a></p>
-						<p><a href="/allRight/myPage/bMyList.bo" >게시글 관리</a></p>
-						<p><a href="/allRight/myPage/viewTest.jsp">기출문제 관리</a></p>
-			<!-- 		</div> -->
-		<div>
-		</div>
-			</div>
-			
-		</div> --%>
-			<!-- <div class="row content" style="display:inline-block;" > -->
-			<%-- 
-				<div id="showView" style="width:70%;height:100%; display:inline-block; ">
-					<!-- <div src="viewMemberInfo.jsp"> -->
-				회원 정보	
-				아이디 : <%--= m.getUserId() --%> <br>
-				<%-- 이름 : = m.getUserName() <br>
-				이메일 : = m.getEmail <br>
-				관심자격증 : = m.getSeloption <br> 
-				포인트	:	10/2000<br> --%>
-	<!-- 			<button id="mUpdate" onclick="mUpdate();">정보 수정</div>
-				</button> 
-			</div>
-			
-		</div> -->
-		
-		<script>
-		function mUpdate(){
-			location.href="/allRight/views/myPage/updateMember.jsp";
-		}
 	
-		/* function changeInfo(){
-			location.href="/myWeb/views/member/memberUpdateForm.jsp";
-		} */
-	/* 	/* 	$(function(){
-				/* $('#showView').css("color","red"); 
-				$('#s').css("color","red"); 
-				
-				console.log($('div:last'));
-				$('.sidenav').children().click(function(){
-				/* 	console.log($(this).children().attr('href')); 
-					 console.log($(this));
-					
-						 $('#showView').load($(this).children().attr('href'),function(){
-						 
-					      $('#showView').show();
-						}); 
-					
-					return false;
-				});
-				
-		
-			$('#mUpdate').click(function(){
-				 $('#showView').load('updateMember.jsp');
-			}) */
-	
-   			/* }); */ 
+	<div >
 
-		</script>	
-	
-	<!-- FOOTER -->
-	<footer>
-			
-	</footer><!-- //FOOTER -->
-	
-
-</div>
+	</div>
 </body>
 </html>

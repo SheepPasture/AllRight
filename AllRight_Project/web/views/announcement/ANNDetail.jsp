@@ -3,126 +3,120 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ALLRight</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
+	
+	<!-- CSS -->
+	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
+	
+	<style>
+
+    /* 게시판관련 */
+    .board_area { font-size:13px !important;  }
+
+    .paging { text-align:center; padding:30px 0 0 0; }
+
+    .btn_area2 { text-align:right; padding-top:20px; font-size:14px; font-weight:600;   }
+    .btn_area2 a { display:inline-block; padding:7px 20px; background:#666; color:#fff; }
+
+
+    table.view { width:100%; border-top:2px solid #000;    }
+    table.view tbody tr th { background:#f4f4f4; border-bottom:1px solid #cfcfcf; border-right:1px solid #cfcfcf; padding:10px 0;   }
+    table.view tbody tr td { background:#fff; border-bottom:1px solid #cfcfcf; padding:10px 20px; line-height:170%;   }
+    table.view tbody tr td.board_contents { padding:20px 20px; }
+    table.view tbody tr td img { width:100%; height:auto; }
+    table.view tbody tr td.title { font-weight:600; }
+
+	</style>
+
 </head>
 <body>
 	<!-- PAGE -->
 	<div id="page">
-	
-		<!-- HEADER -->
-		<header>
-			
-			<!-- MENU BLOCK -->
-			<div class="menu_block">
-			
-				<!-- CONTAINER -->
-				<div class="container clearfix">
-					
-					<!-- LOGO -->
-					<div class="logo pull-left">
-                        <a href="../../index.jsp" ><span class="b1">A</span><span class="b2">L</span><span class="b2">L</span>
-                            <span class="b3">R</span><span class="b4">I</span><span class="b4">G</span>
-                            <span class="b4">H</span><span class="b5">T</span></a>
-					</div><!-- //LOGO -->
-					
-					<!-- SEARCH FORM -->
-					<div id="search-form" class="pull-right">
-						<form method="get" action="#">
-							<input type="text" name="Search" value="Search" onFocus="if (this.value == 'Search') this.value = '';" onBlur="if (this.value == '') this.value = 'Search';" />
-						</form>
-					</div><!-- SEARCH FORM -->
-					
-					<!-- MENU -->
-					<div class="pull-right">
-						<nav class="navmenu center">
-							<ul>
-								<li class="first active scroll_btn"><a href="../../index.jsp" >홈페이지</a></li>
-								<li class="scroll_btn"><a href="../announcement/ANNList.jsp" >공지사항</a></li>
-								<li class="scroll_btn"><a href="../community/communityList.jsp" >커뮤니티</a></li>
-								<li class="scroll_btn"><a href="../license/licenseinfo.jsp" >자격증정보</a></li>
-								<li class="scroll_btn"><a href="../news/newLists.jsp" >뉴스</a></li>
-								<li class="scroll_btn last"><a href="../myPage/myPageMain.jsp" >마이페이지</a></li>
-								<li class="sub-menu">
-									<a href="javascript:void(0);" >게시판</a>
-									<ul>
-										<li><a href="views/announcement/ANNList.jsp" >공지사항</a></li>
-										<li><a href="views/community/communityList.jsp" >커뮤니티</a></li>
-										<li><a href="license/licenseinfo.jsp" >자격증정보</a></li>
-									</ul>
-								</li>
-							</ul>
-						</nav>
-					</div><!-- //MENU -->
-				</div><!-- //MENU BLOCK -->
-			</div><!-- //CONTAINER -->
-		</header><!-- //HEADER -->
-		
-		<div class="container-fluid text-center">    
+		<%@ include file="/views/common/header.jsp" %>
+		<div class="container-fluid text-center">
 			<div class="row content">
 				<br />
-				<div class="col-sm-2 sidenav">
-					<p><a href="#">공지사항</a></p>
-					<p><a href="#">커뮤니티</a></p>
-					<p><a href="#">자격증정보</a></p>
-				</div>
+				 <div class="col-sm-2 sidenav">
+					<p>
+						<a href="#">공지사항</a>
+					</p>
+					<p>
+						<a href="#">커뮤니티</a>
+					</p>
+					<p>
+						<a href="#">자격증정보</a>
+					</p>
+				</div> 
+	
 				<div class="col-sm-8 text-center">
 					<h2 align="left">공지사항</h2>
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th class="col-md-1">글번호</th>
-								<th class="col-md-6 text-center">글제목</td>
-								<th class="col-md-1">작성자</th>
-								<th class="col-md-1">조회수</th>
-								<th class="col-md-1">작성일</th>
-							</tr>
-						</thead>
-						<tbody>
-							<th class="col-md-1">1</th>
-							<th class="col-md-6 text-center">글제목입니다.</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">78</th>
-							<th class="col-md-1">2018-10-29</th>						
-						</tr>
-						<tr>
-							<th class="md-1 ">2</th>
-							<th class="col-md-6 text-center">글제목</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">351</th>
-							<th class="col-md-1">2018-10-29</th>	
-						</tr>
-						<tr>
-							<th class="md-1">3</th>
-							<th class="col-md-6 text-center">글제목</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">104</th>
-							<th class="col-md-1">2018-10-29</th>	
-						</tr>
-						<tr>
-							<th class="md-1">4</th>
-							<th class="col-md-6 text-center">글제목</td>
-							<th class="col-md-1">admin</th>
-							<th class="col-md-1">15</th>
-							<th class="col-md-1">2018-10-29</th>	
-						</tr>
-						</tbody>
-					</table> 
+					
+					<!-- 게시판(뷰)시작 -->
+					<div class="board_area">
+						<table border="0" cellpadding="0" cellspacing="0" class="view">
+							<colgroup>
+								<col width="15%">
+								<col width="35%">
+								<col width="15%">
+								<col width="35%">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th>제목</th>
+									<td colspan="3" class="title">공지사항 제목입니다.</td>
+								</tr>
+								<tr>
+									<th>작성자</th>
+									<td>작성자이름</td>
+									<th>등록일시</th>
+									<td>2018-11-07</td>
+								</tr>
+								<tr>
+									<th>첨부파일</th>
+									<td colspan="3">없음</td>
+								</tr>
+								<tr>
+									<th>내용</th>
+										<td>
+											<p>
+												이것은 공지사항입니다.
+											</p>
+											<p>
+												<span>이것은 공지사항입니다</span>
+											</p>
+											<p>
+												<span>이것은 공지사항입니다</span>
+											</p>
+											<p>
+												<span>이것은 공지사항입니다</span>
+											</p>
+										</td>
+								</tr>					
+								<tr>
+									<td colspan="5"></td>
+								</tr>
+								
+								<tr>
+									<th>이전글&nbsp; ▲</th>
+									<td colspan="3"><a href="">1번째 공지사항입니다.</a></td>
+								</tr>
+								<tr>
+									<th>다음글&nbsp; ▼</th>
+									<td colspan="3"><a href="">3번째 공지사항입니다.</a></td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="btn_area2">
+							<a href="/allRight/selectList.ann">목록으로 바로가기</a>				
+						</div>	
+					</div>		
 				</div>
-				<div class="col-sm-10 text-right">
-					<button type="button"><a href="../announcement/ANNInsertForm.jsp">작성하기</a></button>
-				<div>
 			</div>
 		</div>
-	
-		<!-- FOOTER -->
-		<footer>
-				
-		</footer><!-- //FOOTER -->
-	
 	</div>
 </body>
+
 </html>

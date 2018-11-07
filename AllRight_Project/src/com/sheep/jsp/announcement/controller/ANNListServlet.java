@@ -24,7 +24,6 @@ public class ANNListServlet extends HttpServlet {
      */
     public ANNListServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -32,7 +31,6 @@ public class ANNListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("Service");
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
 		
 		ANNService as = new ANNService();
@@ -43,12 +41,12 @@ public class ANNListServlet extends HttpServlet {
 
 		if(list != null){
 			
-			page = "views/announcement/ANNList.jsp";
+			page = "/views/announcement/ANNList.jsp";
 			request.setAttribute("list", list);
 			
 		} else {
 			
-			page = "views/common/errorPage.jsp";
+			page = "/views/common/errorPage.jsp";
 			request.setAttribute("msg", "공지사항 조회에 실패했습니다. 관리자에게 문의해주세요.");
 			
 		}
@@ -61,7 +59,6 @@ public class ANNListServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
