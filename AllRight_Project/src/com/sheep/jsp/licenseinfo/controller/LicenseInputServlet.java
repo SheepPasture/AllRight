@@ -29,7 +29,16 @@ public class LicenseInputServlet extends HttpServlet {
 		
 		ParseApi pa = new ParseApi();
 		
-		int result = new LicenseService().insertLicense(pa.getApiNo(), pa.getApiName(), pa.getApiCategory());
+		int result = new LicenseService().insertLicense(pa.getApi());
+		
+		if(result > 0){
+			// 성공적으로 자격증 저장
+			
+			System.out.println("자격증 저장 성공!");
+		} else {
+			// 실패
+			System.out.println("자격증 저장 실패!");
+		}
 		
 		
 	}
