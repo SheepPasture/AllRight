@@ -59,7 +59,10 @@
 						<tr>
 							<td colspan = "6">
 								<div id="titleImgArea" align="center">
-									<img alt="" src="/allRight/resources/newsUploadFiles/newsImage1.jpg" />
+									<%if (n.getNFILE() != null) {%>
+									<img id="titleImg" src="<%= request.getContextPath()%>/resources/newsUploadFiles/<%= n.getNFILE() %>">
+									<% }  %>
+									<!-- <img alt="" src="/allRight/resources/newsUploadFiles/newsImage1.jpg" /> -->
 								</div>
 							</td>
 						</tr>
@@ -70,9 +73,9 @@
 						</tr>
 						<tr>
 							<td colspan = "6">
-								<button onclick="location.href='selectList.ne'">뉴스메뉴로 돌아가기</button>
-								<button onclick="location.href='nUpView.ne?nno=<%=n.getNNO()%>'">수정하기</button>
-								<button onclick="location.href='<%= request.getContextPath() %>/nDelete.ne?nno='+<%= n.getNNO()%>">삭제하기</button>
+								<button onclick="location.href='selectList.ne'" class="btn btn-primary">뉴스메뉴로 돌아가기</button>
+								<button onclick="location.href='nUpView.ne?nno=<%=n.getNNO()%>'" class="btn btn-warning">수정하기</button>
+								<button onclick="location.href='<%= request.getContextPath() %>/nDelete.ne?nno='+<%= n.getNNO()%>" class="btn btn-danger">삭제하기</button>
 							</td>
 						</tr>
 						</table>
