@@ -62,5 +62,16 @@ public class NewsService {
 		return result;
 	}
 
+	public int deleteNews(int nno) {
+		
+		Connection con = getConnection();
+		
+		int result = nDao.deleteNews(con, nno);
+		
+		close(con);
+		
+		return result;
+	}
+
 
 }
