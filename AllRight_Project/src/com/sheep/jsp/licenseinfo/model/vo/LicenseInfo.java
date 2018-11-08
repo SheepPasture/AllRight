@@ -31,6 +31,19 @@ public class LicenseInfo {
 		this.lCategory = lCategory;
 	}
 
+	public LicenseInfo(String lNo, String lName, String lCategory, String lCost) {
+		super();
+		this.lNo = lNo;
+		this.lName = lName;
+		this.lCategory = lCategory;
+		this.lCost = lCost;
+	}
+	
+	public LicenseInfo(String lCost) {
+		super();
+		this.lCost = lCost;
+	}
+
 	// getter & setter
 	
 	public String getlNo() {
