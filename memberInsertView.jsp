@@ -28,19 +28,11 @@
 	<script src="/allRight/resources/js/jquery.BlackAndWhite.js"></script>
 	<script src="/allRight/resources/js/myscript.js" type="text/javascript"></script>
 	
-	
-	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	
-	
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>회원 가입</title>
-	
 	<style>
-	
+	body
+	{
+			background-image: url('/views/resorces/images/bono.jpg');
+		}
 	.breadcrumbs_block h2 {
 		margin-bottom:15px;
 		line-height:80px;
@@ -79,74 +71,46 @@
 			</div>
 		</section>
 		<!-- 회원가입 중단부  -->
-		      <article class="container">
-        
-
-        </div>
-
-        <form class="form-horizontal">
-        <div class="form-group">
-          <label class="col-sm-3 control-label" for="userId">유저아이디</label>
-        <div class="col-sm-6">
-          <input class="form-control" id="inputEmail" type="text" placeholder="아이디">
-        </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
-        <div class="col-sm-6">
-          <input class="form-control" id="inputPassword" type="password" placeholder="비밀번호">
-        <p class="help-block">숫자, 특수문자 포함 8자 이상</p>
-        </div>
-        </div>
-          <div class="form-group">
-              <label class="col-sm-3 control-label" for="inputPasswordCheck">비밀번호 확인</label>
-             <div class="col-sm-6">
-              <input class="form-control" id="inputPasswordCheck" type="password" placeholder="비밀번호 확인">
-                <p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
-             </div>
-          </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="inputName">이름</label>
-          <div class="col-sm-6">
-            <input class="form-control" id="inputName" type="text" placeholder="이름">
-          </div>
-        </div>
-       
-       
-
-
-        <div class="form-group">
-          <label class="col-sm-3 control-label" for="userId">이메일</label>
-        <div class="col-sm-6">
-          <input class="form-control" id="inputEmail" type="email" placeholder="이메일">
-        </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="userId">관심자격증</label>
-        <div>
-          <select name="" id="">
-            <option value="">아이티</option>
-            <option value="">건축</option>
-            <option value="">기타</option>
-          </select>
-          <select name="" id="">
-              <option value="">정처기</option>
-              <option value="">mos</option>
-              <option value="">컴활</option>
-          </select>
-          
-
-        </div>
-        <br>
-
+		<form id="insertForm" action ="<%=request.getContextPath()%>/mInsert.me" method="post">
+		
+		<table align="center">
+		
+			<tr>
+				<td width="120px">* 아이디 </td>
+				<td><input type="text" name="userId" id="userId" required="required"></td>
+				<td><button id="idCheck">중복확인</button></td>
+			</tr>
+			<tr>
+					<td>* 비밀번호</td>
+					<td><input type="password" id="userPwd" name="userPwd" required="required"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>* 비밀번호확인</td>
+					<td><input type="password" id="userPwd2" name="userPwd2" required="required"></td>
+					<td><label id="pwdResult"></label></td>
+				</tr>
+				<tr>
+					<td>* 닉네임</td>
+					<td><input type="text" maxlength="5" name="userName" required="required"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>* 이메일 </td>
+					<td><input type="email" name="email" required="required"></td>
+					<td></td>
+				</tr>
+				
+		</table>
+		<br>
 		<div align="center">
 		   <script src="https://www.google.com/recaptcha/api.js?" async defer></script><div class="g-recaptcha" data-sitekey="6Lcvw_gSAAAAAH3zOofJBJOFLpmjx7Vq3hxnYIRw"></div>
 		<noscript>
         <div style="width: 302px; height: 352px;">
         <div style="width: 302px; height: 352px; position: relative;">
         <div style="width: 302px; height: 352px; position: absolute;">
-        <iframe src="https://www.google.com/recaptcha/api/fallback?k=6Lcvw_gSAAAAAH3zOofJBJOFLpmjx7Vq3hxnYIRw" frameborder="0" scrolling="no"
+        <iframe src="https://www.google.com/recaptcha/api/fallback?k=6Lcvw_gSAAAAAH3zOofJBJOFLpmjx7Vq3hxnYIRw"
+        frameborder="0" scrolling="no"
         style="width: 302px; height:352px; border-style: none;" >
         </iframe>
         </div>
@@ -155,18 +119,16 @@
         <textarea id="g-recaptcha-response" name="g-recaptcha-response"
         class="g-recaptcha-response"
         style="width: 250px; height: 80px; border: 1px solid #c1c1c1;
-        margin: 0px; padding: 0px; resize: none;">
+        margin: 0px; padding: 0px; resize: none;" value="">
         </textarea>
+        </div>
+        </div>
         </div>
         </noscript>
         </div>
 		<br>
-		   <div class="form-group">
-          <div class="col-sm-12 text-center">
-            <div align="center"><button class="btn btn-primary btn-block" type="submit" style="width: 300px;">AllRight 회원 가입</button></div>
-          </div>
+		 <div align="center"><button class="btn btn-primary btn-block" type="submit" style="width: 300px;">AllRight 회원 가입</button></div>
 		</form>
-		</article>
 		<script>
 		function join() {
 			$("#insertForm").submit();
