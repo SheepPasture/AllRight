@@ -55,11 +55,10 @@
 </style>
 
 </head>
-<!-- HEADER -->
-	
+	<!-- HEADER -->
 		<%@ include file="/views/common/header.jsp" %>
 	<!-- HEADER-END -->
-		<%--  --%>
+
 		<br>
 			<div class="container-fluid text-center">    
 			<div class="row content">

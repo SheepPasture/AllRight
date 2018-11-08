@@ -12,11 +12,12 @@ public class MypageService {
 	private MyBoardDao bDao = new MyBoardDao();
 
 
-	public ArrayList<Board> selectMyList() {
+	public ArrayList<Board> selectMyList(int userno) {
 		
 		ArrayList<Board> list = null;
+		
 		Connection con = getConnection();
-		list = bDao.selectList(con);
+		list = bDao.selectList(con,userno);
 		
 		close(con);
 		

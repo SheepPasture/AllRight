@@ -9,10 +9,11 @@ import static com.sheep.jsp.common.JDBCTemplate.*;
 public class MyCommentService {
 	private MyCommentDao cDao = new MyCommentDao();
 	
-	public ArrayList<BoardComment> selectMyCommnetList(){
+	public ArrayList<BoardComment> selectMyCommnetList(int userno){
+		
 		ArrayList<BoardComment> list = null;
 		Connection con = getConnection();
-		list = cDao.selectList(con);
+		list = cDao.selectList(con,userno);
 		
 		close(con);
 		

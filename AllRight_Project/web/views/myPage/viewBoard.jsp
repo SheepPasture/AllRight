@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.sheep.jsp.board.model.vo.*,com.sheep.jsp.boardComment.model.vo.*, java.util.*"%>
 <%
-ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
-ArrayList<BoardComment> lc = (ArrayList<BoardComment>)request.getAttribute("listComment"); 
+ArrayList<Board> bl = (ArrayList<Board>)request.getAttribute("blist");
+ArrayList<BoardComment> cl = (ArrayList<BoardComment>)request.getAttribute("clist");
+String bmsg = (String)request.getAttribute("bmsg");
+String cmsg = (String)request.getAttribute("cmsg");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -72,7 +75,8 @@ ArrayList<BoardComment> lc = (ArrayList<BoardComment>)request.getAttribute("list
 						</thead>
 						
 						<tbody>
-						 <% for(Board b : list){ %>
+						<%if(bl!=null){ %>
+						 <% for(Board b : bl){ %>
 						<tr>
 							<td class="col-md-1"><%= b.getbNO() %></th>
 							<td class="col-md-6 text-center"><%= b.getbTitle() %></td>
@@ -81,16 +85,19 @@ ArrayList<BoardComment> lc = (ArrayList<BoardComment>)request.getAttribute("list
 							<td class="col-md-1"><%= b.getbDate() %></th>						
 						</tr>
 						<%}%> 
+						<%}else{ %>
 						<tr>
-						<td>
+							<td colspan="5"><%=bmsg%></td>
 						</tr>
+						<%}%> 
+						
 						
 					</table> 
 					<hr>
 					<h1><small>댓글 확인</small></h1>	
 					<table class="table table-hover">
 						<thead>
-						
+											
 							<tr>
 								<th class="col-md-1">분야</th>
 								<th class="col-md-1">글번호</td>
@@ -100,17 +107,22 @@ ArrayList<BoardComment> lc = (ArrayList<BoardComment>)request.getAttribute("list
 							</tr>
 						</thead>
 						<tbody>
-						<%--  <%for(BoardComment l : lc){%>
+						<% if(cl !=null){ %>
+						 <%for(BoardComment l : cl){%>
 						<tr>
-							<th class="col-md-1"><%= l.getbNo() %></th>
-							<th class="col-md-1"><%= l.getbId() %></td>
-							<th class="col-md-1"><%= l.getcNo() %></th>
-							<th class="col-md-6 text-center"><%= l.getcContent() %></th>
-							<th class="col-md-1"><%= l.getcDate() %></th>						
+							<td class="col-md-1"><%= l.getbNo() %></th>
+							<td class="col-md-1"><%= l.getbId() %></td>
+							<td class="col-md-1"><%= l.getcNo() %></th>
+							<td class="col-md-6 text-center"><%= l.getcContent() %></th>
+							<td class="col-md-1"><%= l.getcDate() %></th>						
 						</tr>
-						<%}%>   --%>
-					
-						
+						<%}%>  
+							
+						<%}else{%>
+						<tr>
+							<td colspan="5">작성한 댓글이 없습니다.</td>
+						</tr>
+						<%} %>
 					</table> 
 
 					</div> 
