@@ -88,7 +88,7 @@
         <div class="form-group">
           <label class="col-sm-3 control-label" for="userId">유저아이디</label>
         <div class="col-sm-6">
-          <input class="form-control" id="inputEmail" type="text" placeholder="아이디">
+          <input class="form-control" id="inputId" type="text" placeholder="아이디">
         </div>
         </div>
         <div class="form-group">
