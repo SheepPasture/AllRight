@@ -32,17 +32,19 @@ public class MemberDao {
 		}
 	}
 
-	public int insertDao(Connection con, Member m) throws MemberException {
+	public int insertMember(Connection con, Member m) throws MemberException {
 
 		int result = 0;
 		
 		
 		PreparedStatement pstmt = null;
 		
+		
 		String sql = prop.getProperty("insertMember");
 		
+		
 		try {
-			con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, m.getUserId());
 			pstmt.setString(2, m.getUserPwd());
@@ -56,6 +58,7 @@ public class MemberDao {
 		} finally{
 			close(pstmt);
 		}
+		
 		
 		
 		return result;

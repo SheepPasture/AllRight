@@ -84,17 +84,17 @@
 
         </div>
 
-        <form class="form-horizontal">
+        <form class="form-horizontal" action="<%=request.getContextPath()%>/mInsert.me">
         <div class="form-group">
           <label class="col-sm-3 control-label" for="userId">유저아이디</label>
         <div class="col-sm-6">
-          <input class="form-control" id="inputId" type="text" placeholder="아이디">
+          <input class="form-control" name="inputId" id="inputId" type="text" placeholder="아이디">
         </div>
         </div>
         <div class="form-group">
           <label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
         <div class="col-sm-6">
-          <input class="form-control" id="inputPassword" type="password" placeholder="비밀번호">
+          <input class="form-control" name="inputPassword" id="inputPassword" type="password" placeholder="비밀번호">
         <p class="help-block">숫자, 특수문자 포함 8자 이상</p>
         </div>
         </div>
@@ -108,7 +108,7 @@
         <div class="form-group">
             <label class="col-sm-3 control-label" for="inputName">이름</label>
           <div class="col-sm-6">
-            <input class="form-control" id="inputName" type="text" placeholder="이름">
+            <input class="form-control" name="inputName" id="inputName" type="text" placeholder="이름">
           </div>
         </div>
        
@@ -118,7 +118,7 @@
         <div class="form-group">
           <label class="col-sm-3 control-label" for="userId">이메일</label>
         <div class="col-sm-6">
-          <input class="form-control" id="inputEmail" type="email" placeholder="이메일">
+          <input class="form-control" name="inputEmail" id="inputEmail" type="email" placeholder="이메일">
         </div>
         </div>
 
