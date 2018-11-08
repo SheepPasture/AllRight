@@ -37,21 +37,23 @@ public class MyCommentDao {
 	}
 	
 	
-	public ArrayList<BoardComment> selectList(Connection con) {
+	public ArrayList<BoardComment> selectList(Connection con, int userno) {
 		ArrayList<BoardComment> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset =null;
-		String sql = prop.getProperty("selectCommnet");
-		
+		String sql = prop.getProperty("selectComment");
+
 		try {
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, "TEST1");
+			pstmt.setInt(1, userno);
 			rset=pstmt.executeQuery();
 			
 			list = new ArrayList<BoardComment>();
-			
+		
 			while(rset.next()){
+			
 				BoardComment bc = new BoardComment();
+			
 				bc.setbNo(rset.getInt("BNO"));
 				bc.setbId(rset.getInt("BID"));
 				bc.setcNo(rset.getInt("CNO"));
@@ -65,6 +67,7 @@ public class MyCommentDao {
 			close(rset);
 			close(pstmt);
 		}
+		if(list==null)System.out.println("null"+list);
 		
 		return list;
 	}

@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.sheep.jsp.member.model.vo.Member"%>
+    pageEncoding="UTF-8" import="com.sheep.jsp.member.model.vo.Member, com.sheep.jsp.userLicense.model.vo.*, java.util.*"%>
 
-<%-- <%
-	Member m = (Member)session.getAttribute("member");
-
-%> --%>
+<%
+	Member m = (Member)request.getAttribute("member");
+	UserLicense ul = (UserLicense)request.getAttribute("userLicense");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,7 +86,7 @@
 		        <div class="form-group">
 		          <label class="col-sm-3 control-label" for="userId">유저아이디</label>
 		        <div class="col-sm-6">
-		          <input class="form-control" id="inputEmail" type="text" readonly placeholder="이메일" >
+		          <input class="form-control" id="inputUserId" type="text" readonly placeholder="아이디" >
 		        </div>
 		        </div>
 		        <div class="form-group">

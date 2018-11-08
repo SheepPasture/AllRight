@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sheep.jsp.board.model.service.MypageService;
 import com.sheep.jsp.board.model.vo.Board;
+import com.sheep.jsp.boardComment.model.service.MyCommentService;
+import com.sheep.jsp.boardComment.model.vo.BoardComment;
 
 /**
  * Servlet implementation class BoardMyListServlet
@@ -31,21 +33,37 @@ public class BoardMyListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Board> list = new ArrayList<Board>();
+		
+		/*int userno = Integer.parseInt(request.getParameter("USERNO"));*/
+		int userno=3;
+		ArrayList<Board> blist = new ArrayList<Board>();
+		ArrayList<BoardComment> clist= new ArrayList<BoardComment>();
 		
 		MypageService ms = new MypageService();
+		MyCommentService mcs = new MyCommentService();
 
-		list = ms.selectMyList();
-	
-		String page="";
-
-		if(list != null){
-			page = "/views/myPage/viewBoard.jsp";
-			request.setAttribute("list", list);
-		}else{
-			System.out.println("myBoardList Error");
-		}
+		blist = ms.selectMyList(userno);
+		clist = mcs.selectMyCommnetList(userno);
 		
+		String page="/views/myPage/viewBoard.jsp";
+
+		
+		if(clist.size()!=0){
+			request.setAttribute("blist", blist);
+	
+		}else{
+			request.setAttribute("bmsg", "작성한 게시글이 없습니다.");
+			
+		}
+		System.out.println("test3");
+		if(clist.size()!=0){
+			request.setAttribute("clist", clist);
+			System.out.println(clist+"없는데...");
+		}else{
+			request.setAttribute("cmsg", "작성한 댓글이 없습니다.");
+			
+		}
+
 		request.getRequestDispatcher(page).forward(request, response);
 	}
 

@@ -63,17 +63,54 @@
 				
 				 </div> 
 			
-			  	<div id="showView" style="width:70%;height:100%; display:inline-block; ">
-					<div src="viewMemberInfo.jsp">
+			  	<div form-horizontal id="showView" style="width:70%;height:100%; ">
+						
+						 <div class="form-group">
+			         		<label class="col-sm-3 control-label" for="userId">유저아이디</label>
+			        		<div class="col-sm-6">
+			          		<input class="form-control" id="inputEmail" type="text" readonly placeholder="아이디" >
+			        		</div>
+		        		</div>
+		        		
+		        		<div class="form-group">
+			         		<label class="col-sm-3 control-label" for="userId">이름</label>
+			        		<div class="col-sm-6">
+			          		<input class="form-control" id="inputEmail" type="text" readonly placeholder="아이디" >
+			        		</div>
+		        		</div>
+		        		<br>
+		        		<div class="form-group">
+			         		<label class="col-sm-3 control-label" for="userId">이메일</label>
+			        		<div class="col-sm-6">
+			          		<input class="form-control" id="inputEmail" type="text" readonly placeholder="아이디" >
+			        		</div>
+		        		</div>
+		        		<br>
+		        		<div class="form-group">
+			         		<label class="col-sm-3 control-label" for="userId">관심 자격증</label>
+			        		<div class="col-sm-6">
+			          		<input class="form-control" id="inputEmail" type="text" readonly placeholder="아이디" >
+			        		</div>
+		        		</div>
+		        		<br>
+		        		<div class="form-group">
+			         		<label class="col-sm-3 control-label" for="userId">포인트</label>
+			        		<div class="col-sm-6">
+			          		<input class="form-control" id="inputEmail" type="text" readonly placeholder="아이디" >
+			        		</div>
+		        		</div>
+		        	
+		        		
+					<!-- 	
 						회원 정보	
 						아이디 : = m.getUserId() <br>
 						이름 : = m.getUserName() <br>
 						이메일 : = m.getEmail <br>
 						관심자격증 : = m.getSeloption <br> 
-						포인트	:	10/2000<br>
+						포인트	:	10/2000<br> -->
 						<button id="mUpdateMember" onclick="mUpdate();">정보 수정</button> 
 					</div> 
-				</div>
+			
 			
 		</div>
 	<%-- <div class="container-fluid text-center">    

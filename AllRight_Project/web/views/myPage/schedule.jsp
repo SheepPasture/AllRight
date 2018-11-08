@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 	<!-- CSS -->
-	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<!-- <link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
 	<link href="/allRight/resources/css/flexslider.css" rel="stylesheet" type="text/css" />
 	<link href="/allRight/resources/css/prettyPhoto.css" rel="stylesheet" type="text/css" />
 	<link href="/allRight/resources/css/animate.css" rel="stylesheet" type="text/css" media="all" />
@@ -15,7 +15,7 @@
 	<link href='/allRight/resources/css/fullcalendar.min.css' rel='stylesheet' />
 	<link href='/allRight/resources/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 	<script src='/allRight/resources/js/moment.min.js'></script> 
-	<script src='/allRight/resources/js/jquery.min.js'></script>   <!--이거..풀켈린더받아옴  -->
+	<script src='/allRight/resources/js/jquery.min.js'></script>  
 	<script src='/allRight/resources/js/fullcalendar.min.js'></script>
 <script>
   $(document).ready(function() {
