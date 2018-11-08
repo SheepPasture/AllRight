@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sheep.jsp.common.util.ParseApi;
+import com.sheep.jsp.licenseinfo.model.service.LicenseService;
 import com.sheep.jsp.licenseinfo.model.vo.LicenseInfo;
 
 
@@ -26,19 +27,19 @@ public class LicenseInputServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<LicenseInfo> al = new ArrayList<LicenseInfo>();
+		ParseApi pa = new ParseApi();
 		
-		ArrayList<LicenseInfo> al2 = new ArrayList<LicenseInfo>();
+		int result = new LicenseService().insertLicense(pa.getApi());
 		
-		ArrayList<LicenseInfo> al3 = new ArrayList<LicenseInfo>();
+		if(result > 0){
+			// 성공적으로 자격증 저장
+			
+			System.out.println("자격증 저장 성공!");
+		} else {
+			// 실패
+			System.out.println("자격증 저장 실패!");
+		}
 		
-		al.addAll(new ParseApi().getApiName());
-		
-		al2.addAll(new ParseApi().getApiCategory());
-		
-		al3.addAll(new ParseApi().getApiInfo());		
-		
-		System.out.println(al3.get(0).getlName());
 		
 	}
 

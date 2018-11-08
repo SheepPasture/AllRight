@@ -11,13 +11,24 @@
  
   	<!-- jquery -->
   	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/jquery.prettyPhoto.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/jquery.nicescroll.min.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/superfish.min.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/jquery.flexslider-min.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/owl.carousel.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/animate.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/jquery.BlackAndWhite.js"></script>
+	<script src="/allRight/resources/js/myscript.js" type="text/javascript"></script>
 	
-	
+	<!-- calendar -->
+	<!-- <link href='/allRight/resources/css/fullcalendar.min.css' rel='stylesheet' />
+	<link href='/allRight/resources/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+	<script src='/allRight/resources/js/moment.min.js'></script> 
+	<script src='/allRight/resources/js/jquery.min.js'></script> 
+	<script src='/allRight/resources/js/fullcalendar.min.js'></script>
+	 -->
+	 
 	<!-- bootstrap -->
 	<script src="/allRight/resources/js/bootstrap.min.js" type="text/javascript"></script>
 	
@@ -27,13 +38,36 @@
    	<link href="html/image_slider/css/style.css" rel="stylesheet" type="text/css" />
    	<link href = "https://fonts.googleapis.com/css?family= Open + Sans "rel = "stylesheet">
    	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+   	
    	<!-- CSS  -->
    	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<!-- 	<link href="/allRight/resources/css/flexslider.css" rel="stylesheet" type="text/css" />
+	<link href="/allRight/resources/css/flexslider.css" rel="stylesheet" type="text/css" />
 	<link href="/allRight/resources/css/prettyPhoto.css" rel="stylesheet" type="text/css" />
 	<link href="/allRight/resources/css/animate.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="/allRight/resources/css/owl.carousel.css" rel="stylesheet"> -->
-	<!-- <link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" /> -->
+    <link href="/allRight/resources/css/owl.carousel.css" rel="stylesheet">
+	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
+
+	<!-- FONTS -->
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500italic,700,500,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">	
+
+	
+	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/jquery.prettyPhoto.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/jquery.nicescroll.min.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/superfish.min.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/jquery.flexslider-min.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/owl.carousel.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/animate.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/jquery.BlackAndWhite.js"></script>
+	<script src="/allRight/resources/js/myscript.js" type="text/javascript"></script>
+	
+	
+	
+	
+	
+	
 	
 	
   <style>
@@ -42,7 +76,6 @@
         height:120px;
         background-color:#fff;
     }
-
     .logo {float:left;}
     .logo a {
 	text-transform:uppercase;
@@ -60,7 +93,6 @@
     .logo a span.b3 {font-weight:400;}
     .logo a span.b4 {font-weight:300;}
     .logo a span.b5 {font-weight:100;}
-
     #search-form input {
     width:42px;
     height: 40px;
@@ -83,7 +115,6 @@
 	}
 	.logo a {font-size:22px;}
 	
-
 #search-form form {
 	position:relative;
 	height:40px;
@@ -135,7 +166,6 @@
 	.navmenu li.active a {
 		color:#333;
 	}
-
 	/* Sub menu */
 	.sub-menu ul {
 		display: none;
@@ -160,7 +190,6 @@
 		border-right: 7px solid transparent;
 		border-bottom: 6px solid #1c1c1c;
 	}
-
 	.sub-menu ul li  {
 		margin:0;
 		padding:0;
@@ -179,13 +208,7 @@
 		border-bottom:1px solid #282828;
 	}
 	.sub-menu ul li:last-child a {border-bottom:0;}
-
 	.sub-menu ul li.active a, .sub-menu ul li a:hover {color:#fff !important; background:#161616;}
-
-
-
-
-
     </style>
     
     <script>
@@ -207,7 +230,6 @@
 		}
 	})
 };
-
 jQuery(document).ready(function() {
 	//MobileMenu
 	if ($(window).width() < 768){
@@ -217,6 +239,7 @@ jQuery(document).ready(function() {
 			jQuery('header .navmenu').slideToggle(300);
 		});
 	}
+	
 		
 	// if single_page
 	if (jQuery("#page").hasClass("single_page")) {			
@@ -231,8 +254,6 @@ jQuery(document).ready(function() {
 		});
 	};
 });
-
-
 /* Superfish */
 jQuery(document).ready(function() {
 	if ($(window).width() >= 768){
@@ -289,11 +310,14 @@ jQuery(document).ready(function() {
 							</ul>
 						</li>
                         <li class="sub-menu active">
-                            <a href="javascript:void(0);">마이페이지</a>
+                            <a href="javascript:void(0)">마이페이지</a>
                             <ul>
                                 <li><a href="<%= request.getContextPath() %>/views/myPage/myPageMain.jsp">회원정보수정</a></li>
-                                <li><a href="blog-post.html">관심 자격증 정보</a></li>
-                                <li><a href="portfolio-post.html">일정 관리</a></li>
+                                <li><a href="<%= request.getContextPath() %>/views/myPage/schedule.jsp">관심 자격증 정보</a></li>
+                                <li><a href="<%= request.getContextPath() %>/bMyList.bo">게시글 관리</a></li>
+                                <li><a href="<%= request.getContextPath() %>/views/myPage/viewTest.jsp">기출문제 관리</a></li>
+                                <li><a href="<%= request.getContextPath() %>/views/answer/answerList.jsp">기출문제 정보</a></li>
+
                             </ul>
                         </li>
                     </ul>

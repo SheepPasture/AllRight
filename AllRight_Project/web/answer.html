@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>출제 목록</title>
+    <link href='http://fonts.googleapis.com/css?family=Margarine' rel='stylesheet' type='text/css'>
+    <!--초기화-->
+    <style>
+        * {
+            margin: 0;
+            padding 0;
+        }
+        body {
+            font-family: 'Times New Roman',serif;
+            background-color: white;
+        }
+        li{
+            list-style:none;
+        }
+        a{
+            text-decoration:none;
+        }
+        img{
+            border:0;
+        }
+    
+    </style>
+    <!--헤더-->
+
+    <style>
+        #main_header{
+            /*중앙 정렬*/
+            width:960px; margin:0 auto;
+
+            /*절대 좌표*/
+            height:160px;
+            position:relative;
+        }
+        #main_header > #title{
+            position:absolute;
+            left:20px; top:30px;
+        }
+        #main_header > #main_gnb{
+            position:absolute;
+            right:0; top:0;
+        }
+        #main_header > #main_lnb{
+            position:absolute;
+            right:0; bottom:10px;
+        }
+
+    </style>
+    <!--타이틀-->
+    <style>
+        #title {
+            font-family: 'Margarine', cursive;
+        }
+    </style>
+
+    <!--메뉴 1-->
+    <style>
+        #main_gnb > ul{overflow:hidden;}
+        #main_gnb > ul > li{ float:left;}
+        #main_gnb > ul > li > a{
+            display:block;
+            padding: 2px 10px;
+            border: 1px solid black;
+        }
+        #main_gnb > ul > li > a:hover{
+            background:black;
+            color:white;
+        }
+        #main_gnb > ul > li:first-child > a{
+            border-radius:10px 0 0 10px;
+        }
+        #main_gnb > ul > li:last-child > a{
+            border-radius: 0 10px 10px 0;
+        }
+    </style>
+    <!--메뉴 2-->
+    <style>
+        #main_lnb > ul{overflow:hidden;}
+        #main_lnb > ul > li{float:left;}
+        #main_lnb > ul > li > a{
+            display:block;
+            padding:10px 20px;
+            border:1px solid black;
+        }
+        #main_lnb > ul > li > a:hover{
+            background:black;
+            color:white;
+        }
+        #main_lnb > ul > li:first-child > a{
+            border-radius:10px 0 0 10px;
+        }
+        #main_lnb > ul > li:last-child > a{
+            border-radius:0 10px 10px 0;
+        }
+    </style>
+    <!--콘텐츠-->
+    <style>
+        #content{
+            /*중앙정렬*/
+            width:960px; margin:0 auto;
+
+            /*수평 레이아웃 구성*/
+            overflow:hidden;
+        }
+
+        #content > #main_section{
+            width:750px;
+            float:left;
+            border:3px solid tomato; 
+        } 
+        
+        
+        #content > #main_aside{
+            width:250px;
+            float:right;
+            border:1px solid black;
+        }
+    </style>
+    <!--본문-->
+    <style>
+
+    </style>
+    <!--사이드-->
+    <style></style>
+    <!--목록-->
+    <style></style>
+    <!--푸터-->
+    <style></style>
+</head>
+	
+<body>
+	
+		<form name='catTop_form' method='post' action='/q/index.php' style='margin:0px;'>
+		
+		<select id='menu_top_select' name='bigCode' onchange='bigOptChange(this.form)'>
+		<option value=''>응시 분야를 선택하세요.</option>
+		<option value='10'>기능·기술 [기사]</option>
+		<option value='11'>기능·기술 [산업기사]</option>
+		<option value='12'>기능·기술 [기능사]</option>
+		<option value='15'>기능·기술 [미용사]</option>
+		<option value='18'>서비스 [멀티미디어]</option>
+		<option value='19'>서비스 [텔레마케팅]</option>
+		<option value='20'>사무 [컴퓨터활용능력]</option>
+		<option value='21'>사무 [워드프로세서]</option>
+		<option value='25'>판매 [전자상거래운용사]</option>
+		<option value='30'>회계 [전산회계운용사]</option>
+		<option value='70'>공인 [PC정비사]</option>
+		<option value='75'>공인 [네트워크관리사]</option>
+		</select>&nbsp;</form>
+    <header id="main_header">
+        <hgroup id="title">
+            <h1>출제</h1> <hr>
+        </hgroup>
+        <nav id="main_gnb">
+            <ul><span></span>
+                <li><a href="#">문제번호</a></li>
+                <li><a href="#">문제내용</a></li>
+                <li><a href="#">문제보기</a></li>
+                <li><a href="#">문제정답</a></li>
+            </ul>
+        </nav>
+       <!--  <nav id="main_lnb">
+            <ul>
+                <li><a href="#">문제번호</a></li>
+                <li><a href="#">문제내용</a></li>
+                <li><a href="#">문제보기</a></li>
+                <li><a href="#">문제정답</a></li>
+            </ul>
+        </nav> -->
+    </header>
+
+    <div id="content">
+        <section id="main_section">
+            <h1>출제 문제 개요, 기능, 활용</h1><br>
+            <p>국가기술자격 필기시험 대비 문제 학습
+            
+            	
+               
+               </p>
+        </section>
+        <aside id="main_aside">
+            <h1>활용</h1>
+            <p>
+               	계정 로그인 후 응시결과 50일 보관
+               	
+            </p>
+        </aside>
+    </div>
+    <div id="">문제 종목 분류</div>
+
+    <a href="#" target="_top">ㆍ정보처리기사</a>
+    
+    <footer></footer>
+</body>
+</html>

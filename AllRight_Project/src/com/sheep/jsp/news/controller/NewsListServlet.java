@@ -43,11 +43,11 @@ public class NewsListServlet extends HttpServlet {
 		
 		if(list != null){
 			
-			page = "views/news/newLists.jsp";
+			page = "/views/news/newLists.jsp";
 			request.setAttribute("list", list);
 		} else {
 			
-			page = "views/common/errorPage.jsp";
+			page = "/views/common/errorPage.jsp";
 			request.setAttribute("msg", "뉴스 조회 실패");
 		}
 		
