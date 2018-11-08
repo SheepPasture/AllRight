@@ -6,7 +6,7 @@
 	<title>ALLRight</title>
 </head>
 <body>
-
+<div align="center"><!--Mobile, PC 페이지 컨테이너 가운데 정렬 시작.-->
 <table style="margin-bottom:5px; width:100%; border:solid 0px #ccc; background:beige;" cellspacing="0" cellpadding="0">
 		<tr>
 		<td style="padding:15px 0px; width:120px; font-family:tahoma; text-align:center;">
@@ -67,16 +67,16 @@
 </tr>
 <tr>
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">1</td>
-<td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">기능·기술 [기능사] &gt; 정보처리기능사 &gt; 2018년 1회</td>
-<td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">2018년 1회</td>
+<td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">기능·기술 [기능사] &gt; 정보처리기능사 &gt; 2011년 1회</td>
+<td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">2011년 1회</td>
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">60</td>
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">
-<a href="#">응시하기</a></td>
+<button><a href="../answer/answerDetail.jsp">응시하기</a></td></button>
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_right">
 <span style="color:#bb8800">응시전</span></td></tr><tr>
 </tbody>
 </table>
 
-	
+</div><!--Mobile, PC 페이지 컨테이너 가운데 정렬 시작.-->	
 </body>
  </html>
