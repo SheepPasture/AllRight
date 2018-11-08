@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import = "com.sheep.jsp.member.model.vo.*, java.util.*, com.oreilly.servlet.*"%>
+    
+ <%
+ 	Member m = (Member)request.getAttribute("member");
+ %>
 <!DOCTYPE html>
 <head>
 	
@@ -40,6 +44,7 @@
 	
 		<%@ include file ="/views/common/header.jsp" %>
 		
+		<%-- <% if(m != null && m.getUserId().equals("admin")) {%> --%>
 		<div class="container-fluid text-center">    
 			<div class="row content">
 				<br>
@@ -48,26 +53,37 @@
 					<p><a href="../community/communityList.jsp">커뮤니티</a></p>
 					<p><a href="../license/licenseinfo.jsp">자격증정보</a></p>
 				</div>
+				
+				<form action="<%= request.getContextPath()%>/nInsert.ne"
+				method="post" enctype="multipart/form-data">
 				<div class="col-sm-8 text-left">
 					<br>
-					<h3 align="left">글쓰기</h3>
+					<h3 align="left">뉴스 작성하기</h3>
 					<div class="form-group"> 
-						<label for="subject">Title</label> 
-						<input type="text" class="form-control" name ="subject" id="subject" placeholder="Enter title"> 
+						<label for="subject">제목</label> 
+						<input type="text" class="form-control" name ="subject" id="subject" placeholder="제목을 입력하세요"> 
 					</div> 
 					<div class="form-group"> 
-						<label for="File">File input</label> 
-						<input type="file" id="File"> 
+						<label for="File">뉴스 사진</label> 
+						<input type="file" id="File" name="file"> 
 					</div> 
 					<div class="form-group"> 
-						<label for="content">Comment:</label> 
-						<textarea class="form-control" rows="10" name="content" id="content"></textarea> 
+						<label for="content">뉴스 내용</label> 
+						<textarea class="form-control" cols="60" rows="10" name="content" id="content" style="resize:none;" placeholder="최대 3000자 이내로 입력하세요."></textarea> 
 					</div> 
 				</div>
 			</div>
-					<button type="submit">수정하기</button>
-			 		<button type="submit">작성하기</button>
-			 		<button type="button"><a href="../notice/noticeList.jsp" >되돌아가기</a></button>
+					
+			 		<button type="submit" class="btn btn-success">등록하기</button>
+			 		<button type="reset" class="btn btn-danger" onclick="back()">취소하기</button>
+			 		<br><br><br>
+			 		</form>
+			 		<script>
+			 			
+			 			function back(){
+			 				location.href="/allRight/selectList.ne";
+			 			}
+			 		</script>
 		</div>
 					<!-- <div class="row">
 		 				<form method="post" action="writeAction.jsp">
@@ -92,11 +108,19 @@
 		 			</div> -->
 
 	<!-- FOOTER -->
-	<footer>
-			
-	</footer><!-- //FOOTER -->
+	<!-- //FOOTER -->
 	
 
 </div>
+
+<%-- 
+<% } else {
+	request.setAttribute("msg","관계자 외에 접근이 불가능한 페이지입니다.");
+	request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
+} %> 
+--%> 
+
+
+	
 </body>
 </html>

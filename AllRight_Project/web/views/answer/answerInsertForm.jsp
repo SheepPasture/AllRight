@@ -6,12 +6,13 @@
 	<title>ALLRight</title>
 </head>
 <body>
- <table style="margin-bottom:5px; width:100%; border:solid 0px #ccc; background:beige;" cellspacing="0" cellpadding="0">
+<div align="center"><!--Mobile, PC 페이지 컨테이너 가운데 정렬 시작.-->
+<table style="margin-bottom:5px; width:100%; border:solid 0px #ccc; background:beige;" cellspacing="0" cellpadding="0">
 		<tr>
-			<td style="padding:15px 0px; width:120px; font-family:tahoma; text-align:center;">
+		<td style="padding:15px 0px; width:120px; font-family:tahoma; text-align:center;">
 		<div id="testing" style="display:none;">
-			</td>
-			<td>	
+		</td>
+		<td>	
 		<div id="top" style="padding:12px 0px; text-align:left;"><!--PC 리본메뉴, 문제집중뷰 시작.-->
 		<form name='form' method='post' action='/q/index.php' 
 		style='margin:0px;'>
@@ -43,22 +44,39 @@
 				<input type="hidden" name="cx" value="partner-pub-1981615758276157:4489152794" />
 				<input type="hidden" name="ie" value="UTF-8" />
 				<input type="text" name="q" size="54" />
-				<input type="submit" name="sa" value="&#xac80;&#xc0c9;" />
+				<input type="submit" name="sa" value="검색" />
 			</div>
 			</form>
 			<script type="text/javascript" src="http://www.google.co.kr/coop/cse/brand?form=cse-search-box&amp;lang=ko"></script>
 	</div></div></div></div></td></tr>
 </table>
- 	<div style='margin-bottom:10px; color:#ff6868; text-align:center;'>※ 응시하기 버튼을 클릭하시면, 신규응시 또는 이전 응시결과 상세분석, 틀린 문제 다시 풀기 등을 하실 수 있습니다.</div>
-	<table style='margin-top:0px; width:100%; border:0px;' cellpadding='5' cellspacing='0' align='center'>
-	<tr height='20px'>
-	<td width='' class='td_border_commonTitle_qpass'>순번</td>
-	<td width='' class='td_border_commonTitle_qpass'>분류</td>
-	<td width='' class='td_border_commonTitle_qpass'>시험명</td>
-	<td width='' class='td_border_commonTitle_qpass'>문제수</td>
-	<td width='' class='td_border_commonTitle_qpass'>시험응시</td>
-	<td width='' class='td_border_rightTitle_qpass'>응시결과</td></tr>
-	</table></div>
-	
+
+
+ 	<div style='margin-bottom:8px; color:#ff6868; text-align:center;' >
+ 	※ 응시하기 버튼을 클릭하시면, 신규응시 또는 이전 응시결과 상세분석, 틀린 문제 다시 풀기 등을 하실 수 있습니다.</div>
+	</div>
+<table style="margin-top:0px; width:100%; border:solid 1px #ccc;" cellpadding="5" cellspacing="0" align="center" >
+<tbody>
+<tr height="20px">
+<td width="" class="td_border_commonTitle">순번</td>
+<td width="" class="td_border_commonTitle">분류</td>
+<td width="" class="td_border_commonTitle">시험명</td>
+<td width="" class="td_border_commonTitle">문제수</td>
+<td width="" class="td_border_commonTitle">시험응시</td>
+<td width="" class="td_border_rightTitle">응시결과</td>
+</tr>
+<tr>
+<td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">1</td>
+<td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">기능·기술 [기능사] &gt; 정보처리기능사 &gt; 2011년 1회</td>
+<td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">2011년 1회</td>
+<td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">60</td>
+<td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">
+<button><a href="../answer/answerDetail.jsp">응시하기</a></td></button>
+<td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_right">
+<span style="color:#bb8800">응시전</span></td></tr><tr>
+</tbody>
+</table>
+
+</div><!--Mobile, PC 페이지 컨테이너 가운데 정렬 시작.-->	
 </body>
  </html>

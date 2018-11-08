@@ -48,5 +48,19 @@ public class NewsService {
 		return n;
 	}
 
+	public int insertNews(News n) {
+		
+		Connection con = getConnection();
+		
+		int result = nDao.insertNews(con, n);
+		
+		if(result > 0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+	}
+
 
 }

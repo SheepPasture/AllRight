@@ -4,7 +4,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -59,6 +61,49 @@ public class LicenseDao {
 		} finally {
 			
 			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+	public int updateCost(Connection con) {
+		
+		int result = 0;
+		
+		ArrayList<LicenseInfo> list = null;
+		
+		Statement stmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectLicense");
+		
+		try {
+			
+			stmt = con.createStatement();
+			
+			rset = stmt.executeQuery(sql);
+			
+			list = new ArrayList<LicenseInfo>();
+			
+			while(rset.next()){
+				
+				LicenseInfo l = new LicenseInfo();
+				
+				l.setlNo(rset.getString(1));
+				l.setlName(rset.getString(2));
+				l.setlInfo(rset.getString(3));
+				l.setlDate(rset.getString(4));
+				l.setlCategory(rset.getString(5));
+				l.setlCost(rset.getString(6));
+				
+				list.add(l);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
 		}
 		
 		
