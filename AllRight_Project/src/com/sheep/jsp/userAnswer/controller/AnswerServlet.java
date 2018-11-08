@@ -13,7 +13,7 @@ import com.sheep.jsp.userAnswer.model.vo.UserAnswer;
 /**
  * Servlet implementation class AnswerServlet
  */
-@WebServlet("/qAnswer.qn")
+@WebServlet("/aInsert.an")
 public class AnswerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

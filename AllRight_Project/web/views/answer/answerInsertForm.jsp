@@ -14,7 +14,7 @@
 		</td>
 		<td>	
 		<div id="top" style="padding:12px 0px; text-align:left;"><!--PC 리본메뉴, 문제집중뷰 시작.-->
-		<form name='form' method='post' action='/q/index.php' 
+		<form name='form'  action="<%= request.getContextPath() %> /aInsert.an" method='post'> 
 		style='margin:0px;'>
 		<select id='menu_top_select' name='bigCode' onchange='bigOptChange(this.form)'>
 		<option value=''>응시 분야를 선택하세요.</option>
