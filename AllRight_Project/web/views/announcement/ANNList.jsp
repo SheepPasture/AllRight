@@ -12,6 +12,8 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
+	<!-- CSS -->
+	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
    
 </head>
 <body>
@@ -73,10 +75,10 @@
 	</script>
 		
 	
-	
+	<!-- FOOTER -->
 	<footer>
 			
-	</footer>
+	</footer><!-- //FOOTER -->
 	
 	</div>
 </body>
