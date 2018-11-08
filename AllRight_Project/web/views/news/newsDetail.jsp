@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import = "com.sheep.jsp.news.model.vo.*, java.util.*"%>
+    pageEncoding="UTF-8" import = "com.sheep.jsp.news.model.vo.*, java.util.*, com.oreilly.servlet.*"%>
     
  <%
  	News n = (News)request.getAttribute("news");
@@ -75,7 +75,7 @@
 							<td colspan = "6">
 								<button onclick="location.href='selectList.ne'" class="btn btn-primary">뉴스메뉴로 돌아가기</button>
 								<button onclick="location.href='nUpView.ne?nno=<%=n.getNNO()%>'" class="btn btn-warning">수정하기</button>
-								<button onclick="location.href='<%= request.getContextPath() %>/nDelete.ne?nno='+<%= n.getNNO()%>" class="btn btn-danger">삭제하기</button>
+								<button onclick="location.href='<%= request.getContextPath()%>/nDelete.ne'" class="btn btn-danger">삭제하기</button>
 							</td>
 						</tr>
 						</table>

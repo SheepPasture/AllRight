@@ -10,18 +10,18 @@
 	<meta name="author" content="">
     
 	<!-- CSS -->
- 	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
 
 	<!-- SUMMERNOTE -->
-	 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> 
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>  
-	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script> 
+   <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> 
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script> 
 
 </head>
 <body>
-<%-- 	 <%@ include file="/views/common/header.jsp" %>  --%>
+	 <%-- <%@ include file="/views/common/header.jsp" %> --%>
 
 	<!-- PAGE -->
 	<div id="page">
@@ -30,9 +30,10 @@
 			<div class="row content">
 				<br>
 				<div class="col-sm-2 sidenav">
-					<p><a href="/allRight/selectList.ann">공지사항</a></p>
-					<p><a href="../community/communityList.jsp">커뮤니티</a></p>
-					<p><a href="../license/licenseinfo.jsp">자격증정보</a></p>
+					<p><a href="#">건설기계운전</a></p>
+					<p><a href="#">건설배관</a></p>
+					<p><a href="#">건축</a></p>
+					<p><a href="#">경비/청소</a></p>
 				</div>
 				<div class="col-sm-8 text-left">
 					<br>	
