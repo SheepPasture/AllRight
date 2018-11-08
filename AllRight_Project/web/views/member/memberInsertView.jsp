@@ -84,7 +84,7 @@
 
         </div>
 
-        <form class="form-horizontal" action="<%=request.getContextPath()%>/mInsert.me">
+        <form class="form-horizontal" action="<%=request.getContextPath()%>/mInsert.me" method ="post">
         <div class="form-group">
           <label class="col-sm-3 control-label" for="userId">유저아이디</label>
         <div class="col-sm-6">
