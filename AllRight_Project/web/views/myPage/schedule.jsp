@@ -15,7 +15,7 @@
 	<link href='/allRight/resources/css/fullcalendar.min.css' rel='stylesheet' />
 	<link href='/allRight/resources/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 	<script src='/allRight/resources/js/moment.min.js'></script> 
-	<script src='/allRight/resources/js/jquery.min.js'></script>  
+	<script src='/allRight/resources/js/jquery.min.js'></script> 
 	<script src='/allRight/resources/js/fullcalendar.min.js'></script>
 <script>
   $(document).ready(function() {
@@ -90,12 +90,11 @@
 	<br>
 	 	<div class="container-fluid text-center">    
 			<div class="row content">
-				<div class="col-sm-2 sidenav"  style="display:inline-block; "  >
-					<p><a id="s" href="/allRight/views/myPage/myPageMain.jsp">회원정보수정</a></p>
-					<p><a href="/allRight/views/myPage/schedule.jsp">관심자격증 정보</a></p>
-					<p><a href="<%= request.getContextPath() %>/bMyList.bo" >게시글 관리</a></p>
-					<p><a href="/allRight/views/myPage/viewTest.jsp">기출문제 관리</a></p>
+				<!-- NAV -->
+				<div class="col-sm-2 sidenav"  style="display:inline-block;height:500px; "  >
+				<%@ include file="/views/common/myPageNav.jsp" %> 
 				</div>
+				<!-- NAV END-->
 				<br>
 				<div class="col-sm-2 sidenav"  style="display:inline-block; background:ivory"  >
 				
