@@ -4,39 +4,6 @@
 <html>
 <head>
 
-	<!-- CSS -->
-	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<!-- <link href="/allRight/resources/css/flexslider.css" rel="stylesheet" type="text/css" />
-	<link href="/allRight/resources/css/prettyPhoto.css" rel="stylesheet" type="text/css" />
-	<link href="/allRight/resources/css/animate.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="/allRight/resources/css/owl.carousel.css" rel="stylesheet">
-	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
-    
-	<!-- FONTS -->
-	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500italic,700,500,700italic,900,900italic' rel='stylesheet' type='text/css'>
-	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">	
-
-	
-	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
-	<script src="/allRight/resources/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="/allRight/resources/js/jquery.prettyPhoto.js" type="text/javascript"></script>
-	<script src="/allRight/resources/js/jquery.nicescroll.min.js" type="text/javascript"></script>
-	<script src="/allRight/resources/js/superfish.min.js" type="text/javascript"></script>
-	<script src="/allRight/resources/js/jquery.flexslider-min.js" type="text/javascript"></script>
-	<script src="/allRight/resources/js/owl.carousel.js" type="text/javascript"></script>
-	<script src="/allRight/resources/js/animate.js" type="text/javascript"></script>
-	<script src="/allRight/resources/js/jquery.BlackAndWhite.js"></script>
-	<script src="/allRight/resources/js/myscript.js" type="text/javascript"></script>
-	
-	
-	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	
-	
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>회원 가입</title>
 	
 	<style>
@@ -84,7 +51,7 @@
 
         </div>
 
-        <form class="form-horizontal" action="<%=request.getContextPath()%>/mInsert.me">
+        <form class="form-horizontal" action="<%=request.getContextPath()%>/mInsert.me" method ="post">
         <div class="form-group">
           <label class="col-sm-3 control-label" for="userId">유저아이디</label>
         <div class="col-sm-6">
