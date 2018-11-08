@@ -14,7 +14,7 @@ import com.sheep.jsp.member.model.vo.Member;
 /**
  * Servlet implementation class MemberInsertServlet
  */
-@WebServlet("/MemberInsertServlet")
+@WebServlet("/mInsert.me")
 public class MemberInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,7 +43,7 @@ public class MemberInsertServlet extends HttpServlet {
 			ms.insertMember(m);
 			System.out.println("회원가입 성공");
 			response.sendRedirect("index.jsp");
-		} catch(IOException e){
+		} catch(Exception e){
 			request.setAttribute("msg", "회원가입실패");
 			request.setAttribute("exception",e);
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);;
