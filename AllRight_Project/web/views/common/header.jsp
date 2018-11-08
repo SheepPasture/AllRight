@@ -10,7 +10,7 @@
  <link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
  
   	<!-- jquery -->
-  	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
+  <!-- 	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script> -->
 	<script src="/allRight/resources/js/jquery.prettyPhoto.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/jquery.nicescroll.min.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/superfish.min.js" type="text/javascript"></script>

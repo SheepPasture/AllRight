@@ -10,14 +10,32 @@
 <head>
 <meta charset="UTF-8">
 <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>update Member</title>
- 	<link href="/allRight/css/bootstrap.min.css" rel="stylesheet">
-    <!-- font awesome -->
-    <link rel="stylesheet" href="/allRight/resources/css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
-    <!-- Custom style -->
-    <link rel="stylesheet" href="/allRight/resources/css/style.css" media="screen" title="no title" charset="utf-8">
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="/allRight/resources/css/flexslider.css" rel="stylesheet" type="text/css" />
+	<link href="/allRight/resources/css/prettyPhoto.css" rel="stylesheet" type="text/css" />
+	<link href="/allRight/resources/css/animate.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/allRight/resources/css/owl.carousel.css" rel="stylesheet">
+	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
+  
+	<!-- FONTS -->
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500italic,700,500,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">	
+
+	
+	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/jquery.prettyPhoto.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/jquery.nicescroll.min.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/superfish.min.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/jquery.flexslider-min.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/owl.carousel.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/animate.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/jquery.BlackAndWhite.js"></script>
+	<script src="/allRight/resources/js/myscript.js" type="text/javascript"></script>
 
  
 <style>
@@ -55,49 +73,39 @@
 </style>
 
 </head>
+<body>
 	<!-- HEADER -->
-		<%@ include file="/views/common/header.jsp" %>
+	<%@ include file="/views/common/header.jsp" %>
 	<!-- HEADER-END -->
-
+		<%--  --%>
 		<br>
 			<div class="container-fluid text-center">    
 			<div class="row content">
+				<!-- NAV -->
 				<div class="col-sm-2 sidenav"  style="display:inline-block; "  >
-					<p><a id="s" href="/allRight/views/myPage/myPageMain.jsp">회원정보수정</a></p>
-					<p><a href="/allRight/views/myPage/schedule.jsp">관심자격증 정보</a></p>
-					<p><a href="<%= request.getContextPath() %>/bMyList.bo" >게시글 관리</a></p>
-					<p><a href="/allRight/views/myPage/viewTest.jsp">기출문제 관리</a></p>
+				<%@ include file="/views/common/myPageNav.jsp" %> 
 				</div>
-				<br>
-				<div class="col-sm-2 sidenav"  style="display:inline-block; background:ivory"  >
-				 </div> 
-			
-			  	<div id="showView" style="width:70%;height:100%; display:inline-block; " >
+				<!-- NAV END-->
+			<br>
+			<div class="col-sm-2 sidenav"  style="display:inline-block; background:ivory"  >
+				
+			<%-- 	<%@ include file="/views/common/myPageNav.jsp" %> --%>
+				
+			</div> 
+			<h1><small>기출문제 오답</small></h1>	
+			  	<div id="showView" style="width:70%;height:100%; display:inline-block; ">
+					<div src="viewMemberInfo.jsp">
+						<table class="table table-hover">
+ 						
 					
-					<article class="container" >
-
-   
-        <div class="page-header">
-    	    <h1 ><small>기출문제 오답</small></h1>
-        </div>
-
-        																																																																																																	1	
- 
-      </article>
-					
-					
-			</div>
+						</table>
+					</div> 
+				</div>
 			
 		</div>
+	
+	<div >
 
-
-       <script>
-     	function memberUpdate() {
-			$("#updateForm").submit();
-		}	
-      </script>	
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
-  </body>
+	</div>
+</body>
 </html>
