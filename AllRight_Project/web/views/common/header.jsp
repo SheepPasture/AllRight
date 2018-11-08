@@ -22,12 +22,12 @@
 	<script src="/allRight/resources/js/myscript.js" type="text/javascript"></script>
 	
 	<!-- calendar -->
-	<!-- <link href='/allRight/resources/css/fullcalendar.min.css' rel='stylesheet' />
+	<link href='/allRight/resources/css/fullcalendar.min.css' rel='stylesheet' />
 	<link href='/allRight/resources/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 	<script src='/allRight/resources/js/moment.min.js'></script> 
 	<script src='/allRight/resources/js/jquery.min.js'></script> 
 	<script src='/allRight/resources/js/fullcalendar.min.js'></script>
-	 -->
+	
 	 
 	<!-- bootstrap -->
 	<script src="/allRight/resources/js/bootstrap.min.js" type="text/javascript"></script>
