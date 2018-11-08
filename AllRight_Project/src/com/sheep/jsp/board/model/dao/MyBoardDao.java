@@ -32,7 +32,7 @@ public class MyBoardDao {
 			e.printStackTrace();
 		}
 	}
-	public ArrayList<Board> selectList(Connection con) {
+	public ArrayList<Board> selectList(Connection con, int userno) {
 		ArrayList<Board> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset =null;
@@ -40,7 +40,7 @@ public class MyBoardDao {
 		
 		try {
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1,1);
+			pstmt.setInt(1,userno);
 			rset = pstmt.executeQuery();
 			
 			
