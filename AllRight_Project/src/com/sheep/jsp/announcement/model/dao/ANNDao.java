@@ -124,5 +124,4 @@ public class ANNDao {
 		return result;
 		
 	}
-
 }
