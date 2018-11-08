@@ -67,7 +67,7 @@
   							<% for(News n: list){ %>
 						<tr>
 							<td class="col-md-1"><%= n.getNNO() %></td>
-							<td class="col-md-6 text-center"><%= n.getNTITLE() %></td>
+							<td class="col-md-6 text-left"><%= n.getNTITLE() %></td>
 							<td>관리자</td>
 							<td><%= n.getNCOUNT() %></td>
 							<td><%= n.getNDATE() %></td>
