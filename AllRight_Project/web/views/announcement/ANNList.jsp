@@ -73,10 +73,10 @@
 	</script>
 		
 	
-	<!-- FOOTER -->
+	
 	<footer>
 			
-	</footer><!-- //FOOTER -->
+	</footer>
 	
 	</div>
 </body>
