@@ -124,7 +124,7 @@
 				<input type="hidden" name="cx" value="partner-pub-1981615758276157:4489152794" />
 				<input type="hidden" name="ie" value="UTF-8" />
 				<input type="text" name="q" size="54" />
-				<input type="submit" name="sa" value="&#xac80;&#xc0c9;" />
+				<input type="submit" name="sa" value="검색" />
 			</div>
 			</form>
 			<script type="text/javascript" src="http://www.google.co.kr/coop/cse/brand?form=cse-search-box&amp;lang=ko"></script>
@@ -141,7 +141,6 @@
 						<button type="button"><a href="#">정보기기운용기능사</a></button>
 						<button type="button"><a href="#">한식조리기능사</a></button>
 						<button type="button"><a href="#">제빵기능사</a></button>
-						
 					<div>
 					
 					
