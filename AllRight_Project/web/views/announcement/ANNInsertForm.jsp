@@ -8,14 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-<<<<<<< HEAD
 
-	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
-
-=======
   
 	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
->>>>>>> branch 'master' of https://github.com/SheepPasture/AllRight.git
+
 	<!-- SUMMERNOTE -->
 	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script> 
