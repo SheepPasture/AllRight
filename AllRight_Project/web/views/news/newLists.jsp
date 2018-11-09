@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.sheep.jsp.news.model.vo.*, java.util.*"%>
 
-<% ArrayList<News> list = (ArrayList<News>)request.getAttribute("list"); %>
+<% 
+
+	ArrayList<News> list = (ArrayList<News>)request.getAttribute("list"); 
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+%>
+
+
 <!DOCTYPE html>
 <head>
 	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
@@ -63,6 +69,19 @@
 			<br><br><br>
 		</div>
 		
+		<%-- 페이지 처리 --%>
+		
+		<div class = "pagingArea" align="center">
+		
+			<Button onclick="location.href='<%= request.getContextPath()%>/selectList.ne?currentPage=1'"></Button>
+			<% if (currentPage <= 1){ %>
+			<button disabled></button>
+			<% } else { %>
+			<button onclick= "location.href='<%= request.getContextPath()%>/selectList.ne?currentPage=<%=currentPage - 1%>'"></button>
+			<% } %>
+					
+		</div>
+		
 		<script>
 			
 			$(function(){
@@ -84,5 +103,7 @@
 	
 
 </div>
+
+
 </body>
 </html>
