@@ -73,5 +73,20 @@ public class NewsService {
 		return result;
 	}
 
+	public int updateNews(News n) {
+		
+		Connection con = getConnection();
+		
+		int result = nDao.updateNews(con, n);
+		
+		if(result > 0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+		
+	}
+
 
 }
