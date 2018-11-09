@@ -129,7 +129,8 @@ public class LicenseDao {
 			for(int i = 0; i < list.size(); i++){
 				
 				pstmt.setString(1, list.get(i).getlCost());
-				pstmt.setString(2, list2.get(i).getlNo());
+				pstmt.setString(2, list.get(i).getlNo());
+				System.out.println(list.get(i).getlNo() + ", " + list2.get(i).getlName() + " : " + list.get(i).getlCost());
 				
 				result = pstmt.executeUpdate();
 				
