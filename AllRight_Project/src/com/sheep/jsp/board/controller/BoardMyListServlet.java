@@ -48,14 +48,14 @@ public class BoardMyListServlet extends HttpServlet {
 		String page="/views/myPage/viewBoard.jsp";
 
 		
-		if(clist.size()!=0){
+		if(blist.size()!=0){
 			request.setAttribute("blist", blist);
 	
 		}else{
 			request.setAttribute("bmsg", "작성한 게시글이 없습니다.");
 			
 		}
-		System.out.println("test3");
+		
 		if(clist.size()!=0){
 			request.setAttribute("clist", clist);
 			System.out.println(clist+"없는데...");

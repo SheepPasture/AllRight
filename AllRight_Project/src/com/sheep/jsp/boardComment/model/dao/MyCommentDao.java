@@ -22,7 +22,7 @@ public class MyCommentDao {
 		prop = new Properties();
 		
 		String filePath = MyBoardDao.class
-				.getResource("/config/member/member-query.properties").getPath();
+				.getResource("/config/member-query.properties").getPath();
 		
 		try {
 		
