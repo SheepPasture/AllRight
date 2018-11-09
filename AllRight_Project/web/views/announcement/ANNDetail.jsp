@@ -8,9 +8,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	
-	<!-- CSS -->
-	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
-	
+
 	<style>
 
     /* 게시판관련 */
