@@ -40,6 +40,24 @@ public class LicenseService {
 		
 		return list;
 	}
+
+	public int updateLicense(ArrayList<LicenseInfo> list) {
+		
+		int result = 0;
+		
+		Connection con = getConnection();
+		
+		ParseApi pa = new ParseApi();
+		
+		result = lDao.updateLicense(con, pa.getCost(), list);
+		
+		if(result > 0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+	}
 	
 	
 	
