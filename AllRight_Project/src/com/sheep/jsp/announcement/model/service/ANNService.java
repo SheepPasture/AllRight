@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.sheep.jsp.announcement.model.dao.ANNDao;
 import com.sheep.jsp.announcement.model.vo.Announcement;
+import com.sheep.jsp.news.model.vo.News;
 
 import static com.sheep.jsp.common.JDBCTemplate.*;
 
@@ -44,15 +45,15 @@ public class ANNService {
 		return a;
 	}
 
-	public int deleteANN(int ano) {
-		
+	public Announcement updateView(int ano) {
+
 		Connection con = getConnection();
 		
-		int result = aDao.deleteANN(con, ano);
+		Announcement a = aDao.selectOne(con, ano);
 		
 		close(con);
 		
-		return result;
+		return a;
 		
 	}
 
@@ -62,11 +63,27 @@ public class ANNService {
 		
 		int result = aDao.updateANN(con, a);
 		
-		if(result>0) commit(con);
+		if(result > 0) commit(con);
 		else rollback(con);
 		
+		close(con);
+		
 		return result;
+		
 	}
+
+	public int deleteANN(int ano) {
+
+		Connection con = getConnection();
+		
+		int result = aDao.deleteNews(con, ano);
+		
+		close(con);
+		
+		return result;
+		
+	}
+
 
 
 }

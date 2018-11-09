@@ -133,44 +133,50 @@ public class ANNDao {
 		String sql = prop.getProperty("updateANN");
 		
 		try {
-			pstmt= con.prepareStatement(sql);
+			
+			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, a.getAtitle());
 			pstmt.setString(2, a.getAcontent());
 			pstmt.setInt(3, a.getAno());
 			
 			result = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
+		} finally {	
 			close(pstmt);
 		}
 		
 		return result;
 		
 	}
-	
-	public int deleteANN(Connection con, int ano) {
 
+	public int deleteNews(Connection con, int ano) {
+		
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
 		String sql = prop.getProperty("deleteANN");
 		
 		try {
+			
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, ano);
 			
 			result = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
+		} finally{
 			close(pstmt);
 		}
-	
+		
 		return result;
+		
 	}
+
 
 
 }

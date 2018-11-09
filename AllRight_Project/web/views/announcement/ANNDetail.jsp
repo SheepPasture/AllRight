@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"  import="com.sheep.jsp.announcement.model.vo.*" %>
+    pageEncoding="UTF-8"  import = "com.sheep.jsp.announcement.model.vo.*, java.util.*, com.oreilly.servlet.*"%>
 <% Announcement a = (Announcement)request.getAttribute("announcement"); %>
 <!DOCTYPE html>
 <html>
@@ -19,7 +19,6 @@
 
     .btn_area2 { text-align:right; padding-top:20px; font-size:14px; font-weight:600;   }
     .btn_area2 a { display:inline-block; padding:7px 20px; background:#666; color:#fff; }
-
 
     table.view { width:100%; border-top:2px solid #000;    }
     table.view tbody tr th { background:#f4f4f4; border-bottom:1px solid #cfcfcf; border-right:1px solid #cfcfcf; padding:10px 0;   }
@@ -49,10 +48,9 @@
 						<a href="#">자격증정보</a>
 					</p>
 				</div> 
-	
 				<div class="col-sm-8 text-center">
 					<h2 align="left">공지사항</h2>
-					
+					<% if(a != null) { %>
 					<!-- 게시판(뷰)시작 -->
 					<div class="board_area">
 						<table class="view">
@@ -65,32 +63,30 @@
 							<tbody>
 								<tr>
 									<th>제목</th>
- 									<%-- <td colspan="1" class="title"><%= a.getAtitle()%></td>  --%>
-									<td colspan="1" class="title">타이틀</td> 
+ 									<td class="title"><%= a.getAtitle()%></td>  
+									<!-- <td colspan="1" class="title">타이틀</td>  -->
 									<th >조회수</th>
-									<%-- <td><%= a.getAcount() %></td> --%>
-									<td>8</td>
+									<td><%= a.getAcount() %></td>
+									<!-- <td>8</td> -->
 								</tr>
 								<tr>
 									<th>작성자</th>
 									<td>관리자</td>
 									<th>등록일시</th>
-					<%-- 				<td><%= a.getAdate() %></td> --%>
-									<td>2018-11-09</td>
-								</tr>
-<!-- 								<tr>
-									<th>첨부파일</th>
-									<td colspan="3">없음</td>
-								</tr> -->
+				 					<td><%= a.getAdate() %></td>
+<!-- 									<td>2018-11-09</td> -->
+								</tr> 
 								<tr>
 									<th>내용</th>
-								<%-- 	<td><%= a.getAcontent() %></td> --%>
-									<td>내용입니다.</td>
+								 	<td><%= a.getAcontent() %></td>
 								</tr>			
 								<tr>
 									<td colspan="5"></td>
 								</tr>
-								
+								<% } else { 
+							 		request.setAttribute("msg", "회원만 가능한 서비스 입니다."); 
+									request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
+								} %>
 								<tr>
 									<th>이전글&nbsp; ▲</th>
 									<td colspan="3"><a href="">1번째 공지사항입니다.</a></td>

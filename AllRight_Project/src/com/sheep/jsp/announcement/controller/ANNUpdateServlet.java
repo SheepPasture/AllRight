@@ -14,13 +14,13 @@ import com.sheep.jsp.announcement.model.vo.Announcement;
  * Servlet implementation class ANNupdateServlet
  */
 @WebServlet("/aUpdate.ann")
-public class ANNupdateServlet extends HttpServlet {
+public class ANNUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ANNupdateServlet() {
+    public ANNUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

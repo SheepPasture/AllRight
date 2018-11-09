@@ -1,13 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.sheep.jsp.news.model.vo.*, java.util.*"%>
 
-<% 
-
-	ArrayList<News> list = (ArrayList<News>)request.getAttribute("list"); 
-	PageInfo pi = (PageInfo)request.getAttribute("pi");
-%>
-
-
+<% ArrayList<News> list = (ArrayList<News>)request.getAttribute("list"); %>
 <!DOCTYPE html>
 <head>
 	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
@@ -60,26 +54,13 @@
 					</table> 
 				</div>
 				<div class="col-sm-10 text-right">
-					<button type="button" class="btn btn-secondary"><a href="views/news/newWrite.jsp">작성하기</a></button>
+					<button type="button"><a href="views/news/newWrite.jsp">작성하기</a></button>
 				</div>
 				
 			</div>
 			
 			<br><br><br>
 			<br><br><br>
-		</div>
-		
-		<%-- 페이지 처리 --%>
-		
-		<div class = "pagingArea" align="center">
-		
-			<Button onclick="location.href='<%= request.getContextPath()%>/selectList.ne?currentPage=1'"></Button>
-			<% if (currentPage <= 1){ %>
-			<button disabled></button>
-			<% } else { %>
-			<button onclick= "location.href='<%= request.getContextPath()%>/selectList.ne?currentPage=<%=currentPage - 1%>'"></button>
-			<% } %>
-					
 		</div>
 		
 		<script>
@@ -103,7 +84,5 @@
 	
 
 </div>
-
-
 </body>
 </html>
