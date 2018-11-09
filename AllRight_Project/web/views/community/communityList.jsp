@@ -6,7 +6,6 @@
 
 <title>ALLRight</title>
 
-
 <style>
 /* * {
 	margin: 0;

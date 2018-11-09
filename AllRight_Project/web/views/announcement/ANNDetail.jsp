@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	
+	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
 
 	<style>
 
@@ -96,6 +96,7 @@
 								<tr>
 									<td colspan="5"></td>
 								</tr>
+-
 								
 								<tr>
 									<th>이전글&nbsp; ▲</th>
@@ -109,6 +110,7 @@
 						</table>
 						<div class="btn_area2">
 							<a href="/allRight/selectList.ann">목록으로 바로가기</a>				
+							<a href="/allRight/updateANN.ann">수정</a>				
 						</div>	
 					</div>		
 				</div>

@@ -44,5 +44,40 @@ public class ANNService {
 		return a;
 	}
 
+	public int deleteANN(int ano) {
+		
+		Connection con = getConnection();
+		
+		int result = aDao.deleteANN(con, ano);
+		
+		close(con);
+		
+		return result;
+		
+	}
+
+	public Announcement updateView(int ano) {
+		
+		Announcement a = null;
+		
+		Connection con = getConnection();
+		
+		a = aDao.selectOne(con, ano);
+		
+		return a;
+	}
+
+	public int updateANN(Announcement a) {
+
+		Connection con = getConnection();
+		
+		int result = aDao.updateANN(con, a);
+		
+		if(result>0) commit(con);
+		else rollback(con);
+		
+		return result;
+	}
+
 
 }

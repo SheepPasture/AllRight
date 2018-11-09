@@ -8,7 +8,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
     
-	
+	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
 	<!-- SUMMERNOTE -->
   <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
@@ -56,10 +56,15 @@
 			</div>
 			<br />
 				<button id="edit" class="btn btn-primary" onclick="edit()" type="button">Edit</button>
+				<button id="del" class="btn btn-primary" onclick="del()" type="button">Delete</button>
 				<button id="back" class="btn btn-primary" onclick="back()" type="button">Back</button>
 		 		<script>
 					function edit(){
-						location.href="<%= request.getContextPath() %>/views/announcement/ANNList.jsp";
+						location.href="/allRight/selectList.ann";
+					}
+					
+					function del(){
+						location.href="/allRight/aDelete.ann";
 					}
 		
 					function back(){

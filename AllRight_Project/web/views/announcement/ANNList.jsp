@@ -12,6 +12,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
+
 </head>
 <body>
 	
@@ -55,7 +56,7 @@
 				</table>  
 			</div>
 		 	<div class="col-sm-10 text-right">
-				<button type="button"><a href="/views/announcement/ANNInsertForm.jsp">작성하기</a></button>
+				<button type="button"><a href="views/announcement/ANNInsertForm.jsp">작성하기</a></button>
 			</div>
 		</div>
 	</div>
