@@ -126,8 +126,28 @@ public class ANNDao {
 	}
 
 	public int updateANN(Connection con, Announcement a) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("updateANN");
+		
+		try {
+			pstmt= con.prepareStatement(sql);
+			
+			pstmt.setString(1, a.getAtitle());
+			pstmt.setString(2, a.getAcontent());
+			pstmt.setInt(3, a.getAno());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
 	}
 	
 	public int deleteANN(Connection con, int ano) {
@@ -137,8 +157,19 @@ public class ANNDao {
 		
 		String sql = prop.getProperty("deleteANN");
 		
-		
-		return 0;
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, ano);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+	
+		return result;
 	}
 
 

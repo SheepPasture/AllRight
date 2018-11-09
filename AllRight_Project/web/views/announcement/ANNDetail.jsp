@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"  import="com.sheep.jsp.announcement.model.vo.*" %>
+<% Announcement a = (Announcement)request.getAttribute("announcement"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,49 +55,41 @@
 					
 					<!-- 게시판(뷰)시작 -->
 					<div class="board_area">
-						<table border="0" cellpadding="0" cellspacing="0" class="view">
+						<table class="view">
 							<colgroup>
 								<col width="15%">
-								<col width="35%">
+								<col width="60%">
+								<col width="10%">
 								<col width="15%">
-								<col width="35%">
 							</colgroup>
 							<tbody>
 								<tr>
 									<th>제목</th>
-									<td colspan="3" class="title">공지사항 제목입니다.</td>
+ 									<%-- <td colspan="1" class="title"><%= a.getAtitle()%></td>  --%>
+									<td colspan="1" class="title">타이틀</td> 
+									<th >조회수</th>
+									<%-- <td><%= a.getAcount() %></td> --%>
+									<td>8</td>
 								</tr>
 								<tr>
 									<th>작성자</th>
-									<td>작성자이름</td>
+									<td>관리자</td>
 									<th>등록일시</th>
-									<td>2018-11-07</td>
+					<%-- 				<td><%= a.getAdate() %></td> --%>
+									<td>2018-11-09</td>
 								</tr>
-								<tr>
+<!-- 								<tr>
 									<th>첨부파일</th>
 									<td colspan="3">없음</td>
-								</tr>
+								</tr> -->
 								<tr>
 									<th>내용</th>
-										<td>
-											<p>
-												이것은 공지사항입니다.
-											</p>
-											<p>
-												<span>이것은 공지사항입니다</span>
-											</p>
-											<p>
-												<span>이것은 공지사항입니다</span>
-											</p>
-											<p>
-												<span>이것은 공지사항입니다</span>
-											</p>
-										</td>
-								</tr>					
+								<%-- 	<td><%= a.getAcontent() %></td> --%>
+									<td>내용입니다.</td>
+								</tr>			
 								<tr>
 									<td colspan="5"></td>
 								</tr>
--
 								
 								<tr>
 									<th>이전글&nbsp; ▲</th>
@@ -110,7 +103,7 @@
 						</table>
 						<div class="btn_area2">
 							<a href="/allRight/selectList.ann">목록으로 바로가기</a>				
-							<a href="/allRight/updateANN.ann">수정</a>				
+							<a href="/allRight/aUpdate.ann">수정</a>			
 						</div>	
 					</div>		
 				</div>

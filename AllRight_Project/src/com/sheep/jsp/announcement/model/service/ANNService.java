@@ -56,17 +56,6 @@ public class ANNService {
 		
 	}
 
-	public Announcement updateView(int ano) {
-		
-		Announcement a = null;
-		
-		Connection con = getConnection();
-		
-		a = aDao.selectOne(con, ano);
-		
-		return a;
-	}
-
 	public int updateANN(Announcement a) {
 
 		Connection con = getConnection();

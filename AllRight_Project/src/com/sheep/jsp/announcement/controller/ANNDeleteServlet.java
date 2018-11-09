@@ -28,18 +28,16 @@ public class ANNDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("딜리트서블릿");
+		
 		int ano = Integer.parseInt(request.getParameter("ano"));
 		
-		try {
-			
-			new ANNService().deleteANN(ano);
-
-			response.sendRedirect("selectList.ann");
-			
-		} catch (Exception e) {
+		int result = new ANNService().deleteANN(ano);
+		
+		if(result>0){			
+			response.sendRedirect("selectList.ann");			
+		} else {
 			request.setAttribute("msg", "공지사항 삭제 에러!!");
-			request.setAttribute("exception", e);
-			
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
 	}
