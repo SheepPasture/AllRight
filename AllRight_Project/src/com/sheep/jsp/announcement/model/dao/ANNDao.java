@@ -125,4 +125,21 @@ public class ANNDao {
 		
 	}
 
+	public int updateANN(Connection con, Announcement a) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	public int deleteANN(Connection con, int ano) {
+
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("deleteANN");
+		
+		
+		return 0;
+	}
+
+
 }
