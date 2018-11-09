@@ -7,7 +7,6 @@
 <head>
 <title>ALLRight</title>
 
-	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -64,7 +63,7 @@
 			$("#listArea td").mouseenter(function(){
 				$(this).parent().css({"cursor":"pointer"});
 			}).click(function(){
-				//console.log($(this).parent().children().eq(0).text());
+				console.log($(this).parent().children().eq(0).text());
 				var ano = $(this).parent().children().eq(0).text();
 				location.href="<%=request.getContextPath()%>/selectOne.ann?ano=" + ano;
 			});

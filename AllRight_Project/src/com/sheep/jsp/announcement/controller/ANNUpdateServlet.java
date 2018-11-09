@@ -14,13 +14,13 @@ import com.sheep.jsp.announcement.model.vo.Announcement;
  * Servlet implementation class ANNupdateServlet
  */
 @WebServlet("/aUpdate.ann")
-public class ANNupdateServlet extends HttpServlet {
+public class ANNUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ANNupdateServlet() {
+    public ANNUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,28 +30,46 @@ public class ANNupdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
+		System.out.println("업데이트서블릿");
+		
+	/*	Announcement a = new Announcement();*/
+		
+		ANNService as = new ANNService();
+
 		int ano = Integer.parseInt(request.getParameter("ano"));
+		
+		Announcement a  = as.selectOne(ano);
+		
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		
-/*		Announcement a = new Announcement();*/
-		
-		ANNService as = new ANNService();
-		Announcement a = as.selectOne(ano);
-		
+		System.out.println("title: " + title + " content: " + content);
+
 		a.setAtitle(title);
 		a.setAcontent(content);
-		a.setAno(ano);
+
+/*		if(result > 0) {
+			
+			response.sendRedirect("selectOne.ann?ano="+ano);
+			
+		} else {
+			request.setAttribute("msg", "공지사항 수정 실패!");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);	
+		}*/
 		
 		int result = as.updateANN(a);
+		
+		System.out.println("업데이트 서블릿 result:"+result);
 		
 		String page = "";
 		
 		if(result > 0){
-			page = "/views/announcement/ANNDetail.jsp";
+			page = "views/announcement/ANNDetail.jsp";
 			request.setAttribute("announcement", a);
+			System.out.println("디테일로 넘어가나?");
 		} else{
-			page = "/views/common/errorPage.jsp";
+			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "공지사항 수정 실패");
 		}
 		
