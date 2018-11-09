@@ -18,7 +18,7 @@ import com.sheep.jsp.news.model.vo.News;
 /**
  * Servlet implementation class NewsUpdateServlet
  */
-@WebServlet("/nUpView.ne")
+@WebServlet("/nUpdate.ne")
 public class NewsUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
