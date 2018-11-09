@@ -6,8 +6,6 @@
 
 <title>ALLRight</title>
 
-<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
-
 <style>
 /* * {
 	margin: 0;
