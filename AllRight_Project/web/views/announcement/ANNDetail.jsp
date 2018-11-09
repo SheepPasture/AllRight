@@ -8,11 +8,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	
-	<!-- CSS -->
-	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
-	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
-	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
-	
+
 	<style>
 
     /* 게시판관련 */
