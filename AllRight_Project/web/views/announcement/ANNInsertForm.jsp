@@ -21,7 +21,7 @@
 
 </head>
 <body>
-<%-- 	 <%@ include file="/views/common/header.jsp" %>  --%>
+ 	 <%@ include file="/views/common/header.jsp" %>  -
 
 	<!-- PAGE -->
 	<div id="page">
@@ -35,7 +35,6 @@
 					<p><a href="../license/licenseinfo.jsp">자격증정보</a></p>
 				</div>
 				<div class="col-sm-8 text-left">
-					<br>	
 					<h3 align="left">글쓰기</h3>
 					  <div id="summernote"  class="col-sm-10" style="border: 1px solid tomato"></div>
 					  <script>
