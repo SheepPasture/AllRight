@@ -38,19 +38,21 @@ public class LicenseInputServlet extends HttpServlet {
 			System.out.println("자격증 저장 성공!");
 			System.out.println("응시료 업데이트 중... 잠시 기다려주세요!");
 			
-			// 생성된 테이블에 응시료 업데이트를 위한 모든 내용 가져오기
-			ArrayList<LicenseInfo> list = new LicenseService().selectLicense();
 			
-			// 가져온 리스트로 응시료 업데이트 실행
-			int result2 = new LicenseService().updateLicense(list);
-			
-			if(result2 > 0) System.out.println("응시료 업데이트 성공!");
-			else System.out.println("응시료 업데이트 실패!");
 			
 		} else {
 			
 			// 실패
 			System.out.println("자격증 저장 실패!");
+			
+			// 생성된 테이블에 응시료 업데이트를 위한 모든 내용 가져오기
+						ArrayList<LicenseInfo> list = new LicenseService().selectLicense();
+						
+						// 가져온 리스트로 응시료 업데이트 실행
+						int result2 = new LicenseService().updateLicense(list);
+						
+						if(result2 > 0) System.out.println("응시료 업데이트 성공!");
+						else System.out.println("응시료 업데이트 실패!");
 		}
 		
 		
