@@ -10,20 +10,11 @@ public class AnswerService {
 	
 	private AnswerDao aDao = new AnswerDao();
 	
-	public ArrayList<UserAnswer> selectList(){
-		
-		ArrayList<UserAnswer> list =  null;
-		Connection con = getConnetion();
-		
-		list = aDao.selectList(con);
-		
-		return list;
-		
-	}
-
-	private Connection getConnetion() {
-		// TODO Auto-generated method stub
+	public ArrayList<UserAnswer> selectAnswerList(){
+			
 		return null;
+		
 	}
+	
 
 }
