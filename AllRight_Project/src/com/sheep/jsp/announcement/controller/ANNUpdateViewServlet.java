@@ -32,15 +32,17 @@ public class ANNUpdateViewServlet extends HttpServlet {
 		
 		int ano = Integer.parseInt(request.getParameter("ano"));
 		
+		System.out.println("업데이트뷰");
+		
 		Announcement a = new ANNService().updateView(ano);
 		
 		String page = "";
 		
 		if(a!=null){
-			page="views/announcement/ANNUpdate.jsp";
+			page="/views/announcement/ANNUpdate.jsp";
 			request.setAttribute("announcement", a);
 		} else {
-			page = "views/common/errorPage.jsp";
+			page = "/views/common/errorPage.jsp";
 			request.setAttribute("msg", "공지 수정 실패!");
 		}
 		

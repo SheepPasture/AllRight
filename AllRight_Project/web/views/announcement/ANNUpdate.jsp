@@ -53,54 +53,55 @@
 				</div>
 				<div class="col-sm-8 text-left">
 					<h3 align="left">글쓰기</h3>
+					<form id="updateForm" method="post">
 					<!-- 게시판(뷰)시작 -->
 					<div class="board_area">
 						<table class="view">
-							<colgroup>
-								<col width="15%">
-								<col width="35%">
-								<col width="15%">
-								<col width="35%">
-							</colgroup>
 							<tbody>
 								<tr>
-									<th>제목</th>
-<%-- 									<td colspan="3" class="title"><%= a.getAtitle()%></td> --%>
-									<td colspan="3" class="title">타이틀</td>
+									<th class="col-sm-2">제목</th>
+									<td>
+										<textarea name="title" rows="1" cols="90"><%= a.getAtitle() %></textarea>
+										<input type="hidden" name="ano" value="<%= a.getAno() %>">
+									</td>
 								</tr>
 								<tr>
-									<th>작성자</th>
-									<td>관리자</td>
-									<th>조회수</th>
-									<%-- <td><%= a.getAcount() %></td> --%>
-									<td>8</td>
-									<th>등록일시</th>
-					<%-- 				<td><%= a.getAdate() %></td> --%>
-									<td>2018-11-09</td>
-								</tr>
-<!-- 								<tr>
-									<th>첨부파일</th>
-									<td colspan="3">없음</td>
-								</tr> -->
-								<tr>
-									<th>내용</th>
-								<%-- 	<td><%= a.getAcontent() %></td> --%>
-									<td>내용입니다.</td>
-								</tr>			
-								<tr>
-									<td colspan="5"></td>
-								</tr>
+									<th class="col-sm-2">내용</th>
+									<td>
+										<textarea name="content" class="ckeditor" rows="20" cols="70"><%= a.getAcontent() %>></textarea>
+										<script>
+											CKEDITOR.replace('content', {
+												width: 650,
+												height: 300
+											});		
+										</script>
+									</td>
+								</tr>	
 							</tbody>
 						</table>
 					</div>
 					<br />
-				<form class="edit" action="<%= request.getContextPath()%>/aUpdate.ann?ano=<%=a.getAno()%>">
-					<button id="edit" class="btn btn-primary" onclick="edit()" type="button">Edit</button>
-				</form>
-				<form class="del" action="<%= request.getContextPath()%>/aDelete.ann?ano=<%=a.getAno()%>">
-					<button id="del" class="btn btn-primary" onclick="del()" type="button">Delete</button>
-				</form>
-				<button id="back" class="btn btn-primary" onclick="back()" type="button">Back</button>
+				<div align="center">
+	 				<button id="edit" class="btn btn-primary" onclick="edit()">Edit</button>
+	 				<button id="del" class="btn btn-primary" onclick="del()">Delete</button>
+					<button id="back" class="btn btn-primary" onclick="back()" type="button">Back</button>
+ 		 		<script>
+ 		 		
+	 		 		function edit(){
+						$("#updateForm").attr("action","<%=request.getContextPath() %>/aUpdate.ann");
+						
+					}
+					
+					function del(){
+						$("#updateForm").attr("action","<%=request.getContextPath() %>/aDelete.ann");
+					}
+					
+					function back(){
+						location.href='/allRight/selectList.ann';
+					}
+					
+		 		</script>  
+				</div></form>
 			</div>
 			<br>
 		</div>

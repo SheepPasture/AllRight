@@ -11,16 +11,16 @@ import com.sheep.jsp.announcement.model.service.ANNService;
 import com.sheep.jsp.announcement.model.vo.Announcement;
 
 /**
- * Servlet implementation class ANNupdateServlet
+ * Servlet implementation class ANNInsertServlet
  */
-@WebServlet("/aUpdate.ann")
-public class ANNUpdateServlet extends HttpServlet {
+@WebServlet("/aInsert.ann")
+public class ANNInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ANNUpdateServlet() {
+    public ANNInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,51 +29,26 @@ public class ANNUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-		System.out.println("업데이트서블릿");
-		
-	/*	Announcement a = new Announcement();*/
-		
-		ANNService as = new ANNService();
-
-		int ano = Integer.parseInt(request.getParameter("ano"));
-		
-		Announcement a  = as.selectOne(ano);
 		
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		
-		System.out.println("title: " + title + " content: " + content);
-
+		Announcement a = new Announcement();
+		
+		System.out.println(title + content);
+		
 		a.setAtitle(title);
 		a.setAcontent(content);
-
-/*		if(result > 0) {
-			
-			response.sendRedirect("selectOne.ann?ano="+ano);
-			
-		} else {
-			request.setAttribute("msg", "공지사항 수정 실패!");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);	
-		}*/
 		
-		int result = as.updateANN(a);
-		
-		System.out.println("업데이트 서블릿 result:"+result);
-		
-		String page = "";
+		int result = new ANNService().insertANN(a);
 		
 		if(result > 0){
-			page = "views/announcement/ANNDetail.jsp";
-			request.setAttribute("announcement", a);
-			System.out.println("디테일로 넘어가나?");
+			response.sendRedirect("selectList.ann");
 		} else{
-			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "공지사항 수정 실패");
+			request.setAttribute("msg", "공지 작성 실패");
+			
+			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 		}
-		
-		request.getRequestDispatcher(page).forward(request, response);
 		
 	}
 

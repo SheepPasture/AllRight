@@ -59,6 +59,8 @@ public class ANNService {
 
 	public int updateANN(Announcement a) {
 
+		System.out.println("업데이트서비스");
+		
 		Connection con = getConnection();
 		
 		int result = aDao.updateANN(con, a);
@@ -77,6 +79,21 @@ public class ANNService {
 		Connection con = getConnection();
 		
 		int result = aDao.deleteNews(con, ano);
+		
+		close(con);
+		
+		return result;
+		
+	}
+
+	public int insertANN(Announcement a) {
+
+		Connection con = getConnection();
+		
+		int result = aDao.insertANN(con, a);
+		
+		if(result > 0) commit(con);
+		else rollback(con);
 		
 		close(con);
 		

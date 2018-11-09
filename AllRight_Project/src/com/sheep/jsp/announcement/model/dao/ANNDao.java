@@ -147,6 +147,8 @@ public class ANNDao {
 		} finally {	
 			close(pstmt);
 		}
+		System.out.println(a.getAtitle() + ", " + a.getAcontent() + ", " + a.getAno());
+		System.out.println("resut dao:"+result);
 		
 		return result;
 		
@@ -170,6 +172,32 @@ public class ANNDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+
+	public int insertANN(Connection con, Announcement a) {
+
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("insertANN");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, a.getAtitle());
+			pstmt.setString(2, a.getAcontent());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {			
+			e.printStackTrace();			
+		} finally {
 			close(pstmt);
 		}
 		

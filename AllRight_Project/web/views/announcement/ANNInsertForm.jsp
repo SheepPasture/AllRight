@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import = "com.sheep.jsp.announcement.model.vo.*, java.util.*, com.oreilly.servlet.*"%>
+<% Announcement a = (Announcement)request.getAttribute("announcement"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
+	
+ 	<script src="//cdn.ckeditor.com/4.9.2/basic/ckeditor.js"></script>
+<!-- <script src="//cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script> -->
 	
 	<style>
 
@@ -30,7 +34,7 @@
 
 </head>
 <body>
-   	 <%@ include file="/views/common/header.jsp" %>   
+    	 <%@ include file="/views/common/header.jsp" %>   
 
 	<!-- PAGE -->
 	<div id="page">
@@ -45,39 +49,46 @@
 				</div>
 				<div class="col-sm-8 text-left">
 					<h3 align="left">글쓰기</h3>
-										<!-- 게시판(뷰)시작 -->
+					<form action="<%= request.getContextPath()%>/aInsert.ann" method="post">
+					<!-- 게시판(뷰)시작 -->
 					<div class="board_area">
 						<table class="view">
 							<tbody>
 								<tr>
 									<th class="col-sm-2">제목</th>
-									<td></td>
+									<td>
+										<textarea name="title" rows="1" cols="90"></textarea>
+									</td>
 								</tr>
 								<tr>
 									<th class="col-sm-2">내용</th>
 									<td>
+										<textarea name="content" class="ckeditor" rows="20" cols="70"></textarea>
+										<script>
+											CKEDITOR.replace('content', {
+												width: 650,
+												height: 300
+											});		
+										</script>
 									</td>
 								</tr>			
 							</tbody>
 						</table>
+
 				</div>
 			<br />
 			<div align="center">
  				<button id="save" class="btn btn-primary" onclick="save()" type="submit">Save</button>
 				<button id="back" class="btn btn-primary" onclick="back()" type="button">Back</button>
-			</div>
-			</div>
-		 		<script>
-
-					function save(){
-						location.href='/allRight/selectList.ann';
-					}
+ 		 		<script>
 					
 					function back(){
 						location.href='/allRight/selectList.ann';
 					}
 					
-		 		</script> 
+		 		</script>  
+			</div></form>
+			</div>
 		</div>
 	</div>
 	<!-- FOOTER -->
