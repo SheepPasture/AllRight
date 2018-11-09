@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>ALLRight</title>
+<!-- 제이쿼리 파일 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 <div align="center"><!--Mobile, PC 페이지 컨테이너 가운데 정렬 시작.-->
@@ -142,13 +144,52 @@
 		</tr>
 	
 	<tr style='padding:3px 2px 1px 2px' height='33'>
-	<td align='center'>1과목</td><td align='center'>응시전<br />20문제<br /></td><td>&nbsp;</td><td colspan='1' align='center'><a href="javascript:start_test(1, 'first', 1, 20)" style='color:#CC9900; font-weight:bold'>응시하기</a></td><td colspan='1' align='center'><a href="javascript:start_testEach(1, 'first', 1, 20)" style='color:#CC9900; font-weight:bold'>응시하기</a></td></td></tr>
+	<td align='center'>1과목</td>
+	<td align='center'>응시전<br />20문제<br /></td><td>&nbsp;</td>
+	<td colspan='1' align='center'><a href="../views/answer/answerPage.jsp" style='color:#79a5e4; font-weight:bold'>응시하기</a></td>
+	<td colspan='1' align='center'><a href="javascript:start_testEach(1, 'first', 1, 20)" style='color:#79a5e4; font-weight:bold'>응시하기</a></td></td></tr>
+	
+	<button id="selectBtn">테스트</button>
+	<script>
+		$(function(){
+			$('#selectBtn').click(function(){
+				$.ajax({
+					url : "/views/answer/answerPage.jsp",
+					type : "get",
+					success : function(data){
+						console.log(data);
+						$select = $('#selectTest');
+						$select.find("option").remove();
+						for(var i = 0; i < data.length; i++){
+							
+							$select.append("<option value='"+ data[i].qNo +"'>"
+											+data[i].qContent
+											+data[i].qPre
+											+data[i].qAnswer+"</option>");
+						}
+					}, error : function(data){
+						console.log("에러");
+					}
+				});
+			});
+		})
+	</script>
+	
 	<tr style='padding:3px 2px 1px 2px' height='33'>
-	<td align='center'>2과목</td><td align='center'>응시전<br />10문제<br /></td><td>&nbsp;</td><td colspan='1' align='center'><a href="javascript:start_test(2, 'first', 21, 10)" style='color:#CC9900; font-weight:bold'>응시하기</a></td><td colspan='1' align='center'><a href="javascript:start_testEach(2, 'first', 21, 10)" style='color:#CC9900; font-weight:bold'>응시하기</a></td></td></tr>
+	<td align='center'>2과목</td>
+	<td align='center'>응시전<br />10문제<br /></td><td>&nbsp;</td>
+	<td colspan='1' align='center'><a href="javascript:start_test(2, 'first', 21, 10)" style='color:#79a5e4; font-weight:bold'>응시하기</a></td>
+	<td colspan='1' align='center'><a href="javascript:start_testEach(2, 'first', 21, 10)" style='color:#79a5e4; font-weight:bold'>응시하기</a></td></td></tr>
+	
 	<tr style='padding:3px 2px 1px 2px' height='33'>
-	<td align='center'>3과목</td><td align='center'>응시전<br />20문제<br /></td><td>&nbsp;</td><td colspan='1' align='center'><a href="javascript:start_test(3, 'first', 31, 20)" style='color:#CC9900; font-weight:bold'>응시하기</a></td><td colspan='1' align='center'><a href="javascript:start_testEach(3, 'first', 31, 20)" style='color:#CC9900; font-weight:bold'>응시하기</a></td></td></tr>
+	<td align='center'>3과목</td><td align='center'>응시전<br />20문제<br /></td><td>&nbsp;</td>
+	<td colspan='1' align='center'><a href="javascript:start_test(3, 'first', 31, 20)" style='color:#79a5e4; font-weight:bold'>응시하기</a></td>
+	<td colspan='1' align='center'><a href="javascript:start_testEach(3, 'first', 31, 20)" style='color:#79a5e4; font-weight:bold'>응시하기</a></td></td></tr>
+	
 	<tr style='padding:3px 2px 1px 2px' height='33'>
-	<td align='center'>4과목</td><td align='center'>응시전<br />10문제<br /></td><td>&nbsp;</td><td colspan='1' align='center'><a href="javascript:start_test(4, 'first', 51, 10)" style='color:#CC9900; font-weight:bold'>응시하기</a></td><td colspan='1' align='center'><a href="javascript:start_testEach(4, 'first', 51, 10)" style='color:#CC9900; font-weight:bold'>응시하기</a></td></td></tr>
+	<td align='center'>4과목</td><td align='center'>응시전<br />10문제<br /></td><td>&nbsp;</td>
+	<td colspan='1' align='center'><a href="javascript:start_test(4, 'first', 51, 10)" style='color:#79a5e4; font-weight:bold'>응시하기</a></td>
+	<td colspan='1' align='center'><a href="javascript:start_testEach(4, 'first', 51, 10)" style='color:#79a5e4; font-weight:bold'>응시하기</a></td></td></tr>
 	</table>
 	</td>
 	</tr>
