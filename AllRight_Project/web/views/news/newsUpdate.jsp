@@ -12,7 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<link rel="stylesheet" href="/allRight/resource/css/newsDetail.css"/>
 	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<style>
 		.detail td{
@@ -87,7 +86,7 @@
 			 			}
 			 			
 			 			function deleteNews(){
-			 				$("updateForm").attr("action","<%= request.getContextPath()%>/nDelete.ne");
+			 				$("#updateForm").attr("action","<%= request.getContextPath()%>/nDelete.ne");
 			 			}
 			 		</script>
 		</div>
