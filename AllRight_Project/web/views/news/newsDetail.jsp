@@ -39,6 +39,8 @@
 					<p><a href="#">커뮤니티</a></p>
 					<p><a href="#">자격증정보</a></p>
 				</div>
+				
+				
 				<div class="col-sm-8 text-center">
 					<h2 align="left">뉴스</h2>
 					
@@ -74,8 +76,10 @@
 						<tr>
 							<td colspan = "6">
 								<button onclick="location.href='selectList.ne'" class="btn btn-primary">뉴스메뉴로 돌아가기</button>
-								<button onclick="location.href='nUpView.ne?nno=<%=n.getNNO()%>'" class="btn btn-warning">수정하기</button>
-								<button onclick="location.href='<%= request.getContextPath()%>/nDelete.ne'" class="btn btn-danger">삭제하기</button>
+								<button style="position:relative; left:480px;" onclick="location.href='nUpView.ne?nno=<%=n.getNNO()%>'" class="btn btn-warning">수정하기</button>
+								<form style="float:right;" method="post" enctype="multipart/form-data" action="<%= request.getContextPath()%>/nDelete.ne?nno=<%=n.getNNO()%>">
+								<button  class="btn btn-danger">삭제하기</button>
+								</form>
 							</td>
 						</tr>
 						</table>
@@ -86,34 +90,6 @@
 							
 
 					</div>
-					<!-- 
-					<table>
-						<thead>
-							<tr>
-								<td>제목 : </td>
-								<td colspan="3"><%= n.getNTITLE() %></td>
-							</tr>
-							<tr>
-								<td>작성자 : </td>
-								<td>관리자</td>
-								<td>작성일 : </td>
-								<td><%= n.getNDATE() %></td>
-							</tr>
-							<tr>
-								<td>내용</td>
-							</tr>
-							<tr>
-								<td colspan="4"><br>
-									<span><%= n.getNCONTENT().charAt(0) %></span><%= n.getNCONTENT().substring(1) %>
-								</td>
-							</tr>
-							<br>
-							
-							
-						</thead>
-						
-					</table> 
-					 -->
 					
 				</div>
 			</div>

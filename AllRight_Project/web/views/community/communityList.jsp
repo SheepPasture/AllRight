@@ -6,9 +6,6 @@
 
 <title>ALLRight</title>
 
-<!-- CSS -->
-<link href="/allRight/resources/css/style.css" rel="stylesheet"
-	type="text/css" />
 
 <style>
 /* * {

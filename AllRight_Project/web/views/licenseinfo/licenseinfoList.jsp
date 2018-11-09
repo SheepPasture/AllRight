@@ -10,19 +10,12 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<!-- CSS -->
-	<link href="../../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<link href="../../resources/css/style.css" rel="stylesheet" type="text/css" />
-    
-	<script src="../../resources/js/jquery.min.js" type="text/javascript"></script>
-	<script src="../../resources/js/bootstrap.min.js" type="text/javascript"></script>
 
-	
 
 </head>
 <body>
 
-<%@ include file="../common/header.jsp" %>
+<%@ include file="/views/common/header.jsp" %>
 	<!-- PAGE -->
 	<div id="page">
 

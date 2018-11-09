@@ -5,6 +5,8 @@ import java.sql.Date;
 
 public class Announcement implements Serializable {
 
+	private static final long serialVersionUID = -3282413633718786490L;
+	
 	private int ano;
 	private String atitle;
 	private int acount;
