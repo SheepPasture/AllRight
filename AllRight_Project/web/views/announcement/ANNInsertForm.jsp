@@ -9,7 +9,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
   
-
+	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
 	<!-- SUMMERNOTE -->
 	 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> 
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>  
@@ -29,8 +29,8 @@
 				<br>
 				<div class="col-sm-2 sidenav">
 					<p><a href="/allRight/selectList.ann">공지사항</a></p>
-					<p><a href="../community/communityList.jsp">커뮤니티</a></p>
-					<p><a href="../license/licenseinfo.jsp">자격증정보</a></p>
+					<p><a href="/allRight/community/communityList.jsp">커뮤니티</a></p>
+					<p><a href="/allRight/license/licenseinfo.jsp">자격증정보</a></p>
 				</div>
 				<div class="col-sm-8 text-left">
 					<h3 align="left">글쓰기</h3>
