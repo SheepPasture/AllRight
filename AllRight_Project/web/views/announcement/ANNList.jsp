@@ -12,8 +12,10 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<!-- CSS -->
-	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
+	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
+	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
+	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" /> 
+
    
 </head>
 <body>
@@ -45,7 +47,7 @@
 						</tr>
 					</thead>
 					<tbody>
-  							<% for(Announcement a: list){ %>
+  							<% for(Announcement a : list){ %>
 						<tr>
 							<td class="col-md-1"><%= a.getAno() %></td>
 							<td class="col-md-6 text-center"><%= a.getAtitle()%></td>
@@ -58,7 +60,7 @@
 				</table>  
 			</div>
 		 	<div class="col-sm-10 text-right">
-				<button type="button"><a href="<%= request.getContextPath()%>/views/announcement/ANNInsertForm.jsp">작성하기</a></button>
+				<button type="button"><a href="/views/announcement/ANNInsertForm.jsp">작성하기</a></button>
 			</div>
 		</div>
 	</div>
