@@ -8,6 +8,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
+<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
 
 <style>
 * {

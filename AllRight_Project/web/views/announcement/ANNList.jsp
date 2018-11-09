@@ -11,6 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
+	
+	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -55,7 +57,7 @@
 				</table>  
 			</div>
 		 	<div class="col-sm-10 text-right">
-				<button type="button"><a href="/views/announcement/ANNInsertForm.jsp">작성하기</a></button>
+				<button type="button"><a href="views/announcement/ANNInsertForm.jsp">작성하기</a></button>
 			</div>
 		</div>
 	</div>

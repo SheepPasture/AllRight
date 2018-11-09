@@ -56,10 +56,15 @@
 			</div>
 			<br />
 				<button id="edit" class="btn btn-primary" onclick="edit()" type="button">Edit</button>
+				<button id="del" class="btn btn-primary" onclick="del()" type="button">Delete</button>
 				<button id="back" class="btn btn-primary" onclick="back()" type="button">Back</button>
 		 		<script>
 					function edit(){
-						location.href="<%= request.getContextPath() %>/views/announcement/ANNList.jsp";
+						location.href="/allRight/selectList.ann";
+					}
+					
+					function del(){
+						location.href="/allRight/aDelete.ann";
 					}
 		
 					function back(){

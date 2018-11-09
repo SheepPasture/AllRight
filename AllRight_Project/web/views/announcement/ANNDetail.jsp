@@ -8,6 +8,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	
+	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
 
 	<style>
 
@@ -96,6 +97,7 @@
 								<tr>
 									<td colspan="5"></td>
 								</tr>
+-
 								
 								<tr>
 									<th>이전글&nbsp; ▲</th>
@@ -109,6 +111,7 @@
 						</table>
 						<div class="btn_area2">
 							<a href="/allRight/selectList.ann">목록으로 바로가기</a>				
+							<a href="/allRight/updateANN.ann">수정</a>				
 						</div>	
 					</div>		
 				</div>

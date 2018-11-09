@@ -9,6 +9,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
     
+    <script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
 
 	<!-- SUMMERNOTE -->
    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> 
