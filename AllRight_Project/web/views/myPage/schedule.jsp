@@ -12,6 +12,7 @@ String msg = (String)request.getAttribute("msg");
 <head>
 <meta charset="UTF-8">
 	<!-- CSS -->
+	
 	<!-- <link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
 	<link href="/allRight/resources/css/flexslider.css" rel="stylesheet" type="text/css" />
 	<link href="/allRight/resources/css/prettyPhoto.css" rel="stylesheet" type="text/css" />
@@ -43,7 +44,7 @@ String msg = (String)request.getAttribute("msg");
 	  <%}%> --%>
 	  
 	   
-	   <%--  $.ajax({
+	 <%--    $.ajax({
 		  url : "<%= request.getContextPath() %>/lMylist.li",
 		  type : "get",
 		  data : {
@@ -52,10 +53,9 @@ String msg = (String)request.getAttribute("msg");
 		  success :
 		  
 	  });  --%>
- 		  
+ 		  var i = "2018-11-30"
+ 			 var j = "a";
     $('#calendar').fullCalendar({
-    	
-    
       header: {
         left: 'prev,next today',
         center: 'title',
@@ -66,26 +66,36 @@ String msg = (String)request.getAttribute("msg");
       editable: true,
       eventLimit: true, // allow "more" link when too many events
       
-      events: [
-      <%--  
-	   {
+      events:
+    	   
+   
+    	   [
+       
+	  <%--  {
 	   <% for (LicenseInfo l : al){%>
 	   	title : <%=l.getlName()%>,
 	    start : <%=l.getlDate()%>
 	   <%}%>
 	   }, --%>
-  <%--  <%System.out.println("sd");%> --%>
-        {
+   <%System.out.println("sd");%>
+  		/* 	{
+  			for(int i =0; i<3; i++){
+  				title : ''+i,
+  				start : '2018-11-'+i+""
+  			}
+  		}, */
+  		
+  		{
           title: 'Birthday Party',
           start: '2018-03-13T07:00:00'
         },
         {
-          title: 'Click for Google',
+          title: "Click for Google",
           start: '2018-11-03',
           end: '2018-11-11'
         } ,
         
-      ]
+      ] 
     });
   });
 </script>
