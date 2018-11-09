@@ -12,7 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<link rel="stylesheet" href="/allRight/resource/css/newsDetail.css"/>
 	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<style>
 		.detail td{
@@ -76,12 +75,12 @@
 						<tr>
 							<td colspan = "6">
 								<button onclick="location.href='selectList.ne'" class="btn btn-primary">뉴스메뉴로 돌아가기</button>
-								<form style="float: right; left:480px;" method="post" enctype="multipart/form-data" action="<%= request.getContextPath()%>/nUpView.ne?nno=<%=n.getNNO()%>">
-								<button  class="btn btn-warning">수정하기</button>
-								</form>
 								<form style="float:right;" method="post" enctype="multipart/form-data" action="<%= request.getContextPath()%>/nDelete.ne?nno=<%=n.getNNO()%>">
 								<button  class="btn btn-danger">삭제하기</button>
 								</form>
+								<button style="float:right; margin-right:5px;" onclick="location.href='<%= request.getContextPath()%>/nUpView.ne?nno='+<%=n.getNNO() %>" class="btn btn-warning">수정하기</button>
+
+								
 							</td>
 						</tr>
 						</table>

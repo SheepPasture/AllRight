@@ -27,78 +27,73 @@
 <body class="single is-preload">
 	<!-- PAGE -->
 	
+	<!-- PAGE -->
 	<div id="page">
 	
-		<%@ include file="/views/common/header.jsp" %>
+		<%@ include file ="/views/common/header.jsp" %>
 		
+		<%-- <% if(m != null && m.getUserId().equals("admin")) {%> --%>
 		<div class="container-fluid text-center">    
 			<div class="row content">
-				<br />
+				<br>
 				<div class="col-sm-2 sidenav">
-					<p><a href="#">공지사항</a></p>
-					<p><a href="#">커뮤니티</a></p>
-					<p><a href="#">자격증정보</a></p>
+					<p><a href="../notice/noticeList.jsp">공지사항</a></p>
+					<p><a href="../community/communityList.jsp">커뮤니티</a></p>
+					<p><a href="../license/licenseinfo.jsp">자격증정보</a></p>
 				</div>
 				
-				
-				<div class="col-sm-8 text-center">
-					<h2 align="left">뉴스</h2>
+				<form id="updateForm"
+				method="post" enctype="multipart/form-data">
+				<div class="col-sm-8 text-left">
+					<br>
+					<h3 align="left">뉴스 수정 페이지</h3>
+					<div class="form-group"> 
+						<label for="subject">제목</label> 
+						<input type="text" class="form-control" name ="subject" id="subject" value="<%= n.getNTITLE() %>"> 
+						<input type="hidden" name="nno" value="<%= n.getNNO()%>">
+					</div> 
+					<%if(n.getNFILE() != null) {%>
+					<div class="form-group"> 
+						<label for="File">뉴스 기존 사진</label> 
+						<a href = "<%= request.getContextPath()%>/nfdown.ne?path=<%=n.getNFILE()%>"><%= n.getNFILE() %></a> 
+					</div> 
+					<%} %>
 					
-					<div class= "outer">
-						
-						<table class="detail">
-						<tr>
-							<td colspan= "6" ><h3><%= n.getNTITLE() %></h3></td>
-						</tr>
-						<tr>
-							<td>작성자</td>
-							<td><label>관리자</label>
-							<td>조회수</td>
-							<td><label><%= n.getNCOUNT() %></label>
-							<td>작성일</td>
-							<td><label><%= n.getNDATE() %></label>
-						</tr>
-						<tr>
-							<td colspan = "6">
-								<div id="titleImgArea" align="center">
-									<%if (n.getNFILE() != null) {%>
-									<img id="titleImg" src="<%= request.getContextPath()%>/resources/newsUploadFiles/<%= n.getNFILE() %>">
-									<% }  %>
-									<!-- <img alt="" src="/allRight/resources/newsUploadFiles/newsImage1.jpg" /> -->
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="6">
-								<p id="contentArea"><%= n.getNCONTENT() %></p>
-							</td>
-						</tr>
-						<tr>
-							<td colspan = "6">
-								<button onclick="location.href='selectList.ne'" class="btn btn-primary">뉴스메뉴로 돌아가기</button>
-								<form style="float: right; left:480px;" method="post" enctype="multipart/form-data" action="<%= request.getContextPath()%>/nUpView.ne?nno=<%=n.getNNO()%>">
-								<button  class="btn btn-warning">수정하기</button>
-								</form>
-								<form style="float:right;" method="post" enctype="multipart/form-data" action="<%= request.getContextPath()%>/nDelete.ne?nno=<%=n.getNNO()%>">
-								<button  class="btn btn-danger">삭제하기</button>
-								</form>
-							</td>
-						</tr>
-						</table>
-
+					<div class="form-group"> 
+						<label for="File">뉴스 새 사진</label> 
+						<input type="file" id="File" name="file"> 
+					</div> 
 					
-								<br><br><br>
-							</div>
-							
-
-					</div>
-					
+					<div class="form-group"> 
+						<label for="content">뉴스 내용</label> 
+						<textarea class="form-control" cols="60" rows="10" name="content" id="content" style="resize:none;"><%= n.getNCONTENT() %></textarea> 
+					</div> 
 				</div>
 			</div>
+					
+			 		<button type="submit" class="btn btn-success" onclick="complete();">수정완료</button>
+			 		<button type="reset" class="btn btn-warning" onclick="back()">취소하기</button>
+			 		<button class="btn btn-danger" onclick="deleteNews()">삭제하기</button>
+			 		<br><br><br>
+			 		</form>
+			 		<script>
+			 			
+			 			function back(){
+			 				location.href="/allRight/selectList.ne";
+			 			}
+			 			
+			 			function complete(){
+			 				$("#updateForm").attr("action","<%= request.getContextPath()%>/nUpdate.ne");
+			 			}
+			 			
+			 			function deleteNews(){
+			 				$("updateForm").attr("action","<%= request.getContextPath()%>/nDelete.ne");
+			 			}
+			 		</script>
 		</div>
+					
 	
-	
-	
-	</div>
+
+</div>
 </body>
 </html>

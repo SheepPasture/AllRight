@@ -88,5 +88,16 @@ public class NewsService {
 		
 	}
 
+	public News updateView(int nno) {
+		
+		Connection con = getConnection();
+		
+		News n = nDao.selectOne(con, nno);
+		
+		close(con);
+		
+		return n;
+	}
+
 
 }
