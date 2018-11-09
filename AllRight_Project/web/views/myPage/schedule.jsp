@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    import="com.sheep.jsp.member.model.vo.Member, com.sheep.jsp.userLicense.model.vo.*,com.sheep.jsp.licenseinfo.model.vo.*, java.util.*"%>
+<%
+ArrayList<Member> m = (ArrayList<Member>)request.getAttribute("list");
+ArrayList<LicenseInfo> al = (ArrayList<LicenseInfo>)request.getAttribute("list"); 
+String msg = (String)request.getAttribute("msg");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,15 +26,33 @@
 	<script src='/allRight/resources/js/fullcalendar.min.js'></script>
 <script>
   $(document).ready(function() {
-	  console.log($('#info').children().children().text);
-	  var year=2018;
+	  /*   console.log($('#info').children().children().text); */
+	  /*  var year=2018;
 	  var month=11;
-	  var date=20;
-	  var sdate ="'"+year+"-"+month+"-"+date+"'";
-	 /*  console.log(sdate); */
-	 
-	 var edate ='2018-11-30';
+	  var date=20; */
+	/*   var sdate ="'"+year+"-"+month+"-"+date+"'";	 
+	  var edate ='2018-11-30';
+	    */
+	   
+	  <%-- <%for(LicenseInfo l : al){%>
+		<%
+		System.out.println(l.getlName());
+		System.out.println(l.getlDate());
+		
+		%>
+	  <%}%> --%>
 	  
+	   
+	   <%--  $.ajax({
+		  url : "<%= request.getContextPath() %>/lMylist.li",
+		  type : "get",
+		  data : {
+			  userno : 1
+		  },
+		  success :
+		  
+	  });  --%>
+ 		  
     $('#calendar').fullCalendar({
     	
     
@@ -36,13 +61,20 @@
         center: 'title',
         right: 'month,agendaWeek,agendaDay,listWeek'
       },
-      defaultDate: '2018-11-03',
+      defaultDate: new Date(),
       navLinks: true, // can click day/week names to navigate views
       editable: true,
       eventLimit: true, // allow "more" link when too many events
       
       events: [
-       
+      <%--  
+	   {
+	   <% for (LicenseInfo l : al){%>
+	   	title : <%=l.getlName()%>,
+	    start : <%=l.getlDate()%>
+	   <%}%>
+	   }, --%>
+  <%--  <%System.out.println("sd");%> --%>
         {
           title: 'Birthday Party',
           start: '2018-03-13T07:00:00'
@@ -52,13 +84,7 @@
           start: '2018-11-03',
           end: '2018-11-11'
         } ,
-        {
-            title: 'test',
-            start: sdate,
-            end: edate
-        }
-         
-       
+        
       ]
     });
   });
@@ -83,6 +109,7 @@
 </style>
 </head>
 <body>
+
 	<!-- HEADER -->
 	
 	<%@ include file="/views/common/header.jsp" %>
@@ -112,20 +139,31 @@
 		<tr style="text-align:center"><th></th><th>자격증 이름</th><th>일정</th><th>시행처</th><th>남은기간</th>
 		</tr>
 		</thead>
-		
+	
+		<%if(al!=null){ %>
+		<%for(LicenseInfo l : al){%>
 		<tr>
 		<th>1</th>
-		<td>정처기</td><td>2018-12-30</td><td>큐넷</td><td>D-</td>
+		<td><%=l.getlName()%></td>
+		<td><%=l.getlDate()%></td>
+		
+		<td>큐넷</td>
+		<td>D-</td> 
 		</tr>
-		<th>2</th>
+		<%}%>
+		<%}else{%>
+		<tr><td colspan="5"><%=msg%></td>
+		<%}%>
+		<!-- <th>2</th>
 		<td>정기시험</td><td>2018-12-30</td><td>큐넷</td><td>D-</td>
-		</tr>
+		</tr> -->
 		</table>
 		</div>
 		<br>
 		<hr>
 		<br>
 	 	 <div id='calendar'></div>
+	 	 
 	</div> 
 				</div>
 			

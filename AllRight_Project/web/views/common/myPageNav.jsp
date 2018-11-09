@@ -6,7 +6,7 @@
 </head>
 <body>
 			<p><a id="s" href="/allRight/views/myPage/myPageMain.jsp">회원정보수정</a></p>
-			<p><a href="/allRight/views/myPage/schedule.jsp">관심자격증 정보</a></p>
+			<p><a href="<%= request.getContextPath() %>/lMylist.li">관심자격증 정보</a></p>
 			<p><a href="<%= request.getContextPath() %>/bMyList.bo" >게시글 관리</a></p>
 			<p><a href="/allRight/views/myPage/viewTest.jsp">기출문제 관리</a></p>
 </body>
