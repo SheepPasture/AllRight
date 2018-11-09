@@ -1,12 +1,104 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    pageEncoding="UTF-8" import = "com.sheep.jsp.news.model.vo.*, java.util.*, com.oreilly.servlet.*"%>
+    
+ <%
+ 	News n = (News)request.getAttribute("news");
+ %>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>뉴스 수정 페이지</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="stylesheet" href="/allRight/resource/css/newsDetail.css"/>
+	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<style>
+		.detail td{
+			text-align : left;
+			width:1000px;
+			border-bottom : 1px solid lightgray;
+			padding : 10px;
+		}
+	</style>
 </head>
-<body>
+<html>
+<body class="single is-preload">
+	<!-- PAGE -->
+	
+	<div id="page">
+	
+		<%@ include file="/views/common/header.jsp" %>
+		
+		<div class="container-fluid text-center">    
+			<div class="row content">
+				<br />
+				<div class="col-sm-2 sidenav">
+					<p><a href="#">공지사항</a></p>
+					<p><a href="#">커뮤니티</a></p>
+					<p><a href="#">자격증정보</a></p>
+				</div>
+				
+				
+				<div class="col-sm-8 text-center">
+					<h2 align="left">뉴스</h2>
+					
+					<div class= "outer">
+						
+						<table class="detail">
+						<tr>
+							<td colspan= "6" ><h3><%= n.getNTITLE() %></h3></td>
+						</tr>
+						<tr>
+							<td>작성자</td>
+							<td><label>관리자</label>
+							<td>조회수</td>
+							<td><label><%= n.getNCOUNT() %></label>
+							<td>작성일</td>
+							<td><label><%= n.getNDATE() %></label>
+						</tr>
+						<tr>
+							<td colspan = "6">
+								<div id="titleImgArea" align="center">
+									<%if (n.getNFILE() != null) {%>
+									<img id="titleImg" src="<%= request.getContextPath()%>/resources/newsUploadFiles/<%= n.getNFILE() %>">
+									<% }  %>
+									<!-- <img alt="" src="/allRight/resources/newsUploadFiles/newsImage1.jpg" /> -->
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="6">
+								<p id="contentArea"><%= n.getNCONTENT() %></p>
+							</td>
+						</tr>
+						<tr>
+							<td colspan = "6">
+								<button onclick="location.href='selectList.ne'" class="btn btn-primary">뉴스메뉴로 돌아가기</button>
+								<form style="float: right; left:480px;" method="post" enctype="multipart/form-data" action="<%= request.getContextPath()%>/nUpView.ne?nno=<%=n.getNNO()%>">
+								<button  class="btn btn-warning">수정하기</button>
+								</form>
+								<form style="float:right;" method="post" enctype="multipart/form-data" action="<%= request.getContextPath()%>/nDelete.ne?nno=<%=n.getNNO()%>">
+								<button  class="btn btn-danger">삭제하기</button>
+								</form>
+							</td>
+						</tr>
+						</table>
 
+					
+								<br><br><br>
+							</div>
+							
+
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	
+	
+	
+	</div>
 </body>
 </html>
