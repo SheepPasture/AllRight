@@ -194,4 +194,33 @@ public class NewsDao {
 		return result;
 	}
 
+	public int updateNews(Connection con, News n) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("updateNews");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, n.getNTITLE());
+			pstmt.setString(2, n.getNCONTENT());
+			pstmt.setString(3, n.getNFILE());
+			pstmt.setInt(4, n.getNNO());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }
