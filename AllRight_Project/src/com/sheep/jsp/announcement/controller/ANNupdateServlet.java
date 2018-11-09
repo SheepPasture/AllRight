@@ -30,24 +30,32 @@ public class ANNupdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		int ano = Integer.parseInt(request.getParameter("ano"));
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		int ano = Integer.parseInt(request.getParameter("ano"));
 		
-		Announcement a = new Announcement();
+/*		Announcement a = new Announcement();*/
+		
+		ANNService as = new ANNService();
+		Announcement a = as.selectOne(ano);
 		
 		a.setAtitle(title);
 		a.setAcontent(content);
 		a.setAno(ano);
 		
-		int result = new ANNService().updateANN(a);
+		int result = as.updateANN(a);
+		
+		String page = "";
 		
 		if(result > 0){
-			response.sendRedirect("selectOne.ann?ano="+ano);
+			page = "/views/announcement/ANNDetail.jsp";
+			request.setAttribute("announcement", a);
 		} else{
+			page = "/views/common/errorPage.jsp";
 			request.setAttribute("msg", "공지사항 수정 실패");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
+		
+		request.getRequestDispatcher(page).forward(request, response);
 		
 	}
 
