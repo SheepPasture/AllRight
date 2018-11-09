@@ -8,9 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
+<<<<<<< HEAD
 
 	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
 
+=======
+  
+	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
+>>>>>>> branch 'master' of https://github.com/SheepPasture/AllRight.git
 	<!-- SUMMERNOTE -->
 	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script> 
@@ -28,8 +33,8 @@
 				<br>
 				<div class="col-sm-2 sidenav">
 					<p><a href="/allRight/selectList.ann">공지사항</a></p>
-					<p><a href="../community/communityList.jsp">커뮤니티</a></p>
-					<p><a href="../license/licenseinfo.jsp">자격증정보</a></p>
+					<p><a href="/allRight/community/communityList.jsp">커뮤니티</a></p>
+					<p><a href="/allRight/license/licenseinfo.jsp">자격증정보</a></p>
 				</div>
 				<div class="col-sm-8 text-left">
 					<h3 align="left">글쓰기</h3>

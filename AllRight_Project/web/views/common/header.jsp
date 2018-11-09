@@ -34,7 +34,6 @@
 	<link href="/allRight/resources/css/prettyPhoto.css" rel="stylesheet" type="text/css" />
 	<link href="/allRight/resources/css/animate.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/allRight/resources/css/owl.carousel.css" rel="stylesheet">
-	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
 
 	<!-- FONTS -->
 	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500italic,700,500,700italic,900,900italic' rel='stylesheet' type='text/css'>
