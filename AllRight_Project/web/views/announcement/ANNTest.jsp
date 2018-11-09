@@ -9,7 +9,7 @@
 	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-
+	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
 	
 	<!-- SUMMERNOTE -->
    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> 
@@ -25,7 +25,7 @@
 </head>
 
 <body>
-		<%@ include file ="../common/header.jsp" %>
+		<%@ include file ="/views/common/header.jsp" %>
 
 	<!-- PAGE -->
 	<div id="page">

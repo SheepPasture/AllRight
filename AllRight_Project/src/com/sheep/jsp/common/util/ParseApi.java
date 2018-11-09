@@ -98,11 +98,9 @@ public class ParseApi {
 		
 		ArrayList<LicenseInfo> list = new ArrayList<LicenseInfo>();
 		
-		System.out.println(list.get(0).getlNo());
-		
 		for(int i = 0; i < getApi().size(); i ++){
 			
-			System.out.println("포문 실행");
+			System.out.println("응시료 업데이트 중"+"("+i+"/596)");
 			
 			String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getFeeList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D&jmCd=";
 			
@@ -114,7 +112,6 @@ public class ParseApi {
 
 			for (int j = 0; j < nList.getLength(); j++) {
 				
-				System.out.println("포문실행2");
 				Node nNode = nList.item(j);
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 

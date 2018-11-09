@@ -14,7 +14,6 @@ public class LicenseService {
 
 	public int insertLicense(ArrayList<LicenseInfo> getApi) {
 		
-		
 		int result = 0;
 		
 		Connection con = getConnection();
@@ -26,33 +25,40 @@ public class LicenseService {
 		
 		close(con);
 		
-		updateCost();
-		
 		return result;
 	}
-	
-	public void updateCost(){
+
+	public ArrayList<LicenseInfo> selectLicense() {
+		
+		ArrayList<LicenseInfo> list = null;
+		
+		Connection con = getConnection();
+		
+		list = lDao.selectLicense(con);
+		
+		close(con);
+		
+		return list;
+	}
+
+	public int updateLicense(ArrayList<LicenseInfo> list) {
 		
 		int result = 0;
 		
 		Connection con = getConnection();
 		
-		result = lDao.updateCost(con);
+		ParseApi pa = new ParseApi();
 		
-		if(result > 0) {
-			
-			System.out.println("업데이트 성공!");
-			commit(con);
-			
-		} else {
-			
-			System.out.println("업데이트 실패!");
-			rollback(con);
-		}
+		result = lDao.updateLicense(con, pa.getCost(), list);
+		
+		if(result > 0) commit(con);
+		else rollback(con);
 		
 		close(con);
 		
+		return result;
 	}
+	
 	
 	
 
