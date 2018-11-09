@@ -67,9 +67,7 @@ public class LicenseDao {
 		return result;
 	}
 
-	public int updateCost(Connection con) {
-		
-		int result = 0;
+	public ArrayList<LicenseInfo> selectLicense(Connection con) {
 		
 		ArrayList<LicenseInfo> list = null;
 		
@@ -104,10 +102,16 @@ public class LicenseDao {
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
+		
+		} finally {
+			
+			close(rset);
+			close(stmt);
 		}
 		
 		
-		return result;
+		return list;
+		
 	}
 
 }

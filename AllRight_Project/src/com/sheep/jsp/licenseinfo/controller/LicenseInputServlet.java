@@ -36,6 +36,11 @@ public class LicenseInputServlet extends HttpServlet {
 			// 성공적으로 자격증 저장
 			
 			System.out.println("자격증 저장 성공!");
+			
+			// 생성된 테이블에 응시료 업데이트를 위한 모든 내용 가져오기
+			ArrayList<LicenseInfo> list = new LicenseService().selectLicense();
+			
+			
 		} else {
 			// 실패
 			System.out.println("자격증 저장 실패!");
