@@ -10,11 +10,13 @@
 	<meta name="author" content="">
 
   
+	<script src="/allRight/resources/js/bootstrap.min.js" type="text/javascript"></script>
 	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
 
 	<!-- SUMMERNOTE -->
 	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script> 
+	
 	
 
 </head>

@@ -94,17 +94,17 @@ public class ParseApi {
 		
 	}
 	
-	public ArrayList<LicenseInfo> getCost(){
+	public ArrayList<LicenseInfo> getCost(ArrayList<LicenseInfo> list2){
 		
 		ArrayList<LicenseInfo> list = new ArrayList<LicenseInfo>();
 		
-		for(int i = 0; i < getApi().size(); i ++){
+		for(int i = 0; i < list2.size(); i ++){
 			
-			System.out.println("응시료 업데이트 중"+"("+i+"/596)");
+			System.out.println("응시료 업데이트 중"+"("+ (i+1) +"/597)");
 			
 			String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getFeeList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D&jmCd=";
 			
-			url += getApi().get(i).getlNo();
+			url += list2.get(i).getlNo();
 			
 			NodeList nList = common(url);
 

@@ -1,59 +1,66 @@
 package com.sheep.jsp.userAnswer.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sheep.jsp.userAnswer.model.service.AnswerService;
-import com.sheep.jsp.userAnswer.model.vo.UserAnswer;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import com.sheep.jsp.userAnswer.model.vo.Question;
+import com.sheep.jsp.userAnswer.model.vo.UserTest;
 
 /**
- * Servlet implementation class AnswerServlet
+ * Servlet implementation class QuestionServlet
  */
-@WebServlet("/aInsert.an")
-public class AnswerServlet extends HttpServlet {
+@WebServlet("/test.do")
+public class QuestionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AnswerServlet() {
+    public QuestionServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int tNo = Integer.parseInt(request.getParameter("tNo"));
-		int userNo = Integer.parseInt(request.getParameter("userNo"));
-		int qNo = Integer.parseInt(request.getParameter("qNo"));
-		int userAnswer = Integer.parseInt(request.getParameter("userAnswer"));
-		String aCheck = request.getParameter("aCheck");
+		List<Question> list = new UserTest().getQuestion();
 		
-		UserAnswer a = new UserAnswer();
-		
-		a.settNo(tNo);
-		a.setUserNo(userNo);
-		a.setqNo(qNo);
-		a.setUserAnswer(userAnswer);
-		a.setaCheck(aCheck);
-		
-		AnswerService as = new AnswerService();
+		JSONObject testInfo = null;
+		JSONArray result = new JSONArray();
 		
 		
+		for(Question test : list){
+			testInfo = new JSONObject();
+			testInfo.put("qNo", test.getqNo());
+			testInfo.put("qContent", test.getqContent());
+			testInfo.put("qPre", test.getqPre());
+			testInfo.put("qAnswer", test.getqAnswer());
+			
+			result.add(testInfo);
+			
+		}
 		
+		System.out.println("확인@");
+		
+		response.setContentType("application/json); charset=UTF-8");
+		response.getWriter().print(result.toJSONString());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	
 		doGet(request, response);
 	}
 

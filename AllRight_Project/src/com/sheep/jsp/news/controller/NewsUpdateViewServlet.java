@@ -1,4 +1,4 @@
-package com.sheep.jsp.announcement.controller;
+package com.sheep.jsp.news.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,45 +7,42 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sheep.jsp.announcement.model.service.ANNService;
-import com.sheep.jsp.announcement.model.vo.Announcement;
+import com.sheep.jsp.news.model.service.NewsService;
+import com.sheep.jsp.news.model.vo.News;
 
 /**
- * Servlet implementation class ANNupdateViewServlet
+ * Servlet implementation class NewsUpdateViewServlet
  */
-@WebServlet("/aUpView.ann")
-public class ANNupdateViewServlet extends HttpServlet {
+@WebServlet("/nUpView.ne")
+public class NewsUpdateViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ANNupdateViewServlet() {
+    public NewsUpdateViewServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		int ano = Integer.parseInt(request.getParameter("ano"));
 		
-		Announcement a = new ANNService().updateView(ano);
+		int nno = Integer.parseInt(request.getParameter("nno"));
+		
+		News n = new NewsService().updateView(nno);
 		
 		String page = "";
-		
-		if(a != null){
+		if(n != null){
 			
-			page = "views/announcement/ANNUpdate.jsp";
-			request.setAttribute("announcement", a);
+			page = "/views/news/newsUpdate.jsp";
+			request.setAttribute("news", n);
+		} else{
 			
-		} else {
-			
-			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "공지글 수정페이지 보기 실패!");
-			
+			page = "/views/common/errorPage.jsp";
+			request.setAttribute("msg", "뉴스 수정 실패!");
 		}
 		
 		request.getRequestDispatcher(page).forward(request, response);
@@ -56,7 +53,7 @@ public class ANNupdateViewServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		doGet(request, response);
 	}
 

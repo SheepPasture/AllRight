@@ -1,4 +1,4 @@
-package com.sheep.jsp.board.controller;
+package com.sheep.jsp.myPage.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,9 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sheep.jsp.board.model.service.MypageService;
+import com.sheep.jsp.myPage.model.service.MypageService;
 import com.sheep.jsp.board.model.vo.Board;
-import com.sheep.jsp.boardComment.model.service.MyCommentService;
 import com.sheep.jsp.boardComment.model.vo.BoardComment;
 
 /**
@@ -40,25 +39,25 @@ public class BoardMyListServlet extends HttpServlet {
 		ArrayList<BoardComment> clist= new ArrayList<BoardComment>();
 		
 		MypageService ms = new MypageService();
-		MyCommentService mcs = new MyCommentService();
+		
 
 		blist = ms.selectMyList(userno);
-		clist = mcs.selectMyCommnetList(userno);
+		clist = ms.selectMyCommnetList(userno);
 		
 		String page="/views/myPage/viewBoard.jsp";
 
 		
-		if(clist.size()!=0){
+		if(blist.size()!=0){
 			request.setAttribute("blist", blist);
 	
 		}else{
 			request.setAttribute("bmsg", "작성한 게시글이 없습니다.");
 			
 		}
-		System.out.println("test3");
+		
 		if(clist.size()!=0){
 			request.setAttribute("clist", clist);
-			System.out.println(clist+"없는데...");
+	
 		}else{
 			request.setAttribute("cmsg", "작성한 댓글이 없습니다.");
 			

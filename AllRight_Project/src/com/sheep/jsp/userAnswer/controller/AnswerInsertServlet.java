@@ -1,52 +1,60 @@
-package com.sheep.jsp.announcement.controller;
+package com.sheep.jsp.userAnswer.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sheep.jsp.announcement.model.service.ANNService;
+import com.sheep.jsp.userAnswer.model.service.AnswerService;
+import com.sheep.jsp.userAnswer.model.vo.UserAnswer;
 
 /**
- * Servlet implementation class ANNDeleteServlet
+ * Servlet implementation class AnswerInsertServlet
  */
-@WebServlet("/aDelete.ann")
-public class ANNDeleteServlet extends HttpServlet {
+@WebServlet("/Insert.an")
+public class AnswerInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ANNDeleteServlet() {
+    public AnswerInsertServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("딜리트서블릿");
+		ArrayList<UserAnswer> list = new ArrayList<UserAnswer>();
 		
-		int ano = Integer.parseInt(request.getParameter("ano"));
+		AnswerService as =  new AnswerService();
 		
-		int result = new ANNService().deleteANN(ano);
+		list = as.selectList();
 		
-		if(result>0){			
-			response.sendRedirect("selectList.ann");			
+		String page = "";
+		
+		if(list != null){
+			
+			page = "views/answer/answerInsertForm.jsp";
+			request.setAttribute("list", list);
+			
 		} else {
-			request.setAttribute("msg", "공지사항 삭제 에러!!");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			page = "/views/common/errorPage.jsp";
+			request.setAttribute("msg", "요청실패");
 		}
+		
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

@@ -1,5 +1,7 @@
 package com.sheep.jsp.userAnswer.model.vo;
 
+import java.util.List;
+
 public class UserAnswer {
 	
 	private int tNo;
@@ -108,6 +110,8 @@ public class UserAnswer {
 			return false;
 		return true;
 	}
+
+
 	
 	
 
