@@ -88,7 +88,7 @@ public class NewsService {
 		
 	}
 
-	public News updateView(int nno) {
+/*	public News updateView(int nno) {
 		
 		Connection con = getConnection();
 		
@@ -97,7 +97,7 @@ public class NewsService {
 		close(con);
 		
 		return n;
-	}
+	} */
 
 	public int getListCount() {
 		

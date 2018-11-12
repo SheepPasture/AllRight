@@ -34,7 +34,7 @@ public class NewsUpdateViewServlet extends HttpServlet {
 		
 		System.out.println("뉴스업데이트뷰서블릿");
 		
-		News n = new NewsService().updateView(nno);
+		News n = new NewsService().selectOne(nno);
 		
 		String page = "";
 		if(n != null){

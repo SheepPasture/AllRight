@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import com.sheep.jsp.announcement.model.dao.ANNDao;
 import com.sheep.jsp.announcement.model.vo.Announcement;
-import com.sheep.jsp.news.model.vo.News;
 
 import static com.sheep.jsp.common.JDBCTemplate.*;
 
@@ -68,7 +67,7 @@ public class ANNService {
 		if(result > 0) commit(con);
 		else rollback(con);
 		
-/*		close(con);*/
+		close(con);
 		
 		return result;
 		
