@@ -40,19 +40,26 @@ public class NewsDao {
 
 	}
 
-	public ArrayList<News> selectList(Connection con) {
+	public ArrayList<News> selectList(Connection con, int currentPage, int limit) {
 		
 		ArrayList<News> list = null;
 		
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("selectList");
 		
 		try{
 			
-			stmt = con.createStatement();
-			rset = stmt.executeQuery(sql);
+			pstmt = con.prepareStatement(sql);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, endRow);
+			pstmt.setInt(2, startRow);
+			
+			rset = pstmt.executeQuery();
 			
 			list = new ArrayList<News>();
 			
@@ -72,7 +79,7 @@ public class NewsDao {
 		} finally{
 			
 			close(rset);
-			close(stmt);
+			close(pstmt);
 		}
 		return list;
 	}
@@ -221,6 +228,36 @@ public class NewsDao {
 		}
 		
 		return result;
+	}
+
+	public int getListCount(Connection con) {
+		
+		Statement stmt = null;
+		int listCount = 0;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("listCount");
+		
+		try {
+			
+			stmt = con.createStatement();
+			
+			rset = stmt.executeQuery(sql);
+			
+			if(rset.next()){
+				listCount = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally{
+			close(rset);
+			close(stmt);
+		}
+		
+		
+		return listCount;
 	}
 
 }

@@ -1,7 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.sheep.jsp.news.model.vo.*, java.util.*"%>
 
-<% ArrayList<News> list = (ArrayList<News>)request.getAttribute("list"); %>
+<% 
+
+	ArrayList<News> list = (ArrayList<News>)request.getAttribute("list"); 
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	
+%>
 <!DOCTYPE html>
 <head>
 	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
@@ -53,8 +63,35 @@
 					</tbody>
 					</table> 
 				</div>
+				
+				<div class="col-md-11 text-center" align="center">
+				
+					<button class="btn btn-default" onclick="location.href='<%= request.getContextPath()%>/selectList.ne?currentPage=1'"><<</button>
+					<%	if(currentPage <= 1) {%>
+					<button class="btn btn-default" disabled><</button>
+					<% }else {%>
+					<button class="btn btn-default" onclick="location.href='<%= request.getContextPath()%>/selectList.ne?currentPage=<%= currentPage - 1 %>'"><</button>
+					<% } %>	
+					
+					<% for(int p = startPage; p <= endPage; p++) { 
+							if(p == currentPage){ %>
+							<button class="btn btn-default" disabled><%= p %></button>
+					<%	} else { %>
+							<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/selectList.ne?currentPage=<%= p%>'"><%= p %></button>
+					<%	} %>
+					<% } %>		
+					
+					<% if(currentPage >= maxPage) {%>	
+					<button class="btn btn-default" disabled>></button>
+					<% } else { %>
+					<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/selectList.ne?currentPage=<%= currentPage + 1%>'">></button>
+					<% } %>
+					<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/selectList.ne?currentPage=<%= maxPage%>'">>></button>
+				</div>
+				
+				
 				<div class="col-sm-10 text-right">
-					<button type="button"><a href="views/news/newWrite.jsp">작성하기</a></button>
+					<button class="btn btn-default" type="button"><a href="views/news/newWrite.jsp">작성하기</a></button>
 				</div>
 				
 			</div>
