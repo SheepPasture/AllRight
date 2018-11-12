@@ -12,13 +12,13 @@ public class NewsService {
 
 	private NewsDao nDao = new NewsDao();
 	
-	public ArrayList<News> selectList(){
+	public ArrayList<News> selectList(int currentPage, int limit){
 		
 		ArrayList<News> list = null;
 		
 		Connection con = getConnection();
 		
-		list = nDao.selectList(con);
+		list = nDao.selectList(con, currentPage, limit);
 		
 		close(con);
 		
@@ -97,6 +97,17 @@ public class NewsService {
 		close(con);
 		
 		return n;
+	}
+
+	public int getListCount() {
+		
+		Connection con = getConnection();
+		
+		int listCount = nDao.getListCount(con);
+		
+		close(con);
+		
+		return listCount;
 	}
 
 

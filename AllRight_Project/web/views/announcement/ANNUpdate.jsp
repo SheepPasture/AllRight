@@ -10,6 +10,7 @@
 	<meta name="author" content="">
 	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
 	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
     
  	<script src="//cdn.ckeditor.com/4.9.2/basic/ckeditor.js"></script>
 

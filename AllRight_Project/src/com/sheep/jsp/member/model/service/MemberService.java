@@ -1,9 +1,6 @@
 package com.sheep.jsp.member.model.service;
 
-import static com.sheep.jsp.common.JDBCTemplate.close;
-import static com.sheep.jsp.common.JDBCTemplate.commit;
-import static com.sheep.jsp.common.JDBCTemplate.getConnection;
-import static com.sheep.jsp.common.JDBCTemplate.rollback;
+import static com.sheep.jsp.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 
@@ -28,9 +25,24 @@ public class MemberService {
 		else rollback(con);		
 		
 		close(con);
-		System.out.println("");
+		
 		return result;
 		
+	}
+
+	public Member selectMember(Member m) throws MemberException {
+		
+		Connection con = getConnection();
+		
+		Member result = mDao.selectMember(con,m);
+
+		
+		if(result == null) throw new MemberException("회원정보가 없습니다.");
+		
+		
+		close(con);
+		
+		return result;
 	}
 
 }

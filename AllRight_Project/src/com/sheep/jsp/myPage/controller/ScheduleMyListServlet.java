@@ -51,7 +51,7 @@ public class ScheduleMyListServlet extends HttpServlet {
 		MypageService ms = new MypageService();
 
 		list = ms.selectMySchedule(userno);
-		System.out.println(list);
+		/*System.out.println(list);*/
 		String page="/views/myPage/schedule.jsp";
 
 		if(list.size()!=0){

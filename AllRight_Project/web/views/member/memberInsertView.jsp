@@ -4,6 +4,10 @@
 <html>
 <head>
 
+	<!-- JQuery -->
+	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
+	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	
     <title>회원 가입</title>
 	
 	<style>

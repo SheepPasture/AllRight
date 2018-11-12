@@ -37,7 +37,7 @@
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">	
 
 	<!-- JQuery -->
-  	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>   
+  
 	<script src="/allRight/resources/js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/jquery.prettyPhoto.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/jquery.nicescroll.min.js" type="text/javascript"></script>
