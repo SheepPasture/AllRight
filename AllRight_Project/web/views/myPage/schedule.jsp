@@ -35,16 +35,11 @@ String msg = (String)request.getAttribute("msg");
 	  var edate ='2018-11-30';
 	    */
 	   
-	  <%-- <%for(LicenseInfo l : al){%>
-		<%
-		System.out.println(l.getlName());
-		System.out.println(l.getlDate());
-		
-		%>
-	  <%}%> --%>
+	  <%-- 
+	   --%>
 	 
  	
- 		 $.ajax({
+ 		<%-- <%--  $.ajax({
  			 url :"<%= request.getContextPath() %>/lMylist.li",
  			type : "GET",
  			/* dataType: 'json', */
@@ -56,7 +51,7 @@ String msg = (String)request.getAttribute("msg");
 					console.log("수신 실패!");
 			  }
  		    });
-			
+			 --%> 
 		   /* dataType:list, */
 		/*         */
 		       /*  start: start.unix(),
@@ -74,49 +69,116 @@ String msg = (String)request.getAttribute("msg");
 		        console.log(data);
 		         */ 
 
- 	var scheduleData ={title:'123',start:'2018-11-11'};	  
- 	 $('#calendar').fullCalendar({
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay,listWeek'
-      },
-      defaultDate: new Date(),
-      navLinks: true, // can click day/week names to navigate views
-      editable: true,
-      eventLimit: true, // allow "more" link when too many events
-      
-      events:/* scheduleData, */
-
-    	   [
-    			
-    		  	/* 	{
-    		          title: 'Birthday Party',
-    		          start: '2018-03-13T07:00:00'
-    		        }, */
-    		        {
-    		          title: "Click for Google",
-    		          start: '2018-11-03',
-    		          end: '2018-11-11'
-    		        } 
-    		        
-    		 ] 
-       
-	<%-- <%--    {
-	   <% for (LicenseInfo l : al){%>
-	   	title : <%=l.getlName()%>,
-	    start : <%=l.getlDate()%>
-	   <%}%>
-	   },
-   <%System.out.println("sd");%> --%> 
-  		/* 	{
-  			for(int i =0; i<3; i++){
-  				title : ''+i,
-  				start : '2018-11-'+i+""
-  			}
-  		}, */
-  
-    });
+	 
+		/* console.log(sdata.title);
+		console.log(sdata.date);  */
+		
+		var title1 = "<%=al.get(0).getlName()%>";
+		var title2 = "<%=al.get(1).getlName()%>";
+		var title3 = "<%=al.get(2).getlName()%>";
+		var date1 = "<%=al.get(0).getlDate()%>";
+		var date2 = "<%=al.get(1).getlDate()%>";
+		var date3 = "<%=al.get(2).getlDate()%>"; 
+				 	 $('#calendar').fullCalendar({
+				      header: {
+				        left: 'prev,next today',
+				        center: 'title',
+				        right: 'month,agendaWeek,agendaDay,listWeek'
+				      },
+				      defaultDate: new Date(),
+				      navLinks: true, // can click day/week names to navigate views
+				      editable: true,
+				      eventLimit: true, // allow "more" link when too many events
+				      
+				     /*  events:events(), */
+				      events:
+		      
+				      /* scheduleData, */
+				
+				    	     [ 
+				    			
+				    		  	 	{
+				    		          title: title1,
+				    		          start: date1
+				    		        }, 
+				    		        
+				    		        {
+					    		          title: title2,
+					    		          start: date2
+					    		    },
+					    		    {
+					    		          title: title3,
+					    		          start: date3
+					    		    }
+				    		        
+				    		  ]  
+				       
+					<%-- <%--    {
+					   <% for (LicenseInfo l : al){%>
+					   	title : <%=l.getlName()%>,
+					    start : <%=l.getlDate()%>
+					   <%}%>
+					   },
+				   <%System.out.println("sd");%> --%> 
+				  		/* 	{
+				  			for(int i =0; i<3; i++){
+				  				title : ''+i,
+				  				start : '2018-11-'+i+""
+				  			}
+				  		}, */
+				  
+				    	});
+		function events(){
+			  
+			/*  String title1[] = String[]{}; */
+ 	 				
+			<%--  <%for(int i =0; i<al.size(); i++){
+				/* title1[i] = al.get(i).getlName(); */
+				System.out.println(al.get(0).getlName());
+			}
+			%>   --%>
+			
+			<%-- <%for(LicenseInfo l : al){%>
+			
+			  sdata={title:"<%=l.getlName()%>",date:"<%= l.getlDate()%>"};
+			   console.log(sdata);
+			  /*  console.log(l); */
+			   <%
+			   System.out.println(l.);
+			  
+				}%>
+			
+ --%>			  /*  console.log(sdata); */
+			/* 
+			[	{
+		          title:'asd',
+		          start: '2018-11-12' 
+	 	 		}
+		        
+	    	  ] */
+				<%-- var sdata=[];
+			   for(var i=0 ; i < <%=al.size()%>; i++){
+				   <%for(LicenseInfo l : al){%>
+				   sdata[i]={title:"<%=l.getlName()%>",date:"<%= l.getlDate()%>"};
+				   <%}%>
+				   console.log(i + ":"+sdata[i]);
+				   console.log(<%=al.size()%>);
+			   } --%>
+			  
+		}
+			   
+			 <%--   <%for(LicenseInfo l : al){%>
+				var i =0;
+			   sdata[i]={title:"<%=l.getlName()%>",date:"<%= l.getlDate()%>"};
+			 	console.log(i+" : "+sdata[i]);  
+				/* console.log("----"); */
+				title : sdata.title;
+				start : sdata.date;
+				i++;
+				<%}%> --%>
+				/* console.log(sdata); */
+		
+		
   });
 </script>
 <style>
