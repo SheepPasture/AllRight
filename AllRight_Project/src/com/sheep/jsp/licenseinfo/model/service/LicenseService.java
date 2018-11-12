@@ -49,7 +49,7 @@ public class LicenseService {
 		
 		ParseApi pa = new ParseApi();
 		
-		result = lDao.updateLicense(con, pa.getCost(list), list);
+		result = lDao.updateLicense(con, pa.getCost(list));
 		
 		if(result > 0) commit(con);
 		else rollback(con);
@@ -57,6 +57,19 @@ public class LicenseService {
 		close(con);
 		
 		return result;
+	}
+
+	public void deleteLicense() {
+		
+		Connection con = getConnection();
+		
+		int result = lDao.deleteLicense(con);
+		
+		if(result > 0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
 	}
 	
 	

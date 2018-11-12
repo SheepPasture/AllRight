@@ -114,8 +114,8 @@ public class LicenseDao {
 		
 	}
 
-	public int updateLicense(Connection con, ArrayList<LicenseInfo> list, ArrayList<LicenseInfo> list2) {
-		
+	public int updateLicense(Connection con, ArrayList<LicenseInfo> list) {
+
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
@@ -130,8 +130,8 @@ public class LicenseDao {
 				
 				pstmt.setString(1, list.get(i).getlCost());
 				pstmt.setString(2, list.get(i).getlNo());
-				System.out.println(list.get(i).getlNo() + ", " + list2.get(i).getlName() + " : " + list.get(i).getlCost());
-				
+				System.out.println(list.get(i).getlNo() + ", " + list.get(i).getlName() + " : " + list.get(i).getlCost());
+
 				result = pstmt.executeUpdate();
 				
 			}
@@ -144,6 +144,33 @@ public class LicenseDao {
 		} finally {
 			
 			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int deleteLicense(Connection con) {
+		
+		int result = 0;
+		
+		Statement stmt = null;
+		
+		String sql = prop.getProperty("deleteLicense");
+		
+		try {
+			
+			stmt = con.createStatement();
+			
+			result = stmt.executeUpdate(sql);
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+	
+		} finally {
+			
+			close(stmt);
 		}
 		
 		return result;

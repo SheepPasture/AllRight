@@ -94,17 +94,17 @@ public class ParseApi {
 		
 	}
 	
-	public ArrayList<LicenseInfo> getCost(ArrayList<LicenseInfo> list2){
+	public ArrayList<LicenseInfo> getCost(ArrayList<LicenseInfo> list){
 		
-		ArrayList<LicenseInfo> list = new ArrayList<LicenseInfo>();
+		//ArrayList<LicenseInfo> list = new ArrayList<LicenseInfo>();
 		
-		for(int i = 0; i < list2.size(); i ++){
+		for(int i = 0; i < list.size(); i ++){
 			
 			System.out.println("응시료 업데이트 중"+"("+ (i+1) +"/597)");
 			
 			String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getFeeList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D&jmCd=";
 			
-			url += list2.get(i).getlNo();
+			url += list.get(i).getlNo();
 			
 			NodeList nList = common(url);
 
@@ -117,12 +117,10 @@ public class ParseApi {
 
 					Element eElement = (Element) nNode;
 					// System.out.println("#################################");
-					// System.out.println(eElement.getTextContent());
-					// System.out.println(getTagValue("jmfldnm", eElement));
-
-					l = new LicenseInfo(getTagValue("contents", eElement));
-
-					list.add(l);
+					//System.out.println(eElement.getTextContent());
+					//l = new LicenseInfo(getTagValue("contents", eElement));
+					list.get(i).setlCost(getTagValue("contents", eElement));
+					//list.add(l);
 
 				} // for end
 			} // if end
