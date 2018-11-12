@@ -96,7 +96,7 @@ String msg = (String)request.getAttribute("msg");
 				      /* scheduleData, */
 				
 				    	     [ 
-				    			
+
 				    		  	 	{
 				    		          title: title1,
 				    		          start: date1

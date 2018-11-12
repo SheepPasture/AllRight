@@ -4,24 +4,28 @@
 
 <%
 	Member m = (Member) request.getAttribute("member");
+/* m.setUserId("test1");
+m.setUserName("test1"); */
+
 	UserLicense ul = (UserLicense) request.getAttribute("userLicense");
 %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<script src="<%=request.getContextPath()%>/resources/js/jquery-3.3.1.min.js"></script>
+<!-- <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>update Member</title>
 <link href="/allRight/css/bootstrap.min.css" rel="stylesheet">
-<!-- font awesome -->
+font awesome
 <link rel="stylesheet"
 	href="/allRight/resources/css/font-awesome.min.css" media="screen"
 	title="no title" charset="utf-8">
-<!-- Custom style -->
+Custom style
 <link rel="stylesheet" href="/allRight/resources/css/style.css"
 	media="screen" title="no title" charset="utf-8">
-
+ -->
 <!-- 
 <style>
 .outer {
@@ -63,6 +67,7 @@ td {
  -->
 </head>
 <!-- HEADER -->
+<body>
 <%@ include file="/views/common/header.jsp"%>
 <!-- HEADER-END -->
 
@@ -95,39 +100,41 @@ td {
 					<div class="form-group">
 						<label class="col-sm-3 control-label" for="userId">유저아이디</label>
 						<div class="col-sm-6">
-							<input class="form-control" id="inputUserId" type="text" readonly
-								placeholder="아이디">
+							<input class="form-control" id="userId" type="text" readonly
+								placeholder="sd<%-- <%=m.getUserId()%> --%>">
 						</div>
 					</div>
+					
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
+						<label class="col-sm-3 control-label" for="password">비밀번호</label>
 						<div class="col-sm-6">
-							<input class="form-control" id="inputPassword" type="password"
+							<input class="form-control" id="password" type="password"
 								placeholder="비밀번호">
 							<p class="help-block">숫자, 특수문자 포함 8자 이상</p>
 						</div>
 					</div>
+					
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="inputPasswordCheck">비밀번호
+						<label class="col-sm-3 control-label" for="passwordCheck">비밀번호
 							확인</label>
 						<div class="col-sm-6">
-							<input class="form-control" id="inputPasswordCheck"
+							<input class="form-control" id="passwordCheck"
 								type="password" placeholder="비밀번호 확인">
 							<p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="inputName">닉네임</label>
+						<label class="col-sm-3 control-label" for="userName">닉네임</label>
 						<div class="col-sm-6">
-							<input class="form-control" id="inputName" type="text"
+							<input class="form-control" id="userName" type="text"
 								placeholder="이름">
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="userId">이메일</label>
+						<label class="col-sm-3 control-label" for="email">이메일</label>
 						<div class="col-sm-6">
-							<input class="form-control" id="inputEmail" type="email"
+							<input class="form-control" id="email" type="email"
 								placeholder="이메일">
 						</div>
 					</div>
@@ -171,9 +178,27 @@ td {
 
 
 	<script>
+
+	console.log($('#password~p').text());
+		/* function(){
+			$('#password~input').text()+="비밀번호가 일치하지 않습니다.";
+			/* if($('#password').val != $('#passwordCheck').val){ */
+			/* 	$('#password~input').text()="비밀번호가 일치하지 않습니다."; */
+			/* console.log("불일치");
+			}else{
+			console.log("일치");	
+			} 
+		} */
      	function memberUpdate() {
 			$("#updateForm").submit();
+			
+		<%-- 	location.href = "<%= request.getContextPath() %>/mUpdate.me"
+			 --%>
+			
 		}
+    	function memberDelete(){
+         	<%-- 	location.href = "/myWeb/mDelete.me?userno=<%=m.getUserNo()%>"; --%>
+         	}
 		
 		<%-- function memberDelete() {
 			location.href = "/allRight/mDelete.me?userId=<%=m.getUserId()%>";
