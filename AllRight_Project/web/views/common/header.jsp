@@ -296,7 +296,8 @@ jQuery(document).ready(function() {
 							</ul>
 						</li>
                         <li class="sub-menu active">
-                            <a href="javascript:void(0)">마이페이지</a>
+                            <!-- <a href="javascript:void(0)">마이페이지</a> -->
+                            <a href="<%= request.getContextPath() %>/views/myPage/myPageMain.jsp">마이페이지</a>
                             <ul>
                                 <li><a href="<%= request.getContextPath() %>/views/myPage/myPageMain.jsp">회원정보수정</a></li>
                                 <li><a href="<%= request.getContextPath() %>/lMylist.li">관심 자격증 정보</a></li>
