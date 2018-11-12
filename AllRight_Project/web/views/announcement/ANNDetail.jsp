@@ -45,18 +45,13 @@
 						<a href="#">자격증정보</a>
 					</p>
 				</div> 
-				<div class="col-sm-8 text-center">
+				<div class="col-sm-8 text-left">
 					<h2 align="left">공지사항</h2>
 					<% if(a != null) { %>
 					<!-- 게시판(뷰)시작 -->
 					<div class="board_area">
+						<form>
 						<table class="view">
-							<colgroup>
-								<col width="15%">
-								<col width="60%">
-								<col width="10%">
-								<col width="15%">
-							</colgroup>
 							<tbody>
 								<tr>
 									<th>제목</th>
@@ -96,11 +91,8 @@
 						</table>
  						<div class="btn_area2">
  								<button onclick="location.href='selectList.ann'">목록으로 바로가기</button>
-								<button onclick="location.href='<%= request.getContextPath()%>/aUpView.ann?ano='+<%= a.getAno() %>" >수정</button>
- 						
-							<!-- <a href="/allRight/selectList.ann">목록으로 바로가기</a>				
-							<a href="/allRight/aUpdate.ann">수정</a> -->			
-						</div> 
+								<button onclick="location.href='<%= request.getContextPath()%>/aUpView.ann?ano='+<%= a.getAno() %>" >수정</button>			
+						</div> </form>
 					</div>		
 				</div>
 			</div>

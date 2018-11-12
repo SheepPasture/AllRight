@@ -31,9 +31,7 @@ public class ANNUpdateViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int ano = Integer.parseInt(request.getParameter("ano"));
-		
-		System.out.println("업데이트뷰서블릿");
-		
+
 		Announcement a = new ANNService().updateView(ano);
 		
 		String page = "";

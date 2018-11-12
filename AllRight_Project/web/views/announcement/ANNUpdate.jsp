@@ -57,14 +57,10 @@
 							<tbody>
 								<tr>
 									<th class="col-sm-2">글번호</th>
-									<td><input id="ano" name="ano" type="text" value="<%= a.getAno() %>"/></td>
+									<td><input id="ano" name="ano" type="text" style="resize: none;" value="<%= a.getAno() %>"/></td>
 								</tr>
 								<tr>
 									<th class="col-sm-2">제목</th>
-				<%-- 					<td>
-										<textarea name="title" rows="1" cols="90" ><%= a.getAtitle() %></textarea>
-										<input cols="90" name="ano" value="<%= a.getAno() %>"/>
-									</td> --%>
 									<td><textarea name="title" rows="1" cols="90" ><%= a.getAtitle() %></textarea></td>
 								</tr>
 								<tr>
@@ -105,7 +101,7 @@
 					}
 					
 		 		</script>
-			</div>
+			</div><br /><br /><br /><br /><br />
 			<br>
 		</div>
 	</div>

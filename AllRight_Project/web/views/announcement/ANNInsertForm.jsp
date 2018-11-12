@@ -11,11 +11,10 @@
 	<meta name="author" content="">
 	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
 
-	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
-
+<!--  	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" /> -->
+ 
  	<script src="//cdn.ckeditor.com/4.9.2/basic/ckeditor.js"></script>
-<!-- <script src="//cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script> -->
-	
+
 	<style>
 
     /* 게시판관련 */
@@ -60,7 +59,7 @@
 								<tr>
 									<th class="col-sm-2">제목</th>
 									<td>
-										<textarea name="title" rows="1" cols="90"></textarea>
+										<textarea name="title" rows="1" cols="90"  style="resize: none;"></textarea>
 									</td>
 								</tr>
 								<tr>
@@ -84,7 +83,7 @@
  				<button id="save" class="btn btn-primary" onclick="save()" type="submit">Save</button>
 				<button id="back" class="btn btn-primary" onclick="location.href='/allRight/selectList.ann'" type="reset">Back</button>
 			</div></form>
-			</div>
+			</div><br /><br /><br /><br /><br />
 		</div>
 	</div>
 	<!-- FOOTER -->
