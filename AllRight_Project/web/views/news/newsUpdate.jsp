@@ -37,9 +37,9 @@
 			<div class="row content">
 				<br>
 				<div class="col-sm-2 sidenav">
-					<p><a href="../notice/noticeList.jsp">공지사항</a></p>
-					<p><a href="../community/communityList.jsp">커뮤니티</a></p>
-					<p><a href="../license/licenseinfo.jsp">자격증정보</a></p>
+					<p><a href="selectList.ann">공지사항</a></p>
+					<p><a href="<%= request.getContextPath() %>/views/community/communityList.jsp">커뮤니티</a></p>
+					<p><a href="/views/license/licenseinfo.jsp">자격증정보</a></p>
 				</div>
 				
 				<form id="updateForm"
