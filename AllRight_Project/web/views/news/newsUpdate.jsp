@@ -66,7 +66,7 @@
 					
 					<div class="form-group"> 
 						<label for="content">뉴스 내용</label> 
-						<textarea class="form-control" cols="60" rows="10" name="content" id="content" style="resize:none;"><%= n.getNCONTENT() %></textarea> 
+						<textarea class="form-control" cols="60" rows="10" name="content" id="content" style="resize:none;"><%= n.getNCONTENT().replace("<br>", "\r\n") %></textarea> 
 					</div> 
 				</div>
 			</div>

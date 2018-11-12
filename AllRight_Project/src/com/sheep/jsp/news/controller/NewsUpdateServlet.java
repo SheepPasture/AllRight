@@ -60,7 +60,7 @@ public class NewsUpdateServlet extends HttpServlet {
 		News n = ns.selectOne(nno);
 		
 		String title = mrequest.getParameter("subject");
-		String content = mrequest.getParameter("content");
+		String content = mrequest.getParameter("content").replace("\r\n", "<br>");
 		String file = mrequest.getFilesystemName("file");
 		
 		n.setNTITLE(title);

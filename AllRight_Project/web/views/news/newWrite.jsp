@@ -61,6 +61,7 @@
 			 			function back(){
 			 				location.href="/allRight/selectList.ne";
 			 			}
+			 			
 			 		</script>
 		</div>
 					

@@ -65,7 +65,7 @@
 					</table> 
 				</div>
 				
-				<div class="col-md-11 text-center" align="center">
+				<div class="col-md-11 text-center" align="center" >
 				
 					<button class="btn btn-default" onclick="location.href='<%= request.getContextPath()%>/selectList.ne?currentPage=1'"><<</button>
 					<%	if(currentPage <= 1) {%>
