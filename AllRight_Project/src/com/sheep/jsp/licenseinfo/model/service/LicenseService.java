@@ -41,22 +41,17 @@ public class LicenseService {
 		return list;
 	}
 
-	public int updateLicense(ArrayList<LicenseInfo> list) {
-		
-		int result = 0;
+	public ArrayList<LicenseInfo> updateLicense(ArrayList<LicenseInfo> list) {
 		
 		Connection con = getConnection();
 		
 		ParseApi pa = new ParseApi();
 		
-		result = lDao.updateLicense(con, pa.getCost(list));
-		
-		if(result > 0) commit(con);
-		else rollback(con);
+		list = lDao.updateLicense(con, pa.getCost(list));
 		
 		close(con);
 		
-		return result;
+		return list;
 	}
 
 	public void deleteLicense() {
@@ -71,8 +66,10 @@ public class LicenseService {
 		close(con);
 		
 	}
-	
-	
-	
 
+	public ArrayList<LicenseInfo> updateInfoData(ArrayList<LicenseInfo> list) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

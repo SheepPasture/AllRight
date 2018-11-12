@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import com.sheep.jsp.licenseinfo.model.vo.LicenseInfo;
@@ -91,10 +92,12 @@ public class LicenseDao {
 				
 				l.setlNo(rset.getString(1));
 				l.setlName(rset.getString(2));
-				l.setlInfo(rset.getString(3));
-				l.setlDate(rset.getString(4));
-				l.setlCategory(rset.getString(5));
-				l.setlCost(rset.getString(6));
+				l.addlInfo(rset.getString(3));
+				l.addlInfo(rset.getString(4));
+				l.addlInfo(rset.getString(5));
+				l.setlDate(rset.getString(6));
+				l.setlCategory(rset.getString(7));
+				l.setlCost(rset.getString(8));
 				
 				list.add(l);
 			}
@@ -114,9 +117,7 @@ public class LicenseDao {
 		
 	}
 
-	public int updateLicense(Connection con, ArrayList<LicenseInfo> list) {
-
-		int result = 0;
+	public ArrayList<LicenseInfo> updateLicense(Connection con, ArrayList<LicenseInfo> list) {
 		
 		PreparedStatement pstmt = null;
 		
@@ -130,9 +131,8 @@ public class LicenseDao {
 				
 				pstmt.setString(1, list.get(i).getlCost());
 				pstmt.setString(2, list.get(i).getlNo());
-				System.out.println(list.get(i).getlNo() + ", " + list.get(i).getlName() + " : " + list.get(i).getlCost());
 
-				result = pstmt.executeUpdate();
+				pstmt.executeUpdate();
 				
 			}
 			
@@ -146,7 +146,7 @@ public class LicenseDao {
 			close(pstmt);
 		}
 		
-		return result;
+		return list;
 	}
 
 	public int deleteLicense(Connection con) {

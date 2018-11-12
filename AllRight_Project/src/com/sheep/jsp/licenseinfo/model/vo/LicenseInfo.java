@@ -1,20 +1,22 @@
 package com.sheep.jsp.licenseinfo.model.vo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LicenseInfo {
 
 	private String lNo;
 	private String lName;
-	private String lInfo;
+	private List<String> lInfo = new ArrayList<String>();
 	private String lDate;
 	private String lCategory;
 	private String lCost;
 	
 	// 생성자
 	
-	
 	public LicenseInfo() {}
-
-	public LicenseInfo(String lNo, String lName, String lInfo, String lDate, String lCategory, String lCost) {
+	
+	public LicenseInfo(String lNo, String lName, List<String> lInfo, String lDate, String lCategory, String lCost) {
 		super();
 		this.lNo = lNo;
 		this.lName = lName;
@@ -23,7 +25,7 @@ public class LicenseInfo {
 		this.lCategory = lCategory;
 		this.lCost = lCost;
 	}
-	
+
 	public LicenseInfo(String lNo, String lName, String lCategory) {
 		super();
 		this.lNo = lNo;
@@ -42,6 +44,11 @@ public class LicenseInfo {
 	public LicenseInfo(String lCost) {
 		super();
 		this.lCost = lCost;
+	}
+	
+	public LicenseInfo(List<String> lInfo) {
+		super();
+		this.lInfo = lInfo;
 	}
 
 	// getter & setter
@@ -62,12 +69,16 @@ public class LicenseInfo {
 		this.lName = lName;
 	}
 
-	public String getlInfo() {
+	public List<String> getlInfo() {
 		return lInfo;
 	}
 
-	public void setlInfo(String lInfo) {
+	public void setlInfo(List<String> lInfo) {
 		this.lInfo = lInfo;
+	}
+	
+	public void addlInfo(String lInfo) {
+		this.lInfo.add(lInfo);
 	}
 
 	public String getlDate() {
