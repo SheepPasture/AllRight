@@ -1,17 +1,18 @@
 package com.sheep.jsp.member.model.dao;
 
+import static com.sheep.jsp.common.JDBCTemplate.close;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
 import com.sheep.jsp.member.exception.MemberException;
 import com.sheep.jsp.member.model.vo.Member;
-
-import static com.sheep.jsp.common.JDBCTemplate.*;
 
 public class MemberDao {
 	
@@ -59,6 +60,49 @@ public class MemberDao {
 			close(pstmt);
 		}
 		
+		
+		
+		return result;
+	}
+
+	public Member selectMember(Connection con, Member m) {
+
+		Member result = null;
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMember");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m.getUserId());
+			pstmt.setString(2, m.getUserPwd());
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				result = new Member();
+				
+				result.setUserNo(Integer.parseInt(rset.getString("userno")));
+				result.setUserId(m.getUserId());
+				result.setUserPwd(m.getUserPwd());
+				result.setUserName(rset.getString("username"));
+				result.setEmail(rset.getString("email"));
+				result.setUserLeave(rset.getString("userleave"));
+				result.setUserDate(rset.getDate("userdate"));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		System.out.println("dao : "+result);
 		
 		
 		return result;

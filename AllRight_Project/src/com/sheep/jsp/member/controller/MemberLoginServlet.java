@@ -7,21 +7,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.sheep.jsp.member.exception.MemberException;
 import com.sheep.jsp.member.model.service.MemberService;
 import com.sheep.jsp.member.model.vo.Member;
 
 /**
- * Servlet implementation class MemberInsertServlet
+ * Servlet implementation class MemberLoginServlet
  */
-@WebServlet("/mInsert.me")
-public class MemberInsertServlet extends HttpServlet {
-	private static final long serialVersionUID = 1000L;
+@WebServlet("/mLogin.me")
+public class MemberLoginServlet extends HttpServlet {
+	private static final long serialVersionUID = 1001L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberInsertServlet() {
+    public MemberLoginServlet() {
         super();
     }
 
@@ -29,26 +31,35 @@ public class MemberInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		String userId = request.getParameter("inputId");
-		String pass = request.getParameter("inputPassword");	
-		String name = request.getParameter("inputName");
-		String email = request.getParameter("inputEmail");
+		String userPwd = request.getParameter("inputPassword");
 		
 		MemberService ms = new MemberService();
 		
-		Member m = new Member(userId,pass,name,email);
+		Member m = new Member(userId,userPwd);
 		
 		try{
-			ms.insertMember(m);
-			System.out.println("회원가입 성공");
+			
+			m = ms.selectMember(m);
+			
+			System.out.println("로그인 성공!");
+			
+			HttpSession session = request.getSession();
+			
+			session.setAttribute("member",m);
+			
 			response.sendRedirect("index.jsp");
-		} catch(Exception e){
-			request.setAttribute("msg", "회원가입실패");
-			request.setAttribute("exception",e);
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);;
+			
+		} catch(MemberException e){
+			
+			request.setAttribute("msg", "로그인 실패");
+			
+			request.setAttribute("exception", e);
+			
+			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
+			
 		}
-		
 		
 	}
 
