@@ -12,7 +12,7 @@ String msg = (String)request.getAttribute("msg");
 <head>
 <meta charset="UTF-8">
 	<!-- CSS -->
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<!-- <link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
 	<link href="/allRight/resources/css/flexslider.css" rel="stylesheet" type="text/css" />
 	<link href="/allRight/resources/css/prettyPhoto.css" rel="stylesheet" type="text/css" />
@@ -25,8 +25,8 @@ String msg = (String)request.getAttribute("msg");
 	<script src='/allRight/resources/js/moment.min.js'></script> 
 	<script src='/allRight/resources/js/jquery.min.js'></script> 
 	<script src='/allRight/resources/js/fullcalendar.min.js'></script>
-<script>
-  $(document).ready(function() {
+	<script>
+ 	 $(document).ready(function() {
 	  /*   console.log($('#info').children().children().text); */
 	  /*  var year=2018;
 	  var month=11;
@@ -42,20 +42,40 @@ String msg = (String)request.getAttribute("msg");
 		
 		%>
 	  <%}%> --%>
-	  
-	   
-	 <%--    $.ajax({
-		  url : "<%= request.getContextPath() %>/lMylist.li",
-		  type : "get",
-		  data : {
-			  userno : 1
-		  },
-		  success :
-		  
-	  });  --%>
- 		  var i = "2018-11-30"
- 			 var j = "a";
-    $('#calendar').fullCalendar({
+	 
+ 	
+ 		 $.ajax({
+ 			 url :"<%= request.getContextPath() %>/lMylist.li",
+ 			type : "GET",
+ 			/* dataType: 'json', */
+ 			success : function(data){
+ 			
+	 		console.log(data); 
+ 		      
+ 		      },error:function() {
+					console.log("수신 실패!");
+			  }
+ 		    });
+			
+		   /* dataType:list, */
+		/*         */
+		       /*  start: start.unix(),
+		        end: end.unix() */
+		      /* 
+		      success: function(list) {
+		      /*   var events = [];
+		        $(doc).find('event').each(function() {
+		          events.push({
+		            title: $(this).attr('title'),
+		            start: $(this).attr('start') // will be parsed
+		          });
+		        }); */
+		      /*  console.log("!1111111111");
+		        console.log(data);
+		         */ 
+
+ 	var scheduleData ={title:'123',start:'2018-11-11'};	  
+ 	 $('#calendar').fullCalendar({
       header: {
         left: 'prev,next today',
         center: 'title',
@@ -66,35 +86,36 @@ String msg = (String)request.getAttribute("msg");
       editable: true,
       eventLimit: true, // allow "more" link when too many events
       
-      events:
+      events:/* scheduleData, */
 
     	   [
+    			
+    		  	/* 	{
+    		          title: 'Birthday Party',
+    		          start: '2018-03-13T07:00:00'
+    		        }, */
+    		        {
+    		          title: "Click for Google",
+    		          start: '2018-11-03',
+    		          end: '2018-11-11'
+    		        } 
+    		        
+    		 ] 
        
-	  <%--  {
+	<%-- <%--    {
 	   <% for (LicenseInfo l : al){%>
 	   	title : <%=l.getlName()%>,
 	    start : <%=l.getlDate()%>
 	   <%}%>
-	   }, --%>
-   <%System.out.println("sd");%>
+	   },
+   <%System.out.println("sd");%> --%> 
   		/* 	{
   			for(int i =0; i<3; i++){
   				title : ''+i,
   				start : '2018-11-'+i+""
   			}
   		}, */
-  		
-  		{
-          title: 'Birthday Party',
-          start: '2018-03-13T07:00:00'
-        },
-        {
-          title: "Click for Google",
-          start: '2018-11-03',
-          end: '2018-11-11'
-        } ,
-        
-      ] 
+  
     });
   });
 </script>
