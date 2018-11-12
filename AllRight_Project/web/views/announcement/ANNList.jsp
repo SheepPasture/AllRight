@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, com.sheep.jsp.announcement.model.vo.*" %>
- <% ArrayList<Announcement> list = (ArrayList<Announcement>)request.getAttribute("list"); %>
+ <% ArrayList<Announcement> list = (ArrayList<Announcement>)request.getAttribute("list"); 
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+ %>
  
 <!DOCTYPE html>
 <html>
@@ -54,9 +61,37 @@
 					</tbody>
 				</table>  
 			</div>
+			<%-- 페이지 처리 --%>
+			<br /><br />
+			<div class="col-md-11 text-center" align="center">
+				<button onclick="location.href='<%= request.getContextPath() %>/selectList.ann?currentPage=1'"><<</button>
+				<%  if(currentPage <= 1){  %>
+				<button disabled><</button>
+				<%  }else{ %>
+				<button onclick="location.href='<%= request.getContextPath() %>/selectList.ann?currentPage=<%=currentPage - 1 %>'"><</button>
+				<%  } %>
+				
+				<% for(int p = startPage; p <= endPage; p++){
+						if(p == currentPage){	
+				%>
+					<button disabled><%= p %></button>
+				<%      }else{ %>
+					<button onclick="location.href='<%= request.getContextPath() %>/selectList.ann?currentPage=<%= p %>'"><%= p %></button>
+				<%      } %>
+				<% } %>
+					
+				<%  if(currentPage >= maxPage){  %>
+				<button disabled>></button>
+				<%  }else{ %>
+				<button onclick="location.href='<%= request.getContextPath() %>/selectList.ann?currentPage=<%=currentPage + 1 %>'">></button>
+				<%  } %>
+				<button onclick="location.href='<%= request.getContextPath() %>/selectList.ann?currentPage=<%= maxPage %>'">>></button>
+			</div>
+			
 		 	<div class="col-sm-10 text-right">
 				<button type="button"><a href="views/announcement/ANNInsertForm.jsp">작성하기</a></button>
 			</div>
+			
 		</div>
 	</div>
 	<script>
