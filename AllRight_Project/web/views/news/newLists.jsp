@@ -31,6 +31,7 @@
 		<!-- HEADER -->
 		<%@ include file="/views/common/header.jsp" %>
 		
+		
 		<div class="container-fluid text-center">    
 			<div class="row content">
 				<br />
@@ -65,6 +66,7 @@
 					</table> 
 				</div>
 				
+	
 				<div class="col-md-11 text-center" align="center" >
 				
 					<button class="btn btn-default" onclick="location.href='<%= request.getContextPath()%>/selectList.ne?currentPage=1'"><<</button>
