@@ -148,33 +148,6 @@
 	<td align='center'>응시전<br />20문제<br /></td><td>&nbsp;</td>
 	<td colspan='1' align='center'><a href="../views/answer/answerPage.jsp" style='color:#79a5e4; font-weight:bold'>응시하기</a></td>
 	<td colspan='1' align='center'><a href="javascript:start_testEach(1, 'first', 1, 20)" style='color:#79a5e4; font-weight:bold'>응시하기</a></td></td></tr>
-	
-	<button id="selectBtn">테스트</button>
-	<script>
-		$(function(){
-			$('#selectBtn').click(function(){
-				$.ajax({
-					url : "/views/answer/answerPage.jsp",
-					type : "get",
-					success : function(data){
-						console.log(data);
-						$select = $('#selectTest');
-						$select.find("option").remove();
-						for(var i = 0; i < data.length; i++){
-							
-							$select.append("<option value='"+ data[i].qNo +"'>"
-											+data[i].qContent
-											+data[i].qPre
-											+data[i].qAnswer+"</option>");
-						}
-					}, error : function(data){
-						console.log("에러");
-					}
-				});
-			});
-		})
-	</script>
-	
 	<tr style='padding:3px 2px 1px 2px' height='33'>
 	<td align='center'>2과목</td>
 	<td align='center'>응시전<br />10문제<br /></td><td>&nbsp;</td>
