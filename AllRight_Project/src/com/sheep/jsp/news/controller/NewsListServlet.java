@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sheep.jsp.news.model.service.NewsService;
 import com.sheep.jsp.news.model.vo.News;
+import com.sheep.jsp.news.model.vo.PageInfo;
 
 /**
  * Servlet implementation class NewsListServlet
@@ -37,13 +38,45 @@ public class NewsListServlet extends HttpServlet {
 		
 		NewsService ns = new NewsService();
 		
-		list = ns.selectList();
+		//페이징처리
+		int startPage;
+		int endPage;
+		int maxPage;
+		int currentPage;
+		int limit;
+		
+		currentPage = 1;
+		
+		limit = 10;
+		
+		if(request.getParameter("currentPage") != null){
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		int listCount = ns.getListCount();
+		
+		System.out.println("전체 게시글 수 : " + listCount);
+		
+		maxPage = (int)((double)listCount / limit + 0.9);
+		
+		startPage = ((int)((double)currentPage / limit + 0.9) - 1) * limit + 1;
+		
+		endPage = startPage + limit - 1;
+		
+		if(endPage > maxPage){
+			endPage = maxPage;
+		}
+		
+		list = ns.selectList(currentPage, limit);
 		
 		String page = "";
 		
 		if(list != null){
 			
+			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
+			
 			page = "/views/news/newLists.jsp";
+			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
 		} else {
 			
