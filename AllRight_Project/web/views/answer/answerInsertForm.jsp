@@ -4,6 +4,7 @@
 <html>
 <head>
 	<title>ALLRight</title>
+	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
 </head>
 <body>
 <div align="center"><!--Mobile, PC 페이지 컨테이너 가운데 정렬 시작.-->

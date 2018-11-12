@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>ALLRight</title>
 <!-- 제이쿼리 파일 -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
 </head>
 <body>
 <button id="selectBtn">테스트</button>

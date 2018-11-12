@@ -13,6 +13,7 @@
 	<meta name="author" content="">
    	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
    	<link href="https://fonts.googleapis.com/css?family=Poor+Story|Roboto" rel="stylesheet">
+   	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
 
 	
 	<style>
@@ -187,9 +188,8 @@
 		<% } else { %>
 		<div id="userInfo">
 			<label><%= m.getUserName() %>님의 방문을 환영합니다.</label>
-			<div class="btns" align="right">
-				<div id="changeInfo" onclick="changeInfo()">정보수정</div>
-				<div id="logoutBtn" onclick='logout()'>로그아웃</div> 
+			<div class="btns" >
+				<input type="button" value="로그아웃" onclick="logout()" />
 			</div>
 			
 		</div>
@@ -209,6 +209,10 @@
 			
 		}
 	
+		function logout(){
+			
+			location.href = "mLogout.me";
+		}
 	</script>
 
 </div>

@@ -36,12 +36,9 @@ public class MemberService {
 		
 		Member result = mDao.selectMember(con,m);
 
-		System.out.println("보낸 값 : "+ m);
-		
 		
 		if(result == null) throw new MemberException("회원정보가 없습니다.");
 		
-		System.out.println("받아온 값 : "+result);
 		
 		close(con);
 		
