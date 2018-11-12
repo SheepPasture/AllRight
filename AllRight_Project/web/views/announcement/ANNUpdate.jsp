@@ -57,7 +57,7 @@
 							<tbody>
 								<tr>
 									<th class="col-sm-2">글번호</th>
-									<td id="ano"><%= a.getAno() %></td>
+									<td><input id="ano" name="ano" type="text" value="<%= a.getAno() %>"/></td>
 								</tr>
 								<tr>
 									<th class="col-sm-2">제목</th>
@@ -90,8 +90,8 @@
 				</div>
 				</form>
 		 		<script>	 		
-					var ano = $("#listArea td").parent().children('td').eq(0).text();
-		 		
+					var ano = $("#ano").val();
+					
 	 		 		function edit(){
 	 		 			$("#updateForm").attr("action", "<%=request.getContextPath()%>/aUpdate.ann");
 	 		 		}

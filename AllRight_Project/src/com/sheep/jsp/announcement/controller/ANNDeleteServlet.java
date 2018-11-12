@@ -28,7 +28,6 @@ public class ANNDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("딜리트서블릿");
 		
 		int ano = Integer.parseInt(request.getParameter("ano"));
 		

@@ -30,19 +30,28 @@ public class ANNUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		int ano = Integer.parseInt(request.getParameter("ano"));
 
 		System.out.println("업데이트서블릿");
 		
-	/*	Announcement a = new Announcement();*/
+		Announcement a = new Announcement();
 		
-		ANNService as = new ANNService();
+		a.setAtitle(title);
+		a.setAcontent(content);
+		a.setAno(ano);
+		
+		int result = new ANNService().updateANN(a);
+		
+		if(result > 0){
+			response.sendRedirect("selectOne.ann?ano=" + ano);
+		} else{
+			request.setAttribute("msg", "공지사항 수정 실패!");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+		}
 
-		int ano = Integer.parseInt(request.getParameter("ano"));
-		
-		Announcement a  = as.selectOne(ano);
-		
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
+/*		Announcement a  = new ANNService().selectOne(ano);
 		
 		System.out.println("ano: " + ano + "title: " + title + " content: " + content);
 
@@ -54,13 +63,13 @@ public class ANNUpdateServlet extends HttpServlet {
 		System.out.println("업데이트 서블릿 result:"+result);
 		
 		if(result > 0) {
-			
-			response.sendRedirect("selectOne.ann?ano="+ano);
+		
+			response.sendRedirect("selectList.ann");		
 			
 		} else {
 			request.setAttribute("msg", "공지사항 수정 실패!");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);	
-		}
+		}*/
 		
 		
 /*		String page = "";
@@ -74,8 +83,8 @@ public class ANNUpdateServlet extends HttpServlet {
 			request.setAttribute("msg", "공지사항 수정 실패");
 		}
 		
-		request.getRequestDispatcher(page).forward(request, response);
-		*/
+		request.getRequestDispatcher(page).forward(request, response);*/
+		
 	}
 
 	/**
