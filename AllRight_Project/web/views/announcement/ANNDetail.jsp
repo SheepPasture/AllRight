@@ -50,12 +50,12 @@
 					<% if(a != null) { %>
 					<!-- 게시판(뷰)시작 -->
 					<div class="board_area">
-						<form>
+						<form id="updateForm" method="post">
 						<table class="view">
 							<tbody>
 								<tr>
 									<th>제목</th>
- 									<td class="title"><%= a.getAtitle()%></td>  
+ 									<td class="title"><%= a.getAtitle()%></td>
 									<!-- <td colspan="1" class="title">타이틀</td>  -->
 									<th >조회수</th>
 									<td><%= a.getAcount() %></td>
@@ -73,7 +73,8 @@
 								 	<td><%= a.getAcontent() %></td>
 								</tr>			
 								<tr>
-									<td colspan="5"></td>
+									<td colspan="5"><input id="ano" name="ano" type="hidden" value="<%= a.getAno() %>"/></td>
+									
 								</tr>
 								<% } else { 
 							 		request.setAttribute("msg", "회원만 가능한 서비스 입니다."); 
@@ -90,9 +91,22 @@
 							</tbody>
 						</table>
  						<div class="btn_area2">
- 								<button onclick="location.href='selectList.ann'">목록으로 바로가기</button>
-								<button onclick="location.href='<%= request.getContextPath()%>/aUpView.ann?ano='+<%= a.getAno() %>" >수정</button>			
+ 								<button onclick="back();">목록으로 바로가기</button>
+								<button onclick="edit();">수정</button>
 						</div> </form>
+						<script>
+							
+							var ano = $("#ano").val();
+						
+							function edit(){
+			 		 			$("#updateForm").attr("action", "<%=request.getContextPath()%>/aUpView.ann?ano="+ano);
+			 		 		}
+						
+							function back(){	
+								alert($("#ano").val());
+								$("#updateForm").attr("action","<%=request.getContextPath() %>/selectList.ann");
+							}
+						</script>
 					</div>		
 				</div>
 			</div>
