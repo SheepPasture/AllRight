@@ -11,7 +11,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
-	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />>
+<!-- 	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" /> -->
 </head>
 <body>
 	

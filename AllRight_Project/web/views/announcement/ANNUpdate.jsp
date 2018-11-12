@@ -56,10 +56,6 @@
 						<table class="view" id="listArea">
 							<tbody>
 								<tr>
-									<th class="col-sm-2">글번호</th>
-									<td><input id="ano" name="ano" type="text" style="resize: none;" value="<%= a.getAno() %>"/></td>
-								</tr>
-								<tr>
 									<th class="col-sm-2">제목</th>
 									<td><textarea name="title" rows="1" cols="90" ><%= a.getAtitle() %></textarea></td>
 								</tr>
@@ -75,6 +71,9 @@
 										</script>
 									</td>
 								</tr>	
+								<tr>
+									<td colspan="5"><input id="ano" name="ano" type="hidden" value="<%= a.getAno() %>"/></td>
+								</tr>
 							</tbody>
 						</table>
 					</div>
