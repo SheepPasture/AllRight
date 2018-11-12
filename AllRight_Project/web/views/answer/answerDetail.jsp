@@ -17,7 +17,7 @@
 		</td>
 		<td>	
 		<div id="top" style="padding:12px 0px; text-align:left;"><!--PC 리본메뉴, 문제집중뷰 시작.-->
-		<form name='form' method='post'style='margin:0px;'>
+		<form name='form' action="<%= request.getContextPath() %> /answer.te" method='post' style='margin:0px;'>
 		<select id='menu_top_select' name='top' onchange='topOptChange(this.form)'>
 		<option value=''>응시 분야를 선택하세요.</option>
 		<option value='10'>기능·기술 [기사]</option>
@@ -43,6 +43,7 @@
 		<option value=''>회차를 선택하세요.</option>
 		<option value="-2">랜덤 모의고사</option>
 		<option value="121049" selected>2011년 1회</option>
+		<option value="121050">2011년 2회</option>
 		</select>
 		
 		</form>
@@ -62,9 +63,9 @@
 	</div></div></div></div></td></tr>
 </table>
 	
-	<table style="margin:0px 0px 5px 0px; width:100%; border:1px solid #ccc; background:#f8f8f8" align="center"><!-- 상단 타이틀 시작. -->
-<tr style="height:45px;">
-<td style="font-family:MalgunGothic,Sans-serif; font-weight:bolder; color:lightskyblue; font-size:11pt" align="center" valign="middle">
+<table style="margin:0px 0px 5px 0px; width:100%; border:1px solid #ccc; background:#f8f8f8" align="center"><!-- 상단 타이틀 시작. -->
+	<tr style="height:45px;">
+	<td style="font-family:MalgunGothic,Sans-serif; font-weight:bolder; color:lightskyblue; font-size:11pt" align="center" valign="middle">
 	정보처리기능사 필기 (2011년 1회 기출문제) 응시
 	<span style="font-size:10pt; font-weight:500">
 		<span style="padding-left:8px; font-weight:500">Timer</span>
@@ -146,7 +147,7 @@
 	<tr style='padding:3px 2px 1px 2px' height='33'>
 	<td align='center'>1과목</td>
 	<td align='center'>응시전<br />20문제<br /></td><td>&nbsp;</td>
-	<td colspan='1' align='center'><a href="../views/answer/answerPage.jsp" style='color:#79a5e4; font-weight:bold'>응시하기</a></td>
+	<td colspan='1' align='center'><a href="../answer/answerPage.jsp" style='color:#79a5e4; font-weight:bold'>응시하기</a></td>
 	<td colspan='1' align='center'><a href="javascript:start_testEach(1, 'first', 1, 20)" style='color:#79a5e4; font-weight:bold'>응시하기</a></td></td></tr>
 	<tr style='padding:3px 2px 1px 2px' height='33'>
 	<td align='center'>2과목</td>
@@ -167,6 +168,34 @@
 	</td>
 	</tr>
 	</table>
+
+<button id="selectBtn">테스트</button>
+	<script>
+		$(function(){
+			$('#selectBtn').click(function(){
+				$.ajax({
+					url : "/com/answer.te",
+					type : "get",
+					
+					success : function(data){
+						
+						$select = $('#selectTest');
+						$select.find("option").remove();
+						for(var i = 0; i < data.length; i++){
+							
+							$select.append("<option value='"+ data[i].tNo +"'>"
+									 	+data[i].userNo+"</option>");
+						}
+						
+					}, error : function(data){
+						
+						console.log("에러");
+					}
+					<a href="/views/answer/answerPage.jsp"></a>
+				});
+			});
+		})
+	</script>
 	
 </div><!--Mobile, PC 페이지 컨테이너 가운데 정렬 끝.-->
 </body>

@@ -50,7 +50,6 @@
 	</div></div></div></div></td></tr>
 </table>
 
-
  	<div style='margin-bottom:8px; color:#ff6868; text-align:center;' >
  	※ 응시하기 버튼을 클릭하시면, 신규응시 또는 이전 응시결과 상세분석, 틀린 문제 다시 풀기 등을 하실 수 있습니다.</div>
 	</div>
