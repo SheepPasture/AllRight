@@ -8,9 +8,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
+
 	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
 	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
-
 	<style>
 
     /* 게시판관련 */
@@ -100,7 +100,7 @@
 						</table>
  						<div class="btn_area2">
  								<button onclick="location.href='selectList.ann'">목록으로 바로가기</button>
-								<button onclick="location.href='<%= request.getContextPath()%>/aUpdate.ann?ano='+<%= a.getAno() %>" >수정</button>
+								<button onclick="location.href='<%= request.getContextPath()%>/aUpView.ann?ano='+<%= a.getAno() %>" >수정</button>
  						
 							<!-- <a href="/allRight/selectList.ann">목록으로 바로가기</a>				
 							<a href="/allRight/aUpdate.ann">수정</a> -->			

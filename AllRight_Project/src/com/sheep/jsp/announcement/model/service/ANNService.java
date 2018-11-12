@@ -68,7 +68,7 @@ public class ANNService {
 		if(result > 0) commit(con);
 		else rollback(con);
 		
-		close(con);
+/*		close(con);*/
 		
 		return result;
 		

@@ -44,25 +44,26 @@ public class ANNUpdateServlet extends HttpServlet {
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		
-		System.out.println("title: " + title + " content: " + content);
+		System.out.println("ano: " + ano + "title: " + title + " content: " + content);
 
 		a.setAtitle(title);
 		a.setAcontent(content);
 
-/*		if(result > 0) {
+		int result = as.updateANN(a);
+		
+		System.out.println("업데이트 서블릿 result:"+result);
+		
+		if(result > 0) {
 			
 			response.sendRedirect("selectOne.ann?ano="+ano);
 			
 		} else {
 			request.setAttribute("msg", "공지사항 수정 실패!");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);	
-		}*/
+		}
 		
-		int result = as.updateANN(a);
 		
-		System.out.println("업데이트 서블릿 result:"+result);
-		
-		String page = "";
+/*		String page = "";
 		
 		if(result > 0){
 			page = "views/announcement/ANNDetail.jsp";
@@ -74,7 +75,7 @@ public class ANNUpdateServlet extends HttpServlet {
 		}
 		
 		request.getRequestDispatcher(page).forward(request, response);
-		
+		*/
 	}
 
 	/**
