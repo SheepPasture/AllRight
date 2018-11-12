@@ -55,8 +55,11 @@ public class NewsInsertServlet extends HttpServlet {
 				);
 		
 		String title = mrequest.getParameter("subject");
-		String content = mrequest.getParameter("content");
+		String content = mrequest.getParameter("content").replace("\r\n", "<br>");
 		String fileName = mrequest.getFilesystemName("file");
+		
+		//한줄 띄어쓰기 처리
+		//content = content.replaceAll("\r\n", "<br>");
 		
 		News n = new News();
 		
