@@ -44,18 +44,20 @@ public class LicenseInputServlet extends HttpServlet {
 			ArrayList<LicenseInfo> list = new LicenseService().selectLicense();
 			
 			// 가져온 리스트로 응시료 업데이트 실행
-			int result2 = new LicenseService().updateLicense(list);
+			list = new LicenseService().updateLicense(list);
+			
+			// info까지 업데이트 된 자격증 정보 리스트
+			list = new LicenseService().updateInfoData(list);
 			
 			
-			if(result2 > 0) System.out.println("응시료 업데이트 성공!");
-			else System.out.println("응시료 업데이트 실패!");
+//			if(result2 > 0) System.out.println("응시료 업데이트 성공!");
+//			else System.out.println("응시료 업데이트 실패!");
 			
 			
 		} else {
 			
 			// 실패
 			System.out.println("자격증 저장 실패!");
-			
 			
 		}
 		

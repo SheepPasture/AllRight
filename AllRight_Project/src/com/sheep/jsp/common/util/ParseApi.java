@@ -2,7 +2,6 @@ package com.sheep.jsp.common.util;
 
 import java.util.ArrayList;
 
-import javax.management.ListenerNotFoundException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -13,17 +12,6 @@ import org.w3c.dom.NodeList;
 
 import com.sheep.jsp.licenseinfo.model.vo.LicenseInfo;
 
-//CREATE TABLE LICENSEINFO(
-//
-//		LNO NUMBER PRIMARY KEY,						시퀀스 사용
-//		LNAME VARCHAR2(50) NOT NULL,					o
-//		LINFO VARCHAR2(3000) NOT NULL,				   	
-//		LDATE VARCHAR2(200) NOT NULL,
-//		LCATEGORY VARCHAR2(50) NOT NULL,				o
-//		LCOST1 NUMBER NOT NULL,
-//		LCOST2 NUMBER NOT NULL
-//
-//);
 public class ParseApi {
 
 	private String getTagValue(String tag, Element eElement) {
@@ -32,6 +20,21 @@ public class ParseApi {
 		Node nValue = (Node) nlList.item(0);
 		if (nValue == null)
 			return null;
+		return nValue.getNodeValue();
+	}
+	
+	private String getTagValues(String tag, Element eElement) {
+		
+		Node nValue = null;
+		
+		for(int i = 0; i < eElement.getElementsByTagName(tag).getLength(); i++){
+			
+			NodeList nlList = eElement.getElementsByTagName(tag).item(i).getChildNodes();
+			nValue = (Node) nlList.item(i);
+			if (nValue == null)
+				return null;
+		}
+		
 		return nValue.getNodeValue();
 	}
 
@@ -46,8 +49,6 @@ public class ParseApi {
 
 			// root tag
 			doc.getDocumentElement().normalize();
-			// System.out.println("Root element :" +
-			// doc.getDocumentElement().getNodeName());
 
 			// 파싱할 tag
 			nList = doc.getElementsByTagName("item");
@@ -65,9 +66,6 @@ public class ParseApi {
 
 		// parsing할 url 지정(API 키 포함해서)
 		String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryListNationalQualifcationSVC/getList?serviceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
-		// String url2 =
-		// "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getFeeList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
-		// url2 += "&jmCd=1320";
 
 		NodeList nList = common(url);
 
@@ -78,9 +76,6 @@ public class ParseApi {
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
 				Element eElement = (Element) nNode;
-				// System.out.println("#################################");
-				// System.out.println(eElement.getTextContent());
-				// System.out.println(getTagValue("jmfldnm", eElement));
 
 				l = new LicenseInfo(getTagValue("jmcd", eElement), getTagValue("jmfldnm", eElement), getTagValue("obligfldnm", eElement));
 
@@ -95,8 +90,6 @@ public class ParseApi {
 	}
 	
 	public ArrayList<LicenseInfo> getCost(ArrayList<LicenseInfo> list){
-		
-		//ArrayList<LicenseInfo> list = new ArrayList<LicenseInfo>();
 		
 		for(int i = 0; i < list.size(); i ++){
 			
@@ -116,11 +109,9 @@ public class ParseApi {
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
 					Element eElement = (Element) nNode;
-					// System.out.println("#################################");
-					//System.out.println(eElement.getTextContent());
-					//l = new LicenseInfo(getTagValue("contents", eElement));
+					
 					list.get(i).setlCost(getTagValue("contents", eElement));
-					//list.add(l);
+					
 
 				} // for end
 			} // if end
