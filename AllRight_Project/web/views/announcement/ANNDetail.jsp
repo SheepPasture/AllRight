@@ -8,7 +8,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
+	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
+	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
 	<style>
 
