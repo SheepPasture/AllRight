@@ -108,4 +108,24 @@ public class MemberDao {
 		return result;
 	}
 
+	public int updateMember(Connection con, Member m) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("updateMember");
+		
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,m.getUserPwd());
+			pstmt.setString(2,m.getUserName());
+			pstmt.setString(3,m.getEmail());
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
 }
