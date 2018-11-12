@@ -79,14 +79,7 @@
 			<br />
 			<div align="center">
  				<button id="save" class="btn btn-primary" onclick="save()" type="submit">Save</button>
-				<button id="back" class="btn btn-primary" onclick="back()" type="button">Back</button>
- 		 		<script>
-					
-					function back(){
-						location.href='/allRight/selectList.ann';
-					}
-					
-		 		</script>  
+				<button id="back" class="btn btn-primary" onclick="location.href='/allRight/selectList.ann'" type="reset">Back</button>
 			</div></form>
 			</div>
 		</div>

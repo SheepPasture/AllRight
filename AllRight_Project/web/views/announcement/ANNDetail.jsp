@@ -99,7 +99,7 @@
 						</table>
  						<div class="btn_area2">
  								<button onclick="location.href='selectList.ann'">목록으로 바로가기</button>
-								<button onclick="location.href='<%= request.getContextPath()%>/aUpdate.ann?ano='+<%= a.getAno() %>" >수정</button>
+								<button onclick="location.href='<%= request.getContextPath()%>/aUpView.ann?ano='+<%= a.getAno() %>" >수정</button>
  						
 							<!-- <a href="/allRight/selectList.ann">목록으로 바로가기</a>				
 							<a href="/allRight/aUpdate.ann">수정</a> -->			

@@ -32,6 +32,8 @@ public class NewsUpdateViewServlet extends HttpServlet {
 		
 		int nno = Integer.parseInt(request.getParameter("nno"));
 		
+		System.out.println("뉴스업데이트뷰서블릿");
+		
 		News n = new NewsService().updateView(nno);
 		
 		String page = "";

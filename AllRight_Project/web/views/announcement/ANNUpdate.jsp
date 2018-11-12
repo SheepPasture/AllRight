@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"  import="com.sheep.jsp.announcement.model.vo.*" %>
+    pageEncoding="UTF-8"  import="com.sheep.jsp.announcement.model.vo.*, java.util.*" %>
  <% Announcement a = (Announcement)request.getAttribute("announcement"); %>
 <!DOCTYPE html>
 <html>
@@ -9,13 +9,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
     
-	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
-	<!-- SUMMERNOTE -->
-	<!--   <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
-  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
-  <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script> -->
+ 	<script src="//cdn.ckeditor.com/4.9.2/basic/ckeditor.js"></script>
 
 	<style>
 
@@ -56,14 +50,19 @@
 					<form id="updateForm" method="post">
 					<!-- 게시판(뷰)시작 -->
 					<div class="board_area">
-						<table class="view">
+						<table class="view" id="listArea">
 							<tbody>
 								<tr>
+									<th class="col-sm-2">글번호</th>
+									<td id="ano"><%= a.getAno() %></td>
+								</tr>
+								<tr>
 									<th class="col-sm-2">제목</th>
-									<td>
-										<textarea name="title" rows="1" cols="90"><%= a.getAtitle() %></textarea>
-										<input type="hidden" name="ano" value="<%= a.getAno() %>">
-									</td>
+				<%-- 					<td>
+										<textarea name="title" rows="1" cols="90" ><%= a.getAtitle() %></textarea>
+										<input cols="90" name="ano" value="<%= a.getAno() %>"/>
+									</td> --%>
+									<td><textarea name="title" rows="1" cols="90" ><%= a.getAtitle() %></textarea></td>
 								</tr>
 								<tr>
 									<th class="col-sm-2">내용</th>
@@ -82,45 +81,31 @@
 					</div>
 					<br />
 				<div align="center">
-	 				<button id="edit" class="btn btn-primary" onclick="edit()">Edit</button>
-	 				<button id="del" class="btn btn-primary" onclick="del()">Delete</button>
-					<button id="back" class="btn btn-primary" onclick="back()" type="button">Back</button>
- 		 		<script>
- 		 		
+					<button class="btn btn-primary" onclick="edit();">Edit</button>
+	 				<button class="btn btn-primary" onclick="del();">Delete</button>
+					<button class="btn btn-primary" onclick="back();">Back</button>
+				</div>
+				</form>
+		 		<script>	 		
+					var ano = $("#listArea td").parent().children('td').eq(0).text();
+		 		
 	 		 		function edit(){
-						$("#updateForm").attr("action","<%=request.getContextPath() %>/aUpdate.ann");
-						
-					}
-					
+	 		 			$("#updateForm").attr("action", "<%=request.getContextPath()%>/aUpdate.ann");
+	 		 		}
+				
 					function del(){
-						$("#updateForm").attr("action","<%=request.getContextPath() %>/aDelete.ann");
+						$("#updateForm").attr("action","<%=request.getContextPath() %>/aDelete.ann?ano="+ano);
 					}
 					
-					function back(){
-						location.href='/allRight/selectList.ann';
+					function back(){		
+						$("#updateForm").attr("action","<%=request.getContextPath() %>/selectOne.ann?ano=" + ano);
 					}
 					
-		 		</script>  
-				</div></form>
+		 		</script>
 			</div>
 			<br>
 		</div>
-<%-- 		 		<script>
-					function edit(){
-						location.href="/allRight/selectList.ann";
-					}
-					
-					function del(){
-						location.href="<%=request.getContextPath()%>/aDelete.ann<%= a.getAno() %>";
-							location.href="<%=request.getContextPath()%>/selectOne.ann?ano=" + ano;
-						$(.del).attr("action", "<%= request.getContextPath()%>/aDelete.ann");
-						$(this).attr("action", "<%= request.getContextPath()%>/aDelete.ann");
-					}
-		
-					function back(){
-						location.href="<%= request.getContextPath() %>/views/announcement/ANNList.jsp";
-					}
-		 		</script> --%>
+	</div>
 
 	<!-- FOOTER -->
 	<footer>	
