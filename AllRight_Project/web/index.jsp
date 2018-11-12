@@ -12,7 +12,6 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
    	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
-   	<link href="https://fonts.googleapis.com/css?family=Poor+Story|Roboto" rel="stylesheet">
    	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
 
 	
