@@ -31,6 +31,33 @@ public class LicenseDao {
 			e.printStackTrace();
 		}
 	}
+	
+	public int deleteLicense(Connection con) {
+		
+		int result = 0;
+		
+		Statement stmt = null;
+		
+		String sql = prop.getProperty("deleteLicense");
+		
+		try {
+			
+			stmt = con.createStatement();
+			
+			result = stmt.executeUpdate(sql);
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+	
+		} finally {
+			
+			close(stmt);
+		}
+		
+		return result;
+	}
 
 	public int insertLicense(Connection con, ArrayList<LicenseInfo> getApi) {
 		
@@ -53,7 +80,6 @@ public class LicenseDao {
 				result = pstmt.executeUpdate();
 				
 			}
-			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -112,9 +138,7 @@ public class LicenseDao {
 			close(stmt);
 		}
 		
-		
 		return list;
-		
 	}
 
 	public ArrayList<LicenseInfo> updateLicense(Connection con, ArrayList<LicenseInfo> list) {
@@ -123,14 +147,23 @@ public class LicenseDao {
 		
 		String sql = prop.getProperty("updateLicense");
 		
+		//UPDATE LICENSEINFO SET LINFO1 = ?, LINFO2 = ?, LINFO3 = ?, LCOST = ? WHERE LNO = ?
+	
 		try {
 			
 			pstmt = con.prepareStatement(sql);
 			
 			for(int i = 0; i < list.size(); i++){
+				/*int j = 0;
+				for(; j < list.get(0).getLInfo().size() ; j++){
+					pstmt.setString(j+1, list.get(i).getLInfo().get(j));
+				}*/
 				
-				pstmt.setString(1, list.get(i).getlCost());
-				pstmt.setString(2, list.get(i).getlNo());
+				pstmt.setString(1, list.get(i).getlInfo().get(0));
+				pstmt.setString(2, list.get(i).getlInfo().get(0));
+				pstmt.setString(3, list.get(i).getlInfo().get(0));
+				pstmt.setString(4, list.get(i).getlCost());
+				pstmt.setString(5, list.get(i).getlNo());
 
 				pstmt.executeUpdate();
 				
@@ -147,33 +180,6 @@ public class LicenseDao {
 		}
 		
 		return list;
-	}
-
-	public int deleteLicense(Connection con) {
-		
-		int result = 0;
-		
-		Statement stmt = null;
-		
-		String sql = prop.getProperty("deleteLicense");
-		
-		try {
-			
-			stmt = con.createStatement();
-			
-			result = stmt.executeUpdate(sql);
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-	
-		} finally {
-			
-			close(stmt);
-		}
-		
-		return result;
 	}
 
 }
