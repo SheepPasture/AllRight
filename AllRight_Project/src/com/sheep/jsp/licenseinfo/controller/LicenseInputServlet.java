@@ -38,17 +38,19 @@ public class LicenseInputServlet extends HttpServlet {
 			// 성공적으로 자격증 저장
 			
 			System.out.println("자격증 저장 성공!");
-			System.out.println("응시료 업데이트 중... 잠시 기다려주세요!");
 			
 			// 생성된 테이블에 응시료 업데이트를 위한 모든 내용 가져오기
 			ArrayList<LicenseInfo> list = new LicenseService().selectLicense();
 			
 			// 가져온 리스트로 응시료 업데이트 실행
-			list = new LicenseService().updateLicense(list);
+			System.out.println("응시료 업데이트 중... 잠시 기다려주세요!");
+			list = new LicenseService().updateCost(list);
+			System.out.println("응시료 업데이트 완료!");
 			
-			// info까지 업데이트 된 자격증 정보 리스트
+			// 응시료까지 포함된 list로 자격증 정보까지 업데이트 실행
+			System.out.println("자격증 정보 업데이트 중... 잠시 기다려주세요!");
 			list = new LicenseService().updateInfoData(list);
-			
+			System.out.println("자격증 정보 업데이트 완료!");
 			
 //			if(result2 > 0) System.out.println("응시료 업데이트 성공!");
 //			else System.out.println("응시료 업데이트 실패!");
