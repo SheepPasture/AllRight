@@ -8,10 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sheep.jsp.myPage.model.service.MypageService;
 import com.sheep.jsp.board.model.vo.Board;
 import com.sheep.jsp.boardComment.model.vo.BoardComment;
+import com.sheep.jsp.member.model.vo.Member;
 
 /**
  * Servlet implementation class BoardMyListServlet
@@ -32,9 +34,10 @@ public class BoardMyListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		/*int userno = Integer.parseInt(request.getParameter("USERNO"));*/
-		int userno=3;
+		HttpSession session = request.getSession(false);
+		Member m = (Member)session.getAttribute("member");
+		int userno = m.getUserNo();
+		/*int userno=3;*/
 		ArrayList<Board> blist = new ArrayList<Board>();
 		ArrayList<BoardComment> clist= new ArrayList<BoardComment>();
 		
@@ -43,7 +46,6 @@ public class BoardMyListServlet extends HttpServlet {
 
 		blist = ms.selectMyList(userno);
 		clist = ms.selectMyCommnetList(userno);
-		
 		String page="/views/myPage/viewBoard.jsp";
 
 		

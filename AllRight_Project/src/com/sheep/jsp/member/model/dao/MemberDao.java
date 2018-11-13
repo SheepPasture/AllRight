@@ -108,7 +108,7 @@ public class MemberDao {
 
 	public int updateMember(Connection con, Member m) {
 		PreparedStatement pstmt = null;
-		ResultSet rset = null;
+		
 		int result = 0;
 		
 		String sql = prop.getProperty("updateMember");
@@ -118,11 +118,34 @@ public class MemberDao {
 			pstmt.setString(1,m.getUserPwd());
 			pstmt.setString(2,m.getUserName());
 			pstmt.setString(3,m.getEmail());
+			pstmt.setString(4, m.getUserId());
+			
+			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			
+			close(pstmt);
 		}
 		
+		return result;
+	}
+
+	public int deleteMember(Connection con, String userId) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteMember");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
 		return result;
 	}
 
