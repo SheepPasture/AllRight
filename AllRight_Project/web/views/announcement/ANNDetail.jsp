@@ -70,7 +70,9 @@
 								 	<td><%= a.getAcontent() %></td>
 								</tr>			
 								<tr>
-									<td colspan="5"><input id="ano" name="ano" type="hidden" value="<%= a.getAno() %>"/></td>
+									<td colspan="5">
+										<input id="ano" name="ano" type="hidden" value="<%= a.getAno() %>"/>
+									</td>
 									
 								</tr>
 								<% } else { 

@@ -8,11 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-<!-- 	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
-	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
 
-    
  	<script src="//cdn.ckeditor.com/4.9.2/basic/ckeditor.js"></script>
+ 	
+ 	 <link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
 	<style>
 
@@ -21,7 +20,7 @@
 
     .paging { text-align:center; padding:30px 0 0 0; }
 
-    .btn_area2 { text-align:right; padding-top:20px; font-size:14px; font-weight:600;   }
+    .btn_area2 { padding-top:20px; font-size:14px; font-weight:600;   }
     .btn_area2 a { display:inline-block; padding:7px 20px; background:#666; color:#fff; }
 
     table.view { width:100%; border-top:2px solid #000;    }
@@ -78,14 +77,15 @@
 						</table>
 					</div>
 					<br />
-				<div align="center">
+				<div class="btn_area2" align="center">
 					<button class="btn btn-primary" onclick="edit();">Edit</button>
 	 				<button class="btn btn-primary" onclick="del();">Delete</button>
 					<button class="btn btn-primary" onclick="back();">Back</button>
 				</div>
 				</form>
 		 		<script>	 		
-					var ano = $("#ano").val();
+			 		var ano = $("#ano").val();
+					/* alert(("#ano").val()); */
 					
 	 		 		function edit(){
 	 		 			$("#updateForm").attr("action", "<%=request.getContextPath()%>/aUpdate.ann");

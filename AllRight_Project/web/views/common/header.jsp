@@ -37,7 +37,7 @@
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">	
 
 	<!-- JQuery -->
-  
+  	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>   
 	<script src="/allRight/resources/js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/jquery.prettyPhoto.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/jquery.nicescroll.min.js" type="text/javascript"></script>
@@ -289,7 +289,7 @@ jQuery(document).ready(function() {
                         <li class="sub-menu activ">
 							<a href="javascript:void(0)">커뮤니티</a>
 							<ul>
-								<li class="active"><a href="<%= request.getContextPath() %>/views/community/communityList.jsp">게시판</a>
+								<li class="active"><a href="<%= request.getContextPath() %>/selectList.bo">게시판</a>
 								</li>
 								<li><a href="<%= request.getContextPath() %>/views/licenseinfo/licenseinfoList.jsp">자격증 정보</a></li>
 							</ul>
