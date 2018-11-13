@@ -38,7 +38,7 @@ public class NewsService {
 		
 		if(n != null){
 			result = nDao.updateCount(con, nno);
-			
+
 			if(result > 0 ) commit(con);
 			else rollback(con);
 		}

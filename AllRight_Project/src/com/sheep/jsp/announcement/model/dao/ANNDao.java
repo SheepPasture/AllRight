@@ -144,8 +144,8 @@ public class ANNDao {
 			
 			pstmt = con.prepareStatement(sql);
 			
-/*			pstmt.setString(1, a.getAtitle());
-			pstmt.setString(2, a.getAcontent());*/
+			pstmt.setString(1, a.getAtitle());
+			pstmt.setString(2, a.getAcontent());
 			pstmt.setInt(3, a.getAno());
 			
 			result = pstmt.executeUpdate();

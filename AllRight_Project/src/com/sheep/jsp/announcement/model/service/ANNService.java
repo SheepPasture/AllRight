@@ -1,12 +1,13 @@
 package com.sheep.jsp.announcement.model.service;
 
+import static com.sheep.jsp.common.JDBCTemplate.*;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.sheep.jsp.announcement.model.dao.ANNDao;
 import com.sheep.jsp.announcement.model.vo.Announcement;
 
-import static com.sheep.jsp.common.JDBCTemplate.*;
 
 public class ANNService {
 	
@@ -43,9 +44,12 @@ public class ANNService {
 		
 		Announcement a = aDao.selectOne(con, ano);
 		
+		System.out.println("ano" +ano);
+		System.err.println("con" + con);
+		
 		if( a!=null){
 			result = aDao.updateCount(con, ano);
-			
+
 			if(result>0) commit(con);
 			else rollback(con);
 
@@ -54,7 +58,6 @@ public class ANNService {
 		close(con);
 		
 		return a;
-
 
 	}
 

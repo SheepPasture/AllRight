@@ -1,4 +1,4 @@
-package com.sheep.jsp.announcement.model.vo;
+package com.sheep.jsp.board.model.vo;
 
 import java.io.Serializable;
 
