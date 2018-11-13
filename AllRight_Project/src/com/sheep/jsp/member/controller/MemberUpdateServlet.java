@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sheep.jsp.member.model.service.MemberService;
 import com.sheep.jsp.member.model.vo.Member;
@@ -33,18 +34,32 @@ public class MemberUpdateServlet extends HttpServlet {
 		String pwd = request.getParameter("password");
 		String name = request.getParameter("userName");
 		String email =request.getParameter("email");
-	/*	String license = request.getParameter("");*/
+	/*	String license = request.getParameter("userLi");*/
+		System.out.println(pwd);
+		/*System.out.println(name);
+		System.out.println(email);
+		*/
+		
+		HttpSession session = request.getSession(false);
+		Member m = (Member)session.getAttribute("member");
+		
 		MemberService ms = new MemberService();
-		String userId="test1";
-		Member m = new Member(userId,pwd,name,email);
+		
+		String userId=request.getParameter("userId");
 		m.setUserPwd(pwd);
 		m.setUserName(name);
 		m.setEmail(email);
 		
-		ms.updateMember(m);
+		int result = ms.updateMember(m);
 		
+		if(result!=0){
+			System.out.println("수정 성공");
+			response.sendRedirect("views/myPage/myPageMain.jsp");
+		}else{
+			System.out.println("수정 실패");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+		}
 		
-		String page = "/views/myPage/updateMember.jsp";
 	}
 
 	/**
