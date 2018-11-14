@@ -10,6 +10,7 @@ import com.sheep.jsp.boardComment.model.vo.BoardComment;
 import com.sheep.jsp.licenseinfo.model.vo.LicenseInfo;
 import com.sheep.jsp.myPage.model.dao.MyPageDao;
 import com.sheep.jsp.userLicense.model.vo.UserLicense;
+import com.sheep.jsp.userPoint.model.vo.UserPoint;
 
 public class MypageService {
 	private MyPageDao mDao = new MyPageDao();
@@ -48,16 +49,15 @@ public class MypageService {
 		close(con);
 		return list;
 	}
-	// 관심 자격증 번호
-/*	public ArrayList<UserLicense> selectLicense(int userno) {
-		
-		ArrayList<UserLicense> list = null;
+	
+	public ArrayList<UserPoint> selectMyPoint(int userno) {
+		ArrayList<UserPoint> list = null;
 		Connection con = getConnection();
-		list = mDao.selectUserLicense(con,userno);
+		list = mDao.selectPList(con,userno);
 		
 		close(con);
+		
 		return list;
-	}
-	*/	
+	}	
 	
 }

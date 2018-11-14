@@ -48,9 +48,12 @@ public class MemberLoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			
 			session.setAttribute("member",m);
-			
+			if(m.getUserId()=="admin"){
+				response.sendRedirect("/views/admin/admin.jsp");	
+			}else{
+				
 			response.sendRedirect("index.jsp");
-			
+			}
 		} catch(MemberException e){
 			
 			request.setAttribute("msg", "로그인 실패");
