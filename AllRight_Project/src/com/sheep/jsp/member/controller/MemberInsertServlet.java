@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sheep.jsp.member.model.service.MemberService;
 import com.sheep.jsp.member.model.vo.Member;
+import com.sheep.jsp.point.model.service.PointService;
 
 /**
  * Servlet implementation class MemberInsertServlet
@@ -36,11 +37,13 @@ public class MemberInsertServlet extends HttpServlet {
 		String email = request.getParameter("inputEmail");
 		
 		MemberService ms = new MemberService();
+		PointService ps = new PointService();
 		
 		Member m = new Member(userId,pass,name,email);
 		
 		try{
 			ms.insertMember(m);
+			ps.insertPoint(userId);
 			System.out.println("회원가입 성공");
 			response.sendRedirect("index.jsp");
 		} catch(Exception e){

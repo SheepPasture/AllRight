@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 import com.sheep.jsp.member.exception.MemberException;
 import com.sheep.jsp.member.model.service.MemberService;
 import com.sheep.jsp.member.model.vo.Member;
+import com.sheep.jsp.point.model.service.PointService;
+import com.sheep.jsp.point.model.vo.Point;
 
 /**
  * Servlet implementation class MemberLoginServlet
@@ -37,7 +39,11 @@ public class MemberLoginServlet extends HttpServlet {
 		
 		MemberService ms = new MemberService();
 		
+		PointService ps = new PointService();
+		
 		Member m = new Member(userId,userPwd);
+		
+		Point pt = null;
 		
 		try{
 			
@@ -45,13 +51,13 @@ public class MemberLoginServlet extends HttpServlet {
 			
 			System.out.println("로그인 성공!");
 			
+			pt = ps.selectPoint(m.getUserNo());
+			
 			HttpSession session = request.getSession();
 			
 			session.setAttribute("member",m);
-			if(m.getUserId()=="admin"){
-				response.sendRedirect("/views/admin/admin.jsp");	
-			}else{
-				
+			session.setAttribute("point", pt);
+			
 			response.sendRedirect("index.jsp");
 			}
 		} catch(MemberException e){
@@ -62,7 +68,7 @@ public class MemberLoginServlet extends HttpServlet {
 			
 			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 			
-		}
+		} 
 		
 	}
 

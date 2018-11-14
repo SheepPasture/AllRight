@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.sheep.jsp.member.model.vo.Member"%>
+    pageEncoding="UTF-8" import="com.sheep.jsp.member.model.vo.Member"
+    import="com.sheep.jsp.point.model.vo.Point"%>
 <%
 	Member m = (Member)session.getAttribute("member");
+	Point pt = (Point)session.getAttribute("point");
 %>
 <!DOCTYPE html>
 <head>
@@ -186,7 +188,7 @@
 		</form>
 		<% } else { %>
 		<div id="userInfo">
-			<label><%= m.getUserName() %>님의 방문을 환영합니다.</label>
+			<label><%= m.getUserName() %>님의 방문을 환영합니다.</label><br>
 			<div class="btns" >
 				<input type="button" value="로그아웃" onclick="logout()" />
 			</div>

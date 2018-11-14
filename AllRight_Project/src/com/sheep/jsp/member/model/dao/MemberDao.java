@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import com.sheep.jsp.member.exception.MemberException;
 import com.sheep.jsp.member.model.vo.Member;
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 
 public class MemberDao {
 	
@@ -41,18 +42,19 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		
 		
-		String sql = prop.getProperty("insertMember");
+		String Sql = prop.getProperty("insertMember");
 		
 		
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(Sql);
 			
 			pstmt.setString(1, m.getUserId());
 			pstmt.setString(2, m.getUserPwd());
 			pstmt.setString(3, m.getUserName());
 			pstmt.setString(4, m.getEmail());
 			
-			result = pstmt.executeUpdate();
+			result = pstmt.executeUpdate();			
+			
 			
 		} catch (SQLException e) {
 			throw new MemberException(e.getMessage());
@@ -147,6 +149,33 @@ public class MemberDao {
 			close(pstmt);
 		}
 		return result;
+	}
+	
+	public int selectUserNo(Connection con, String userId){
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectUserId");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) result = Integer.parseInt(rset.getString("userno"));
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		
+		
+		return result;
+		
 	}
 
 }
