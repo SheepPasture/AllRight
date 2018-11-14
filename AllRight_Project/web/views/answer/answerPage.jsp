@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -109,10 +110,6 @@
 </div>
 </table>
 
-File hwp = new File("110213.hwp"); // 텍스트를 추출할 HWP 파일
-Writer writer = new StringWriter(); // 추출된 텍스트를 출력할 버퍼
-HwpTextExtractor.extract(hwp, writer); // 파일로부터 텍스트 추출
-String text = writer.toString(); // 추출된 텍스트
 	
 <!--  Content Start -->
 
