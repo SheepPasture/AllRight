@@ -3,8 +3,8 @@
 	import="com.sheep.jsp.member.model.vo.Member, com.sheep.jsp.userLicense.model.vo.*,com.sheep.jsp.licenseinfo.model.vo.*, java.util.*"%>
 
 <%
-	Member m = (Member)session.getAttribute("member"); 
-	/* Member m = (Member) request.getAttribute("member"); */
+	/* Member m = (Member)session.getAttribute("member"); */
+	Member m = (Member) request.getAttribute("member");
 	LicenseInfo li = (LicenseInfo) request.getAttribute("lInfo");
 %>
 <!DOCTYPE html>
@@ -15,7 +15,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	
+
+
 
 </head>
 <body>
@@ -43,7 +44,7 @@
 							<label class="col-sm-3 control-label" for="userId">유저아이디</label>
 							<div class="col-sm-6">
 								<input class="form-control" id="inputEmail" type="text" readonly
-									placeholder="<%=m.getUserId() %>">
+									placeholder="아이디">
 							</div>
 						</div>
 
@@ -51,7 +52,7 @@
 							<label class="col-sm-3 control-label" for="userId">이름</label>
 							<div class="col-sm-6">
 								<input class="form-control" id="inputEmail" type="text" readonly
-									placeholder="<%=m.getUserName() %>">
+									placeholder="아이디">
 							</div>
 						</div>
 						<br>
@@ -59,7 +60,7 @@
 							<label class="col-sm-3 control-label" for="userId">이메일</label>
 							<div class="col-sm-6">
 								<input class="form-control" id="inputEmail" type="text" readonly
-									placeholder="<%=m.getEmail()%>">
+									placeholder="아이디">
 							</div>
 						</div>
 						<br>

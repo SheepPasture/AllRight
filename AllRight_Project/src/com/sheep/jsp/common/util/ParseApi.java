@@ -23,19 +23,19 @@ public class ParseApi {
 		return nValue.getNodeValue();
 	}
 	
-	private ArrayList<String> getTagValues(String tag, Element eElement) {
+	private String getTagValues(String tag, Element eElement) {
 		
-		ArrayList<String> result =  new ArrayList<String>();
+		Node nValue = null;
 		
 		for(int i = 0; i < eElement.getElementsByTagName(tag).getLength(); i++){
 			
 			NodeList nlList = eElement.getElementsByTagName(tag).item(i).getChildNodes();
-			result.add(nlList.item(i).toString());
-
+			nValue = (Node) nlList.item(i);
+			if (nValue == null)
+				return null;
 		}
 		
-		return result;
-
+		return nValue.getNodeValue();
 	}
 
 	private NodeList common(String url) {
@@ -93,7 +93,7 @@ public class ParseApi {
 		
 		for(int i = 0; i < list.size(); i ++){
 			
-			System.out.println("응시료 업데이트 중"+"("+ (i+1) +"/"+ list.size() +")");
+			System.out.println("응시료 업데이트 중"+"("+ (i+1) +"/597)");
 			
 			String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getFeeList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D&jmCd=";
 			
@@ -121,46 +121,6 @@ public class ParseApi {
 		
 		return list;
 		
-	}
-
-	public ArrayList<LicenseInfo> getInfoList(ArrayList<LicenseInfo> list) {
-		
-		int size = list.size();
-		int i = 0;
-		
-		ArrayList<LicenseInfo> resultList = new ArrayList<LicenseInfo>();
-		
-		// licenseInfo :  info 업데이트전 자격증 정보 한건
-		for(LicenseInfo licenseInfo :  list) {
-			System.out.println("자격증 정보 업데이트 중"+"("+ (i+1) +"/"+ size +")");
-					
-			String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryInformationTradeNTQSVC/getList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D&jmCd=";
-					
-			url += licenseInfo.getlNo();
-					
-			NodeList nList = common(url);
-
-
-			for (int j = 0; j < nList.getLength(); j++) {
-						
-				Node nNode = nList.item(j);
-				
-					if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-						Element eElement = (Element) nNode;
-							
-						// 자격증에 info 데이터 setting
-						licenseInfo.setlInfo(getTagValues("contents", eElement));
-					}
-			}
-			
-			i++;
-			
-			resultList.add(licenseInfo);
-		}
-		
-		
-		return resultList;
 	}
 
 }

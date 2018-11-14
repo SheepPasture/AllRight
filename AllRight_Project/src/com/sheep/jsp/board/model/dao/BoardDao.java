@@ -132,7 +132,7 @@ public class BoardDao {
 			
 			pstmt.setString(1, b.getbTitle());
 			pstmt.setString(2, b.getbContent());
-			pstmt.setString(3, b.getbWriter());
+/*			pstmt.setString(3, b.getbWriter());*/
 			
 			result = pstmt.executeUpdate();
 			

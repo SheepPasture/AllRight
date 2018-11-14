@@ -3,7 +3,7 @@
 	import="com.sheep.jsp.member.model.vo.Member, com.sheep.jsp.userLicense.model.vo.*,com.sheep.jsp.licenseinfo.model.vo.*, java.util.*"%>
 
 <%
-	Member m = (Member)session.getAttribute("member");
+	Member m = (Member) request.getAttribute("member");
 /* m.setUserId("test1");
 m.setUserName("test1"); */
 
@@ -96,19 +96,19 @@ td {
 				</div>
 
 				<form class="form-horizontal" id="updateForm"
-					<%-- action="<%=request.getContextPath()%>/mUpdate.me" --%> method="post">
+					action="/allRight/mUpdate.me" method="post">
 					<div class="form-group">
 						<label class="col-sm-3 control-label" for="userId">유저아이디</label>
 						<div class="col-sm-6">
-							<input class="form-control" id="userId" name = "userId" type="text" readonly
-								placeholder="<%=m.getUserId()%>">
+							<input class="form-control" id="userId" type="text" readonly
+								placeholder="sd<%-- <%=m.getUserId()%> --%>">
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<label class="col-sm-3 control-label" for="password">비밀번호</label>
 						<div class="col-sm-6">
-							<input class="form-control" id="password" name="password" type="password"
+							<input class="form-control" id="password" type="password"
 								placeholder="비밀번호">
 							<p class="help-block">숫자, 특수문자 포함 8자 이상</p>
 						</div>
@@ -126,27 +126,27 @@ td {
 					<div class="form-group">
 						<label class="col-sm-3 control-label" for="userName">닉네임</label>
 						<div class="col-sm-6">
-							<input class="form-control" id="userName" name="userName" type="text"
-								placeholder="<%=m.getUserName()%>" value="<%=m.getUserName()%>">
+							<input class="form-control" id="userName" type="text"
+								placeholder="이름">
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label class="col-sm-3 control-label" for="email">이메일</label>
 						<div class="col-sm-6">
-							<input class="form-control" id="email" name="email" type="email"
-								placeholder="<%=m.getEmail()%>" value="<%=m.getEmail()%>">
+							<input class="form-control" id="email" type="email"
+								placeholder="이메일">
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="userLi">관심자격증</label>
+						<label class="col-sm-3 control-label" for="userId">관심자격증</label>
 						<div>
 							<select name="" id="">
 								<option value="">아이티</option>
 								<option value="">건축</option>
 								<option value="">기타</option>
-							</select> <select name="licenseName" id="">
+							</select> <select name="" id="">
 								<option value="">정처기</option>
 								<option value="">mos</option>
 								<option value="">컴활</option>
@@ -163,32 +163,23 @@ td {
 									수정</button>
 								<button class="btn btn-danger" onclick="memberDelete();">회원
 									탈퇴</button>
-								<button class="btn btn-danger" onclick="memberMain();">
-								뒤로가기</button>
 							</div>
 						</div>
 				</form>
-			</article>
-		</div>
-	</div>
-	<script>
-		function memberDelete(){
-		console.log("delete 클릭");
-    		$('#updateForm').attr("action", "<%=request.getContextPath()%>/mDelete.me");
-	<%-- 	location.href = "<%=request.getContextPath()%>/mDelete.me"; --%>
-     	}
-     	function memberUpdate() {
-			/* $("#updateForm").submit(); */
-				$('#updateForm').attr("action", "<%=request.getContextPath()%>/mUpdate.me");
-		 	<%-- location.href = "<%=request.getContextPath() %>/mUpdate.me" --%>
-		}
-    
-    	function memberMain(){
-    			$('#updateForm').attr("action", "<%=request.getContextPath()%>/views/myPage/myPageMain.jsp");
-    		console.log("main클릭");
-    	}
+				
 
-		console.log($('#password~p').text());
+			</article>
+
+
+		</div>
+
+	</div>
+
+
+
+	<script>
+
+	console.log($('#password~p').text());
 		/* function(){
 			$('#password~input').text()+="비밀번호가 일치하지 않습니다.";
 			/* if($('#password').val != $('#passwordCheck').val){ */
@@ -198,6 +189,21 @@ td {
 			console.log("일치");	
 			} 
 		} */
+     	function memberUpdate() {
+			$("#updateForm").submit();
+			
+		<%-- 	location.href = "<%= request.getContextPath() %>/mUpdate.me"
+			 --%>
+			
+		}
+    	function memberDelete(){
+         	<%-- 	location.href = "/myWeb/mDelete.me?userno=<%=m.getUserNo()%>"; --%>
+         	}
+		
+		<%-- function memberDelete() {
+			location.href = "/allRight/mDelete.me?userId=<%=m.getUserId()%>";
+		} --%>
+      
       </script>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

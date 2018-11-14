@@ -2,11 +2,9 @@
     pageEncoding="UTF-8"
     import="com.sheep.jsp.member.model.vo.Member, com.sheep.jsp.userLicense.model.vo.*,com.sheep.jsp.licenseinfo.model.vo.*, java.util.*"%>
 <%
-Member m = (Member)session.getAttribute("member"); 
-/* ArrayList<Member> m = (ArrayList<Member>)request.getAttribute("list"); */
+ArrayList<Member> m = (ArrayList<Member>)request.getAttribute("list");
 ArrayList<LicenseInfo> al = (ArrayList<LicenseInfo>)request.getAttribute("list"); 
 String msg = (String)request.getAttribute("msg");
-/* ArrayList dayArr = request.getAttribute("dayArr"); */
 %>
 
 <!DOCTYPE html>
@@ -77,11 +75,10 @@ String msg = (String)request.getAttribute("msg");
 		
 		var title1 = "<%=al.get(0).getlName()%>";
 		var title2 = "<%=al.get(1).getlName()%>";
-		<%-- var title3 = "<%=al.get(2).getlName()%>"; --%>
+		var title3 = "<%=al.get(2).getlName()%>";
 		var date1 = "<%=al.get(0).getlDate()%>";
 		var date2 = "<%=al.get(1).getlDate()%>";
-		console.log(title1);
-		<%-- var date3 = "<%=al.get(2).getlDate()%>";  --%>
+		var date3 = "<%=al.get(2).getlDate()%>"; 
 				 	 $('#calendar').fullCalendar({
 				      header: {
 				        left: 'prev,next today',
@@ -108,11 +105,11 @@ String msg = (String)request.getAttribute("msg");
 				    		        {
 					    		          title: title2,
 					    		          start: date2
-					    		    }/* ,
+					    		    },
 					    		    {
 					    		          title: title3,
 					    		          start: date3
-					    		    } */
+					    		    }
 				    		        
 				    		  ]  
 				       
@@ -243,7 +240,7 @@ String msg = (String)request.getAttribute("msg");
 		<td><%=l.getlDate()%></td>
 		
 		<td>큐넷</td>
-		<td><%-- <%=dayArr %> --%></td> 
+		<td>D-</td> 
 		</tr>
 		<%}%>
 		<%}else{%>

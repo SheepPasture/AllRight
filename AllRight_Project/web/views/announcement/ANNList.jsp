@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, com.sheep.jsp.announcement.model.vo.*" %>
- <% ArrayList<Announcement> list = (ArrayList<Announcement>)request.getAttribute("list"); 
+ <% ArrayList<Announcement> alist = (ArrayList<Announcement>)request.getAttribute("alist"); 
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
+<!-- 	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script> -->
 <!-- 	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" /> -->
 </head>
 <body>
@@ -49,7 +49,7 @@
 						</tr>
 					</thead>
 					<tbody>
-  							<% for(Announcement a : list){ %>
+  							<% for(Announcement a : alist){ %>
 						<tr>
 							<td class="col-md-1"><%= a.getAno() %></td>
 							<td class="col-md-6 text-center"><%= a.getAtitle()%></td>
