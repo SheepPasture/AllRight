@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="com.sheep.jsp.member.model.vo.Member, com.sheep.jsp.userLicense.model.vo.*,com.sheep.jsp.licenseinfo.model.vo.*, java.util.*"%>
+	import="com.sheep.jsp.member.model.vo.Member, com.sheep.jsp.userPoint.model.vo.*,com.sheep.jsp.licenseinfo.model.vo.*, java.util.*"%>
 
 <%
 	Member m = (Member)session.getAttribute("member"); 
 	/* Member m = (Member) request.getAttribute("member"); */
-	LicenseInfo li = (LicenseInfo) request.getAttribute("lInfo");
+	LicenseInfo li = (LicenseInfo)request.getAttribute("lInfo");
+	ArrayList<UserPoint> plist =(ArrayList<UserPoint>)request.getAttribute("plist");
+	String level = (String)request.getAttribute("level");
 %>
 <!DOCTYPE html>
 <head>
@@ -38,13 +40,17 @@
 				<article class="container">
 					<div class="form-horizontal" id="showView"
 						style="width: 70%; height: 100%;">
-
-						<div class="form-group">
-							<label class="col-sm-3 control-label" for="userId">유저아이디</label>
-							<div class="col-sm-6">
-								<input class="form-control" id="inputEmail" type="text" readonly
-									placeholder="<%=m.getUserId() %>">
-							</div>
+						
+						<div class="form-group" >
+								<div>회원 정보</div>
+								<div >
+								
+									<label class="col-sm-3 control-label" for="userId">아이디</label>
+									<div class="col-sm-6">
+										<input class="form-control" id="userId" type="text" readonly
+											placeholder="<%=m.getUserId() %>">
+									</div>
+								</div >
 						</div>
 
 						<div class="form-group">
@@ -68,14 +74,15 @@
 									자격증</b></label>
 							<div class="col-sm-6">
 								<input class="form-control" id="userId" type="text" readonly
-									placeholder="아이디값">
+									placeholder="관심 자격증">
 							</div>
 						</div>
 						<br>
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="userId">포인트</label>
+							<label class="col-sm-3 control-label" for="userPoint">포인트</label>
 							<div class="col-sm-6">
-								<input id="inputEmail" type="text">
+								<input class="form-control" id="userPoint" type="text" readonly
+									placeholder="<%=plist.get(0).getPoint()%>/ <%=plist.get(0).getTotalPoint()%> &nbsp;&nbsp;&nbsp; Lv <%=level%>">
 							</div>
 						</div>
 						<button id="mUpdateMember" onclick="mUpdate();">정보 수정</button>

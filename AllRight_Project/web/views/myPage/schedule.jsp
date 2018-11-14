@@ -6,7 +6,8 @@ Member m = (Member)session.getAttribute("member");
 /* ArrayList<Member> m = (ArrayList<Member>)request.getAttribute("list"); */
 ArrayList<LicenseInfo> al = (ArrayList<LicenseInfo>)request.getAttribute("list"); 
 String msg = (String)request.getAttribute("msg");
-/* ArrayList dayArr = request.getAttribute("dayArr"); */
+String dday = (String)request.getAttribute("dday");
+/*  ArrayList dayArr = request.getAttribute("dayArr");  */
 %>
 
 <!DOCTYPE html>
@@ -243,7 +244,7 @@ String msg = (String)request.getAttribute("msg");
 		<td><%=l.getlDate()%></td>
 		
 		<td>큐넷</td>
-		<td><%-- <%=dayArr %> --%></td> 
+		<td style = "color:red">D <%=l.getdDay()%></td> 
 		</tr>
 		<%}%>
 		<%}else{%>
