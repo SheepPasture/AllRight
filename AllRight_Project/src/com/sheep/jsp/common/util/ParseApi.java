@@ -34,19 +34,19 @@ public class ParseApi {
 		return nValue.getNodeValue();
 	}
 	
-	private ArrayList<String> getTagValues(String tag, Element eElement) {
+	private String getTagValues(String tag, Element eElement) {
 		
-		ArrayList<String> result =  new ArrayList<String>();
+		Node nValue = null;
 		
 		for(int i = 0; i < eElement.getElementsByTagName(tag).getLength(); i++){
 			
 			NodeList nlList = eElement.getElementsByTagName(tag).item(i).getChildNodes();
-			result.add(nlList.item(i).toString());
-
+			nValue = (Node) nlList.item(i);
+			if (nValue == null)
+				return null;
 		}
 		
-		return result;
-
+		return nValue.getNodeValue();
 	}
 
 	private NodeList common(String url) {
@@ -126,7 +126,7 @@ public class ParseApi {
 		
 		for(int i = 0; i < list.size(); i ++){
 			
-			System.out.println("응시료 업데이트 중"+"("+ (i+1) +"/"+ list.size() +")");
+			System.out.println("응시료 업데이트 중"+"("+ (i+1) +"/597)");
 			
 			String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getFeeList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D&jmCd=";
 			
@@ -154,6 +154,7 @@ public class ParseApi {
 		
 		return list;
 		
+<<<<<<< Upstream, based on origin/master
 	}
 
 	public ArrayList<LicenseInfo> getInfoList(ArrayList<LicenseInfo> list) {
@@ -196,6 +197,8 @@ public class ParseApi {
 //		
 //		
 		return resultList;
+=======
+>>>>>>> 07c02a2 commit request
 	}
 	
 	public void testGetApi(){

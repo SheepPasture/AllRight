@@ -76,7 +76,7 @@ public class BoardListServlet extends HttpServlet {
 			
 			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 			
-			page="/views/Board/boardList.jsp";
+			page="/views/board/boardList.jsp";
 			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
 			

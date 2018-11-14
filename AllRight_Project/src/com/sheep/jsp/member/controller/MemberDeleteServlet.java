@@ -6,10 +6,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import com.sheep.jsp.member.model.service.MemberService;
-import com.sheep.jsp.member.model.vo.Member;
 
 /**
  * Servlet implementation class MemberDeleteServlet
@@ -30,23 +26,7 @@ public class MemberDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("탈퇴실행");
-		MemberService ms = new MemberService();
-		HttpSession session = request.getSession(false);
-		
-		Member m = (Member)session.getAttribute("member");
-		System.out.println(m.getUserId());
-		int result =ms.deleteMember(m.getUserId());
-		
-		if(result!=0){
-			System.out.println("회원탈퇴 성공");
-			session.invalidate();
-			response.sendRedirect("index.jsp");
-		}else{
-			System.out.println("회원 탈퇴 실패");
-			request.getRequestDispatcher("views/myPage/updateMember.jsp").forward(request, response);
-		}
-		
+		String page = "";
 	}
 
 	/**

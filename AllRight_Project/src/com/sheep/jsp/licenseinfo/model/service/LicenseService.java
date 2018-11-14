@@ -11,21 +11,6 @@ import static com.sheep.jsp.common.JDBCTemplate.*;
 public class LicenseService {
 	
 	LicenseDao lDao = new LicenseDao();
-	
-	ParseApi pa = new ParseApi();
-	
-	public void deleteLicense() {
-		
-		Connection con = getConnection();
-		
-		int result = lDao.deleteLicense(con);
-		
-		if(result > 0) commit(con);
-		else rollback(con);
-		
-		close(con);
-		
-	}
 
 	public int insertLicense(ArrayList<LicenseInfo> getApi) {
 		
@@ -56,33 +41,35 @@ public class LicenseService {
 		return list;
 	}
 
-	public ArrayList<LicenseInfo> updateCost(ArrayList<LicenseInfo> list) {
-		
-		return pa.getCost(list);
-	}
-
-	public ArrayList<LicenseInfo> updateInfoData(ArrayList<LicenseInfo> list) {
+	public ArrayList<LicenseInfo> updateLicense(ArrayList<LicenseInfo> list) {
 		
 		Connection con = getConnection();
 		
-		list = lDao.updateLicense(con, pa.getInfoList(list));
+		ParseApi pa = new ParseApi();
+		
+		list = lDao.updateLicense(con, pa.getCost(list));
 		
 		close(con);
 		
 		return list;
+	}
+
+	public void deleteLicense() {
+		
+		Connection con = getConnection();
+		
+		int result = lDao.deleteLicense(con);
+		
+		if(result > 0) commit(con);
+		else rollback(con);
+		
+		close(con);
 		
 	}
+
+	public ArrayList<LicenseInfo> updateInfoData(ArrayList<LicenseInfo> list) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
-//	public ArrayList<LicenseInfo> updateLicense(ArrayList<LicenseInfo> list) {
-//		
-//		Connection con = getConnection();
-//		
-//		ParseApi pa = new ParseApi();
-//		
-//		list = lDao.updateLicense(con, pa.getCost(list));
-//		
-//		close(con);
-//		
-//		return list;
-//	}
 }

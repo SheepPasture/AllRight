@@ -51,10 +51,10 @@ public class MyPageDao {
 			pstmt.setInt(1,userno);
 			rset = pstmt.executeQuery();
 			
+			
 			list = new ArrayList<Board>();
-			System.out.println(userno);
+			
 			while(rset.next()){
-				System.out.println(userno+"sdasd");
 				Board b = new Board();
 				b.setbNO(rset.getInt("BNO"));
 				b.setbTitle(rset.getString("BTITLE"));
@@ -62,9 +62,6 @@ public class MyPageDao {
 				b.setbCount(rset.getInt("BCOUNT"));
 				b.setbDate(rset.getDate("BDATE"));
 			list.add(b);
-			System.out.println(b);
-			System.out.println("55555");
-			System.out.println(list);
 			}
 			
 		} catch (SQLException e) {

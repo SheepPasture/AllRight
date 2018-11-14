@@ -32,7 +32,7 @@ public class ANNListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Announcement> list = null;
+		ArrayList<Announcement> alist = null;
 		
 		ANNService as = new ANNService();
 		
@@ -70,17 +70,17 @@ public class ANNListServlet extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		list = as.selectList(currentPage, limit);
+		alist = as.selectList(currentPage, limit);
 		
 		String page = "";
 
-		if(list != null){
+		if(alist != null){
 			
 			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 			
 			page="/views/announcement/ANNList.jsp";
 			request.setAttribute("pi", pi);
-			request.setAttribute("list", list);
+			request.setAttribute("alist", alist);
 			
 		} else {
 			
