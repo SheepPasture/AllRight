@@ -160,8 +160,8 @@ public class LicenseDao {
 				}*/
 				
 				pstmt.setString(1, list.get(i).getlInfo().get(0));
-				pstmt.setString(2, list.get(i).getlInfo().get(0));
-				pstmt.setString(3, list.get(i).getlInfo().get(0));
+				pstmt.setString(2, list.get(i).getlInfo().get(1));
+				pstmt.setString(3, list.get(i).getlInfo().get(2));
 				pstmt.setString(4, list.get(i).getlCost());
 				pstmt.setString(5, list.get(i).getlNo());
 
