@@ -189,6 +189,7 @@
 		<% } else { %>
 		<div id="userInfo">
 			<label><%= m.getUserName() %>님의 방문을 환영합니다.</label><br>
+			<label> 현재 포인트 : <%= pt.getPoint() %> 누적 포인트 : <%= pt.getTotalPoint() %></label>
 			<div class="btns" >
 				<input type="button" value="로그아웃" onclick="logout()" />
 			</div>

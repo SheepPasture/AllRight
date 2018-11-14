@@ -92,11 +92,14 @@ public class PointDao {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally{
+			close(rset);
+			close(pstmt);
 		}
 		
 		
 		
-		return null;
+		return result;
 	}
 
 }
