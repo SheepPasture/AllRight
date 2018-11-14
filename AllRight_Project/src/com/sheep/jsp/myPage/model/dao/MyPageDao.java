@@ -9,12 +9,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Properties;
 import com.sheep.jsp.board.model.vo.Board;
 import com.sheep.jsp.boardComment.model.vo.BoardComment;
 import com.sheep.jsp.licenseinfo.model.vo.LicenseInfo;
 import com.sheep.jsp.userLicense.model.vo.UserLicense;
+import com.sheep.jsp.userPoint.model.vo.UserPoint;
 
 
 public class MyPageDao {
@@ -132,6 +136,42 @@ public class MyPageDao {
 				li.setlName(rset.getString("LNAME"));
 				li.setlDate(rset.getString("LDATE"));
 				
+				long minus=0;
+				Date today = new Date(); 
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String first = sdf.format(today);
+				String last= rset.getString("LDATE");
+				
+				try {
+					Date firstDate = sdf.parse(first);
+					Date lastDate = sdf.parse(last);
+					minus = (firstDate.getTime()-lastDate.getTime())/(24*60*60*1000);
+					li.setdDay(String.valueOf(minus));
+				} catch (ParseException e) {
+					
+					e.printStackTrace();
+				}
+				
+				
+				
+				/*long minus=0;
+				for(int i =0; i<list.size();i++){
+					String last = list.get(i).getlDate();
+					try {
+						Date firstDate = sdf.parse(first);
+						Date lastDate = sdf.parse(last);
+						
+						minus = (firstDate.getTime()-lastDate.getTime())/(24*60*60*1000);
+						dayArr.add(minus);
+						System.out.println(minus);
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+					
+				}
+				
+				li.setdDay(dDay);*/
+				
 				list.add(li);
 				
 			}
@@ -143,40 +183,40 @@ public class MyPageDao {
 		}
 		return list;
 	}
-	
-/*	// 관심자격증 번호
-	public ArrayList<UserLicense> selectUserLicense(Connection con, int userno){
-		ArrayList<UserLicense> list = null;
+	public ArrayList<UserPoint> selectPList(Connection con, int userno) {
+		ArrayList<UserPoint> list = null;
 		PreparedStatement pstmt = null;
-		ResultSet rset =null;
-		String sql = prop.getProperty("selectUserLicense");
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectPoint");
 		
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, userno);
 			rset=pstmt.executeQuery();
+			list = new ArrayList<UserPoint>();
 			
-			list = new ArrayList<UserLicense>();
-		
 			while(rset.next()){
 			
-				UserLicense ul = new UserLicense();
-			
-				ul.setlNo(rset.getInt("USERNO"));
-				ul.setUserNo(rset.getInt("LNO"));
 				
-				list.add(ul);
+				UserPoint u = new UserPoint();
+			
+				u.setPoint(rset.getInt("POINT"));
+				u.setTotalPoint(rset.getInt("TOTALPOINT"));
+				
+				list.add(u);
 				
 			}
+			
 		} catch (SQLException e) {
+			
 			e.printStackTrace();
 		}finally {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println(list);
 		return list;
 	}
-*/
+	
+
 
 }

@@ -56,11 +56,10 @@ public class MemberLoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			
 			session.setAttribute("member",m);
-			
 			session.setAttribute("point", pt);
 			
 			response.sendRedirect("index.jsp");
-			
+			}
 		} catch(MemberException e){
 			
 			request.setAttribute("msg", "로그인 실패");
