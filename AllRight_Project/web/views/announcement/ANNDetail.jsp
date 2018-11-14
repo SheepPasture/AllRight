@@ -56,24 +56,23 @@
 								<tr>
 									<th>제목</th>
  									<td class="title"><%= a.getAtitle()%></td>
-									<!-- <td colspan="1" class="title">타이틀</td>  -->
 									<th >조회수</th>
 									<td><%= a.getAcount() %></td>
-									<!-- <td>8</td> -->
 								</tr>
 								<tr>
 									<th>작성자</th>
 									<td>관리자</td>
 									<th>등록일시</th>
 				 					<td><%= a.getAdate() %></td>
-<!-- 									<td>2018-11-09</td> -->
 								</tr> 
 								<tr>
 									<th>내용</th>
 								 	<td><%= a.getAcontent() %></td>
 								</tr>			
 								<tr>
-									<td colspan="5"><input id="ano" name="ano" type="hidden" value="<%= a.getAno() %>"/></td>
+									<td colspan="5">
+										<input id="ano" name="ano" type="hidden" value="<%= a.getAno() %>"/>
+									</td>
 									
 								</tr>
 								<% } else { 
@@ -95,7 +94,6 @@
 								<button onclick="edit();">수정</button>
 						</div> </form>
 						<script>
-							
 							var ano = $("#ano").val();
 						
 							function edit(){
@@ -103,7 +101,6 @@
 			 		 		}
 						
 							function back(){	
-								alert($("#ano").val());
 								$("#updateForm").attr("action","<%=request.getContextPath() %>/selectList.ann");
 							}
 						</script>

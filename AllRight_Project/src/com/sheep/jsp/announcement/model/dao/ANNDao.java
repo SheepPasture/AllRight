@@ -16,11 +16,9 @@ import com.sheep.jsp.announcement.model.vo.Announcement;
 
 public class ANNDao {
 
-	private Properties prop = null;
+	private Properties prop = new Properties();
 	
 	public ANNDao(){
-		
-		prop = new Properties();
 		
 		String filePath = ANNDao.class.getResource("/config/ANN-query.properties").getPath();
 		
@@ -32,17 +30,27 @@ public class ANNDao {
 		
 	}
 	
-	public ArrayList<Announcement> selectList(Connection con) {
+	public ArrayList<Announcement> selectList(Connection con, int currentPage, int limit) {
 		
 		ArrayList<Announcement> list = null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("selectList");
 		
 		try {
-			stmt = con.createStatement();
-			rset = stmt.executeQuery(sql);
+			pstmt = con.prepareStatement(sql);
+			
+			// 1, 마지막 행 번호
+			// 2, 첫 행 번호
+			
+			int startRow = (currentPage -1) * limit + 1; // 1 -> 1, 2 -> 11
+			int endRow = startRow + limit -1;
+			
+			pstmt.setInt(1, endRow);
+			pstmt.setInt(2, startRow);
+			
+			rset = pstmt.executeQuery();
 			
 			list = new ArrayList<Announcement>();
 			
@@ -60,7 +68,7 @@ public class ANNDao {
 			e.printStackTrace();
 		} finally {
 			close(rset);
-			close(stmt);
+			close(pstmt);
 		}
 
 		return list;
@@ -106,7 +114,7 @@ public class ANNDao {
 		
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
+	
 		String sql = prop.getProperty("updateCount");
 		
 		try {
@@ -205,6 +213,29 @@ public class ANNDao {
 		
 	}
 
-
+	public int getListCount(Connection con) {
+		
+		Statement stmt = null;
+		int listCount = 0;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("listCount");
+		
+		try {
+			
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			
+			if(rset.next()){				
+				listCount = rset.getInt(1);				
+			}		
+		} catch (SQLException e) {			
+			e.printStackTrace();	
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		return listCount;
+	}
 
 }

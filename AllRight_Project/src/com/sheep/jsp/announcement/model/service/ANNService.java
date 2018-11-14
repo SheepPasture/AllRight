@@ -1,24 +1,35 @@
 package com.sheep.jsp.announcement.model.service;
 
+import static com.sheep.jsp.common.JDBCTemplate.*;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.sheep.jsp.announcement.model.dao.ANNDao;
 import com.sheep.jsp.announcement.model.vo.Announcement;
 
-import static com.sheep.jsp.common.JDBCTemplate.*;
 
 public class ANNService {
 	
 	private ANNDao aDao = new ANNDao();
+	
+	public int getListCount() {
 
-	public ArrayList<Announcement> selectList() {
-		
-		ArrayList<Announcement> list = null;
-		
 		Connection con = getConnection();
 		
-		list = aDao.selectList(con);
+		int listCount = aDao.getListCount(con);
+		
+		close(con);
+		
+		return listCount;
+		
+	}
+
+	public ArrayList<Announcement> selectList(int currentPage, int limit) {
+		
+		Connection con = getConnection();
+
+		ArrayList<Announcement> list = aDao.selectList(con, currentPage, limit);
 		
 		close(con);
 		
@@ -33,15 +44,21 @@ public class ANNService {
 		
 		Announcement a = aDao.selectOne(con, ano);
 		
+		System.out.println("ano" +ano);
+		System.err.println("con" + con);
+		
 		if( a!=null){
 			result = aDao.updateCount(con, ano);
-			
+
 			if(result>0) commit(con);
 			else rollback(con);
+
 		}
+
 		close(con);
 		
 		return a;
+
 	}
 
 	public Announcement updateView(int ano) {
@@ -99,6 +116,8 @@ public class ANNService {
 		return result;
 		
 	}
+
+
 
 
 

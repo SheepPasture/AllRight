@@ -1,4 +1,4 @@
-package com.sheep.jsp.announcement.controller;
+package com.sheep.jsp.board.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sheep.jsp.announcement.model.service.ANNService;
-import com.sheep.jsp.announcement.model.vo.Announcement;
+import com.sheep.jsp.board.model.service.BoardService;
+import com.sheep.jsp.board.model.vo.Board;
+
+
 
 /**
- * Servlet implementation class ANNUpdateViewServlet
+ * Servlet implementation class NewsInsertServlet
  */
-@WebServlet("/aUpView.ann")
-public class ANNUpdateViewServlet extends HttpServlet {
+@WebServlet("/bInsert.bo")
+public class BoardInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ANNUpdateViewServlet() {
+    public BoardInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,26 +32,32 @@ public class ANNUpdateViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int ano = Integer.parseInt(request.getParameter("ano"));
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String writer = request.getParameter("writer");
 
-		System.out.println("annupdateviews");
+		Board b = new Board();
 		
-		Announcement a = new ANNService().selectOne(ano);
+		System.out.println("title : " + title);
+		System.out.println("content : " + content);
+		System.out.println("writer: " + writer);
+
+		b.setbTitle(title);
+		b.setbContent(content);
+		b.setbWriter(writer);
 		
-		String page = "";
+		int result = new BoardService().insertBoard(b);
 		
-		if(a!=null){
-			page = "/views/announcement/ANNUpdate.jsp";
-			request.setAttribute("announcement", a);
+		if(result > 0){
+			response.sendRedirect("selectList.bo");
+		} else{
+			request.setAttribute("msg", "게시물 작성 실패");
 			
-		} else {
-			page = "/views/common/errorPage.jsp";
-			request.setAttribute("msg", "공지 수정 실패!");
+			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 		}
 		
-		request.getRequestDispatcher(page).forward(request, response);
-		
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

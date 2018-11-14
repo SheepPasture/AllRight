@@ -46,6 +46,7 @@ public class ANNUpdateServlet extends HttpServlet {
 		
 		if(result > 0){
 			response.sendRedirect("selectOne.ann?ano=" + ano);
+			System.out.println("업데이트");
 		} else{
 			request.setAttribute("msg", "공지사항 수정 실패!");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);

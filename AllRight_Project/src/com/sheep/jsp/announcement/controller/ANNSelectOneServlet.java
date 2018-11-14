@@ -32,9 +32,7 @@ public class ANNSelectOneServlet extends HttpServlet {
 
 		int ano = Integer.parseInt(request.getParameter("ano"));
 		
-		ANNService as = new ANNService();
-		
-		Announcement a = as.selectOne(ano);
+		Announcement a = new ANNService().selectOne(ano);
 
 		System.out.println("SelectOne ano: "+ano);
 		

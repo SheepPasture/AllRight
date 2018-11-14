@@ -18,7 +18,7 @@
 		</td>
 		<td>	
 		<div id="top" style="padding:12px 0px; text-align:left;"><!--PC 리본메뉴, 문제집중뷰 시작.-->
-		<form name='form' action="<%= request.getContextPath() %> /answer.te" method='post' style='margin:0px;'>
+		<form name='form' action="<%= request.getContextPath() %> /question.qu" method='post' style='margin:0px;'>
 		<select id='menu_top_select' name='top' onchange='topOptChange(this.form)'>
 		<option value=''>응시 분야를 선택하세요.</option>
 		<option value='10'>기능·기술 [기사]</option>
@@ -109,9 +109,11 @@
 </div>
 </table>
 
+File hwp = new File("110213.hwp"); // 텍스트를 추출할 HWP 파일
+Writer writer = new StringWriter(); // 추출된 텍스트를 출력할 버퍼
+HwpTextExtractor.extract(hwp, writer); // 파일로부터 텍스트 추출
+String text = writer.toString(); // 추출된 텍스트
 	
-
-
 <!--  Content Start -->
 
 
