@@ -72,7 +72,7 @@ public class NewsListServlet extends HttpServlet {
 		
 		poplist = ns.selectList();
 		
-		System.out.println("poplist : " +  poplist);
+		System.out.println("poplist : " + poplist);
 		
 		String page = "";
 		
