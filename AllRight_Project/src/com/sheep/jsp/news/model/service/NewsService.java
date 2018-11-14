@@ -110,5 +110,17 @@ public class NewsService {
 		return listCount;
 	}
 
+	public ArrayList<News> selectList() {
+		
+		ArrayList<News> poplist = null;
+		Connection con = getConnection();
+		
+		poplist = nDao.selectList(con);
+		
+		close(con);
+		
+		return poplist;
+	}
+
 
 }

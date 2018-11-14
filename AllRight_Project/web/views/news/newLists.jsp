@@ -4,6 +4,7 @@
 <% 
 
 	ArrayList<News> list = (ArrayList<News>)request.getAttribute("list"); 
+	ArrayList<News> poplist = (ArrayList<News>)request.getAttribute("poplist");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
@@ -20,7 +21,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-    
+	
+	<style type="text/css">
+	
+	td{
+		font-weight: bold;
+	}
+	
+	
+	
+	</style>
 
 </head>
 <body>
@@ -42,24 +52,71 @@
 				</div>
 				<div class="col-sm-8 text-center">
 					<h2 align="left">뉴스</h2>
+					
+					<% if(currentPage == 1) { %>
 					<table class="table table-hover" id="listArea">
 						<thead>
 							<tr>
-								<th class="col-md-1 text-center">글번호</th>
-								<th class="col-md-6 text-center">글제목</td>
+								<th class="col-md-7" style="font-size:25px; ">이 시각 인기 뉴스</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+  							<% for(News n: poplist){ %>
+						<tr>
+							
+							<td class="col-md-1" style="display:none;"><%= n.getNNO() %></td>
+							
+							<td class="col-md-6 text-left"><%= n.getNTITLE() %></td>
+							
+							<td class="col-md-1" style="display:none;">관리자</td>
+							<td class="col-md-1" style="display:none;"><%= n.getNDATE() %></td>
+							<td class="col-md-2"><%= n.getNCOUNT() %></td>
+						</tr>
+							<% } %> 
+					</tbody>
+				
+					</table>
+					
+					
+					<%} %> 
+					
+					<br>
+					<hr color="lightgray">
+					<br>
+					
+					<table class="table table-hover" id="listArea">
+						<thead>
+							<th class="col-md-7" style="font-size:25px; border : 0px;">자격증 관련 뉴스</th>
+						</thead>
+						
+						<!-- 
+						
+						<tr>
+								
+							</tr>
+							<thead>
+							<tr>
+								
+								<th class="col-md-7 text-center">글제목</td>
 								<th class="col-md-1 text-center">작성자</th>
 								<th class="col-md-1 text-center">조회수</th>
 								<th class="col-md-2 text-center">작성일</th>
 							</tr>
-						</thead>
+							</thead>
+						 -->
+						
 						<tbody>
   							<% for(News n: list){ %>
 						<tr>
-							<td class="col-md-1"><%= n.getNNO() %></td>
+							
+							<td class="col-md-1" style="display:none;"><%= n.getNNO() %></td>
+							
 							<td class="col-md-6 text-left"><%= n.getNTITLE() %></td>
-							<td>관리자</td>
-							<td><%= n.getNCOUNT() %></td>
-							<td><%= n.getNDATE() %></td>
+							
+							<td class="col-md-1" style="display:none;">관리자</td>
+							<td class="col-md-1" style="display:none;"><%= n.getNCOUNT() %></td>
+							<td class="col-md-2"><%= n.getNDATE() %></td>
 						</tr>
 							<% } %> 
 					</tbody>
