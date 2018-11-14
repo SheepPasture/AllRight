@@ -19,7 +19,7 @@ public class EncryptWrapper extends HttpServletRequestWrapper{
 		
 		String value = "";
 		
-		if (name != null && name.equals("inputPassword")){
+		if (name != null && (name.equals("inputPassword")||(name.equals("password")))){
 			value = getSHA512(super.getParameter(name));
 			
 		} else {
