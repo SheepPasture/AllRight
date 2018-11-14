@@ -59,7 +59,7 @@ public class MemberLoginServlet extends HttpServlet {
 			session.setAttribute("point", pt);
 			
 			response.sendRedirect("index.jsp");
-			}
+			
 		} catch(MemberException e){
 			
 			request.setAttribute("msg", "로그인 실패");
