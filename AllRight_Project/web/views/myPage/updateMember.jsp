@@ -135,7 +135,7 @@ td {
 						<label class="col-sm-3 control-label" for="email">이메일</label>
 						<div class="col-sm-6">
 							<input class="form-control" id="email" name="email" type="email"
-								placeholder="<%=m.getEmail()%>" value="<%=m.getEmail()%>">
+								placeholder="<%=m.getEmail()%>" value="<%=m.getEmail()%>" readonly>
 						</div>
 					</div>
 

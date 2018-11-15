@@ -18,7 +18,6 @@ import com.sheep.jsp.board.model.vo.Board;
 import com.sheep.jsp.boardComment.model.vo.BoardComment;
 import com.sheep.jsp.licenseinfo.model.vo.LicenseInfo;
 import com.sheep.jsp.userLicense.model.vo.UserLicense;
-import com.sheep.jsp.userPoint.model.vo.UserPoint;
 
 
 public class MyPageDao {
@@ -172,6 +171,37 @@ public class MyPageDao {
 				
 				li.setdDay(dDay);*/
 				
+				list.add(li);
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	public ArrayList<LicenseInfo> testlist(Connection con, int userno) {
+		ArrayList<LicenseInfo> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset =null;
+		String sql = prop.getProperty("selectlInfo");
+		
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, userno);
+			rset=pstmt.executeQuery();
+			
+			list = new ArrayList<LicenseInfo>();
+		
+			while(rset.next()){
+			
+				LicenseInfo li = new LicenseInfo();
+			
+				li.setlName(rset.getString("LNAME"));
+				li.setlDate(rset.getString("LDATE"));
+			
 				list.add(li);
 				
 			}

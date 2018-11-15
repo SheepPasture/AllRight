@@ -9,7 +9,19 @@ String msg = (String)request.getAttribute("msg");
 String dday = (String)request.getAttribute("dday");
 /*  ArrayList dayArr = request.getAttribute("dayArr");  */
 %>
-
+<!-- 
+필기시험원서접수시작 일자 
+필기시험원서접수종료 일자 
+필기시험일자
+필기시험 합격(예정)자 발표일자 
+응시자격 서류제출 및 필기시험 합격자 결정시작일자 
+응시자격 서류제출 및 필기시험 합격자 결정종료일자 
+면접시험원서접수시작 일자 
+면접시험원서접수종료 일자 
+면접시험시작일자
+면접시험종료일자
+합격자발표일자
+ -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,51 +42,6 @@ String dday = (String)request.getAttribute("dday");
 	<script src='/allRight/resources/js/fullcalendar.min.js'></script>
 	<script>
  	 $(document).ready(function() {
-	  /*   console.log($('#info').children().children().text); */
-	  /*  var year=2018;
-	  var month=11;
-	  var date=20; */
-	/*   var sdate ="'"+year+"-"+month+"-"+date+"'";	 
-	  var edate ='2018-11-30';
-	    */
-	   
-	  <%-- 
-	   --%>
-	 
- 	
- 		<%-- <%--  $.ajax({
- 			 url :"<%= request.getContextPath() %>/lMylist.li",
- 			type : "GET",
- 			/* dataType: 'json', */
- 			success : function(data){
- 			
-	 		console.log(data); 
- 		      
- 		      },error:function() {
-					console.log("수신 실패!");
-			  }
- 		    });
-			 --%> 
-		   /* dataType:list, */
-		/*         */
-		       /*  start: start.unix(),
-		        end: end.unix() */
-		      /* 
-		      success: function(list) {
-		      /*   var events = [];
-		        $(doc).find('event').each(function() {
-		          events.push({
-		            title: $(this).attr('title'),
-		            start: $(this).attr('start') // will be parsed
-		          });
-		        }); */
-		      /*  console.log("!1111111111");
-		        console.log(data);
-		         */ 
-
-	 
-		/* console.log(sdata.title);
-		console.log(sdata.date);  */
 		
 		var title1 = "<%=al.get(0).getlName()%>";
 		var title2 = "<%=al.get(1).getlName()%>";
