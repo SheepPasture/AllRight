@@ -46,6 +46,7 @@ public class MemberLoginServlet extends HttpServlet {
 		Member m = new Member(userId,userPwd);
 		
 		Point pt = null;
+
 		Object level = new Object();
 		try{
 			

@@ -8,26 +8,27 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import org.omg.Messaging.SyncScopeHelper;
-
+import com.sheep.jsp.board.model.vo.Board;
+import com.sheep.jsp.boardComment.model.vo.BoardComment;
+import com.sheep.jsp.licenseinfo.model.vo.LicenseInfo;
 import com.sheep.jsp.member.model.vo.Member;
 import com.sheep.jsp.myPage.model.service.MypageService;
-import com.sheep.jsp.point.model.service.PointService;
-
 
 /**
- * Servlet implementation class MainMyListServlet
+ * Servlet implementation class ScheduleTestServlet
  */
-@WebServlet("/mMylist.me")
-public class MainMyListServlet extends HttpServlet {
+@WebServlet("/sTest.sc")
+public class ScheduleTestServlet extends HttpServlet {
+	
+	
+	
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MainMyListServlet() {
+    public ScheduleTestServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,27 +37,25 @@ public class MainMyListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		Member m = (Member)session.getAttribute("member");
 		
-		int userno = m.getUserNo();
-		/*ArrayList<UserPoint> plist = new ArrayList<UserPoint>();*/
+		int userno = 32;
+		ArrayList<LicenseInfo> l = new ArrayList<LicenseInfo>();
+	
+		MypageService ms = new MypageService();
+		l = ms.testSchdule(userno);
+		String page="/views/myPage/schedule.jsp";
+
 		
-		PointService ms = new PointService();
-		/*plist = ms.selectMyPoint(userno);*/
-		
-		String page = "/views/myPage/myPageMain.jsp";
-		/*if(plist.size()!=0){
-			request.setAttribute("plist", plist);
-			
-			
-			int point = plist.get(0).getTotalPoint();
-			String level=String.valueOf(((int)point/100)+1);
-			request.setAttribute("level", level);
+		if(l.size()!=0){
+			request.setAttribute("l", l);
+	
 		}else{
-			request.setAttribute("msg", "포인트가 없습니다.");
-		}*/
-		System.out.println(page);
+			request.setAttribute("bmsg", "작성한 게시글이 없습니다.");
+			
+		}
+		
+		
+
 		request.getRequestDispatcher(page).forward(request, response);
 	}
 

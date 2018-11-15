@@ -11,8 +11,7 @@ import com.sheep.jsp.licenseinfo.model.vo.LicenseInfo;
 import com.sheep.jsp.myPage.model.dao.MyPageDao;
 import com.sheep.jsp.point.model.dao.PointDao;
 import com.sheep.jsp.userLicense.model.vo.UserLicense;
-import com.sheep.jsp.userPoint.model.dao.UserPointDao;
-import com.sheep.jsp.userPoint.model.vo.UserPoint;
+
 
 public class MypageService {
 	private MyPageDao mDao = new MyPageDao();
@@ -47,6 +46,14 @@ public class MypageService {
 		ArrayList<LicenseInfo> list = null;
 		Connection con = getConnection();
 		list = mDao.selectLList(con,userno);
+		
+		close(con);
+		return list;
+	}
+	public ArrayList<LicenseInfo> testSchdule(int userno) {
+		ArrayList<LicenseInfo> list = null;
+		Connection con = getConnection();
+		list = mDao.testlist(con,userno);
 		
 		close(con);
 		return list;
