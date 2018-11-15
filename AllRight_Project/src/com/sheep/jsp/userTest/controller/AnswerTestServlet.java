@@ -43,17 +43,13 @@ public class AnswerTestServlet extends HttpServlet {
 			userInfo = new JSONObject();
 			
 			userInfo.put("tNo", user.gettNo());
-			userInfo.put("userNo", user.getUserNo());
 			userInfo.put("lNo", user.getlNo());
 			
 			result.add(userInfo);
 			
 			response.setContentType("application/json; charset=UTF-8");
-			
-			
+				
 		}
-		
-		
 		
 	}
 

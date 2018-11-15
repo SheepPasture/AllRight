@@ -17,7 +17,7 @@ public class UserUtil {
 	public List<UserTest> getUserList(){
 		list = new ArrayList<UserTest>();
 		
-		UserTest test1 = new UserTest(1, 1, 1);
+		UserTest test1 = new UserTest(1, 1);
 		
 		list.add(test1);
 		

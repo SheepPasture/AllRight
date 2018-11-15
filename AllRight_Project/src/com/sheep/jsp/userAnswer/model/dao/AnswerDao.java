@@ -13,6 +13,7 @@ import java.util.Properties;
 import com.sheep.jsp.userAnswer.model.vo.UserAnswer;
 
 public class AnswerDao {
+	
 	private Properties prop = null;
 	
 	public AnswerDao(){

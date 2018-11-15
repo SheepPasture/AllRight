@@ -5,7 +5,7 @@ import java.util.List;
 import com.sheep.jsp.userTest.model.vo.UserTest;
 
 public class Question {
-	
+	private int tNo;
 	private int qNo;
 	private String qContent;
 	private String qPre;
@@ -15,14 +15,24 @@ public class Question {
 		super();
 	}
 	
-	public Question(int qNo, String qContent, String qPre, int qAnswer){
+	public Question(int tNo, int qNo, String qContent, String qPre, int qAnswer){
 		super();
+		this.tNo = tNo;
 		this.qNo = qNo;
 		this.qContent = qContent;
 		this.qPre = qPre;
 		this.qAnswer = qAnswer;
 	}
 
+	public int gettNo() {
+		return tNo;
+	}
+
+	public void settNo(int tNo) {
+		this.tNo = tNo;
+	}
+
+	
 	public int getqNo() {
 		return qNo;
 	}
@@ -57,7 +67,8 @@ public class Question {
 
 	@Override
 	public String toString() {
-		return "Question [qNo=" + qNo + ", qContent=" + qContent + ", qPre=" + qPre + ", qAnswer=" + qAnswer + "]";
+		return "Question [tNo=" + tNo + ", qNo=" + qNo + ", qContent=" + qContent + ", qPre=" + qPre + ", qAnswer="
+				+ qAnswer + "]";
 	}
 	
 	// hasCode

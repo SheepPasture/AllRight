@@ -41,6 +41,7 @@ public class QuestionServlet extends HttpServlet {
 		for(Question qs : list){
 			queInfo = new JSONObject();
 			
+			queInfo.put("tNo", qs.gettNo());
 			queInfo.put("qNo", qs.getqNo());
 			queInfo.put("qContent", qs.getqContent());
 			queInfo.put("qPre", qs.getqPre());
