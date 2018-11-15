@@ -126,9 +126,6 @@ public class PointDao {
 		} finally{
 			close(pstmt);
 		}
-		
-		
-		
 		return result;
 	}
 

@@ -86,5 +86,17 @@ public class MemberService {
 		return result;
 		
 	}
+	
+	public int checkDate(int userNo){
+		
+		Connection con = getConnection();
+		
+		int result = mDao.checkDate(con,userNo);
+		
+		close(con);
+		
+		return result;
+		
+	}
 
 }

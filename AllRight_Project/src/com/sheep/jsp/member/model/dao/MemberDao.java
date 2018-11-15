@@ -205,4 +205,33 @@ public class MemberDao {
 		return result;
 	}
 
+	public int checkDate(Connection con, int userNo) {
+
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("checkDate");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			
+			rset =pstmt.executeQuery();
+			
+			if(rset.next())	result = rset.getInt("checkdate");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
 }
