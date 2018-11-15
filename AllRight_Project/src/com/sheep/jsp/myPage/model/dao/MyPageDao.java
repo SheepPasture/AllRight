@@ -183,39 +183,7 @@ public class MyPageDao {
 		}
 		return list;
 	}
-	public ArrayList<UserPoint> selectPList(Connection con, int userno) {
-		ArrayList<UserPoint> list = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("selectPoint");
-		
-		try {
-			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, userno);
-			rset=pstmt.executeQuery();
-			list = new ArrayList<UserPoint>();
-			
-			while(rset.next()){
-			
-				
-				UserPoint u = new UserPoint();
-			
-				u.setPoint(rset.getInt("POINT"));
-				u.setTotalPoint(rset.getInt("TOTALPOINT"));
-				
-				list.add(u);
-				
-			}
-			
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}finally {
-			close(rset);
-			close(pstmt);
-		}
-		return list;
-	}
+	
 	
 
 

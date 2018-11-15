@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"
     import="com.sheep.jsp.member.model.vo.Member, com.sheep.jsp.userLicense.model.vo.*,com.sheep.jsp.licenseinfo.model.vo.*, java.util.*"%>
 <%
-Member m = (Member)session.getAttribute("member"); 
+/* Member m = (Member)session.getAttribute("member");  */
 /* ArrayList<Member> m = (ArrayList<Member>)request.getAttribute("list"); */
 ArrayList<LicenseInfo> al = (ArrayList<LicenseInfo>)request.getAttribute("list"); 
 String msg = (String)request.getAttribute("msg");
