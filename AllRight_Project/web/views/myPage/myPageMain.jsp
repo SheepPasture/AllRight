@@ -3,17 +3,11 @@
 	import="com.sheep.jsp.member.model.vo.Member, com.sheep.jsp.userPoint.model.vo.*,com.sheep.jsp.licenseinfo.model.vo.*, java.util.*"%>
 
 <%
-<<<<<<< Upstream, based on origin/master
 	Member m = (Member)session.getAttribute("member"); 
 	/* Member m = (Member) request.getAttribute("member"); */
 	LicenseInfo li = (LicenseInfo)request.getAttribute("lInfo");
 	ArrayList<UserPoint> plist =(ArrayList<UserPoint>)request.getAttribute("plist");
 	String level = (String)request.getAttribute("level");
-=======
-	/* Member m = (Member)session.getAttribute("member"); */
-	Member m = (Member) request.getAttribute("member");
-	LicenseInfo li = (LicenseInfo) request.getAttribute("lInfo");
->>>>>>> 07c02a2 commit request
 %>
 <!DOCTYPE html>
 <head>
@@ -23,8 +17,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-
-
+	
 
 </head>
 <body>
@@ -47,7 +40,6 @@
 				<article class="container">
 					<div class="form-horizontal" id="showView"
 						style="width: 70%; height: 100%;">
-<<<<<<< Upstream, based on origin/master
 						
 						<div class="form-group" >
 								<div>회원 정보</div>
@@ -59,22 +51,13 @@
 											placeholder="<%=m.getUserId() %>">
 									</div>
 								</div >
-=======
-
-						<div class="form-group">
-							<label class="col-sm-3 control-label" for="userId">유저아이디</label>
-							<div class="col-sm-6">
-								<input class="form-control" id="inputEmail" type="text" readonly
-									placeholder="아이디">
-							</div>
->>>>>>> 07c02a2 commit request
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="userId">이름</label>
 							<div class="col-sm-6">
 								<input class="form-control" id="inputEmail" type="text" readonly
-									placeholder="아이디">
+									placeholder="<%=m.getUserName() %>">
 							</div>
 						</div>
 						<br>
@@ -82,7 +65,7 @@
 							<label class="col-sm-3 control-label" for="userId">이메일</label>
 							<div class="col-sm-6">
 								<input class="form-control" id="inputEmail" type="text" readonly
-									placeholder="아이디">
+									placeholder="<%=m.getEmail()%>">
 							</div>
 						</div>
 						<br>

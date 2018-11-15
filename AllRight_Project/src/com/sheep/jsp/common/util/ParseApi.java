@@ -34,19 +34,19 @@ public class ParseApi {
 		return nValue.getNodeValue();
 	}
 	
-	private String getTagValues(String tag, Element eElement) {
+	private ArrayList<String> getTagValues(String tag, Element eElement) {
 		
-		Node nValue = null;
+		ArrayList<String> result =  new ArrayList<String>();
 		
 		for(int i = 0; i < eElement.getElementsByTagName(tag).getLength(); i++){
 			
 			NodeList nlList = eElement.getElementsByTagName(tag).item(i).getChildNodes();
-			nValue = (Node) nlList.item(i);
-			if (nValue == null)
-				return null;
+			result.add(nlList.item(i).toString());
+
 		}
 		
-		return nValue.getNodeValue();
+		return result;
+
 	}
 
 	private NodeList common(String url) {
@@ -126,7 +126,7 @@ public class ParseApi {
 		
 		for(int i = 0; i < list.size(); i ++){
 			
-			System.out.println("응시료 업데이트 중"+"("+ (i+1) +"/597)");
+			System.out.println("응시료 업데이트 중"+"("+ (i+1) +"/"+ list.size() +")");
 			
 			String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getFeeList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D&jmCd=";
 			
@@ -199,6 +199,96 @@ public class ParseApi {
 		return resultList;
 =======
 >>>>>>> 07c02a2 commit request
+	}
+	
+	public void testGetApi(){
+		BufferedReader br = null;
+        //DocumentBuilderFactory 생성
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setNamespaceAware(true);
+        DocumentBuilder builder;
+        Document doc = null;
+        try {
+            //OpenApi호출
+            String urlstr = "http://openapi.q-net.or.kr/api/service/rest/InquiryInformationTradeNTQSVC/getList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D&jmCd=";
+            urlstr += "1320";
+            URL url = new URL(urlstr);
+            HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
+            
+            //응답 읽기
+            br = new BufferedReader(new InputStreamReader(urlconnection.getInputStream(), "UTF-8"));
+            String result = "";
+            String line;
+            while ((line = br.readLine()) != null) {
+                result = result + line.trim();// result = URL로 XML을 읽은 값
+            }
+            
+            // xml 파싱하기
+            InputSource is = new InputSource(new StringReader(result));
+            builder = factory.newDocumentBuilder();
+            doc = builder.parse(is);
+            XPathFactory xpathFactory = XPathFactory.newInstance();
+            XPath xpath = xpathFactory.newXPath();
+            // XPathExpression expr = xpath.compile("/response/body/items/item");
+            XPathExpression expr = xpath.compile("//items/item/contents");
+            NodeList nodeList = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                NodeList child = nodeList.item(i).getChildNodes();
+                for (int j = 0; j < child.getLength(); j++) {
+                    Node node = child.item(j);
+//                    System.out.println("현재 노드 이름 : " + node.getNodeName());
+//                    System.out.println("현재 노드 타입 : " + node.getNodeType());
+                    System.out.println("현재 노드 값 : " + node.getTextContent());
+//                    System.out.println("현재 노드 네임스페이스 : " + node.getPrefix());
+//                    System.out.println("현재 노드의 다음 노드 : " + node.getNextSibling());
+                    System.out.println("");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+	}
+
+	public ArrayList<LicenseInfo> getInfoList(ArrayList<LicenseInfo> list) {
+		
+		
+		testGetApi();
+//		int size = list.size();
+//		int i = 0;
+//		
+		ArrayList<LicenseInfo> resultList = new ArrayList<LicenseInfo>();
+//		
+//		// licenseInfo :  info 업데이트전 자격증 정보 한건
+//		for(LicenseInfo licenseInfo :  list) {
+//			System.out.println("자격증 정보 업데이트 중"+"("+ (i+1) +"/"+ size +")");
+//					
+//			String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryInformationTradeNTQSVC/getList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D&jmCd=";
+//					
+//			url += licenseInfo.getlNo();
+//					
+//			NodeList nList = commons(url);
+//
+//
+//			for (int j = 0; j < nList.getLength(); j++) {
+//						
+//				Node nNode = nList.item(j);
+//				
+//					if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+//
+//						Element eElement = (Element) nNode;
+//							
+//						// 자격증에 info 데이터 setting
+//						licenseInfo.setlInfo(getTagValues("contents", eElement));
+//					}
+//			}
+//			
+//			i++;
+//			
+//			resultList.add(licenseInfo);
+//		}
+//		
+//		
+		return resultList;
 	}
 	
 	public void testGetApi(){

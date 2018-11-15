@@ -1,19 +1,25 @@
 package com.sheep.jsp.myPage.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.sheep.jsp.myPage.model.service.MypageService;
 import com.sheep.jsp.licenseinfo.model.vo.LicenseInfo;
+import com.sheep.jsp.member.model.vo.Member;
 import com.sheep.jsp.userLicense.model.vo.*;
 
 
@@ -37,7 +43,6 @@ public class ScheduleMyListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-<<<<<<< Upstream, based on origin/master
 		
 		HttpSession session = request.getSession(false);
 		
@@ -46,12 +51,6 @@ public class ScheduleMyListServlet extends HttpServlet {
 		
 		int userno = m.getUserNo();
 	/*	int userno=1;*/
-=======
-		/*int userno = Integer.parseInt(request.getParameter("USERNO"));*/
-
-	
-		int userno=1;
->>>>>>> 07c02a2 commit request
 		JSONObject result = new JSONObject();
 		JSONObject userInfo = null;
 		JSONArray userArray = new JSONArray();
@@ -62,24 +61,12 @@ public class ScheduleMyListServlet extends HttpServlet {
 		MypageService ms = new MypageService();
 
 		list = ms.selectMySchedule(userno);
-<<<<<<< Upstream, based on origin/master
 
-=======
-		/*System.out.println(list);*/
->>>>>>> 07c02a2 commit request
 		String page="/views/myPage/schedule.jsp";
-<<<<<<< Upstream, based on origin/master
 		
 		
-=======
-
->>>>>>> 07c02a2 commit request
 		if(list.size()!=0){
 			request.setAttribute("list", list);
-<<<<<<< Upstream, based on origin/master
-=======
-	
->>>>>>> 07c02a2 commit request
 		}else{
 			request.setAttribute("msg", "관심 자격증이 없습니다.");
 			
