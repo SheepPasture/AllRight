@@ -23,13 +23,13 @@
 <body>
 
 	<!-- PAGE -->
-	<div id="page" style= "background: ivory; margin:">
+	<div id="page" style= "background: green; margin:">
 
 		<!-- HEADER -->
 		<%@ include file="/views/common/header.jsp"%>
 		<!-- HEADER-END -->
 		<br>
-		<div class="container-fluid text-center">
+		<div class="container-fluid text-center" style="background:red">
 			<div class="row content">
 				<!-- NAV -->
 				<div class="col-sm-2 sidenav" style="display: inline-block;">
@@ -49,7 +49,7 @@
 						</h1>
 					<!-- </div> -->
 
-					<div class="form-horizontal" id="updateForm">
+					<div class="form-horizontal" id="updateForm" style="background:tomato">
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="userId">유저아이디</label>
