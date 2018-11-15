@@ -58,13 +58,15 @@ public class MemberLoginServlet extends HttpServlet {
 			
 			System.out.println(today);
 			
-			if(m.getFinalDate() == null || m.getFinalDate() != today){
-				m.setFinalDate(today);
+			if(ms.checkDate(m.getUserNo())==1){
 				pt.setPoint(pt.getPoint()+10);
 				pt.setTotalPoint(pt.getTotalPoint()+10);
-				ms.addFinalDate(m);
 				ps.addPoint(pt);
 			}
+			
+			m.setFinalDate(today);
+			
+			ms.addFinalDate(m);
 			
 			level=((pt.getTotalPoint()/100)+1);
 			System.out.println(level);
