@@ -3,7 +3,6 @@ package com.sheep.jsp.userTest.model.vo;
 public class UserTest {
 
 	private int tNo;
-	private int userNo;
 	private int lNo;
 
 	// 생성자
@@ -12,10 +11,9 @@ public class UserTest {
 		super();
 	}
 
-	public UserTest(int tNo, int userNo, int lNo) {
+	public UserTest(int tNo, int lNo) {
 		super();
 		this.tNo = tNo;
-		this.userNo = userNo;
 		this.lNo = lNo;
 	}
 
@@ -27,14 +25,6 @@ public class UserTest {
 
 	public void settNo(int tNo) {
 		this.tNo = tNo;
-	}
-
-	public int getUserNo() {
-		return userNo;
-	}
-
-	public void setUserNo(int userNo) {
-		this.userNo = userNo;
 	}
 
 	
@@ -50,7 +40,7 @@ public class UserTest {
 
 	@Override
 	public String toString() {
-		return "UserTest [tNo=" + tNo + ", userNo=" + userNo + ", lNo=" + lNo + "]";
+		return "UserTest [tNo=" + tNo + ",  lNo=" + lNo + "]";
 	}
 
 	// hashCode()
@@ -60,7 +50,6 @@ public class UserTest {
 		int result = 1;
 		result = prime * result + lNo;
 		result = prime * result + tNo;
-		result = prime * result + userNo;
 		return result;
 	}
 
@@ -76,8 +65,6 @@ public class UserTest {
 		if (lNo != other.lNo)
 			return false;
 		if (tNo != other.tNo)
-			return false;
-		if (userNo != other.userNo)
 			return false;
 		return true;
 	}
