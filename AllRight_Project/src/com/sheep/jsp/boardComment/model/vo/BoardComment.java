@@ -19,11 +19,19 @@ public class BoardComment {
 
 	
 	// 생성자
-	
-	
 	public BoardComment() {
 		super();
 	}
+
+	public BoardComment(int cNo, String cContent, int userNo, Date cDate, int cLevel) {
+		super();
+		this.cNo = cNo;
+		this.cContent = cContent;
+		this.userNo = userNo;
+		this.cDate = cDate;
+		this.cLevel = cLevel;
+	}
+
 
 
 	public BoardComment(int cNo, int bNo, int bId, int userNo, int cPwd, String cContent, Date cDate, int cLevel,
