@@ -46,7 +46,7 @@ public class MemberLoginServlet extends HttpServlet {
 		Member m = new Member(userId,userPwd);
 		
 		Point pt = null;
-		
+		int level=1;
 		try{
 			
 			m = ms.selectMember(m);
@@ -56,24 +56,26 @@ public class MemberLoginServlet extends HttpServlet {
 			pt = ps.selectPoint(m.getUserNo());
 			
 			
+
 			if(ms.checkDate(m.getUserNo())==1){
 				pt.setPoint(pt.getPoint()+10);
 				pt.setTotalPoint(pt.getTotalPoint()+10);
 				ps.addPoint(pt);
 			}
 			
-			Date today = new Date((new java.util.Date().getTime()));
-			
 			m.setFinalDate(today);
 			
 			ms.addFinalDate(m);
+
 			
-			
+			level=((pt.getTotalPoint()/100)+1);
+			System.out.println(level);
 			HttpSession session = request.getSession();
 			
 			session.setAttribute("member",m);
 			session.setAttribute("point", pt);
-			
+			System.out.println(level);
+			session.setAttribute("level", level);
 			response.sendRedirect("index.jsp");
 			
 		} catch(MemberException e){

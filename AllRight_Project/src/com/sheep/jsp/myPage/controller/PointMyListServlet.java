@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.sheep.jsp.member.model.vo.Member;
 import com.sheep.jsp.myPage.model.service.MypageService;
+import com.sheep.jsp.point.model.service.PointService;
 import com.sheep.jsp.userPoint.model.vo.UserPoint;
 
 /**
@@ -38,7 +39,7 @@ public class PointMyListServlet extends HttpServlet {
 		int userno = m.getUserNo();
 		ArrayList<UserPoint> plist = new ArrayList<UserPoint>();
 		
-		MypageService ms = new MypageService();
+		PointService ms = new PointService();
 		plist = ms.selectMyPoint(userno);
 		if(plist.size()!=0){
 			int level = ((plist.get(0).getTotalPoint())/100)+1;

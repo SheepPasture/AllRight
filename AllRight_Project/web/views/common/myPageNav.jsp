@@ -1,22 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.sheep.jsp.member.model.vo.Member ,com.sheep.jsp.userPoint.model.vo.*, java.util.*"%>
+    pageEncoding="UTF-8" import="com.sheep.jsp.member.model.vo.Member ,com.sheep.jsp.point.model.vo.Point, java.util.*"%>
 <%
 	Member m = (Member)session.getAttribute("member"); 
+	Point p = (Point)session.getAttribute("point");
+ 	int level=(int)session.getAttribute("level"); 
+	
+  	/* String level=(String)session.getAttribute("level");   */
 	/* UserPoint u = (UserPoint)session.getAttribute("UserPoint"); */
-	/* 	String level = (String)request.getAttribute("level"); */
+	/*  String level = (String)session.getAttribute("level");  */
 %>
 <!DOCTYPE html>
 <head>
-
+<!-- 	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script> -->
 </head>
 <body>
-			<div style="background:ivory;">
+			<div style="background:lightblue;">
 			<%= m.getUserName() %>
-			<%-- <%= m.getUserId() %>
-			<%=  %> --%>
-			<%-- <%=level %> --%>
+			<%= p.getPoint() %>
+			Lv.<%= level %> 
+	
 			</div>
-			<p><a href="<%= request.getContextPath() %>/mMylist.me">회원정보수정</a></p>
+			<p><a href="<%= request.getContextPath() %>/views/myPage/myPageMain.jsp">회원정보수정</a></p>
 			<p><a href="<%= request.getContextPath() %>/lMylist.li">관심자격증 정보</a></p>
 			<p><a href="<%= request.getContextPath() %>/bMyList.bo" >게시글 관리</a></p>
 			<p><a href="/allRight/views/myPage/viewTest.jsp">기출문제 관리</a></p>

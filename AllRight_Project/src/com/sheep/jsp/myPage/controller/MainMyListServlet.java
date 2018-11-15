@@ -14,6 +14,7 @@ import org.omg.Messaging.SyncScopeHelper;
 
 import com.sheep.jsp.member.model.vo.Member;
 import com.sheep.jsp.myPage.model.service.MypageService;
+import com.sheep.jsp.point.model.service.PointService;
 import com.sheep.jsp.userPoint.model.vo.UserPoint;
 
 /**
@@ -41,7 +42,7 @@ public class MainMyListServlet extends HttpServlet {
 		int userno = m.getUserNo();
 		ArrayList<UserPoint> plist = new ArrayList<UserPoint>();
 		
-		MypageService ms = new MypageService();
+		PointService ms = new PointService();
 		plist = ms.selectMyPoint(userno);
 		
 		String page = "/views/myPage/myPageMain.jsp";
@@ -50,7 +51,7 @@ public class MainMyListServlet extends HttpServlet {
 			
 			
 			int point = plist.get(0).getTotalPoint();
-			String level=String.valueOf((int)point/100);
+			String level=String.valueOf(((int)point/100)+1);
 			request.setAttribute("level", level);
 		}else{
 			request.setAttribute("msg", "포인트가 없습니다.");
