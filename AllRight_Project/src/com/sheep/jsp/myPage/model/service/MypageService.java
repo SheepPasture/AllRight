@@ -9,6 +9,7 @@ import com.sheep.jsp.board.model.vo.Board;
 import com.sheep.jsp.boardComment.model.vo.BoardComment;
 import com.sheep.jsp.licenseinfo.model.vo.LicenseInfo;
 import com.sheep.jsp.myPage.model.dao.MyPageDao;
+import com.sheep.jsp.point.model.dao.PointDao;
 import com.sheep.jsp.userLicense.model.vo.UserLicense;
 import com.sheep.jsp.userPoint.model.dao.UserPointDao;
 import com.sheep.jsp.userPoint.model.vo.UserPoint;
@@ -51,16 +52,6 @@ public class MypageService {
 		return list;
 	}
 	
-	public ArrayList<UserPoint> selectMyPoint(int userno) {
-		UserPointDao pDao = new UserPointDao();
-		
-		ArrayList<UserPoint> list = null;
-		Connection con = getConnection();
-		list = pDao.selectPList(con,userno);
-		
-		close(con);
-		
-		return list;
-	}	
+	
 	
 }

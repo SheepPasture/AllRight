@@ -6,9 +6,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import com.sheep.jsp.point.model.vo.Point;
+import com.sheep.jsp.userPoint.model.vo.UserPoint;
 import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 import com.sun.org.glassfish.external.statistics.annotations.Reset;
 
@@ -131,5 +133,33 @@ public class PointDao {
 		
 		return result;
 	}
-
+	
+	// 레벨 확인을 위한 dao
+	public ArrayList<UserPoint> selectPList(Connection con, int userno) {
+		ArrayList<UserPoint> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectPoint");
+		
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, userno);
+			rset=pstmt.executeQuery();
+			list = new ArrayList<UserPoint>();
+			
+			while(rset.next()){
+				UserPoint u = new UserPoint();
+				u.setPoint(rset.getInt("POINT"));
+				u.setTotalPoint(rset.getInt("TOTALPOINT"));
+				list.add(u);
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 }

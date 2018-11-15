@@ -45,7 +45,7 @@ public class MemberLoginServlet extends HttpServlet {
 		Member m = new Member(userId,userPwd);
 		
 		Point pt = null;
-		
+		int level=1;
 		try{
 			
 			m = ms.selectMember(m);
@@ -66,12 +66,14 @@ public class MemberLoginServlet extends HttpServlet {
 				ps.addPoint(pt);
 			}
 			
-			
+			level=((pt.getTotalPoint()/100)+1);
+			System.out.println(level);
 			HttpSession session = request.getSession();
 			
 			session.setAttribute("member",m);
 			session.setAttribute("point", pt);
-			
+			System.out.println(level);
+			session.setAttribute("level", level);
 			response.sendRedirect("index.jsp");
 			
 		} catch(MemberException e){
