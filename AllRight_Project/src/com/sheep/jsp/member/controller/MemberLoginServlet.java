@@ -2,6 +2,7 @@ package com.sheep.jsp.member.controller;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -54,10 +55,8 @@ public class MemberLoginServlet extends HttpServlet {
 			
 			pt = ps.selectPoint(m.getUserNo());
 			
-			Date today = new Date(new java.util.Date().getTime());
 			
-			System.out.println(today);
-			
+
 			if(ms.checkDate(m.getUserNo())==1){
 				pt.setPoint(pt.getPoint()+10);
 				pt.setTotalPoint(pt.getTotalPoint()+10);
@@ -67,6 +66,7 @@ public class MemberLoginServlet extends HttpServlet {
 			m.setFinalDate(today);
 			
 			ms.addFinalDate(m);
+
 			
 			level=((pt.getTotalPoint()/100)+1);
 			System.out.println(level);
