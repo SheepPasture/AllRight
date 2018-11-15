@@ -5,6 +5,7 @@
 
 	ArrayList<News> list = (ArrayList<News>)request.getAttribute("list"); 
 	ArrayList<News> poplist = (ArrayList<News>)request.getAttribute("poplist");
+	ArrayList<News> firstlist = (ArrayList<News>)request.getAttribute("firstlist");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
@@ -51,17 +52,26 @@
 					<p><a href="#">자격증정보</a></p>
 				</div>
 				<div class="col-sm-8 text-center">
-					<h2 align="left">뉴스</h2>
+					<!-- <h2 align="left">뉴스</h2> -->
 					
-					<% if(currentPage == 1) { %>
+					
 					<table class="table table-hover" id="listArea">
 						<thead>
 							<tr>
-								<th class="col-md-7" style="font-size:25px; ">이 시각 인기 뉴스</th>
+								<th class="col-md-7" style="font-size:25px; border : 0px;">이 시각 인기 뉴스</th>
 							</tr>
 						</thead>
 						
 						<tbody>
+							
+							<%for(News n : firstlist) {%>
+						<tr>
+							<td style="display:none;"><%= n.getNNO() %></td>
+							<td rowspan = "7"><img src="<%= request.getContextPath()%>/resources/newsUploadFiles/<%= n.getNFILE() %>" style ="width:350px;"><br><br><%= n.getNTITLE() %></td>
+						</tr>
+						
+							<% } %>
+						
   							<% for(News n: poplist){ %>
 						<tr>
 							
@@ -71,18 +81,17 @@
 							
 							<td class="col-md-1" style="display:none;">관리자</td>
 							<td class="col-md-1" style="display:none;"><%= n.getNDATE() %></td>
-							<td class="col-md-2"><%= n.getNCOUNT() %></td>
+							<td class="col-md-2" style="display:none;"><%= n.getNCOUNT() %></td>
 						</tr>
 							<% } %> 
 					</tbody>
 				
 					</table>
 					
-					
-					<%} %> 
+
 					
 					<br>
-					<hr color="lightgray">
+					<hr style="border: solid 0.5px lightgray;">
 					<br>
 					
 					<table class="table table-hover" id="listArea">

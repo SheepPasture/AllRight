@@ -36,6 +36,7 @@ public class NewsListServlet extends HttpServlet {
 		// 뉴스 여러개를 받기 위한 리스트
 		ArrayList<News> list = new ArrayList<News>();
 		ArrayList<News> poplist = new ArrayList<News>();
+		ArrayList<News> firstlist = new ArrayList<News>();
 		
 		NewsService ns = new NewsService();
 		
@@ -72,6 +73,8 @@ public class NewsListServlet extends HttpServlet {
 		
 		poplist = ns.selectList();
 		
+		firstlist = ns.selectFirstList();
+		
 		System.out.println("poplist : " + poplist);
 		
 		String page = "";
@@ -84,6 +87,7 @@ public class NewsListServlet extends HttpServlet {
 			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
 			request.setAttribute("poplist", poplist);
+			request.setAttribute("firstlist", firstlist);
 		} else {
 			
 			page = "/views/common/errorPage.jsp";
