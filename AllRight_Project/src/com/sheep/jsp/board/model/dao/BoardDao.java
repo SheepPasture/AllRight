@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.sheep.jsp.announcement.model.vo.Announcement;
 import com.sheep.jsp.board.model.vo.Board;
 import com.sheep.jsp.news.model.dao.NewsDao;
 
@@ -72,7 +73,7 @@ public class BoardDao {
 
 	public ArrayList<Board> selectList(Connection con, int currentPage, int limit) {
 
-		ArrayList<Board> list = null;
+		ArrayList<Board> blist = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -89,7 +90,7 @@ public class BoardDao {
 			
 			rset = pstmt.executeQuery();
 			
-			list = new ArrayList<Board>();
+			blist = new ArrayList<Board>();
 			
 			while(rset.next()){
 				Board b = new Board();
@@ -107,7 +108,7 @@ public class BoardDao {
 				b.setbLike(rset.getInt("blike"));
 				b.setUserNo(rset.getInt("userNo"));
 				
-				list.add(b);	
+				blist.add(b);	
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -116,7 +117,7 @@ public class BoardDao {
 			close(pstmt);
 		}
 		
-		return list;
+		return blist;
 	
 	}
 
@@ -132,7 +133,7 @@ public class BoardDao {
 			
 			pstmt.setString(1, b.getbTitle());
 			pstmt.setString(2, b.getbContent());
-			pstmt.setString(3, b.getbWriter());
+/*			pstmt.setString(3, b.getbWriter());*/
 			
 			result = pstmt.executeUpdate();
 			
@@ -144,6 +145,155 @@ public class BoardDao {
 		
 		return result;
 		
+	}
+
+	public Board selectOne(Connection con, int bno) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Board b = null;
+		
+		String sql = prop.getProperty("selectOne");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, bno);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				b = new Board();
+				
+				b.setbNO(rset.getInt(2));
+				b.setbTitle(rset.getString(3));
+				b.setbContent(rset.getString(4));
+				b.setbWriter(rset.getString(5));
+				b.setbCount(rset.getInt(6));
+				/*b.setbFile(rset.getString(7));*/
+				b.setbDate(rset.getDate(8));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return b;
+		
+	}
+
+	public int updateCount(Connection con, int bno) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("updateCount");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int deleteBoard(Connection con, int bno) {
+	
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("deleteBoard");
+		
+		System.out.println("삭제 dao");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, bno);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateBoard(Connection con, Board b) {
+
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("updateBoard");
+		
+		System.out.println("업데이트dao오나료");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, b.getbTitle());
+			pstmt.setString(2, b.getbContent());
+			pstmt.setInt(3, b.getbNO());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+	public ArrayList<Announcement> selectList2(Connection con) {
+		
+		ArrayList<Announcement> select2ANN = null;
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("select2ANN");
+		
+		System.out.println("공지사항 가져오기 도전 dao");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			
+			select2ANN = new ArrayList<Announcement>();
+			
+			while(rset.next()){
+				
+				Announcement a = new Announcement();
+				
+				a.setAtitle(rset.getString("atitle"));
+				a.setAcount(rset.getInt("acount"));
+				a.setAdate(rset.getDate("adate"));
+				a.setAno(rset.getInt("ano"));
+				
+				select2ANN.add(a);
+			}
+						
+		} catch ( SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(rset);
+			close(stmt);
+		}
+		
+		
+		return select2ANN;
 	}
 
 }

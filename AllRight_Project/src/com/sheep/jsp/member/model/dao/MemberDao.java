@@ -135,6 +135,33 @@ public class MemberDao {
 		
 		return result;
 	}
+	
+	public int selectUserNo(Connection con, String userId){
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectUserId");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) result = Integer.parseInt(rset.getString("userno"));
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		
+		
+		return result;
+		
+	}
 
 	public int deleteMember(Connection con, String userId) {
 		int result = 0;

@@ -2,7 +2,7 @@ package com.sheep.jsp.board.model.vo;
 
 import java.io.Serializable;
 
-public class PageInfo implements Serializable {
+public class bPageInfo implements Serializable {
 
 	private static final long serialVersionUID = 6016663892598480571L;
 	
@@ -13,11 +13,11 @@ public class PageInfo implements Serializable {
 	private int startPage;
 	private int endPage;
 	
-	public PageInfo() {
+	public bPageInfo() {
 		super();
 	}
 
-	public PageInfo(int currentPage, int listCount, int limit, int maxPage, int startPage, int endPage) {
+	public bPageInfo(int currentPage, int listCount, int limit, int maxPage, int startPage, int endPage) {
 		super();
 		this.currentPage = currentPage;
 		this.listCount = listCount;
