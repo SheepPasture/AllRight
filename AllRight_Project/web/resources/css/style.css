@@ -1068,7 +1068,7 @@ ul.project_info li span {color:#979797;}
 /*-----------------------------------------------------------------------------------*/
 /*	FOOTER
 /*-----------------------------------------------------------------------------------*/
-#contacts {
+/* #contacts {
 	position: relative;
 	z-index:0;
 	padding:0;
@@ -1094,14 +1094,14 @@ footer h4 {color:#fff;}
 
 
 
-/* __________ Footer About Block __________ */
+__________ Footer About Block __________
 .foot_about_block p {
 	margin-bottom:24px;
 	padding-right:71px;
 	line-height:24px;
 	font-size:12px;
 }
-
+ */
 
 
 
