@@ -1,6 +1,7 @@
 package com.sheep.jsp.member.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,6 +53,19 @@ public class MemberLoginServlet extends HttpServlet {
 			System.out.println("로그인 성공!");
 			
 			pt = ps.selectPoint(m.getUserNo());
+			
+			Date today = new Date(new java.util.Date().getTime());
+			
+			System.out.println(today);
+			
+			if(m.getFinalDate() == null || m.getFinalDate() != today){
+				m.setFinalDate(today);
+				pt.setPoint(pt.getPoint()+10);
+				pt.setTotalPoint(pt.getTotalPoint()+10);
+				ms.addFinalDate(m);
+				ps.addPoint(pt);
+			}
+			
 			
 			HttpSession session = request.getSession();
 			

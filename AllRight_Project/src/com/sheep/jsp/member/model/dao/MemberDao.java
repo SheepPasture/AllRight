@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -94,6 +95,7 @@ public class MemberDao {
 				result.setEmail(rset.getString("email"));
 				result.setUserLeave(rset.getString("userleave"));
 				result.setUserDate(rset.getDate("userdate"));
+				result.setFinalDate(rset.getDate("finaldate"));
 				
 			}
 			
@@ -120,7 +122,7 @@ public class MemberDao {
 			pstmt.setString(1,m.getUserPwd());
 			pstmt.setString(2,m.getUserName());
 			pstmt.setString(3,m.getEmail());
-			pstmt.setString(4, m.getUserId());
+			pstmt.setString(4,m.getUserId());
 			
 			result = pstmt.executeUpdate();
 			
@@ -176,6 +178,31 @@ public class MemberDao {
 		
 		return result;
 		
+	}
+
+	public int addFinalDate(Connection con, Member m) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("addFinalDate");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, m.getUserNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		
+	
+		return result;
 	}
 
 }
