@@ -41,7 +41,9 @@ public class PointMyListServlet extends HttpServlet {
 		MypageService ms = new MypageService();
 		plist = ms.selectMyPoint(userno);
 		if(plist.size()!=0){
+			int level = ((plist.get(0).getTotalPoint())/100)+1;
 			request.setAttribute("plist", plist);
+			request.setAttribute("level", level);
 	
 		}else{
 			request.setAttribute("cmsg", "포인트가 없숩니다");

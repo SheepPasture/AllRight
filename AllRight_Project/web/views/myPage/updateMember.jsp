@@ -3,7 +3,7 @@
 	import="com.sheep.jsp.member.model.vo.Member, com.sheep.jsp.userLicense.model.vo.*,com.sheep.jsp.licenseinfo.model.vo.*, java.util.*"%>
 
 <%
-	Member m = (Member)session.getAttribute("member");
+/* 	Member m = (Member)session.getAttribute("member"); */
 /* m.setUserId("test1");
 m.setUserName("test1"); */
 
