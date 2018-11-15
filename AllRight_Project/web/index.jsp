@@ -6,48 +6,32 @@
 	Point pt = (Point)session.getAttribute("point");
  	Object level = session.getAttribute("level");
 %>
+
+
 <!DOCTYPE html>
 <head>
-	
-	<meta charset="utf-8">
+	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
+	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
 	<title>ALLRight</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-   	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" />
-   	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
-
 	
-	<style>
-	
-	.main{
+	<style type="text/css">
 	
 		
-	}
-	
-	
-	
-	.realtime{
-	
-		margin-left: 20%;
-		position : absolute;
-		left : 20%;
-		
-	}
 	
 	.realtime-nav{
 	
-		margin-top:3%;
-		padding : 20px;
-		width : 200px;
+		
 		border :solid;
 		
 	}
 	
 	.realtime-rank{
 	
-	/* 	font-family: 'Roboto', sans-serif; */
-		margin:3px;	
+	/* 	font-family: 'Roboto', sans-serif; 
+		margin:3px;	*/
 		/* font-family: 'Roboto', sans-serif;
 		font-family: 'Poor Story', cursive; */
 		font-size: 20px;
@@ -58,9 +42,9 @@
 		margin-left: 300px;
 	}
 	
+	
 	</style>
-
-
+	
 	<!-- <script>
 		
 		//BlackAndWhite
@@ -86,24 +70,31 @@
 		});
 	
 	</script> -->
-	
+
 </head>
 <body>
+
 	<!-- PAGE -->
 	<div id="page">
 	
+		<!-- HEADER -->
+		<%@ include file="/views/common/header.jsp" %>
 		
 		
-		<%@ include file="views/common/header.jsp" %>
-		
-		
-
-		</section><!-- //HOME -->
-		<!-- 
-		<div class="main">
-			<div class="realtime"/>
+		<div class="container-fluid text-center">    
+			<div class="row content">
+				<br />
+				<div class="col-sm-1 sidenav">
+					
+				</div>
+				<div class="col-sm-8 text-center">
+					<!-- <h2 align="left">뉴스</h2> -->
+					
+					
+					<div class="main">
+			<div class="realtime" style="float:left; width:50%;">
 			<h3>실시간 게시판 순위</h3>
-				<div class="realtime-nav">
+				<div class="realtime-nav" >
 					<ul class="ah_l">
 						<li class="">
 							<span class="realtime-rank">1.</span>
@@ -128,8 +119,10 @@
 					</ul>
 				</div>
 			</div>
-		</div>
-		<div class="notice">
+					
+				
+				<!-- 
+		<div class="notice" style="float:left; width:33%;">
 			<h3>공지사항</h3>
 			<div>
 				<ul>
@@ -157,10 +150,13 @@
 				</ul>
 			</div>
 		</div>
-			-->
-		<!-- 로그인 폼  -->
 		
-			<div class="loginArea">
+		 -->
+			
+				
+				<!-- 로그인 폼  -->
+		
+			<div class="loginArea" style="float:left; width:50%;">
 	<%if ( m == null ) { %>
 		<form id="loginForm" action="/allRight/mLogin.me" method="post">
 			<table>
@@ -181,6 +177,7 @@
 					</td>
 				</tr>
 			</table>
+			
 			<div class="btns">
 				<input type="submit" value="로그인" />
 				<input type="button" value="회원가입" onclick="insert()"/> 
@@ -198,15 +195,24 @@
 			
 		</div>
 	<% } %>
-
-
-	<!-- FOOTER -->
-	<footer>
+	
+	</div>
+					
+					 
+				</div>
+				
+	
+				
+				
+				
+			</div>
 			
-	</footer><!-- //FOOTER -->
-	
-	<script>
-	
+			<br><br><br>
+			<br><br><br>
+		</div>
+		
+		<script>
+			
 		function insert(){
 			
 			location.href = "/allRight/views/member/memberInsertView.jsp";
@@ -217,8 +223,16 @@
 			
 			location.href = "mLogout.me";
 		}
-	</script>
+		</script>
+	
+	
+	<!-- FOOTER -->
+	<footer>
+			
+	</footer><!-- //FOOTER -->
+	
 
 </div>
 </body>
 </html>
+
