@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, com.sheep.jsp.board.model.vo.*, com.sheep.jsp.announcement.model.vo.*" %>
  <% 
- 	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list"); 
- 	ArrayList<Announcement> alist = (ArrayList<Announcement>)request.getAttribute("alist"); 
-/*  	PageInfo pi = (PageInfo)request.getAttribute("pi");
+ 	ArrayList<Board> blist = (ArrayList<Board>)request.getAttribute("blist"); 
+ 	ArrayList<Announcement> select2ANN = (ArrayList<Announcement>)request.getAttribute("select2ANN"); 
+  	bPageInfo pi = (bPageInfo)request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();  */
+	int endPage = pi.getEndPage();  
  %>
 <!DOCTYPE html>
 <html>
@@ -18,7 +18,6 @@
 
 	<!-- JQuery -->
 	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
-	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
 <style>
@@ -523,7 +522,7 @@ a {
 													</div>
 
 													<div class="total">
-														<span>총 </span><strong>3</strong><span>개</span><span
+														<span>총 </span><strong><%= listCount %></strong><span>개</span><span
 															class="pc">의 게시글이 있습니다.</span>
 													</div>
 
@@ -570,7 +569,7 @@ a {
 															<table class="table table-hover" id="listArea">
 																<thead>
 																	<tr>
-																		<th class="col-md-1">글번호</th>
+																		<th class="col-md-1 text-left">글번호</th>
 																		<th class="col-md-6 text-center">글제목</th>
 																		<th class="col-md-1">작성자</th>
 																		<th class="col-md-1">조회수</th>
@@ -579,29 +578,18 @@ a {
 																</thead>
 																	
 																<tbody>
-																	<tr class="notice" style="background-color: hsl(120, 100%, 75%, 0.3);">
-																		<th class="col-md-1">공지</th>
-																		<th class="col-md-6 text-center">
-																			<a href="#"><span>공지사항1</span></a>
-																		</th>
-																		<th class="type01_detail">
-																			<th class="col-md-2"></th>
-																			<th class="col-md-1">2018.11.06</th>
-																		</th>
+																	<% for(Announcement a : select2ANN){ %>
+																	<tr id="annlist" class="notice" style="background-color: hsl(120, 100%, 75%, 0.3); bold;">
+																		<td class="col-md-1 text-left">공지</td>
+																		<td class="col-md-6 text-center"><span><%= a.getAtitle() %></span></td>
+																		<td class="col-md-1" type="hidden" id="ano"><%= a.getAno() %></td>
+																		<td class="col-md-1"><%= a.getAcount() %></td>
+																		<td class="col-md-1"><%= a.getAdate() %></td>
 																	</tr>
-																
-																	<tr class="notice" style="background-color: hsl(120, 100%, 75%, 0.3);">
-																		<th class="col-md-1">공지</th>
-																		<th class="col-md-6 text-center">
-																			<a href="#"><span>공지사항2</span></a>
-																		</th>
-																		<th class="type01_detail">
-																			<th class="col-md-2"></th>
-																			<th class="col-md-1">2018.11.06</th>
-																		</th>
-																	</tr>
-											  							<% for(Board b : list){ %>
-																	<tr>
+																	<% } %>
+											  						
+											  						<% for(Board b : blist){ %>
+																	<tr id="boardlist">
 																		<td class="col-md-1 text-left"><%= b.getbNO() %></td>
 																		<td class="col-md-6 text-center"><strong><%= b.getbTitle() %></strong></td>
 																		<td class="col-md-1"><%= b.getbWriter() %></td>
@@ -611,95 +599,7 @@ a {
 																		<% } %> 
 																</tbody>
 															</table>
-
-															<%-- <!--목록형-->
-															<div class="table_type01" id="listArea" style="border:1px soild tomato" >
-																<ul class="type01_top">
-																	<li class="col0">번호</li>
-																	<li class="col1">제목</li>
-																	<li class="col2">작성자</li>
-																	<li class="col3">조회</li>
-																	<li class="col4">등록일</li>
-																</ul>
-
-																<ul class="type01_list renew">
-																	<!--공지-->
-
-																	<li class="notice">
-																		<div class="type01_number">공지</div>
-																		<div class="type01_title">
-																			<a href="#"><span>공지사항1</span></a>
-																		</div>
-																			<div class="type01_detail">
-																				<div class="number"></div> 
-																				<div class="date">2018.11.06.</div>
-																			</div>
-																	</li>
-																
-																	<li class="notice">
-																		<div class="type01_number">공지</div>
-																		<div class="type01_title">
-																			<a href="#"><span>공지사항2</span></a>
-																		</div>
-																			<div class="type01_detail">
-																				<div class="number"></div>
-																				<div class="date">2018.11.06.</div>
-																			</div>
-																	</li>
-																
-																	<!--게시판-->
-																	<% for(Board b : list){ %>
-																	<li class="nosum" id="nosum">
-																		<div name="bno" id="bno" class="type01_number"><%= b.getbNO() %></div>
-																			<div class="type01_text">
-																				<div class="text_wrap" >
-																					<div name="btitle" id="btitle" class="type01_title"><strong><%= b.getbTitle() %></strong></div>
-																<!-- 					<div class="new">
-																						<img class="new" alt="new"
-																							src="http://image.ebsi.co.kr/ebsi/images/reNskin2015/ico/ico_new.jpg">
-																					</div> -->
-																				</div>	
-																				<div class="type01_detail">
-																					<div name="bwriter" class="writer"><%= b.getbWriter() %></div>
-																					<div name="bcount" class="number"><%= b.getbCount() %></div>
-																					<div name="bdate" class="date"><%= b.getbDate() %></div>
-																				</div>
-																			</div>
-																	</li>
-																	<% } %>
-																</ul>
-															</div>
-															<!--//목록형--> --%>
-
-
-															<%-- 페이지 처리 --%>
-															<div class="col-md-11 text-center" align="center">
-																<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=1'"><<</button>
-																<%  if(3 <= 1){  %>
-																<button disabled><</button>
-																<%  }else{ %>
-																<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%=3 - 1 %>'"><</button>
-																<%  } %>
-																
-																<% for(int p = 1; p <= 10; p++){
-																		if(p == 3){	
-																%>
-																	<button disabled><%= p %></button>
-																<%      }else{ %>
-																	<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= p %>'"><%= p %></button>
-																<%      } %>
-																<% } %>
-																	
-																<%  if(3 >= 10){  %>
-																<button disabled>></button>
-																<%  }else{ %>
-																<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%=3 + 1 %>'">></button>
-																<%  } %>
-																<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= 10 %>'">>></button>
-															</div>
 															<br /><br />
-															<%-- 페이지 처리 --%>
-<%-- 															<br /><br />
 															<div class="col-md-11 text-center" align="center">
 																<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=1'"><<</button>
 																<%  if(currentPage <= 1){  %>
@@ -723,12 +623,12 @@ a {
 																<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage + 1 %>'">></button>
 																<%  } %>
 																<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= maxPage %>'">>></button>
-															</div> --%>
+															</div> 
 														</div>
 														<!--//테이블 리스트-->
 
 													<div class="col-sm-12 text-right" style="border: 1px soild tomato">
-														<button type="button" align="right"><a href="views/board/boardInsertForm.jsp">작성하기</a></button>
+														<button class="btn-default"><a href="views/board/boardInsertForm.jsp">작성하기</a></button>
 													</div>
 													</div>
 
@@ -742,13 +642,22 @@ a {
 					</div>
 					<script>
 						$(function(){
-							$("#listArea td").mouseenter(function(){
+							$("#annlist td").mouseenter(function(){
 								$(this).parent().css({"cursor":"pointer"});
 							}).click(function(){
-								console.log($(this).parent().children().eq(0).text());
-								<%-- var ano = $(this).parent().children().eq(0).text();
-								location.href="<%=request.getContextPath()%>/selectOne.ann?ano=" + ano; --%>
+								alert($(this).parent().find(".ano").val();
+<%-- 								var bno = $(this).parent().children().eq(0).text();
+								location.href="<%=request.getContextPath()%>/selectOne.bo?bno=" + bno;  --%>
 							});
+							
+							$("#boardlist td").mouseenter(function(){
+								$(this).parent().css({"cursor":"pointer"});
+							}).click(function(){
+								/* alert($(this).parent().children().eq(0).text());  */
+ 								var bno = $(this).parent().children().eq(0).text();
+								location.href="<%=request.getContextPath()%>/selectOne.bo?bno=" + bno;
+							});
+							
 						});
 		
 					</script>

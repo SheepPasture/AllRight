@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.*, com.sheep.jsp.board.model.vo.*" %>
+<% Board b = (Board)request.getAttribute("board"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
-<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<!-- <link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
 
 <style>
 * {
@@ -24,21 +25,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 	-webkit-text-size-adjust: none;
 }
 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
-	blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
-	em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
-	b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
-	table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas,
-	details, embed, figure, figcaption, footer, header, hgroup, menu, nav,
-	output, ruby, section, summary, time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-
 .table_conts_wrap {
 	margin-top: 20px;
 	background-color: #fff;
@@ -48,40 +34,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 	padding: 30px;
 }
 
-/* .list_wrap .table_wrap {
-	width: 765px;
-	float: left;
-} */
-
-.list_wrap .table_wrap {
-	position: relative;
-}
-
 .list_wrap {
 	padding: 20px 0;
 	zoom: 1;
-}
-
-.list_wrap::after {
-	display: block;
-	content: "";
-	clear: both;
-}
-
-/* .sub_wrap {
-	width: 1025px;
-	margin: 0 auto;
-	padding-top: 20px;
-} */
-
-.conwrap {
-	position: relative;
-/* 	background: ;
-	position: relative; */
-}
-
-.wrap {
-	min-width: 1024px;
 }
 
 body {
@@ -91,7 +46,7 @@ body {
 	height: 100%;
 	font-family: Dotum;
 	font-size: 12px;
-}
+} 
 
 html {
 	overflow-y: scroll;
@@ -142,15 +97,8 @@ a {
 	width: 590px;
 	margin-right: 5px;
 	padding: 15px;
-	height: 34px;
+	height: 100px;
 	border: 1px solid #dedede;
-}
-
-.table_sns .sns_list_wrap .sns_list [class^='re-reply'] .sns_input textarea
-	{
-	width: 94%;
-	height: 44px;
-	padding: 10px 3%;
 }
 
 .table_sns .sns_input .sns_input_submit {
@@ -158,22 +106,13 @@ a {
 	float: left;
 	font-size: 16px;
 	font-weight: bold;
-	width: 102px;
-	height: 95px;
+	width: 100px;
+	height: 100px;
 	text-align: center;
-	line-height: 85px;
+	line-height: 100px;
 	cursor: pointer;
 	border-radius: 3px; 
 	border: 1px solid #dedede;
-}
-
-
-
-.table_sns .sns_list_wrap .sns_list [class^='re-reply'] .sns_input .sns_input_submit
-	{
-	position: absolute;
-	top: 0px;
-	right: 0px;
 }
 
 .sns_list li .sns_list_title {
@@ -202,20 +141,6 @@ a {
 	margin-right: 15px;
 }
 
-.sns_list li .sns_list_title .sns_detail_btn {
-	float: left;
-}
-
-.icon_wrap {
-	zoom: 1;
-}
-
-.icon_wrap::after {
-	display: block;
-	content: "";
-	clear: both;
-}
-
 .sns_list li .sns_list_title .icon_wrap {
 	float: right;
 	margin-right: 50px;
@@ -229,7 +154,7 @@ a {
 
 .icon_wrap .goods span.icon {
 	background:
-		url('http://image.ebsi.co.kr/ebsi/images/reNskin2015/dunya/sub/table_icon.png')
+		/* url('http://image.ebsi.co.kr/ebsi/images/reNskin2015/dunya/sub/table_icon.png') */
 		no-repeat -60px center;
 	width: 20px;
 	height: 20px;
@@ -272,7 +197,22 @@ a {
 	line-height: 20px;
 	font-size: 12px;
 	border: 1px solid #dedede;
-	margin-left: 3px;
+	margin: 10px;
+	float: right;
+}
+
+.edit {
+	display: block;
+	width: 60px;
+	height: 30px;
+	background-color: #fff;
+	border-radius: 3px;
+	text-align: center;
+	line-height: 20px;
+	font-size: 12px;
+	border: 1px solid #dedede;
+	margin: 10px;
+	float: right;
 }
 
 .sns_list li .sns_list_title .sns_detail_btn a.declaration {
@@ -356,10 +296,12 @@ a {
 .table_conts.sns .conts_main {
 	padding-top: 40px;
 }
-/* .board02.table_conts.sns .conts_main {
-		position: relative;
-		padding-top: 40px;
-	} */
+
+.board02.table_conts.sns .conts_main {
+	position: relative;
+	padding-top: 40px;
+} 
+
 .board02.table_conts .board_dt_wrap {
 	padding: 0 20px;
 	line-height: 1.7;
@@ -374,11 +316,6 @@ a {
 
 .board02.table_conts .conts_top .conts_top_detail {
 	position: static;
-}
-
-.table_conts .conts_top .conts_top_detail .number {
-	float: left;
-	margin-right: 13px;
 }
 
 .board02.table_conts .conts_top_detail .number {
@@ -437,36 +374,35 @@ a {
 										<div class="table_conts_wrap" style="margin-top: 0px;">
 
 											<!--컨텐츠-->
+											
 											<div class="table_conts board02 sns">
 												<div class="conts_top">
 
-													<!--//sns추가-->
-
-													<strong>글제목입니다.</strong>
+													<div align="left"><strong><%= b.getbTitle() %></strong></div>
 													<div class="board_detail_wrap">
 														<div class="board_top_detail">
-															<div class="writer">글쓴이</div>
+															<div class="writer"><%= b.getbWriter() %></div>
 														</div>
 														<div class="conts_top_detail">
-															<div class="number">291</div>
-															<div class="date">2018.10.24. 11:15:38</div>
+															<div class="number"><%= b.getbCount() +1 %></div>
+															<div class="date"><%= b.getbDate() %></div>
 														</div>
 													</div>
 												</div>
 
 												<div class="conts_main">
-													<div class="board_dt_wrap">게시물 내용입니다.</div>
+													<div class="board_dt_wrap" align="left"><%= b.getbContent() %></div>
 												</div>
-
+					
 											</div>
+											
 											<!--//컨텐츠-->
 
 											<!--sns-->
 											<div class="table_sns board02">
 												<!--신고하기 팝업-->
 												<div
-													class="ebsiBrdPopUp boardUseRule_pop boardUseRule_pop02"
-													style="display: none; z-index: 9999;">
+													class="PopUp" style="display: none; z-index: 9999;">
 
 													<div class="contsArea">
 														<div class="boardUseRule_conts"></div>
@@ -497,11 +433,12 @@ a {
 													</div>
 												</div>
 												<div id="rplyArea">
+												
 
 													<!--테이블 리스트-->
 													<div class="sns_input">
 														<textarea name="title" id="title" placeholder="댓글을 입력하세요"></textarea>
-														<div class="sns_input_submit" onclick="#">등록</div>
+														<div class="sns_input_submit">등록</div>
 													</div>
 													<div class="sns_list_wrap">
 														<ul class="sns_list">
@@ -529,7 +466,7 @@ a {
 																<div class="sns_list_text">댓글내용입니다.</div>
 															</li>
 														</ul>
-														<!--//sns-->
+			
 													</div>
 												</div>
 											</div>
@@ -539,7 +476,9 @@ a {
 							</div>
 						</div>
 					</div>
-						<button class="back"> <a href="/allRight/views/community/communityList.jsp">목록으로 바로가기</a> </button>
+						<button class="edit" onclick="location.href='<%= request.getContextPath()%>/bUpView.bo?bno='+<%=b.getbNO() %>">수정</button>
+						<button class="back" onclick="location.href='<%= request.getContextPath()%>/selectList.bo'">목록으로 바로가기 </button>
+						<br /><br />
 				</div>
 			</div>
 		</div>

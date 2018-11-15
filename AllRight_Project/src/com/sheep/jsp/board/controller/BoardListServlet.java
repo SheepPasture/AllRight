@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sheep.jsp.announcement.model.service.ANNService;
+import com.sheep.jsp.announcement.model.vo.Announcement;
 import com.sheep.jsp.board.model.service.BoardService;
 import com.sheep.jsp.board.model.vo.Board;
-import com.sheep.jsp.board.model.vo.PageInfo;
+import com.sheep.jsp.board.model.vo.bPageInfo;
 
 /**
  * Servlet implementation class BoardListServlet
@@ -33,9 +35,10 @@ public class BoardListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		ArrayList<Board> list = new ArrayList<Board>();
+		ArrayList<Board> blist = new ArrayList<Board>();
+		ArrayList<Announcement> select2ANN = new ArrayList<Announcement>();
 		
-		System.out.println("list: " + list);
+		System.out.println("blist: " + blist);
 		
 		BoardService bs = new BoardService();
 		
@@ -68,17 +71,21 @@ public class BoardListServlet extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		list = bs.selectList(currentPage, limit);
+		blist = bs.selectList(currentPage, limit);
+		select2ANN = bs.selectList2();
+		
+		System.out.println("Select2ann: "+select2ANN);
 		
 		String page = "";
 
-		if(list != null){
+		if(blist != null){
 			
-			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
+			bPageInfo pi = new bPageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 			
 			page="/views/board/boardList.jsp";
 			request.setAttribute("pi", pi);
-			request.setAttribute("list", list);
+			request.setAttribute("blist", blist);
+			request.setAttribute("select2ANN", select2ANN);
 			
 		} else {
 			

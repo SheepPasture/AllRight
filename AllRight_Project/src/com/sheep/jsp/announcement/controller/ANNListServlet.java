@@ -31,7 +31,7 @@ public class ANNListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	
 		ArrayList<Announcement> alist = null;
 		
 		ANNService as = new ANNService();
@@ -90,7 +90,6 @@ public class ANNListServlet extends HttpServlet {
 		}
 		
 		request.getRequestDispatcher(page).forward(request, response);
-		
 	}
 
 	/**
