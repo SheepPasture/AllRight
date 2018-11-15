@@ -298,4 +298,42 @@ public class NewsDao {
 		return poplist;
 	}
 
+	public ArrayList<News> selectFirstList(Connection con) {
+		
+		ArrayList<News> firstlist = null;
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectFirstList");
+		
+		try {
+			
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			
+			firstlist = new ArrayList<News>();
+			
+			while(rset.next()){
+				
+				News n = new News();
+				
+				n.setNNO(rset.getInt("nno"));
+				n.setNTITLE(rset.getString("ntitle"));
+				n.setNCOUNT(rset.getInt("ncount"));
+				n.setNDATE(rset.getDate("ndate"));
+				n.setNFILE(rset.getString("nfile"));
+				
+				firstlist.add(n);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		return firstlist;
+	}
+
 }
