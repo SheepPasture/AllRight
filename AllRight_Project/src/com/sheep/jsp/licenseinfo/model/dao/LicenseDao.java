@@ -154,16 +154,20 @@ public class LicenseDao {
 			pstmt = con.prepareStatement(sql);
 			
 			for(int i = 0; i < list.size(); i++){
-				/*int j = 0;
-				for(; j < list.get(0).getLInfo().size() ; j++){
-					pstmt.setString(j+1, list.get(i).getLInfo().get(j));
-				}*/
+//				int j = 2;
+//				int k = 2;
+//				
+//				for(; j < list.get(i).getlInfo().size(); j++){
+//					pstmt.setString(1, list.get(i).getlInfo().get(j+1));
+//					
+//				}
 				
 				pstmt.setString(1, list.get(i).getlInfo().get(0));
 				pstmt.setString(2, list.get(i).getlInfo().get(1));
 				pstmt.setString(3, list.get(i).getlInfo().get(2));
 				pstmt.setString(4, list.get(i).getlCost());
 				pstmt.setString(5, list.get(i).getlNo());
+				
 
 				pstmt.executeUpdate();
 				
