@@ -29,7 +29,24 @@
 		font-weight: bold;
 	}
 	
+	.name{
+		width : 430px;
+		text-overflow : ellipsis;
+		white-space : nowrap;
+		overflow : hidden;
+		display : block;
+		padding-left : 25px;
+		
+	}
 	
+	.name2{
+		width : 450px;
+		text-overflow : ellipsis;
+		white-space : nowrap;
+		overflow : hidden;
+		display : block;
+		padding-top : 15px;
+	}
 	
 	</style>
 
@@ -67,7 +84,7 @@
 							<%for(News n : firstlist) {%>
 						<tr>
 							<td style="display:none;"><%= n.getNNO() %></td>
-							<td rowspan = "7"><img src="<%= request.getContextPath()%>/resources/newsUploadFiles/<%= n.getNFILE() %>" style ="width:350px;"><br><br><%= n.getNTITLE() %></td>
+							<td rowspan = "7" ><img src="<%= request.getContextPath()%>/resources/newsUploadFiles/<%= n.getNFILE() %>" style ="width:400px;"><br><br><p class="name"><%= n.getNTITLE() %></p></td>
 						</tr>
 						
 							<% } %>
@@ -77,7 +94,7 @@
 							
 							<td class="col-md-1" style="display:none;"><%= n.getNNO() %></td>
 							
-							<td class="col-md-6 text-left"><%= n.getNTITLE() %></td>
+							<td class="col-md-10 text-left"><p class="name2"><%= n.getNTITLE() %></p></td>
 							
 							<td class="col-md-1" style="display:none;">관리자</td>
 							<td class="col-md-1" style="display:none;"><%= n.getNDATE() %></td>
@@ -88,11 +105,8 @@
 				
 					</table>
 					
-
-					
-					<br>
 					<hr style="border: solid 0.5px lightgray;">
-					<br>
+				
 					
 					<table class="table table-hover" id="listArea">
 						<thead>
@@ -119,7 +133,7 @@
   							<% for(News n: list){ %>
 						<tr>
 							
-							<td class="col-md-1" style="display:none;"><%= n.getNNO() %></td>
+							<td class="col-md-1 " style="display:none;"><%= n.getNNO() %></td>
 							
 							<td class="col-md-6 text-left"><%= n.getNTITLE() %></td>
 							
