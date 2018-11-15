@@ -27,7 +27,6 @@ public class LicenseDao {
 		try {
 			prop.load(new FileReader(filePath));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -48,7 +47,6 @@ public class LicenseDao {
 			
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 	
 		} finally {
@@ -82,7 +80,6 @@ public class LicenseDao {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		
 		} finally {
