@@ -19,6 +19,7 @@ public class Member implements Serializable{
 	private String email;
 	private String userLeave;
 	private Date userDate;
+	private Date finalDate;
 	
 	
 	// 생성자
@@ -47,7 +48,7 @@ public class Member implements Serializable{
 
 
 	public Member(int userNo, String userId, String userPwd, String userName, String email, String userLeave,
-			Date userDate) {
+			Date userDate, Date finalDate) {
 		super();
 		this.userNo = userNo;
 		this.userId = userId;
@@ -56,6 +57,7 @@ public class Member implements Serializable{
 		this.email = email;
 		this.userLeave = userLeave;
 		this.userDate = userDate;
+		this.finalDate = finalDate;
 	}
 
 	
@@ -131,11 +133,20 @@ public class Member implements Serializable{
 	public void setUserDate(Date userDate) {
 		this.userDate = userDate;
 	}
+	
+	public Date getFinalDate(){
+		return finalDate;
+	}
+	
+	public void setFinalDate(Date finalDate){
+		this.finalDate = finalDate;
+	}
 
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
 
 	
 	// toString()
