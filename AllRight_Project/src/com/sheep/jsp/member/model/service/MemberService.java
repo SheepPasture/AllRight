@@ -3,6 +3,7 @@ package com.sheep.jsp.member.model.service;
 import static com.sheep.jsp.common.JDBCTemplate.*;
 
 import java.sql.Connection;
+import java.sql.Date;
 
 import com.sheep.jsp.member.exception.MemberException;
 import com.sheep.jsp.member.model.dao.MemberDao;
@@ -44,6 +45,20 @@ public class MemberService {
 		
 		return result;
 	}
+	
+	public int addFinalDate(Member m){
+		
+		Connection con = getConnection();
+		
+		int result = mDao.addFinalDate(con,m);
+		
+		if(result>0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+	}
 
 	public int updateMember(Member m) {
 		Connection con = getConnection();
@@ -65,6 +80,18 @@ public class MemberService {
 		
 		if(result > 0)commit(con);
 		else rollback(con);
+		
+		close(con);
+		
+		return result;
+		
+	}
+	
+	public int checkDate(int userNo){
+		
+		Connection con = getConnection();
+		
+		int result = mDao.checkDate(con,userNo);
 		
 		close(con);
 		

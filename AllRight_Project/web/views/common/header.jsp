@@ -37,7 +37,7 @@
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">	
 
 	<!-- JQuery -->
-  	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>   
+  	<!-- <script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script> -->   
 	<script src="/allRight/resources/js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/jquery.prettyPhoto.js" type="text/javascript"></script>
 	<script src="/allRight/resources/js/jquery.nicescroll.min.js" type="text/javascript"></script>
@@ -298,7 +298,7 @@ jQuery(document).ready(function() {
                             <!-- <a href="javascript:void(0)">마이페이지</a> -->
                             <a href="<%= request.getContextPath() %>/views/myPage/myPageMain.jsp">마이페이지</a>
                             <ul>
-                                <li><a href="<%= request.getContextPath() %>/mMyList.me">회원정보수정</a></li>
+                                <li><a href="<%= request.getContextPath() %>/views/myPage/myPageMain.jsp">회원정보수정</a></li>
                                 <li><a href="<%= request.getContextPath() %>/lMylist.li">관심 자격증 정보</a></li>
                                 <li><a href="<%= request.getContextPath() %>/bMyList.bo">게시글 관리</a></li>
                                 <li><a href="<%= request.getContextPath() %>/views/myPage/viewTest.jsp">기출문제 관리</a></li>

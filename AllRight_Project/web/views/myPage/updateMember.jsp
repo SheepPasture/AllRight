@@ -3,7 +3,7 @@
 	import="com.sheep.jsp.member.model.vo.Member, com.sheep.jsp.userLicense.model.vo.*,com.sheep.jsp.licenseinfo.model.vo.*, java.util.*"%>
 
 <%
-	Member m = (Member)session.getAttribute("member");
+/* 	Member m = (Member)session.getAttribute("member"); */
 /* m.setUserId("test1");
 m.setUserName("test1"); */
 
@@ -135,7 +135,7 @@ td {
 						<label class="col-sm-3 control-label" for="email">이메일</label>
 						<div class="col-sm-6">
 							<input class="form-control" id="email" name="email" type="email"
-								placeholder="<%=m.getEmail()%>" value="<%=m.getEmail()%>">
+								placeholder="<%=m.getEmail()%>" value="<%=m.getEmail()%>" readonly>
 						</div>
 					</div>
 

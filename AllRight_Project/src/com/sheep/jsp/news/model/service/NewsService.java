@@ -122,5 +122,18 @@ public class NewsService {
 		return poplist;
 	}
 
+	public ArrayList<News> selectFirstList() {
+		
+		ArrayList<News> firstlist = null;
+		
+		Connection con = getConnection();
+		
+		firstlist = nDao.selectFirstList(con);
+		
+		close(con);
+		
+		return firstlist;
+	}
+
 
 }

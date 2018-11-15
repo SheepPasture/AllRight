@@ -154,10 +154,10 @@ public class Member implements Serializable{
 	@Override
 	public String toString() {
 		return "Member [userNo=" + userNo + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
-				+ ", email=" + email + ", userLeave=" + userLeave + ", userDate=" + userDate + "]";
+				+ ", email=" + email + ", userLeave=" + userLeave + ", userDate=" + userDate + ", finalDate"+ finalDate + "]";
 	}
-
 	
+
 	// hashCode()
 
 	@Override
@@ -165,6 +165,7 @@ public class Member implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((finalDate == null) ? 0 : finalDate.hashCode());
 		result = prime * result + ((userDate == null) ? 0 : userDate.hashCode());
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		result = prime * result + ((userLeave == null) ? 0 : userLeave.hashCode());
@@ -173,7 +174,6 @@ public class Member implements Serializable{
 		result = prime * result + ((userPwd == null) ? 0 : userPwd.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -188,6 +188,11 @@ public class Member implements Serializable{
 			if (other.email != null)
 				return false;
 		} else if (!email.equals(other.email))
+			return false;
+		if (finalDate == null) {
+			if (other.finalDate != null)
+				return false;
+		} else if (!finalDate.equals(other.finalDate))
 			return false;
 		if (userDate == null) {
 			if (other.userDate != null)
@@ -218,9 +223,6 @@ public class Member implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
-	
-	
+
 	
 }

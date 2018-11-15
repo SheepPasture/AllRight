@@ -27,7 +27,6 @@ public class NewsUpdateServlet extends HttpServlet {
      */
     public NewsUpdateServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -99,7 +98,6 @@ public class NewsUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

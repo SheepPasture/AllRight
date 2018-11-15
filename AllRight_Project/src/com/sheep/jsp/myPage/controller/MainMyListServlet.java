@@ -14,7 +14,8 @@ import org.omg.Messaging.SyncScopeHelper;
 
 import com.sheep.jsp.member.model.vo.Member;
 import com.sheep.jsp.myPage.model.service.MypageService;
-import com.sheep.jsp.userPoint.model.vo.UserPoint;
+import com.sheep.jsp.point.model.service.PointService;
+
 
 /**
  * Servlet implementation class MainMyListServlet
@@ -28,7 +29,6 @@ public class MainMyListServlet extends HttpServlet {
      */
     public MainMyListServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -39,24 +39,22 @@ public class MainMyListServlet extends HttpServlet {
 		Member m = (Member)session.getAttribute("member");
 		
 		int userno = m.getUserNo();
-		ArrayList<UserPoint> plist = new ArrayList<UserPoint>();
+		/*ArrayList<UserPoint> plist = new ArrayList<UserPoint>();*/
 		
-		MypageService ms = new MypageService();
-		plist = ms.selectMyPoint(userno);
+		PointService ms = new PointService();
+		/*plist = ms.selectMyPoint(userno);*/
 		
 		String page = "/views/myPage/myPageMain.jsp";
-		if(plist.size()!=0){
+		/*if(plist.size()!=0){
 			request.setAttribute("plist", plist);
 			
 			
 			int point = plist.get(0).getTotalPoint();
-			String level=String.valueOf((int)point/100);
+			String level=String.valueOf(((int)point/100)+1);
 			request.setAttribute("level", level);
 		}else{
 			request.setAttribute("msg", "포인트가 없습니다.");
-		}
-		
-		System.out.println(plist);
+		}*/
 		System.out.println(page);
 		request.getRequestDispatcher(page).forward(request, response);
 	}
@@ -65,7 +63,6 @@ public class MainMyListServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

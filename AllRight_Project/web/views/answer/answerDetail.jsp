@@ -169,34 +169,7 @@
 	</tr>
 	</table>
 
-<button id="selectBtn">테스트</button>
-	<script>
-		$(function(){
-			$('#selectBtn').click(function(){
-				$.ajax({
-					url : "/com/answer.te",
-					type : "get",
-					
-					success : function(data){
-						
-						$select = $('#selectTest');
-						$select.find("option").remove();
-						for(var i = 0; i < data.length; i++){
-							
-							$select.append("<option value='"+ data[i].tNo +"'>"
-									 	+data[i].userNo+"</option>");
-						}
-						
-					}, error : function(data){
-						
-						console.log("에러");
-					}
-					<a href="/views/answer/answerPage.jsp"></a>
-				});
-			});
-		})
-	</script>
-	
+
 </div><!--Mobile, PC 페이지 컨테이너 가운데 정렬 끝.-->
 </body>
 </html>

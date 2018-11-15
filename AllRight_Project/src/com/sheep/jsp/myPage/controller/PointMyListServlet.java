@@ -12,7 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import com.sheep.jsp.member.model.vo.Member;
 import com.sheep.jsp.myPage.model.service.MypageService;
-import com.sheep.jsp.userPoint.model.vo.UserPoint;
+import com.sheep.jsp.point.model.service.PointService;
+
 
 /**
  * Servlet implementation class PointMyListServlet
@@ -26,7 +27,6 @@ public class PointMyListServlet extends HttpServlet {
      */
     public PointMyListServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -35,25 +35,27 @@ public class PointMyListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		Member m = (Member)session.getAttribute("member");
-		int userno = m.getUserNo();
-		ArrayList<UserPoint> plist = new ArrayList<UserPoint>();
+		int userNo = m.getUserNo();
+		/*ArrayList<UserPoint> plist = new ArrayList<UserPoint>();*/
 		
-		MypageService ms = new MypageService();
-		plist = ms.selectMyPoint(userno);
-		if(plist.size()!=0){
+		PointService ms = new PointService();
+		/*plist = ms.selectMyPoint(userno);*/
+		ms.selectPoint(userNo);
+		/*if(plist.size()!=0){
+			int level = ((plist.get(0).getTotalPoint())/100)+1;
 			request.setAttribute("plist", plist);
+			request.setAttribute("level", level);
 	
 		}else{
 			request.setAttribute("cmsg", "포인트가 없숩니다");
 			
-		}
+		}*/
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
