@@ -6,12 +6,10 @@ import static com.sheep.jsp.common.JDBCTemplate.getConnection;
 import static com.sheep.jsp.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 
 import com.sheep.jsp.member.model.dao.MemberDao;
 import com.sheep.jsp.point.model.dao.PointDao;
 import com.sheep.jsp.point.model.vo.Point;
-import com.sheep.jsp.userPoint.model.vo.UserPoint;
 
 public class PointService {
 
@@ -66,20 +64,6 @@ public class PointService {
 		return result;
 		
 	}
-	
-	// 레벨확인
-		public ArrayList<UserPoint> selectMyPoint(int userno) {
-			PointDao pDao = new PointDao();
-			
-			ArrayList<UserPoint> list = null;
-			Connection con = getConnection();
-			list = pDao.selectPList(con,userno);
-			
-			close(con);
-			
-			return list;
-		}	
-	
 	
 	
 }
