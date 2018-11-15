@@ -77,6 +77,20 @@ public class LicenseDao {
 				pstmt.setString(2, getApi.get(i).getlName());
 				pstmt.setString(3, getApi.get(i).getlCategory());
 				
+				char type = getApi.get(i).getlNo().charAt(0);
+				
+				if(type == '0'){
+					pstmt.setString(4, "0");
+				} else if (type == '1' || type == '2'){
+					pstmt.setString(4, "1");
+				} else if (type == '3'){
+					pstmt.setString(4, "3");
+				} else if (type == '6' || type == '7'){
+					pstmt.setString(4, "6");
+				} else {
+					pstmt.setString(4, "9");
+				}
+				
 				result = pstmt.executeUpdate();
 				
 			}
@@ -148,7 +162,7 @@ public class LicenseDao {
 		String sql = prop.getProperty("updateLicense");
 		
 		//UPDATE LICENSEINFO SET LINFO1 = ?, LINFO2 = ?, LINFO3 = ?, LCOST = ? WHERE LNO = ?
-	
+		String text = "";
 		try {
 			
 			pstmt = con.prepareStatement(sql);
@@ -161,7 +175,7 @@ public class LicenseDao {
 //					pstmt.setString(1, list.get(i).getlInfo().get(j+1));
 //					
 //				}
-				
+				text = list.get(i).getlNo();
 				pstmt.setString(1, list.get(i).getlInfo().get(0));
 				pstmt.setString(2, list.get(i).getlInfo().get(1));
 				pstmt.setString(3, list.get(i).getlInfo().get(2));
@@ -181,12 +195,13 @@ public class LicenseDao {
 			
 			
 		} catch (SQLException e) {
-			
+			System.out.println("에러나는 자격증 >> "+text);
 			e.printStackTrace();
 		
 		} finally {
 			
 			close(pstmt);
+			close(con);
 		}
 		
 		return list;

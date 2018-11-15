@@ -108,11 +108,6 @@ public class ParseApi {
 			e.printStackTrace();
 		}
 		
-//		for(int i = 0; i < nList.getLength(); i++){
-//			System.out.println(nList.item(i).getTextContent());
-//		}  잘 출력되는것 확인
-		
-
 		return nList;
 	}
 
@@ -133,9 +128,8 @@ public class ParseApi {
 
 				Element eElement = (Element) nNode;
 
-				l = new LicenseInfo(getTagValue("jmcd", eElement), getTagValue("jmfldnm", eElement),
-						getTagValue("obligfldnm", eElement));
-
+				l = new LicenseInfo(getTagValue("jmcd", eElement), getTagValue("jmfldnm", eElement), getTagValue("obligfldnm", eElement));
+				
 				list.add(l);
 
 			} // for end
@@ -186,6 +180,13 @@ public class ParseApi {
 
 		// licenseInfo : info 업데이트전 자격증 정보 한건
 		for (LicenseInfo licenseInfo : list) {
+			 
+			if("9750".equals(licenseInfo.getlNo()) || "9657".equals(licenseInfo.getlNo()) 
+					|| "9751".equals(licenseInfo.getlNo()) || "9752".equals(licenseInfo.getlNo()) 
+					|| "9753".equals(licenseInfo.getlNo()) || "9754".equals(licenseInfo.getlNo()) || "9755".equals(licenseInfo.getlNo())){
+				
+				continue;
+			}
 			System.out.println("자격증 정보 업데이트 중" + "(" + (i + 1) + "/" + size + ")");
 
 			String urlstr = "http://openapi.q-net.or.kr/api/service/rest/InquiryInformationTradeNTQSVC/getList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D&jmCd=";
@@ -230,6 +231,36 @@ public class ParseApi {
 		} resultList.get(i).getlInfo().get(0)); 에만 자격증 정보가 담김. */
 
 		return resultList;
+	}
+	
+	public void getPEDate(){
+		
+		String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getPEList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
+		
+	}
+	
+	public void getMCDate(){
+		
+		String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestDatesMasterCraftsmanSVC/getMCList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
+		
+		
+		
+	}
+	
+	public void getEDate(){
+		
+		String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestDatesEngineerSVC/getEList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
+		
+		
+		
+	}
+
+	public void getCDate(){
+	
+		String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestDatesCraftsmanSVC/getCList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
+	
+	
+	
 	}
 
 }

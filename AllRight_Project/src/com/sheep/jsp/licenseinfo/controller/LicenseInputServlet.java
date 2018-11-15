@@ -45,7 +45,7 @@ public class LicenseInputServlet extends HttpServlet {
 			// 가져온 리스트로 응시료 업데이트 실행
 			System.out.println("응시료 업데이트 중... 잠시 기다려주세요!");
 			list = new LicenseService().updateCost(list);
-			
+			 
 			// 응시료까지 포함된 list로 자격증 정보까지 업데이트 실행
 			System.out.println("자격증 정보 업데이트 중... 잠시 기다려주세요!");
 			list = new LicenseService().updateInfoData(list);
