@@ -65,5 +65,17 @@ public class PointService {
 		
 	}
 	
+	public int minusPoint(Point pt){
+		
+		Connection con = getConnection();
+		
+		int result = pDao.minusPoint(con, pt);
+		
+		if(result>0) commit(con);
+		else rollback(con);
+		
+		return result;
+	}
+	
 	
 }

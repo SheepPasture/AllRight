@@ -80,8 +80,6 @@ public class PointDao {
 			pstmt.setInt(1, userNo);
 			
 			rset = pstmt.executeQuery();
-
-			System.out.println(userNo);
 			
 			if(rset.next()){
 				result.setUserNo(userNo);
@@ -124,6 +122,31 @@ public class PointDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int minusPoint(Connection con, Point pt){
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("minusPoint");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, pt.getPoint());
+			pstmt.setInt(2, pt.getUserNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
 			close(pstmt);
 		}
 		return result;

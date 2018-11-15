@@ -4,7 +4,7 @@
 <%
 	Member m = (Member)session.getAttribute("member");
 	Point pt = (Point)session.getAttribute("point");
- 	int level=(int)session.getAttribute("level"); 
+ 	Object level = session.getAttribute("level");
 %>
 <!DOCTYPE html>
 <head>
@@ -191,7 +191,7 @@
 		<div id="userInfo">
 			<label><%= m.getUserName() %>님의 방문을 환영합니다.</label><br>
 			<label> 현재 포인트 : <%= pt.getPoint() %> 누적 포인트 : <%= pt.getTotalPoint() %></label>
- 		 	<label> 현재 레벨 :Lv.<%= level %></label> 
+ 		 	<label> 현재 레벨 :Lv.<%= level %></label>
 			<div class="btns" >
 				<input type="button" value="로그아웃" onclick="logout()" />
 			</div>

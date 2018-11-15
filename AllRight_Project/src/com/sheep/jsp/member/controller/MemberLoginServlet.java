@@ -46,7 +46,7 @@ public class MemberLoginServlet extends HttpServlet {
 		Member m = new Member(userId,userPwd);
 		
 		Point pt = null;
-		int level=1;
+		Object level = new Object();
 		try{
 			
 			m = ms.selectMember(m);
@@ -55,7 +55,7 @@ public class MemberLoginServlet extends HttpServlet {
 			
 			pt = ps.selectPoint(m.getUserNo());
 			
-			
+			Date today = new Date(new java.util.Date().getTime());
 
 			if(ms.checkDate(m.getUserNo())==1){
 				pt.setPoint(pt.getPoint()+10);
@@ -69,12 +69,10 @@ public class MemberLoginServlet extends HttpServlet {
 
 			
 			level=((pt.getTotalPoint()/100)+1);
-			System.out.println(level);
 			HttpSession session = request.getSession();
 			
 			session.setAttribute("member",m);
 			session.setAttribute("point", pt);
-			System.out.println(level);
 			session.setAttribute("level", level);
 			response.sendRedirect("index.jsp");
 			
