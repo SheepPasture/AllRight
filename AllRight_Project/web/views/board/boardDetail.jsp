@@ -108,7 +108,7 @@ a {
 	border: 1px solid #dedede;
 }
 
-.table_sns .sns_input .sns_input_submit {
+ .sns_input_submit {
 	color: #dedede;
 	float: left;
 	font-size: 16px;
@@ -118,8 +118,8 @@ a {
 	text-align: center;
 	line-height: 100px;
 	cursor: pointer;
-	border-radius: 3px; 
-	border: 1px solid #dedede;
+	border-radius: 3px
+	border: 1px solid #dedede; 
 }
 
 .sns_list li .sns_list_title {
@@ -410,7 +410,8 @@ a {
 											<div class="table_sns board02">
 												<!--신고하기 팝업-->
 												<div
-													class="PopUp" style="display: none; z-index: 9999;">
+													class="ebsiBrdPopUp boardUseRule_pop boardUseRule_pop02"
+													style="display: none; z-index: 9999;">
 
 													<div class="contsArea">
 														<div class="boardUseRule_conts"></div>
@@ -439,14 +440,23 @@ a {
 														</div>
 
 													</div>
-												</div>
-												<%--
+		
+												
 												<div id="rplyArea">
 													<!--테이블 리스트-->
+													<form action="<%= request.getContextPath() %>/insertComment.bo" method="post">
+														<input type="hidden" name="writer" value="<%= m.getUserName() %>"/>
+														<input type="hidden" name="bid" value="<%= b.getbId() %>"/>
+														<input type="hidden" name="bno" value="<%= b.getbNO() %>"/>
+														<input type="hidden" name="refcno" value="1"/>
+														<input type="hidden" name="clevel" value="0"/>
+														
 													<div class="sns_input">
 														<textarea  id="replyContent" name="replyContent" placeholder="댓글을 입력하세요"></textarea>
-														<div class="sns_input_submit" type="submit" id="addReply">등록</div>
+														<!-- <div class="sns_input_submit" type="submit" id="addReply">등록</div> -->
+														<button class="sns_input_submit" type="submit" id="addReply"><div>등록</div></button>
 													</div>
+													<%-- 
 													<% for(BoardComment bco : clist) { %>
 													<div class="sns_list_wrap">
 														<ul class="sns_list">
@@ -471,11 +481,12 @@ a {
 																</div>
 																<div class="sns_list_text"><%= bco.getcContent() %></div>
 															</li>
-														</ul>
+														</ul> --%>
 			
-														</div>
-													<% } %>
+											<%-- 			</div>
+													 </form><% } %> 
 												</div> --%>
+												<%-- 
 												<div id="rplyArea">
 
 													<!--테이블 리스트-->
@@ -483,6 +494,7 @@ a {
 														<textarea name="title" id="title" placeholder="댓글을 입력하세요"></textarea>
 														<div class="sns_input_submit" onclick="#">등록</div>
 													</div>
+													--%>
 													<div class="sns_list_wrap">
 														<ul class="sns_list">
 															<li>
@@ -501,7 +513,7 @@ a {
 																	<div class="icon_wrap">
 																		<div class="goods">
 																			<a href="#"> <span class="icon on">icon</span>
-																				<p id="rplyRec_1">1</p>
+																				<p id="rplyRec_1"></p>
 																			</a>
 																		</div>
 																	</div>
@@ -509,9 +521,8 @@ a {
 																<div class="sns_list_text">댓글내용입니다.</div>
 															</li>
 														</ul>
-														<!--//sns-->
-													</div>
-												</div>
+													</div></form>
+												</div></div>
 											</div>
 										</div>
 									</div>

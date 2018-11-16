@@ -57,7 +57,7 @@
 									<th>제목</th>
  									<td class="title"><%= a.getAtitle()%></td>
 									<th >조회수</th>
-									<td><%= a.getAcount() %></td>
+									<td><%= a.getAcount() + 1 %></td>
 								</tr>
 								<tr>
 									<th>작성자</th>
