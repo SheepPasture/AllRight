@@ -10,17 +10,17 @@
 	/*  ArrayList dayArr = request.getAttribute("dayArr");  */
 %>
 <!-- 
-필기시험원서접수시작 일자 
+-필기시험원서접수시작 일자 
 필기시험원서접수종료 일자 
-필기시험일자
-필기시험 합격(예정)자 발표일자 
-응시자격 서류제출 및 필기시험 합격자 결정시작일자 
+-필기시험일자
+-필기시험 합격(예정)자 발표일자 
+-응시자격 서류제출 및 필기시험 합격자 결정시작일자 
 응시자격 서류제출 및 필기시험 합격자 결정종료일자 
-면접시험원서접수시작 일자 
+-면접시험원서접수시작 일자 
 면접시험원서접수종료 일자 
-면접시험시작일자
+-면접시험시작일자
 면접시험종료일자
-합격자발표일자
+-합격자발표일자
  -->
 <!DOCTYPE html>
 <html>
@@ -52,6 +52,10 @@
 
 	$(document).ready(function() { 
 	var event= [] ;
+	/* var dlname;
+	var ddate;*/
+	var dday; 
+	var result;
 
 	var a = [{title: 'title1', start:'2018-11-11' },{title: 'title1', start:'2018-11-11'}]
 	event = a; 
@@ -66,23 +70,15 @@
 			     alert("에러");
 			    }
 			    , success : function(data) {
-			    	  var resultText = "";
-			    	 
-			    	 for(var index in data.list){
-			    		 var user = data.list[index];
-			    		resultText +=user.title + ", ";
-						resultText +=user.date +"\n";
-					
-			    	 }
-			    	  
+  
 			    	var list = data.list;
 			    	var dl = data.list.length/11;
 					var arr = [];
 				 	for(var i =0; i< list.length ; i++ ){
 							
-				 			// 최근일정 구하기
-				 		
+				 	
 				 			
+			 
 				 		
 				 			// start date 구분하기		
 							if(list[i].title.match(/시작/)!=null){
@@ -97,15 +93,42 @@
 							}else{
 								arr[i] = {title :list[i].title ,
 										 start : list[i].date 
-									}
+										}
 							}
 							if(!status) arr[i] + ",";
 					
 	
 				 	}
-
+				 	
+				 // 최근일정 구하기
+				 var date = new Date();
+				 var year = date.getFullYear();
+				 var month = date.getMonth()+1;
+				 var day = date.getDate();
+				    if ((day+"").length < 2) {
+				        day = "0" + day;
+				    }
+				 
+	
+				 for(var j = 0; j <list.length ; j++ ){
+				 		var date1 = new Date(year, month ,day);
+						var date2 = new Date(list[j].date.substr(0,4),list[j].date.substr(5,2),list[j].date.substr(8,2));
+						var diff = date1-date2;
+						dday = parseInt(diff/( 24 * 60 * 60 * 1000))); 
+				 		/* if(!(list[j].title.match(/종료/))){
+				 			console.log(today-list[j].date);
+				 		result.put("dlname",list[j].title);
+				 		result.put("ddate",list[j].date);
+				 		
+				 		
+				 		
+				 		} */
+				 	/* var day = data.day;
+				 	console.log(day.length); */
+			
+				 	}
 					event=arr;
-				
+				 	
 			    }	 
 		});
 
