@@ -90,7 +90,7 @@
 	</script>
 </td>
 <td style="padding-right:5px; text-align:right;" valign="middle">
-	<input type="button" value="첫화면" class="btn01_qpass" style="width:60px; border:1px solid #008000;" onclick="move2main()">
+	<input type="button" value="첫화면" class="btn01_qpass" style="width:60px; border:1px solid #008000;" onclick="main()">
 </td>
 </tr>
 </table><!-- 상단 타이틀 끝. -->
@@ -98,71 +98,45 @@
 <input type="hidden" id="current_i" value="0" size="3">
 <input type="hidden" id="current_j" value="0" size="3">
 
-<table width="100%" cellspacing="0" cellpadding="0" style="margin-top:0px;" border="0">
-<tbody>
-<tr>
-<td width="50%" valign="top" class="ed" style="padding-top:5px;">
-<div id="ques_ox1" style="margin:0px; position:absolute; width:55px; height:45px;">
-<img src="./images/answer/blank.gif" style="width:55px; height:45px;"></div>
 
-<table style="margin-bottom:10px; width:100%; height:150px; border:0" cellspacing="0" cellpadding="5">
-<tbody><tr><td style="padding-left:8px; width:25px; text-align:right" valign="top" class="count_qpass">1.</td>
-<td style="width:98%" valign="top" class="question01_qpass">CPU를 경유하지 않고 고속의 입출력장치와 기억장치가 직접 데이터를 주고받는 방식은? <br>
-<span id="rate1" class="rightRate" style="display:none">[정답률: 72%]</span></td></tr><tr><td></td>
-<td id="quesitem11" class="question02_qpass" style="background-repeat: no-repeat; background-image: url(&quot;./img/red_v38.gif&quot;);">
-<a href="javascript:answer_check(1, 1)">① DMA(Direct Memory Access)</a></td></tr><tr><td></td><td id="quesitem12" class="question02_qpass" style="background-repeat: no-repeat;">
-<a href="javascript:answer_check(1, 2)">② 프로그램에 의한 입출력(Programmed I/O)</a></td></tr><tr><td></td><td id="quesitem13" class="question02_qpass" style="background-repeat: no-repeat;">
-<a href="javascript:answer_check(1, 3)">③ 인터럽트에 의한 입출력(interrupt driven I/O)</a></td></tr><tr><td></td><td id="quesitem14" class="question02_qpass" style="background-repeat: no-repeat;">
-<a href="javascript:answer_check(1, 4)">④ 채널 제어기에 의한 입출력</a></td></tr>
-</tbody></table>
-<div id="ques_ox2" style="margin:0px; position:absolute; width:55px; height:45px;">
-<img src="./img/blank.gif" style="width:55px; height:45px;"></div>
 
-<table style="margin-bottom:10px; width:100%; height:150px; border:0" cellspacing="0" cellpadding="5">
-<tbody><tr><td style="padding-left:8px; width:25px; text-align:right" valign="top" class="count_qpass">2.</td>
-<td style="width:98%" valign="top" class="question01_qpass">순차처리(Sequential access)만 가능한 장치는? <br>
-<span id="rate2" class="rightRate" style="display:none">[정답률: 70%]</span></td></tr><tr><td></td>
-<td id="quesitem21" class="question02_qpass">
-<a href="javascript:answer_check(2, 1)">① magnetic core</a></td></tr><tr><td></td><td id="quesitem22" class="question02_qpass">
-<a href="javascript:answer_check(2, 2)">② magnetic drum</a></td></tr><tr><td></td><td id="quesitem23" class="question02_qpass">
-<a href="javascript:answer_check(2, 3)">③ magnetic disk</a></td></tr><tr><td></td><td id="quesitem24" class="question02_qpass">
-<a href="javascript:answer_check(2, 4)">④ magnetic tape</a></td></tr>
-</tbody></table>
 
-<table width="100%" height="50"  border:"0">
 
-</table>
+
+
+
+
+
+
+
+
 <!--  Content Start -->
 <script>
-function move2main(){ // 첫화면
+function main(){ // 첫화면
 	var currentI = document.getElementById('current_i').value;
 	var currentJ = document.getElementById('current_j').value;
-	var currentDiv = document.getElementById('div' + 'currentI' + 'currentJ');
 	
-	currentDiv.style.display = "none";
-	index_div.style.display='';
-
-	var currentAns = document.getElementById('ans'+ currentI);
-	currentAns.style.display = "none";
-
-	var indexDiv = document.getElementById('index_div');
-	indexDiv.style.visibility = "visible";
 }
 
 function move2question(){
 	
-	
+		
+}
+
+function answer_check(1, 1){
+	var check = document.getElementById();
+			
+}
+
+/* 버튼  */ 
+function finish(){
+	var finishbtn = document.getElementById('btnFinish');
 	
 }
 
-function answer_check(question_num, ans_num){
-	var currentMode = document.getElementById('current_mode').value;
-	var incorrectRight = "";
-if(currentMode == "incorrect"){
-		
+for(var j=1 j<=4 j++){
 	
 }
-	
 }
 </script>
 
