@@ -5,11 +5,11 @@ import java.util.List;
 import com.sheep.jsp.userTest.model.vo.UserTest;
 
 public class Question {
-	private int tNo;
-	private int qNo;
-	private String qContent;
-	private String qPre;
-	private int qAnswer;
+	private int tNo;  // 시험번호
+	private int qNo;  // 문제번호
+	private String qContent; // 문제 내용
+	private String qPre;  // 문제 보기 (1번, 2번)
+	private int qAnswer; // 문제 정답
 	
 	public Question(){
 		super();
