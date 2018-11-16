@@ -179,7 +179,7 @@ public class MemberDao {
 		}
 		return result;
 	}
-	
+/*	
 	public int selectUserNo(Connection con, String userId){
 		
 		int result = 0;
@@ -205,7 +205,7 @@ public class MemberDao {
 		
 		return result;
 		
-	}
+	}*/
 
 	public int addFinalDate(Connection con, Member m) {
 		
