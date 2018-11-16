@@ -12,7 +12,7 @@ public class AnswerService {
 	private AnswerDao aDao = new AnswerDao();
 
 	public ArrayList<UserAnswer> selectList() {
-		// 기출문제 리스트
+		// 회차별 리스트 가져오기
 		
 		ArrayList<UserAnswer> list = null;
 		
@@ -24,5 +24,7 @@ public class AnswerService {
 		
 		return null;
 	}
+	
+	
 
 }

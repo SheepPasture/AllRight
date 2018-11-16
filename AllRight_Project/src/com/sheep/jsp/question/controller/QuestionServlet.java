@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.sheep.jsp.question.model.service.QuestionService;
 import com.sheep.jsp.question.model.vo.Question;
 import com.sheep.jsp.question.model.vo.UserQue;
 
@@ -50,6 +51,8 @@ public class QuestionServlet extends HttpServlet {
 			result.add(queInfo);
 			
 			response.setContentType("application/json; charset=UTF-8"); 
+			
+			QuestionService qu = new QuestionService();
 		}
 	}
 		
