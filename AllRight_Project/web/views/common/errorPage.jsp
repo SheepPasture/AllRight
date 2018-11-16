@@ -9,10 +9,11 @@
 <head>
 	
 	<title>ALLRight</title>
-	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<!-- <link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
+	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script> 
    
 	
 </head>
@@ -35,10 +36,10 @@
 				</div>
 				<div class="col-sm-8 text-center">
 					<h2 align="left">에러 페이지</h2>
+					<br /><br />
+					<%if(msg!= null) {%>
 					
-					<%if(e!= null) {%>
-					
-					<h3>에러명 :: <%= e.getMessage() %></h3>
+					<h3>에러명 :: <%= msg %><%-- <%= e.getMessage() %> --%></h3>
 					
 					<% } %>
 					

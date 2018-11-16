@@ -63,7 +63,7 @@
 			</div>
 			<%-- 페이지 처리 --%>
 			<br /><br />
-			<div class="col-md-11 text-center" align="center">
+			<div class="col-sm-8" align="center">
 				<button onclick="location.href='<%= request.getContextPath() %>/selectList.ann?currentPage=1'"><<</button>
 				<%  if(currentPage <= 1){  %>
 				<button disabled><</button>
@@ -88,13 +88,13 @@
 				<button onclick="location.href='<%= request.getContextPath() %>/selectList.ann?currentPage=<%= maxPage %>'">>></button>
 			</div>
 			
-		 	<div class="col-sm-10 text-right">
+<!-- 		 	<div class="col-sm-10 text-right">
 				<button type="button"><a href="views/announcement/ANNInsertForm.jsp">작성하기</a></button>
-			</div>
+			</div> -->
 			
 		</div>
 	</div>
-	<script>
+<%-- 	<script>
 		$(function(){
 			$("#listArea td").mouseenter(function(){
 				$(this).parent().css({"cursor":"pointer"});
@@ -104,7 +104,7 @@
 				location.href="<%=request.getContextPath()%>/selectOne.ann?ano=" + ano;
 			});
 		});
-	</script>
+	</script> --%>
 		
 	
 	<!-- FOOTER -->
