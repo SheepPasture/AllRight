@@ -93,9 +93,9 @@
 					
 					
 					<div class="main">
-			<div class="realtime" id="boardTop5" style="float:left; width:50%;">
+			<div class="realtime" style="float:left; width:50%;">
 			<h3>실시간 게시판 순위</h3>
-			
+				<div id="refresh">
 			<table id="boardTop5">
 				<thead>
 					<tr>
@@ -105,6 +105,7 @@
 				<tbody>
 				</tbody>
 			</table>
+			</div>
 				<!-- <div class="realtime-nav" >
 					<ul class="ah_l">
 						<li class="">
@@ -237,6 +238,18 @@
 			location.href = "mLogout.me";
 		}
 		
+		
+		/* function autoRefresh_div(){
+			
+			var currentLocation = window.location;
+			$("#refresh").load(currentLocation + ' #refresh')
+		}
+		
+		setInterval('autoRefresh_div()', 3000); */
+			
+		
+		
+		
 		//실시간 순위
 		$(function(){
 			
@@ -265,6 +278,8 @@
 				}
 				
 			});
+			
+			
 			
 		});
 		
