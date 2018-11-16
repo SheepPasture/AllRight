@@ -47,11 +47,16 @@
 <script>
 
 $(document).ready(function() { 
-	
-	$.ajax({
-		url : "<%= request.getContextPath() %>/sTest.sc", 
-	 <%-- 	url : "<%= request.getContextPath() %>/views/myPage/scheduleTest.jsp",  --%>
-		type : "POST"
+var event= [] ;
+
+var a = [{title: 'title1', start:'2018-11-11' },{title: 'title1', start:'2018-11-11'}]
+event = a; 
+
+		$.ajax({
+		url : "<%=request.getContextPath()%>/sTest.sc", 
+
+		type : "POST",
+		async: false
 		, dataType : "json"  
 		     , error : function(request, status, error) {
 		     alert("에러");
@@ -65,101 +70,52 @@ $(document).ready(function() {
 					resultText +=user.date +"\n";
 				
 		    	 }
-		    	 /* console.log(resultText);  */
-		    	 console.log(data.list.length);
-		    	 console.log(data.list.length/2);
-		    	 console.log(data.list[0].title);
-		    	 console.log(data.list[0].date);
-		    	 console.log(data);
 		    	  
-		    	 var list = data.list;
+		    	var list = data.list;
 		    	var dl = data.list.length/11;
 				var arr = [];
-				console.log(dl);
-			
-				console.log(!status);
 			 	for(var i =0; i< list.length ; i++ ){
-					
-				
+	
 						if(list[i].title.match(/시작/)!=null){
-							arr[i] = { title : "'" + list[i].title + "'", 
-									
-							
-									 start : "'"+list[i].date + "'",
-									 end : "'"+ list[i+1].date + "'"}
+							arr[i] = { title : list[i].title , 
+									 start : list[i].date ,
+									 end : list[i+1].date 
+									 }
+							if(arr[i]==null)arr={};
 							i++;
+							arr[i]={};
+							
 						}else{
-							arr[i] = {title : "'" + list[i].title + "'",
-									 start : "'"+list[i].date + "'"
+							arr[i] = {title :list[i].title ,
+									 start : list[i].date 
 								}
 						}
-
 						if(!status) arr[i] + ",";
 				
-					
 				}
-			 	/*  console.log(arr.replace('"'));  */
-				
-		    	var arr =[	  		
-		    		
-		    	];
-								
-			/* 		
-				console.log(list.length); 
-		    	 console.log(data.list[0]);
-		    	 alert("성공");
-			 */
-		    }	
-		    });
-	
-	
-    var event = [ 
 
-  	 	{
-          title: 'title1',
-          start:'2018-11-11'
-        }, 
-        {
-	          title: 'title2',
-	          start: '2018-11-12'
-	    }
-  	] ;	
+				event=arr;
+			
+			 	a=arr;
+		    }	 
+	});
+ 	console.log("어후 ..." + event);
+
 	$('#calendar').fullCalendar({
-	      header: {
-	        left: 'prev,next today',
-	        center: 'title',
-	        right: 'month,agendaWeek,agendaDay,listWeek'
-	      },
-	      defaultDate: new Date(),
-	      navLinks: true, // can click day/week names to navigate views
-	      editable: true,
-	      eventLimit: true, // allow "more" link when too many events
-	    
-	      events: event
+		header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay,listWeek'
+      },
+      defaultDate: new Date(),
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+      events: event
+    
+ 	});
+	
 
-	
-/* 	    	     [ 
-
-	    		  	 	{
-	    		          title: 'title1',
-	    		          start:'2018-11-11'
-	    		        }, 
-	    		        
-	    		        {
-		    		          title: 'title2',
-		    		          start: '2018-11-12'
-		    		    }
-		    	
-	    		  ]    */
-
-	  
-	    	});
-	
-	
-	
-	
-	
-	
 });
 
 

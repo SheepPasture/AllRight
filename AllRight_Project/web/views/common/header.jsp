@@ -299,7 +299,10 @@ jQuery(document).ready(function() {
                             <a href="<%= request.getContextPath() %>/views/myPage/myPageMain.jsp">마이페이지</a>
                             <ul>
                                 <li><a href="<%= request.getContextPath() %>/views/myPage/myPageMain.jsp">회원정보수정</a></li>
-                                <li><a href="<%= request.getContextPath() %>/lMylist.li">관심 자격증 정보</a></li>
+                              <%--   <li><a href="<%= request.getContextPath() %>/lMylist.li">관심 자격증 정보</a></li> --%>
+                               <li><a href= "<%=request.getContextPath()%>/views/myPage/schedule.jsp">관심 자격증 정보</a></li>
+                              
+                             
                                 <li><a href="<%= request.getContextPath() %>/bMyList.bo">게시글 관리</a></li>
                                 <li><a href="<%= request.getContextPath() %>/views/myPage/viewTest.jsp">기출문제 관리</a></li>
                                 <li><a href="<%= request.getContextPath() %>/views/answer/answerList.jsp">기출문제 정보</a></li>
