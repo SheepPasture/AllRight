@@ -135,7 +135,7 @@ public class MyPageDao {
 				li.setlName(rset.getString("LNAME"));
 				li.setlDate(rset.getString("LDATE"));
 				
-				long minus=0;
+				/*long minus=0;
 				Date today = new Date(); 
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				String first = sdf.format(today);
@@ -149,7 +149,7 @@ public class MyPageDao {
 				} catch (ParseException e) {
 					
 					e.printStackTrace();
-				}
+				}*/
 				
 				
 				

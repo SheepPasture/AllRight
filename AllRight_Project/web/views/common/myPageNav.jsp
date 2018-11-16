@@ -33,7 +33,7 @@
 		</p>
 		<p>
 			<%-- <a href="<%=request.getContextPath()%>/sTest.sc">관심자격증 정보</a> --%>
-			<a href="<%=request.getContextPath()%>/views/myPage/scheduleTest.jsp">관심자격증 정보</a>
+			<a href="<%=request.getContextPath()%>/views/myPage/schedule.jsp">관심자격증 정보</a>
 		</p>
 		<p>
 			<a href="<%=request.getContextPath()%>/bMyList.bo">게시글 관리</a>
