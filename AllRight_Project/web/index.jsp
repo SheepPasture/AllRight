@@ -93,9 +93,19 @@
 					
 					
 					<div class="main">
-			<div class="realtime" style="float:left; width:50%;">
+			<div class="realtime" id="boardTop5" style="float:left; width:50%;">
 			<h3>실시간 게시판 순위</h3>
-				<div class="realtime-nav" >
+			
+			<table id="boardTop5">
+				<thead>
+					<tr>
+						<th>게시판 이름</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+				<!-- <div class="realtime-nav" >
 					<ul class="ah_l">
 						<li class="">
 							<span class="realtime-rank">1.</span>
@@ -118,7 +128,7 @@
 							<span class="realtime-rank">제과제빵</span>
 						</li>
 					</ul>
-				</div>
+				</div> -->
 			</div>
 					
 				
@@ -226,6 +236,38 @@
 			
 			location.href = "mLogout.me";
 		}
+		
+		//실시간 순위
+		$(function(){
+			
+			$.ajax({
+				
+				url: '/allRight/top5.bo',
+				dataType: "json",
+				type : "get",
+				success : function(data){
+					
+					$table = $('#boardTop5 tbody');
+					
+					for(var i in data){
+						
+						console.log(data[i]);
+						var $trBoard = $('<tr>');
+						var $tdBoardTitle = $('<td>').text(data[i].bTitle);
+						
+						$trBoard.append($tdBoardTitle);
+						
+						$table.append($trBoard);
+					}
+				}, error : function(data){
+					
+					console.log("top5 조회 실패!");
+				}
+				
+			});
+			
+		});
+		
 		</script>
 	
 	
