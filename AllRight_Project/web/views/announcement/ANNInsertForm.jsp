@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import = "com.sheep.jsp.announcement.model.vo.*, java.util.*, com.oreilly.servlet.*"%>
+    pageEncoding="UTF-8" import = "com.sheep.jsp.announcement.model.vo.*, java.util.*"%>
 <% Announcement a = (Announcement)request.getAttribute("announcement"); %>
 <!DOCTYPE html>
 <html>
@@ -11,9 +11,8 @@
 	<meta name="author" content="">
 	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
 
-<!--   	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" /> -->
- 
- 	<script src="//cdn.ckeditor.com/4.9.2/basic/ckeditor.js"></script>
+<!--   	<link href="/allRight/resources/css/style.css" rel="stylesheet" type="text/css" /> --> 
+<!--  	<script src="//cdn.ckeditor.com/4.9.2/basic/ckeditor.js"></script> -->
 
 	<style>
 
@@ -46,7 +45,7 @@
 				<br>
 				<div class="col-sm-2 sidenav">
 					<p><a href="selectList.ann">공지사항</a></p>
-					<p><a href="<%= request.getContextPath() %>/views/community/communityList.jsp">커뮤니티</a></p>
+					<p><a href="<%= request.getContextPath() %>/views/board/boardList.jsp">커뮤니티</a></p>
 					<p><a href="/views/license/licenseinfo.jsp">자격증정보</a></p>
 				</div>
 				<div class="col-sm-8 text-left">
@@ -63,15 +62,20 @@
 									</td>
 								</tr>
 								<tr>
-									<th class="col-sm-2">내용</th>
+									<th class="col-sm-2" id="title">내용</th>
 									<td>
-										<textarea name="content" class="ckeditor" rows="20" cols="70"></textarea>
-										<script>
-											CKEDITOR.replace('content', {
-												width: 650,
-												height: 300
-											});		
-										</script>
+										<!-- <textarea name="content" class="ckeditor" rows="20" cols="70"></textarea> -->
+										<script type="text/javascript" src="/allRight/resources/ckeditor/ckeditor.js"></script>
+											 
+										<div class="form-group">
+											 <textarea name="content" class="ckeditor" rows="20" cols="70"></textarea>
+											 <script>
+												CKEDITOR.replace('content', {
+													width: 650,
+													height: 300
+												});
+											 </script>
+										</div>
 									</td>
 								</tr>			
 							</tbody>
