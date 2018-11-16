@@ -16,6 +16,7 @@ public class BoardComment {
 	private String cStatus;
 	private String nickname;
 	private String userId;
+	private int refcno;
 
 	
 	// 생성자
@@ -23,19 +24,10 @@ public class BoardComment {
 		super();
 	}
 
-	public BoardComment(int cNo, String cContent, int userNo, Date cDate, int cLevel) {
-		super();
-		this.cNo = cNo;
-		this.cContent = cContent;
-		this.userNo = userNo;
-		this.cDate = cDate;
-		this.cLevel = cLevel;
-	}
-
 
 
 	public BoardComment(int cNo, int bNo, int bId, int userNo, int cPwd, String cContent, Date cDate, int cLevel,
-			int report, String cStatus, String nickname, String userId) {
+			int report, String cStatus, String nickname, String userId, int refcno) {
 		super();
 		this.cNo = cNo;
 		this.bNo = bNo;
@@ -49,7 +41,10 @@ public class BoardComment {
 		this.cStatus = cStatus;
 		this.nickname = nickname;
 		this.userId = userId;
+		this.refcno = refcno;
 	}
+
+
 
 	// getter & setter
 
@@ -172,14 +167,23 @@ public class BoardComment {
 		this.userId = userId;
 	}
 	
+	public int getRefcno() {
+		return refcno;
+	}
+	
+	
+	
+	public void setRefcno(int refcno) {
+		this.refcno = refcno;
+	}
+	
+	
 	// toString()
-
-
 	@Override
 	public String toString() {
 		return "BoardComment [cNo=" + cNo + ", bNo=" + bNo + ", bId=" + bId + ", userNo=" + userNo + ", cPwd=" + cPwd
 				+ ", cContent=" + cContent + ", cDate=" + cDate + ", cLevel=" + cLevel + ", report=" + report
-				+ ", cStatus=" + cStatus + ", nickname=" + nickname + ", userId=" + userId + "]";
+				+ ", cStatus=" + cStatus + ", nickname=" + nickname + ", userId=" + userId + ", refcno=" + refcno + "]";
 	}
 
 	// hashCode()

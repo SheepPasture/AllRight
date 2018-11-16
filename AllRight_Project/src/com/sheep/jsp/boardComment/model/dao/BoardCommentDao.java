@@ -44,21 +44,22 @@ public class BoardCommentDao {
 		
 			pstmt = con.prepareStatement(sql);
 
-			pstmt.setString(1, bco.getUserId());
-			pstmt.setString(2, bco.getcContent());
-			pstmt.setDate(3, bco.getcDate());
-/*			pstmt.setInt(4, bco.getUserNo());
-			pstmt.setInt(5, bco.getcLevel());*/
+			pstmt.setInt(1, bco.getbNo());
+			pstmt.setInt(2, bco.getUserNo());
+			pstmt.setString(3, bco.getcContent());
+			pstmt.setString(5, bco.getUserId());
 			
-/*			if(bco.getRefcno() > 0) {
+
+			if(bco.getRefcno() > 0) {
 				
-				pstmt.setInt(4, bco.getRefcno());
+				pstmt.setInt(6, bco.getRefcno());
 				
 			} else {
 				
-				pstmt.setNull(4, java.sql.Types.NULL);
+				pstmt.setNull(6, java.sql.Types.NULL);
 			}
-			pstmt.setInt(5, bco.getcLevel());*/
+			
+			pstmt.setInt(4, bco.getcLevel());
 			
 			result = pstmt.executeUpdate();
 		
