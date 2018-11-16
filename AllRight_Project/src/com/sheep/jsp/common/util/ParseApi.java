@@ -107,7 +107,46 @@ public class ParseApi {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
+		return nList;
+	}
+
+	private NodeList commonDate(String urlstr) {
+
+		NodeList nList = null;
+		BufferedReader br = null;
+		// DocumentBuilderFactory 생성
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		factory.setNamespaceAware(true);
+		DocumentBuilder builder;
+		Document doc = null;
+		try {
+			URL url = new URL(urlstr);
+			HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
+
+			// 응답 읽기
+			br = new BufferedReader(new InputStreamReader(urlconnection.getInputStream(), "UTF-8"));
+			String result = "";
+			String line;
+			while ((line = br.readLine()) != null) {
+				result = result + line.trim();// result = URL로 XML을 읽은 값
+			}
+
+			// xml 파싱하기
+			InputSource is = new InputSource(new StringReader(result));
+			builder = factory.newDocumentBuilder();
+			doc = builder.parse(is);
+			XPathFactory xpathFactory = XPathFactory.newInstance();
+			XPath xpath = xpathFactory.newXPath();
+			// XPathExpression expr =
+			// xpath.compile("/response/body/items/item");
+			XPathExpression expr = xpath.compile("//items/item");
+			nList = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		return nList;
 	}
 
@@ -128,8 +167,9 @@ public class ParseApi {
 
 				Element eElement = (Element) nNode;
 
-				l = new LicenseInfo(getTagValue("jmcd", eElement), getTagValue("jmfldnm", eElement), getTagValue("obligfldnm", eElement));
-				
+				l = new LicenseInfo(getTagValue("jmcd", eElement), getTagValue("jmfldnm", eElement),
+						getTagValue("obligfldnm", eElement));
+
 				list.add(l);
 
 			} // for end
@@ -180,14 +220,15 @@ public class ParseApi {
 
 		// licenseInfo : info 업데이트전 자격증 정보 한건
 		for (LicenseInfo licenseInfo : list) {
-			 
-			if("9750".equals(licenseInfo.getlNo()) || "9657".equals(licenseInfo.getlNo()) 
-					|| "9751".equals(licenseInfo.getlNo()) || "9752".equals(licenseInfo.getlNo()) 
-					|| "9753".equals(licenseInfo.getlNo()) || "9754".equals(licenseInfo.getlNo()) || "9755".equals(licenseInfo.getlNo())){
-				
+
+			if ("9750".equals(licenseInfo.getlNo()) || "9657".equals(licenseInfo.getlNo())
+					|| "9751".equals(licenseInfo.getlNo()) || "9752".equals(licenseInfo.getlNo())
+					|| "9753".equals(licenseInfo.getlNo()) || "9754".equals(licenseInfo.getlNo())
+					|| "9755".equals(licenseInfo.getlNo())) {
+
 				continue;
 			}
-			System.out.println("자격증 정보 업데이트 중" + "(" + (i + 1) + "/" + size + ")");
+			System.out.println("자격증 정보 업데이트 중" + "(" + (i + 1) + "/" + (size - 7) + ")");
 
 			String urlstr = "http://openapi.q-net.or.kr/api/service/rest/InquiryInformationTradeNTQSVC/getList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D&jmCd=";
 
@@ -205,62 +246,97 @@ public class ParseApi {
 
 					// 자격증에 info 데이터 setting
 					infoList.set(j, child.item(k).getTextContent());
-					//System.out.println("====child.item(k)====\n"+child.item(k).getTextContent()); 
+					// System.out.println("====child.item(k)====\n"+child.item(k).getTextContent());
 					// 자격증 정보 다 담음.
 				}
 			}
 
 			licenseInfo.setlInfo(infoList);
-			
-			/*for(i = 0; i < licenseInfo.getlInfo().size(); i++){
-				System.out.println("====licenseInfo.getlInfo().get()====\n"+licenseInfo.getlInfo().get(0));
-				System.out.println(licenseInfo.getlInfo().get(1));
-				System.out.println(licenseInfo.getlInfo().get(2));
-			} licenseInfo.getlInfo().get(0); 에만 자격증 정보가 담김. */
-			
+
+			/*
+			 * for(i = 0; i < licenseInfo.getlInfo().size(); i++){
+			 * System.out.println("====licenseInfo.getlInfo().get()====\n"+
+			 * licenseInfo.getlInfo().get(0));
+			 * System.out.println(licenseInfo.getlInfo().get(1));
+			 * System.out.println(licenseInfo.getlInfo().get(2)); }
+			 * licenseInfo.getlInfo().get(0); 에만 자격증 정보가 담김.
+			 */
+
 			i++;
 
 			resultList.add(licenseInfo);
 
 		}
-		
-		/*for(i = 0; i < resultList.size(); i++){
-			System.out.println("====resultList.get(i).getlInfo().get()====\n"+resultList.get(i).getlInfo().get(0));
-			System.out.println(resultList.get(i).getlInfo().get(1));
-			System.out.println(resultList.get(i).getlInfo().get(2));
-		} resultList.get(i).getlInfo().get(0)); 에만 자격증 정보가 담김. */
+
+		/*
+		 * for(i = 0; i < resultList.size(); i++){
+		 * System.out.println("====resultList.get(i).getlInfo().get()====\n"+
+		 * resultList.get(i).getlInfo().get(0));
+		 * System.out.println(resultList.get(i).getlInfo().get(1));
+		 * System.out.println(resultList.get(i).getlInfo().get(2)); }
+		 * resultList.get(i).getlInfo().get(0)); 에만 자격증 정보가 담김.
+		 */
 
 		return resultList;
 	}
-	
-	public void getPEDate(){
-		
-		String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getPEList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
-		
-	}
-	
-	public void getMCDate(){
-		
-		String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestDatesMasterCraftsmanSVC/getMCList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
-		
-		
-		
-	}
-	
-	public void getEDate(){
-		
-		String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestDatesEngineerSVC/getEList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
-		
-		
-		
-	}
 
-	public void getCDate(){
-	
-		String url = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestDatesCraftsmanSVC/getCList?ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
-	
-	
-	
+	public ArrayList<String> getDate() {
+
+		ArrayList<String> list = new ArrayList<String>(); // 모든것을 담을 리스트
+		ArrayList<String> list1 = new ArrayList<String>(); // 기술사 일정
+		ArrayList<String> list2 = new ArrayList<String>(); // 기사/산업기사 일정
+		ArrayList<String> list3 = new ArrayList<String>(); // 기능장 일정
+		ArrayList<String> list4 = new ArrayList<String>(); // 기능사 일정
+
+		for (int i = 1; i < 5; i++) {
+			String url = "";
+			
+			if(i == 1){
+			
+				url = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getPEList?"
+						+ "ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
+			} else if (i == 2){
+				
+				url = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getEList?"
+						+ "ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
+			} else if (i == 3){
+				
+				url = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getMCList?"
+						+ "ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
+			} else {
+				
+				url = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getCList?"
+						+ "ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
+			}
+			
+
+			NodeList nodeList = commonDate(url);
+			for (int j = 0; j < nodeList.getLength(); j++) {
+				NodeList child = nodeList.item(j).getChildNodes();
+				for (int k = 0; k < child.getLength(); k++) {
+					Node node = child.item(k);
+
+					if (node.getNodeName() == "description") {
+						continue;
+					}
+					
+//					System.out.println(node.getTextContent());
+					list1.add(node.getTextContent());
+					list2.add(node.getTextContent());
+					list3.add(node.getTextContent());
+					list4.add(node.getTextContent());
+
+				}
+			}
+		}
+		
+		list.addAll(list1);
+		list.addAll(list2);
+		list.addAll(list3);
+		list.addAll(list4);
+
+		return list;
+
 	}
 
 }

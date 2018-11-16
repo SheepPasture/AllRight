@@ -61,28 +61,36 @@ public class LicenseService {
 		return pa.getCost(list);
 	}
 
-	public ArrayList<LicenseInfo> updateInfoData(ArrayList<LicenseInfo> list) {
+	public int updateInfoData(ArrayList<LicenseInfo> list) {
+		
+		int result = 0;
 		
 		Connection con = getConnection();
 		
-		list = lDao.updateLicense(con, pa.getInfoList(list));
+		result = lDao.updateLicense(con, pa.getInfoList(list));
+		
+		if(result > 0) commit(con);
+		else rollback(con);
 		
 		close(con);
 		
-		return list;
+		return result;
 		
 	}
-	
-//	public ArrayList<LicenseInfo> updateLicense(ArrayList<LicenseInfo> list) {
-//		
-//		Connection con = getConnection();
-//		
-//		ParseApi pa = new ParseApi();
-//		
-//		list = lDao.updateLicense(con, pa.getCost(list));
-//		
-//		close(con);
-//		
-//		return list;
-//	}
+
+	public int insertDate(ArrayList<String> date) {
+		
+		int result = 0;
+		Connection con = getConnection();
+		
+		result = lDao.insertDate(con, date);
+		
+		if(result > 0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+	}
+
 }
