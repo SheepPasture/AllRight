@@ -1,6 +1,6 @@
 package com.sheep.jsp.question.model.service;
 
-import static com.sheep.jsp.common.JDBCTemplate.close;
+import static com.sheep.jsp.common.JDBCTemplate.*;
 import static com.sheep.jsp.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
@@ -20,10 +20,10 @@ public class QuestionService {
 		Connection con = getConnection();
 	
 		list = qDao.selectList(con);
-	
+		
 		close(con);
 	
-		return null;
+		return list;
 	}
 	
 

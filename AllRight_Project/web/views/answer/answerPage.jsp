@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" %>
-
+	pageEncoding="UTF-8" import="com.sheep.jsp.question.model.vo.*, java.util.*" %>
+<% 
+// 문제 리스트
+ArrayList<Question> qs = (ArrayList<Question>) request.getAttribute("qs");
+	int qNo = (Integer) request.getAttribute("qNo");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +21,6 @@
 		<td style="padding:15px 0px; width:120px; font-family:tahoma; text-align:center;">
 		<div id="testing" style="display:none;">
 		</td>
-		<td>	
 		<div id="top" style="padding:12px 0px; text-align:left;"><!--PC 리본메뉴, 문제집중뷰 시작.-->
 		<form name='form' action="<%= request.getContextPath() %> /question.qu" method='post' style='margin:0px;'>
 		<select id='menu_top_select' name='top' onchange='topOptChange(this.form)'>
@@ -89,28 +92,86 @@
 	updateTime();
 	</script>
 </td>
-<td style="padding-right:5px; text-align:right;" valign="middle">
+<td style="padding-right:5px; text-align:right";>
 	<input type="button" value="첫화면" class="btn01_qpass" style="width:60px; border:1px solid #008000;" onclick="main()">
 </td>
 </tr>
 </table><!-- 상단 타이틀 끝. -->
 
+
+<!--  Content Start -->
+<div>
+	<% if ( qs != null) { %>
+<table id="questionList" width="80%" border="1" align="left">
+<tbody>
+<tr border="1">
+<td> <!-- 왼쪽 문제 -->
+<% for(int i = 0; i < 3; i++, qNo+=4) { %>
+<% Question question = qs.get(qNo); %>
+	<table>
+		<tr>
+			<td><b><%= question.getqNo() %>. </b></td>
+			<td><b><%= question.getqContent() %></b></td>
+		</tr>
+		<% for(int j = qNo; j < qNo+4; j++){ %>
+		<tr>
+			<td></td>
+			<td><%= qs.get(j).getqPre() %></td>
+		</tr>
+		<% } %>
+	</table>
+	<br>
+<% } %>
+</td>
+<td> <!-- 오른쪽 문제 -->
+<% for(int i = 0; i < 2; i++, qNo+=4) { %>
+<% Question question = qs.get(qNo); %>
+	<table>
+		<tr>
+			<td><b><%= question.getqNo() %>. </b></td>
+			<td><b><%= question.getqContent() %></b></td>
+		</tr>
+		<% for(int j = qNo; j < qNo+4; j++){ %>
+		<tr>
+			<td></td>
+			<td><%= qs.get(j).getqPre() %></td>
+		</tr>
+		<% } %>
+	</table>
+	<br>
+<% } %>
+</td>
+</tr>
+</tbody>
+</table>
+<% } %>
+
+<table border="1" width="15%" align="right">
+<thead>
+	<tr>
+		<td colspan="5">문제 답안</td>
+	</tr>
+</thead>
+<tbody>
+	<% for(int i = 1 ; i < 21 ; i++) { %>
+	<tr>
+		<td><%= i %></td>
+		<td>①</td>
+		<td>②</td>
+		<td>③</td>
+		<td>④</td>
+	</tr>
+	<% } %>
+</tbody>
+</table>
+</div>
+
 <input type="hidden" id="current_i" value="0" size="3">
 <input type="hidden" id="current_j" value="0" size="3">
 
 
+<!-- Content End -->
 
-
-
-
-
-
-
-
-
-
-
-<!--  Content Start -->
 <script>
 function main(){ // 첫화면
 	var currentI = document.getElementById('current_i').value;
@@ -140,7 +201,6 @@ for(var j=1 j<=4 j++){
 }
 </script>
 
-<!-- Content End -->
 </div> <!--Mobile, PC 페이지 컨테이너 가운데 정렬 시작.-->	
 </body>
 </html>

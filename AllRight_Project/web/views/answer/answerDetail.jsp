@@ -147,8 +147,8 @@
 	<tr style='padding:3px 2px 1px 2px' height='33'>
 	<td align='center'>1과목</td>
 	<td align='center'>응시전<br />20문제<br /></td><td>&nbsp;</td>
-	<td colspan='1' align='center'><a href="../answer/answerPage.jsp" style='color:#79a5e4; font-weight:bold'>응시하기</a></td>
-	<td colspan='1' align='center'><a href="javascript:start_testEach(1, 'first', 1, 20)" style='color:#79a5e4; font-weight:bold'>응시하기</a></td></td></tr>
+	<td colspan='1' align='center'><a href="<%=request.getContextPath() %>/question.qu" style='color:#79a5e4; font-weight:bold'>응시하기</a></td>
+	<td colspan='1' align='center'><a href="" style='color:#79a5e4; font-weight:bold'>응시하기</a></td></td></tr>
 	<tr style='padding:3px 2px 1px 2px' height='33'>
 	<td align='center'>2과목</td>
 	<td align='center'>응시전<br />10문제<br /></td><td>&nbsp;</td>
