@@ -41,25 +41,25 @@ public class BoardCommentDao {
 		String sql = prop.getProperty("insertComment");
 		System.out.println(bco);
 		try {
-		
+	
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setInt(1, bco.getbNo());
-			pstmt.setInt(2, bco.getUserNo());
-			pstmt.setString(3, bco.getcContent());
-			pstmt.setString(5, bco.getUserId());
-			
+/*			pstmt.setInt(2, bco.getUserNo());*/
+			pstmt.setString(2, bco.getcContent());
+			pstmt.setString(3, bco.getUserId());
+			pstmt.setInt(4, bco.getRefcno());
 
-			if(bco.getRefcno() > 0) {
+/*			if(bco.getRefcno() > 0) {
 				
-				pstmt.setInt(6, bco.getRefcno());
+				pstmt.setInt(5, bco.getRefcno());
 				
 			} else {
 				
-				pstmt.setNull(6, java.sql.Types.NULL);
-			}
+				pstmt.setNull(5, java.sql.Types.NULL);
+			}*/
 			
-			pstmt.setInt(4, bco.getcLevel());
+/*			pstmt.setInt(4, bco.getcLevel());*/
 			
 			result = pstmt.executeUpdate();
 		
@@ -89,14 +89,19 @@ public class BoardCommentDao {
 			
 			clist = new ArrayList<BoardComment>();
 			
+			System.out.println("보드코멘드dao: "+clist);
+			
 			while(rset.next()) {
 				BoardComment comment = new BoardComment();
 	
+				comment.setUserNo(rset.getInt("userno"));
 				comment.setUserId(rset.getString("userid"));
 				comment.setcContent(rset.getString("ccontent"));
 				comment.setcDate(rset.getDate("cdate"));
 				
 				clist.add(comment);
+				
+				System.out.println("보드코멘트dao완료");
 				
 			}
 			
