@@ -67,7 +67,10 @@ public class ScheduleMyListServlet extends HttpServlet {
 
 		JSONObject result = new JSONObject();
 		JSONObject info = null;
+		JSONObject dayinfo = null;
+		
 		JSONArray Array = new JSONArray();
+		JSONArray day = new JSONArray();
 		String name[] = { "필기시험원서접수시작 일자 ", "필기시험원서접수종료 일자 ", "필기시험일자", "필기시험 합격(예정)자 발표일자 ",
 				"응시자격 서류제출 및 필기시험 합격자 결정시작일자 ", "응시자격 서류제출 및 필기시험 합격자 결정종료일자 ", "면접시험원서접수시작 일자 ", "면접시험원서접수종료 일자 ",
 				"면접시험시작일자", "면접시험종료일자", "합격자발표일자" };
@@ -85,23 +88,51 @@ public class ScheduleMyListServlet extends HttpServlet {
 					String lname = l.get(i).getlName()+"-"+name[k];
 					String ld = l.get(i).getlDate().substring(j,j+8);
 					String date= ld.substring(0,4).concat("-").concat(ld.substring(4, 6)).concat("-").concat(ld.substring(6,8)); 
-					System.out.println(lname + " : " + date);
+					/*System.out.println(lname + " : " + date);*/
 					
 					info.put("title", lname);
 					info.put("date", date);
+					/*Array.add(info);*/
+					
+					
+					long minus=0;
+					Date today = new Date(); 
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					String first = sdf.format(today);
+					/*String last= sdf.format(date);
+					System.out.println(last);*/
+					/*try {
+						Date firstDate = sdf.parse(first);
+						Date lastDate = sdf.parse(date);
+						minus = (firstDate.getTime()-lastDate.getTime())/(24*60*60*1000);
+						System.out.println(lastDate + " : " + minus);
+						if(minus>=(-50)&&minus<0){
+							System.out.println(lastDate);
+							dayinfo.put("dtitle", lname);
+							dayinfo.put("ddate", date);
+							dayinfo.put("dday", minus);	
+							day.add(dayinfo);
+						}else{
+							
+						}
+
+					} catch (ParseException e) {
+						
+						e.printStackTrace();
+					}*/
 					Array.add(info);
-					/*System.out.println(Array);*/
 					k++;
 					
 						
-				}
-				
-				k=0;
-				
+					}
+					
+					k=0;
+					
 				
 			}
 		
 		result.put("list", Array);
+		result.put("day", day);
 		response.setContentType("application/json");
 		response.getWriter().print(result.toJSONString());	
 		
