@@ -35,6 +35,7 @@ public class EncryptFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 	
+		request.setCharacterEncoding("UTF-8");
 		HttpServletRequest h_request =
 				(HttpServletRequest)request;
 		
