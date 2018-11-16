@@ -33,7 +33,7 @@ public class EncryptWrapper extends HttpServletRequestWrapper{
 		String result = null;
 		
 		try {
-			
+			System.out.println(password);
 			MessageDigest md = MessageDigest.getInstance("SHA-512");
 			byte[] bytes = password.getBytes(Charset.forName("UTF-8"));
 			

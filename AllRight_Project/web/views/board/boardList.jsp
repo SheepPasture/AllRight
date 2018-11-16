@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.sheep.jsp.board.model.vo.*, com.sheep.jsp.announcement.model.vo.*" %>
+    pageEncoding="UTF-8" import="java.util.*, com.sheep.jsp.board.model.vo.*, com.sheep.jsp.announcement.model.vo.*" 
+    import="com.sheep.jsp.member.model.vo.Member"%>
  <% 
  	ArrayList<Board> blist = (ArrayList<Board>)request.getAttribute("blist"); 
  	ArrayList<Announcement> select2ANN = (ArrayList<Announcement>)request.getAttribute("select2ANN"); 
@@ -9,6 +10,7 @@
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();  
+	Member m = (Member)session.getAttribute("member");
  %>
 <!DOCTYPE html>
 <html>
@@ -559,7 +561,7 @@ a {
 																		<td class="col-md-1 text-left"><strong>공지</strong></td>
 																		<td class="col-md-7 text-center"><strong><%= a.getAtitle() %></strong></td>
 																		<td id="ano" style="display:none;"><%= a.getAno() %></td>
-																		<td class="col-md-1" >관리자</td>
+																		<td class="col-md-1" ><%= m.getUserId() %></td>
 																		<td class="col-md-1"><strong><%= a.getAcount() %></strong></td>
 																		<td class="col-md-1"><strong><%= a.getAdate() %></strong></td>
 																	</tr>

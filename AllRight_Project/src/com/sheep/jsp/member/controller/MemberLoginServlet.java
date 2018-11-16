@@ -46,6 +46,7 @@ public class MemberLoginServlet extends HttpServlet {
 		
 		String userId = request.getParameter("inputId");
 		String userPwd = request.getParameter("inputPassword");
+		String androidCheck = request.getParameter("android");
 		
 		MemberService ms = new MemberService();
 		
@@ -83,8 +84,12 @@ public class MemberLoginServlet extends HttpServlet {
 			session.setAttribute("member",m);
 			session.setAttribute("point", pt);
 			session.setAttribute("level", level);
-			response.sendRedirect("index.jsp");
 			
+			if(androidCheck =="A"){
+				response.sendRedirect("android.jsp");
+			}else{
+				response.sendRedirect("index.jsp");
+			}
 		} catch(MemberException e){
 			
 			request.setAttribute("msg", "로그인 실패");
