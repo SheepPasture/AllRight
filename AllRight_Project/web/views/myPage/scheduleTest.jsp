@@ -43,13 +43,132 @@
 <script src='/allRight/resources/js/moment.min.js'></script>
 <script src='/allRight/resources/js/jquery.min.js'></script>
 <script src='/allRight/resources/js/fullcalendar.min.js'></script>
-<script src="/allRight/resources/js/json2.js"></script>
+
 <script>
- 	 $(document).ready(function() {
+
+$(document).ready(function() { 
+	
+	$.ajax({
+		url : "<%= request.getContextPath() %>/sTest.sc", 
+	 <%-- 	url : "<%= request.getContextPath() %>/views/myPage/scheduleTest.jsp",  --%>
+		type : "POST"
+		, dataType : "json"  
+		     , error : function(request, status, error) {
+		     alert("에러");
+		    }
+		    , success : function(data) {
+		    	  var resultText = "";
+		    	 
+		    	 for(var index in data.list){
+		    		 var user = data.list[index];
+		    		resultText +=user.title + ", ";
+					resultText +=user.date +"\n";
+				
+		    	 }
+		    	 /* console.log(resultText);  */
+		    	 console.log(data.list.length);
+		    	 console.log(data.list.length/2);
+		    	 console.log(data.list[0].title);
+		    	 console.log(data.list[0].date);
+		    	 console.log(data);
+		    	  
+		    	 var list = data.list;
+		    	var dl = data.list.length/11;
+				var arr = [];
+				console.log(dl);
+			
+				console.log(!status);
+			 	for(var i =0; i< list.length ; i++ ){
+					
+				
+						if(list[i].title.match(/시작/)!=null){
+							arr[i] = { title : "'" + list[i].title + "'", 
+									
+							
+									 start : "'"+list[i].date + "'",
+									 end : "'"+ list[i+1].date + "'"}
+							i++;
+						}else{
+							arr[i] = {title : "'" + list[i].title + "'",
+									 start : "'"+list[i].date + "'"
+								}
+						}
+
+						if(!status) arr[i] + ",";
+				
+					
+				}
+			 	/*  console.log(arr.replace('"'));  */
+				
+		    	var arr =[	  		
+		    		
+		    	];
+								
+			/* 		
+				console.log(list.length); 
+		    	 console.log(data.list[0]);
+		    	 alert("성공");
+			 */
+		    }	
+		    });
+	
+	
+    var event = [ 
+
+  	 	{
+          title: 'title1',
+          start:'2018-11-11'
+        }, 
+        {
+	          title: 'title2',
+	          start: '2018-11-12'
+	    }
+  	] ;	
+	$('#calendar').fullCalendar({
+	      header: {
+	        left: 'prev,next today',
+	        center: 'title',
+	        right: 'month,agendaWeek,agendaDay,listWeek'
+	      },
+	      defaultDate: new Date(),
+	      navLinks: true, // can click day/week names to navigate views
+	      editable: true,
+	      eventLimit: true, // allow "more" link when too many events
+	    
+	      events: event
+
+	
+/* 	    	     [ 
+
+	    		  	 	{
+	    		          title: 'title1',
+	    		          start:'2018-11-11'
+	    		        }, 
+	    		        
+	    		        {
+		    		          title: 'title2',
+		    		          start: '2018-11-12'
+		    		    }
+		    	
+	    		  ]    */
+
+	  
+	    	});
+	
+	
+	
+	
+	
+	
+});
+
+
+
+/*  	 $(document).ready(function() { */
 		
 
 		<%-- var date3 = "<%=al.get(2).getlDate()%>";  --%>
-				 	 $('#calendar').fullCalendar({
+				 	 /* $('#calendar').fullCalendar({
 				      header: {
 				        left: 'prev,next today',
 				        center: 'title',
@@ -78,15 +197,15 @@
 				    		  ]  
 		
 				  
-				    	});
+				    	}); */
 				 	
 				 	 
-				 	$(document).ready(function() {
-				 		  displayLoading(true);
+				/*  	$(document).ready(function() {
+				 		  
 				 		  $.ajax({
 				 		   
 				 		     type : "POST"
-				 		     , url : "/allRight//sTest.sc" //Request URL
+				 		     , url : "/allRight/sTest.sc" //Request URL
 				 		     , dataType : "json" //전송받을 데이터�� 타입
 				 		                 , contentType: "application/x-www-form-urlencoded; charset=UTF-8"
 				 		     , error : function(request, status, error) {
@@ -94,7 +213,7 @@
 				 		     }
 				 		     , success : function(data) {
 				 		     setCalendar(data.data);
-				 		     displayLoading(false);
+				 		 
 				 		    }
 				 		   });
 				 		  
@@ -110,25 +229,21 @@
 				 		 
 				 		  
 				 		  $('#calendar').fullCalendar({
+				 	
 				 		   editable: false,
 				 		   events: eval(jsonData)
 				 		  });
+				 		
 				 		  
-				 		  $("#calendar a").click(function(){
-				 		   
-				 		   $(this).attr("href","javascript:goDetail('"+$(this).attr("href")+"')");
-				 		  });
+				 		 }  */
 				 		 
-				 		  
-				 		 }
-				 		 
-				 	 
+/* 				 	 
 				 	 
 				 	 
 				 	 
 		
 		
-  });
+  }); */
 </script>
 <style>
 /*   body {
