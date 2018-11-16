@@ -87,8 +87,7 @@ public class BoardListServlet extends HttpServlet {
 			request.setAttribute("select2ANN", select2ANN);
 			
 		} else {
-			
-		/*	page = "/views/common/errorPage.jsp";*/
+			page = "/views/common/errorPage.jsp";
 			request.setAttribute("msg", "공지사항 조회에 실패했습니다. 관리자에게 문의해주세요.");
 			
 		}

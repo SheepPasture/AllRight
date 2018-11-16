@@ -109,16 +109,17 @@ a {
 }
 
  .sns_input_submit {
-	color: #dedede;
+ 	resize: none;
+ 	color: #333; 
 	float: left;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: bold;
 	width: 100px;
 	height: 100px;
 	text-align: center;
 	line-height: 100px;
 	cursor: pointer;
-	border-radius: 3px
+	border-radius: 3px;
 	border: 1px solid #dedede; 
 }
 
@@ -409,10 +410,7 @@ a {
 											<!--sns-->
 											<div class="table_sns board02">
 												<!--신고하기 팝업-->
-												<div
-													class="ebsiBrdPopUp boardUseRule_pop boardUseRule_pop02"
-													style="display: none; z-index: 9999;">
-
+												<div style="display: none; z-index: 9999;">
 													<div class="contsArea">
 														<div class="boardUseRule_conts"></div>
 														<div class="boardUseRule_bt">
@@ -440,29 +438,28 @@ a {
 														</div>
 
 													</div>
-		
+													
 												
 												<div id="rplyArea">
 													<!--테이블 리스트-->
 													<form action="<%= request.getContextPath() %>/insertComment.bo" method="post">
 														<input type="hidden" name="writer" value="<%= m.getUserName() %>"/>
-														<input type="hidden" name="bid" value="<%= b.getbId() %>"/>
+														<input type="hidden" name="bid" value="<%= b.getbId() %>"/> 
 														<input type="hidden" name="bno" value="<%= b.getbNO() %>"/>
 														<input type="hidden" name="refcno" value="1"/>
 														<input type="hidden" name="clevel" value="0"/>
 														
 													<div class="sns_input">
 														<textarea  id="replyContent" name="replyContent" placeholder="댓글을 입력하세요"></textarea>
-														<!-- <div class="sns_input_submit" type="submit" id="addReply">등록</div> -->
 														<button class="sns_input_submit" type="submit" id="addReply"><div>등록</div></button>
 													</div>
-													<%-- 
 													<% for(BoardComment bco : clist) { %>
 													<div class="sns_list_wrap">
 														<ul class="sns_list">
 															<li>
 																<div class="sns_list_title">
-																	<strong>작성자</strong>
+																	<input type="hidden" name="userno" value="<%= bco.getUserNo() %>" />
+																	<strong><%= bco.getUserId() %></strong>
 
 																	<div class="sns_detail">
 																		<span class="date"><%= bco.getcDate() %></span>
@@ -470,46 +467,12 @@ a {
 																	<div class="sns_detail_btn">
 																		<a href="#">댓글</a> <a class="declaration"
 																			href="javascript:fnReportLayer('491967','1','0','rply','0');">신고</a>
-																	</div>
-																	<div class="icon_wrap">
-																		<div class="goods">
-																			<a href="#"> <span class="icon on">icon</span>
-																				<p id="rplyRec_1">1</p>
-																			</a>
+																	</div>	
+																		<% if(m.getUserNo() == bco.getUserNo()){ %>
+																		<div class="sns_detail_btn" id="sns_edit">
+																			<a href="#">수정</a>
 																		</div>
-																	</div>
-																</div>
-																<div class="sns_list_text"><%= bco.getcContent() %></div>
-															</li>
-														</ul> --%>
-			
-											<%-- 			</div>
-													 </form><% } %> 
-												</div> --%>
-												<%-- 
-												<div id="rplyArea">
-
-													<!--테이블 리스트-->
-													<div class="sns_input">
-														<textarea name="title" id="title" placeholder="댓글을 입력하세요"></textarea>
-														<div class="sns_input_submit" onclick="#">등록</div>
-													</div>
-													--%>
-													<div class="sns_list_wrap">
-														<ul class="sns_list">
-															<li>
-																<div class="sns_list_title">
-																	<strong>닉네임</strong>
-
-																	<div class="sns_detail">
-																		<span class="date">2018.11.08.</span> <span
-																			class="time">23:31</span>
-																	</div>
-																	<div class="sns_detail_btn">
-
-																		<a href="#">댓글</a> <a class="declaration"
-																			href="javascript:fnReportLayer('491967','1','0','rply','0');">신고</a>
-																	</div>
+																		<% } %>
 																	<div class="icon_wrap">
 																		<div class="goods">
 																			<a href="#"> <span class="icon on">icon</span>
@@ -518,10 +481,12 @@ a {
 																		</div>
 																	</div>
 																</div>
-																<div class="sns_list_text">댓글내용입니다.</div>
+																<div class="sns_list_text" align="left"><%= bco.getcContent() %></div>
 															</li>
 														</ul>
-													</div></form>
+													</div>
+													<% } %> 
+													</form>
 												</div></div>
 											</div>
 										</div>

@@ -32,24 +32,28 @@ public class CommentInsertServlet extends HttpServlet {
 		
 		String userId = request.getParameter("writer");
 		String cContent = request.getParameter("replyContent");
+		
+/*		int userNo = Integer.parseInt(request.getParameter("userNo"));*/
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		int refcno = Integer.parseInt(request.getParameter("refcno"));
-		int cLevel = Integer.parseInt(request.getParameter("clevel"));
+/*		int cLevel = Integer.parseInt(request.getParameter("clevel"));*/
+		
 		
 		BoardComment bco = new BoardComment();
 		bco.setUserId(userId);
 		bco.setcContent(cContent);
+		
+/*		bco.setUserNo(userNo);*/
 		bco.setbNo(bno);
 		bco.setRefcno(refcno);
-		bco.setcLevel(cLevel);
+/*		bco.setcLevel(cLevel);*/
 		
-		System.out.println("bno + "+bno);
-		System.out.println("bco에 담김"+bco);
+		System.out.println("bno : "+bno);
 		
 		int result = new BoardCommentService().insertComment(bco);
 		
 		if(result > 0){
-			response.sendRedirect(request.getContextPath() + "/selectOne.bo?bno"+bno);
+			response.sendRedirect(request.getContextPath()+"/selectOne.bo?bno="+bno);
 			System.out.println("댓글 작성 성공!");
 		} else {
 			request.setAttribute("msg", "댓글 작성 실패!");
