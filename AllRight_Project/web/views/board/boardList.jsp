@@ -521,47 +521,23 @@ a {
 														</div>
 													</div>
 
-													<div class="total">
+													<div class="total" >
 														<span>총 </span><strong><%= listCount %></strong><span>개</span><span
 															class="pc">의 게시글이 있습니다.</span>
 													</div>
-
-													<div class="table_main">
-														<div class="table_main_top">
-
-															<ul class="board">
-
-															</ul>
-
-	<!-- 														<div class="list_search pc">
+															<div class="list_search pc" align="right">
 																<select name="dataOrd" id="dataOrd"
 																	onchange="fnOrdPage();">
 																	<option value="">최신순정렬</option>
 																	<option value="inqCnt">조회순정렬</option>
 																	<option value="rpyCnt">댓글순</option>
 																</select>
-															</div> -->
-<!-- 															<div class="list_search mobile">
-																<ul>
-																	<li class="active">
-												<label class="list_search_bt01">인기순</label>
-												<input type="radio" name="radio1" onchange="fnOrdPage();"/>
-											</li>
-											<li>
-												<label class="list_search_bt02">최신순</label>
-												<input type="radio" name="radio1"/>
-											</li>
-																	<li class="active" onclick="mobileOrderChange(this);"
-																		data-mode="date"><label class="list_search_bt02">최신순</label>
-																		<input name="radio1" type="radio" checked="">
-																	</li>
-																	<li onclick="mobileOrderChange(this);"
-																		data-mode="inqCnt"><label
-																		class="list_search_bt01">인기순</label> <input
-																		name="radio1" type="radio"></li>
-																</ul>
-															</div> -->
+															</div> 
 
+													<div class="table_main">
+														<div class="table_main_top" >
+															<ul class="board">
+															</ul>
 														</div>
 
 														<!--테이블 리스트(통합게시판형 class='board' 추가)-->
@@ -580,18 +556,19 @@ a {
 																<tbody>
 																	<% for(Announcement a : select2ANN){ %>
 																	<tr id="annlist" class="notice" style="background-color: hsl(120, 100%, 75%, 0.3); bold;">
-																		<td class="col-md-1 text-left">공지</td>
-																		<td class="col-md-6 text-center"><span><%= a.getAtitle() %></span></td>
-																		<td class="col-md-1" type="hidden" id="ano"><%= a.getAno() %></td>
-																		<td class="col-md-1"><%= a.getAcount() %></td>
-																		<td class="col-md-1"><%= a.getAdate() %></td>
+																		<td class="col-md-1 text-left"><strong>공지</strong></td>
+																		<td class="col-md-7 text-center"><strong><%= a.getAtitle() %></strong></td>
+																		<td id="ano" style="display:none;"><%= a.getAno() %></td>
+																		<td class="col-md-1" >관리자</td>
+																		<td class="col-md-1"><strong><%= a.getAcount() %></strong></td>
+																		<td class="col-md-1"><strong><%= a.getAdate() %></strong></td>
 																	</tr>
 																	<% } %>
 											  						
 											  						<% for(Board b : blist){ %>
 																	<tr id="boardlist">
 																		<td class="col-md-1 text-left"><%= b.getbNO() %></td>
-																		<td class="col-md-6 text-center"><strong><%= b.getbTitle() %></strong></td>
+																		<td class="col-md-6 text-center"><%= b.getbTitle() %></td>
 																		<td class="col-md-1"><%= b.getbWriter() %></td>
 																		<td class="col-md-1"><%= b.getbCount() %></td>
 																		<td class="col-md-1"><%= b.getbDate() %></td>
@@ -645,9 +622,9 @@ a {
 							$("#annlist td").mouseenter(function(){
 								$(this).parent().css({"cursor":"pointer"});
 							}).click(function(){
-								alert($(this).parent().find(".ano").val();
-<%-- 								var bno = $(this).parent().children().eq(0).text();
-								location.href="<%=request.getContextPath()%>/selectOne.bo?bno=" + bno;  --%>
+								/* alert($(this).parent().children().eq(2).text());  */
+ 								var ano = $(this).parent().children().eq(2).text();
+								location.href="<%=request.getContextPath()%>/selectOne.ann?ano=" + ano;
 							});
 							
 							$("#boardlist td").mouseenter(function(){

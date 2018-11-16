@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*, com.sheep.jsp.board.model.vo.*" %>
-<% Board b = (Board)request.getAttribute("board"); %>
+	pageEncoding="UTF-8" import="java.util.*, com.sheep.jsp.board.model.vo.*, com.sheep.jsp.boardComment.model.vo.*" %>
+<% 
+
+	Board b = (Board)request.getAttribute("board"); 
+	ArrayList<BoardComment> clist = (ArrayList<BoardComment>) request.getAttribute("clist"); 
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -432,26 +437,24 @@ a {
 
 													</div>
 												</div>
+												<%-- 
 												<div id="rplyArea">
-												
-
 													<!--테이블 리스트-->
 													<div class="sns_input">
-														<textarea name="title" id="title" placeholder="댓글을 입력하세요"></textarea>
-														<div class="sns_input_submit">등록</div>
+														<textarea  id="replyContent" name="replyContent" placeholder="댓글을 입력하세요"></textarea>
+														<div class="sns_input_submit" type="submit" id="addReply">등록</div>
 													</div>
+													<% for(BoardComment bco : clist) { %>
 													<div class="sns_list_wrap">
 														<ul class="sns_list">
 															<li>
 																<div class="sns_list_title">
-																	<strong>닉네임</strong>
+																	<strong>작성자</strong>
 
 																	<div class="sns_detail">
-																		<span class="date">2018.11.08.</span> <span
-																			class="time">23:31</span>
+																		<span class="date"><%= bco.getcDate() %></span>
 																	</div>
 																	<div class="sns_detail_btn">
-
 																		<a href="#">댓글</a> <a class="declaration"
 																			href="javascript:fnReportLayer('491967','1','0','rply','0');">신고</a>
 																	</div>
@@ -463,12 +466,13 @@ a {
 																		</div>
 																	</div>
 																</div>
-																<div class="sns_list_text">댓글내용입니다.</div>
+																<div class="sns_list_text"><%= bco.getcContent() %></div>
 															</li>
 														</ul>
 			
-													</div>
-												</div>
+														</div>
+													<% } %>
+												</div> --%>
 											</div>
 										</div>
 									</div>
