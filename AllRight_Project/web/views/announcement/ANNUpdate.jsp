@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
+	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
 
- 	<script src="//cdn.ckeditor.com/4.9.2/basic/ckeditor.js"></script>
+<!--  	<script src="//cdn.ckeditor.com/4.9.2/basic/ckeditor.js"></script> -->
  	
- 	 <link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
 	<style>
 
@@ -61,13 +61,18 @@
 								<tr>
 									<th class="col-sm-2">내용</th>
 									<td>
-										<textarea name="content" class="ckeditor" rows="20" cols="70"><%= a.getAcontent() %>></textarea>
-										<script>
-											CKEDITOR.replace('content', {
-												width: 650,
-												height: 300
-											});		
-										</script>
+										<!-- <textarea name="content" class="ckeditor" rows="20" cols="70"></textarea> -->
+										<script type="text/javascript" src="/allRight/resources/ckeditor/ckeditor.js"></script>
+											 
+										<div class="form-group">
+											 <textarea name="content" class="ckeditor" rows="20" cols="70"><%= a.getAcontent() %></textarea>
+											 <script>
+												CKEDITOR.replace('content', {
+													width: 650,
+													height: 300
+												});
+											 </script>
+										</div>
 									</td>
 								</tr>	
 								<tr>
