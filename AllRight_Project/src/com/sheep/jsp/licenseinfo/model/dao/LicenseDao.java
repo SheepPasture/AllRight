@@ -15,13 +15,13 @@ import com.sheep.jsp.licenseinfo.model.vo.LicenseInfo;
 import static com.sheep.jsp.common.JDBCTemplate.*;
 
 public class LicenseDao {
-	
+
 	private Properties prop;
-	
-	public LicenseDao(){
-		
+
+	public LicenseDao() {
+
 		prop = new Properties();
-		
+
 		String filePath = LicenseDao.class.getResource("/config/license-query.properties").getPath();
 
 		try {
@@ -30,103 +30,105 @@ public class LicenseDao {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public int deleteLicense(Connection con) {
-		
+
 		int result = 0;
-		
+
 		Statement stmt = null;
-		
+
 		String sql = prop.getProperty("deleteLicense");
 		
+		String sql2 = "DELETE FROM LICENSEDATE";
+
 		try {
-			
+
 			stmt = con.createStatement();
-			
+
 			result = stmt.executeUpdate(sql);
 			
-			
+			stmt.executeUpdate(sql2);
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-	
+
 		} finally {
-			
+
 			close(stmt);
 		}
-		
+
 		return result;
 	}
 
 	public int insertLicense(Connection con, ArrayList<LicenseInfo> getApi) {
-		
+
 		int result = 0;
-		
+
 		PreparedStatement pstmt = null;
-		
+
 		String sql = prop.getProperty("insertLicense");
-		
+
 		try {
-			
+
 			pstmt = con.prepareStatement(sql);
-			
-			for(int i = 0; i < getApi.size(); i++){
-				
+
+			for (int i = 0; i < getApi.size(); i++) {
+
 				pstmt.setString(1, getApi.get(i).getlNo());
 				pstmt.setString(2, getApi.get(i).getlName());
 				pstmt.setString(3, getApi.get(i).getlCategory());
-				
+
 				char type = getApi.get(i).getlNo().charAt(0);
-				
-				if(type == '0'){
+
+				if (type == '0') {
 					pstmt.setString(4, "0");
-				} else if (type == '1' || type == '2'){
+				} else if (type == '1' || type == '2') {
 					pstmt.setString(4, "1");
-				} else if (type == '3'){
+				} else if (type == '3') {
 					pstmt.setString(4, "3");
-				} else if (type == '6' || type == '7'){
+				} else if (type == '6' || type == '7') {
 					pstmt.setString(4, "6");
 				} else {
 					pstmt.setString(4, "9");
 				}
-				
+
 				result = pstmt.executeUpdate();
-				
+
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-		
+
 		} finally {
-			
+
 			close(pstmt);
 		}
-		
-		
+
 		return result;
 	}
 
 	public ArrayList<LicenseInfo> selectLicense(Connection con) {
-		
+
 		ArrayList<LicenseInfo> list = null;
-		
+
 		Statement stmt = null;
-		
+
 		ResultSet rset = null;
-		
+
 		String sql = prop.getProperty("selectLicense");
-		
+
 		try {
-			
+
 			stmt = con.createStatement();
-			
+
 			rset = stmt.executeQuery(sql);
-			
+
 			list = new ArrayList<LicenseInfo>();
-			
-			while(rset.next()){
-				
+
+			while (rset.next()) {
+
 				LicenseInfo l = new LicenseInfo();
-				
+
 				l.setlNo(rset.getString(1));
 				l.setlName(rset.getString(2));
 				l.addlInfo(rset.getString(3));
@@ -135,73 +137,146 @@ public class LicenseDao {
 				l.setlDate(rset.getString(6));
 				l.setlCategory(rset.getString(7));
 				l.setlCost(rset.getString(8));
-				
+
 				list.add(l);
 			}
-			
+
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
-		
+
 		} finally {
-			
+
 			close(rset);
 			close(stmt);
 		}
-		
+
 		return list;
 	}
 
-	public ArrayList<LicenseInfo> updateLicense(Connection con, ArrayList<LicenseInfo> list) {
+	public int updateLicense(Connection con, ArrayList<LicenseInfo> list) {
 		
+		int result = 0;
+
 		PreparedStatement pstmt = null;
-		
+
 		String sql = prop.getProperty("updateLicense");
-		
-		//UPDATE LICENSEINFO SET LINFO1 = ?, LINFO2 = ?, LINFO3 = ?, LCOST = ? WHERE LNO = ?
+
+		// UPDATE LICENSEINFO SET LINFO1 = ?, LINFO2 = ?, LINFO3 = ?, LCOST = ?
+		// WHERE LNO = ?
 		String text = "";
 		try {
-			
+
 			pstmt = con.prepareStatement(sql);
-			
-			for(int i = 0; i < list.size(); i++){
-//				int j = 2;
-//				int k = 2;
-//				
-//				for(; j < list.get(i).getlInfo().size(); j++){
-//					pstmt.setString(1, list.get(i).getlInfo().get(j+1));
-//					
-//				}
+
+			for (int i = 0; i < list.size(); i++) {
+				// int j = 2;
+				// int k = 2;
+				//
+				// for(; j < list.get(i).getlInfo().size(); j++){
+				// pstmt.setString(1, list.get(i).getlInfo().get(j+1));
+				//
+				// }
 				text = list.get(i).getlNo();
 				pstmt.setString(1, list.get(i).getlInfo().get(0));
 				pstmt.setString(2, list.get(i).getlInfo().get(1));
 				pstmt.setString(3, list.get(i).getlInfo().get(2));
 				pstmt.setString(4, list.get(i).getlCost());
 				pstmt.setString(5, list.get(i).getlNo());
-				
-//				System.out.println("==========="+list.get(i).getlName()+"=============\n"+list.get(i).getlInfo().get(0));
-//				
-//				System.out.println(list.get(i).getlInfo().get(1));
-//				
-//				System.out.println(list.get(i).getlInfo().get(2));
-				
-			
+
+				// System.out.println("==========="+list.get(i).getlName()+"=============\n"+list.get(i).getlInfo().get(0));
+				//
+				// System.out.println(list.get(i).getlInfo().get(1));
+				//
+				// System.out.println(list.get(i).getlInfo().get(2));
+
 				pstmt.executeUpdate();
-				
+
 			}
-			
-			
+
 		} catch (SQLException e) {
-			System.out.println("에러나는 자격증 >> "+text);
+			System.out.println("에러나는 자격증 >> " + text);
 			e.printStackTrace();
-		
+
 		} finally {
-			
+
 			close(pstmt);
-			close(con);
+		}
+
+		return result;
+	}
+
+	public int insertDate(Connection con, ArrayList<String> date) {
+
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+
+		String sql = prop.getProperty("insertDate");
+
+		StringBuilder sb1 = new StringBuilder(date.get(0));
+		
+		StringBuilder sb2 = new StringBuilder(date.get(33));
+		
+		StringBuilder sb3 = new StringBuilder(date.get(77));
+		
+		StringBuilder sb4 = new StringBuilder(date.get(99));
+
+		for(int i = 1; i < 33; i++){
+			sb1.append(date.get(i));
 		}
 		
-		return list;
+		for(int i = 34; i < 77; i++){
+			sb2.append(date.get(i));
+		}
+		
+		for(int i = 78; i < 99; i++){
+			sb3.append(date.get(i));
+		}
+		
+		for(int i = 100; i < 203; i++){
+			sb4.append(date.get(i));
+		}
+
+
+
+		try {
+
+			pstmt = con.prepareStatement(sql);
+
+			for(int i = 0; i < 4; i++){
+				
+				if(i == 0){
+					pstmt.setString(1, "0");
+					pstmt.setString(2, sb1.toString());	
+				} else if (i == 1){
+					pstmt.setString(1, "1");
+					pstmt.setString(2, sb2.toString());
+				} else if (i == 2){
+					pstmt.setString(1, "3");
+					pstmt.setString(2, sb3.toString());
+				} else {
+					pstmt.setString(1, "6");
+					pstmt.setString(2, sb4.toString());
+				}
+					
+				result = pstmt.executeUpdate();
+			}
+
+			
+
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+
+			close(pstmt);
+		}
+
+		return result;
+
 	}
 
 }

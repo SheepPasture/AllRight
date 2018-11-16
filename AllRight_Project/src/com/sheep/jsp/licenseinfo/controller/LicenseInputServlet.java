@@ -27,14 +27,15 @@ public class LicenseInputServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
 		ParseApi pa = new ParseApi();
 		
 		new LicenseService().deleteLicense();
 		
-		int result = new LicenseService().insertLicense(pa.getApi());
+		int result1 = new LicenseService().insertDate(pa.getDate());
 		
-		if(result > 0){
+		int result2 = new LicenseService().insertLicense(pa.getApi());
+		
+		if(result1 > 0 && result2 > 0){
 			// 성공적으로 자격증 저장
 			
 			System.out.println("자격증 저장 성공!");
@@ -48,17 +49,17 @@ public class LicenseInputServlet extends HttpServlet {
 			 
 			// 응시료까지 포함된 list로 자격증 정보까지 업데이트 실행
 			System.out.println("자격증 정보 업데이트 중... 잠시 기다려주세요!");
-			list = new LicenseService().updateInfoData(list);
-			System.out.println("자격증 정보 업데이트 완료!");
+			int result3 = new LicenseService().updateInfoData(list);
 			
-//			if(result2 > 0) System.out.println("응시료 업데이트 성공!");
-//			else System.out.println("응시료 업데이트 실패!");
+			
+			if(result3 > 0) System.out.println("자격증 업데이트 완료!");
+			else System.out.println("자격증 업데이트 실패!");
 			
 			
 		} else {
 			
 			// 실패
-			System.out.println("자격증 저장 실패!");
+			System.out.println("저장 실패!");
 			
 		}
 		
