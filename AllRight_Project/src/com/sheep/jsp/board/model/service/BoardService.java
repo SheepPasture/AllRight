@@ -118,4 +118,15 @@ public class BoardService {
 		
 	}
 
+	public ArrayList<Board> top5() {
+		
+		Connection con = getConnection();
+		
+		ArrayList<Board> list = bDao.top5(con);
+		
+		close(con);
+		
+		return list;
+	}
+
 }
