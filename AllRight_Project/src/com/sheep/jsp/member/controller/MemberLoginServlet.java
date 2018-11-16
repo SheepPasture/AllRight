@@ -2,7 +2,6 @@ package com.sheep.jsp.member.controller;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,6 +22,15 @@ import com.sheep.jsp.point.model.vo.Point;
 @WebServlet("/mLogin.me")
 public class MemberLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1001L;
+	
+	
+	 private static MemberLoginServlet instance = new MemberLoginServlet();
+
+	    public static MemberLoginServlet getInstance() {
+	        return instance;
+	    }
+
+
        
     /**
      * @see HttpServlet#HttpServlet()
