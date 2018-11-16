@@ -604,7 +604,7 @@ a {
 														</div>
 														<!--//테이블 리스트-->
 
-													<div class="col-sm-12 text-right" style="border: 1px soild tomato">
+													<div class="col-sm-12 text-right">
 														<button class="btn-default"><a href="views/board/boardInsertForm.jsp">작성하기</a></button>
 													</div>
 													</div>

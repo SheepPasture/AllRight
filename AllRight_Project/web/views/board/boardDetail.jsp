@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*, com.sheep.jsp.board.model.vo.*, com.sheep.jsp.boardComment.model.vo.*" %>
+	pageEncoding="UTF-8" import="java.util.*, com.sheep.jsp.board.model.vo.*, com.sheep.jsp.boardComment.model.vo.*, com.sheep.jsp.member.model.vo.*" %>
 <% 
 
 	Board b = (Board)request.getAttribute("board"); 
 	ArrayList<BoardComment> clist = (ArrayList<BoardComment>) request.getAttribute("clist"); 
+	Member m = (Member)session.getAttribute("member");
 
 %>
 <!DOCTYPE html>
@@ -13,6 +14,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
+<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script> 
 <!-- <link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
 
 <style>
@@ -357,6 +359,7 @@ a {
 	<!-- PAGE -->
 	<div id="page">
 		<%@ include file="/views/common/header.jsp"%>
+		<% if(m != null){ %>
 		<div class="container-fluid text-center">
 			<div class="row content">
 				<br />
@@ -437,7 +440,7 @@ a {
 
 													</div>
 												</div>
-												<%-- 
+												<%--
 												<div id="rplyArea">
 													<!--테이블 리스트-->
 													<div class="sns_input">
@@ -473,6 +476,42 @@ a {
 														</div>
 													<% } %>
 												</div> --%>
+												<div id="rplyArea">
+
+													<!--테이블 리스트-->
+													<div class="sns_input">
+														<textarea name="title" id="title" placeholder="댓글을 입력하세요"></textarea>
+														<div class="sns_input_submit" onclick="#">등록</div>
+													</div>
+													<div class="sns_list_wrap">
+														<ul class="sns_list">
+															<li>
+																<div class="sns_list_title">
+																	<strong>닉네임</strong>
+
+																	<div class="sns_detail">
+																		<span class="date">2018.11.08.</span> <span
+																			class="time">23:31</span>
+																	</div>
+																	<div class="sns_detail_btn">
+
+																		<a href="#">댓글</a> <a class="declaration"
+																			href="javascript:fnReportLayer('491967','1','0','rply','0');">신고</a>
+																	</div>
+																	<div class="icon_wrap">
+																		<div class="goods">
+																			<a href="#"> <span class="icon on">icon</span>
+																				<p id="rplyRec_1">1</p>
+																			</a>
+																		</div>
+																	</div>
+																</div>
+																<div class="sns_list_text">댓글내용입니다.</div>
+															</li>
+														</ul>
+														<!--//sns-->
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -486,6 +525,11 @@ a {
 				</div>
 			</div>
 		</div>
+		<% } else { 
+			request.setAttribute("msg", "회원만 가능한 서비스입니다.");
+			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
+			}
+		%>
 	</div>
 </body>
 
