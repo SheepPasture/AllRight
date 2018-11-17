@@ -11,16 +11,16 @@ import com.sheep.jsp.boardComment.model.service.BoardCommentService;
 import com.sheep.jsp.boardComment.model.vo.BoardComment;
 
 /**
- * Servlet implementation class CommentInsertServlet
+ * Servlet implementation class CommentUpdateServlet
  */
-@WebServlet("/insertComment.bo")
-public class CommentInsertServlet extends HttpServlet {
+@WebServlet("/updateComment.bo")
+public class CommentUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommentInsertServlet() {
+    public CommentUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,34 +30,32 @@ public class CommentInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String userId = request.getParameter("writer");
-		String cContent = request.getParameter("replyContent");
-		
-		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		int cno = Integer.parseInt(request.getParameter("cno"));
 		int bno = Integer.parseInt(request.getParameter("bno"));
-		int refcno = Integer.parseInt(request.getParameter("refcno"));
-		int cLevel = Integer.parseInt(request.getParameter("clevel"));
+		String content = request.getParameter("content");
 		
-		
+		BoardCommentService bcs = new BoardCommentService();
 		BoardComment bco = new BoardComment();
-		bco.setUserId(userId);
-		bco.setcContent(cContent);
 		
-		bco.setUserNo(userNo);
-		bco.setbNo(bno);
-		bco.setRefcno(refcno);
-		bco.setcLevel(cLevel);
+		System.out.println("cno: "+cno);
+		System.out.println("bno: "+bno);
+		System.out.println("content: "+content);
 		
-		System.out.println("bno : "+bno);
+		bco.setcNo(cno);
+		bco.setcContent(content);
+
+		System.out.println("bco: "+bco);
+
+		int result = bcs.updateComment(bco);
 		
-		int result = new BoardCommentService().insertComment(bco);
+		System.out.println("result: "+result);
 		
-		if(result > 0){
-			response.sendRedirect(request.getContextPath()+"/selectOne.bo?bno="+bno);
-			System.out.println("댓글 작성 성공!");
+		if(result > 0) {
+			System.out.println("댓글업데이트서블릿성공");
+			response.sendRedirect("selectOne.bo?bno="+bno);
 		} else {
-			request.setAttribute("msg", "댓글 작성 실패!");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			request.setAttribute("msg", "댓글 수정 실패!");
+			request.getRequestDispatcher("views/common/errorPage.jsp");
 		}
 		
 	}

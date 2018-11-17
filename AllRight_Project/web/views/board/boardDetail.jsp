@@ -154,6 +154,37 @@ a {
 	margin-right: 50px;
 }
 
+sns_update_list li .sns_list_title {
+	overflow: hidden;
+	position: relative;
+}
+
+.sns_update_list li .sns_list_text {
+	overflow: hidden;
+	padding: 15px 0 20px 0;
+	line-height: 1.5;
+}
+
+.sns_update_list li .sns_list_title strong {
+	color: #333;
+	font-weight: bold;
+	margin-right: 15px;
+	float: left;
+	line-height: 22px;
+}
+
+.sns_update_list li .sns_list_title .sns_detail {
+	color: #666;
+	float: left;
+	line-height: 22px;
+	margin-right: 15px;
+}
+
+.sns_update_list li .sns_list_title .icon_wrap {
+	float: right;
+	margin-right: 50px;
+}
+
 .icon_wrap .goods {
 	float: left;
 	color: #8c8c8c;
@@ -442,37 +473,40 @@ a {
 												
 												<div id="rplyArea">
 													<!--테이블 리스트-->
-													<form action="<%= request.getContextPath() %>/insertComment.bo" method="post">
+													<div class="replyWriteArea">
+														<form action="<%= request.getContextPath() %>/insertComment.bo" method="post">
 														<input type="hidden" name="writer" value="<%= m.getUserName() %>"/>
-														<input type="hidden" name="bid" value="<%= b.getbId() %>"/> 
-														<input type="hidden" name="bno" value="<%= b.getbNO() %>"/>
-														<input type="hidden" name="refcno" value="1"/>
-														<input type="hidden" name="clevel" value="0"/>
+														<input type="hidden" name="userNo" value="<%= m.getUserNo() %>"	>											
+														<%-- <input type="hidden" name="bid" value="<%= b.getbId() %>"/> --%> 
 														
-													<div class="sns_input">
-														<textarea  id="replyContent" name="replyContent" placeholder="댓글을 입력하세요"></textarea>
-														<button class="sns_input_submit" type="submit" id="addReply"><div>등록</div></button>
+														<input type="hidden" name="bno" value="<%= b.getbNO() %>"/>
+														<input type="hidden" name="refcno" value="0"/>
+														<input type="hidden" name="clevel" value="1"/> 
+														
+														<div class="sns_input">
+															<textarea  id="replyContent" name="replyContent" placeholder="댓글을 입력하세요"></textarea>
+															<button class="sns_input_submit" type="submit" id="addReply"><div>등록</div></button>
+														</div>
+														</form>
 													</div>
+													
+													<% if(clist != null) { %>
 													<% for(BoardComment bco : clist) { %>
-													<div class="sns_list_wrap">
-														<ul class="sns_list">
+													<div id="replySelectArea" class="sns_list_wrap">
+													<table id="replySelectTable"
+												      	 style="margin-left : <%= (bco.getcLevel()-1) * 15 %>px;
+												      	 		width : <%= 800 - ((bco.getcLevel()-1) * 15)%>px;"
+												      	 class="replyList<%=bco.getcLevel()%>">
+														<ul class="sns_list" >
 															<li>
 																<div class="sns_list_title">
-																	<input type="hidden" name="userno" value="<%= bco.getUserNo() %>" />
+																<input type="hidden" name="userno" value="<%= bco.getUserNo() %>" />
 																	<strong><%= bco.getUserId() %></strong>
 
 																	<div class="sns_detail">
 																		<span class="date"><%= bco.getcDate() %></span>
 																	</div>
-																	<div class="sns_detail_btn">
-																		<a href="#">댓글</a> <a class="declaration"
-																			href="javascript:fnReportLayer('491967','1','0','rply','0');">신고</a>
-																	</div>	
-																		<% if(m.getUserNo() == bco.getUserNo()){ %>
-																		<div class="sns_detail_btn" id="sns_edit">
-																			<a href="#">수정</a>
-																		</div>
-																		<% } %>
+																	
 																	<div class="icon_wrap">
 																		<div class="goods">
 																			<a href="#"> <span class="icon on">icon</span>
@@ -480,14 +514,209 @@ a {
 																			</a>
 																		</div>
 																	</div>
+																		 <% if(m.getUserNo() == bco.getUserNo()){ %> 
+																	<%-- 	<% if(m.getUserId().equals(bco.getUserId())){ %> --%>
+																		<input type="hidden" name="cno"  id="cno" value="<%= bco.getcNo() %>">
+																		
+																		<div class="sns_detail_btn" id="sns_edit" onclick="updateReply(this);">
+																			<a href="#">수정</a>
+																		</div>
+																		<div class="sns_detail_btn" id="sns_edit_com" onclick="updateConfirm(this);" style="display:none;">
+																			<a href="#">완료</a>
+																		</div>	
+																		<div class="sns_detail_btn" id="sns_del" onclick="deleteReply(this);">
+																			<a href="#">삭제</a>
+																		</div>
+																		 <% } else if(bco.getcLevel() < 3) { %>
+																		 	<input type="hidden" name="writer" value="<%=m.getUserId()%>"/>
+																			<input type="hidden" name="refcno" value="<%= bco.getcNo()%>" />
+																			<input type="hidden" name="clevel" value="<%=bco.getcLevel() %>" /> 
+																		 	
+																		 	<div class="sns_detail_btn">
+																				<a href="#">댓글</a> <a class="declaration"
+																					href="javascript:fnReportLayer('491967','1','0','rply','0');">신고</a>
+																			</div>	
+																			
+																			<div class="sns_detail_btn" onclick="reConfirm(this);" style="display:none;">
+																				<a href="#">댓글</a> 
+																			</div>	
+																		 
+																		 <% } else {%>
+																		 <span>댓글 가능 회수를 초과하셨습니다.</span>
+																		 <% } %>
 																</div>
-																<div class="sns_list_text" align="left"><%= bco.getcContent() %></div>
 															</li>
 														</ul>
-													</div>
-													<% } %> 
-													</form>
-												</div></div>
+														<tr class="comment replyList<%=bco.getcLevel() %>">
+															<td colspan="3" style="background : transparent;">
+															<%-- <div class="sns_list_text" align="left"><%= bco.getcContent() %></div> --%>
+															<textarea class="reply-content" cols="105" rows="3" readonly="readonly" style="border: 0px solid black; resize: none; outline: none; overflow:visible;background: transparent; cursor: default; "><%= bco.getcContent() %></textarea>
+															</td>
+														</tr>
+													</table>
+												</div>
+												
+												<div id="replyUpdateBox" class="sns_list_wrap" style="display: none;">
+												<input type="hidden" name="cno" value="<%= bco.getcNo() %>"/>
+													<table id="replySelectTable"
+												      	 style="margin-left : <%= (bco.getcLevel()-1) * 15 %>px;
+												      	 		width : <%= 800 - ((bco.getcLevel()-1) * 15)%>px;"
+												      	 class="replyList<%=bco.getcLevel()%>">
+														<ul class="sns_list" >
+															<li>
+																<div class="sns_list_title">
+																<input type="hidden" name="userno" value="<%= bco.getUserNo() %>" />
+																	<strong><%= bco.getUserId() %></strong>
+
+																	<div class="sns_detail">
+																		<span class="date"><%= bco.getcDate() %></span>
+																	</div>
+																	
+																	<div class="icon_wrap">
+																		<div class="goods">
+																			<a href="#"> <span class="icon on">icon</span>
+																				<p id="rplyRec_1"></p>
+																			</a>
+																		</div>
+																	</div>
+																		 <% if(m.getUserNo() == bco.getUserNo()){ %> 
+																	<%-- 	<% if(m.getUserId().equals(bco.getUserId())){ %> --%>
+																		<input type="hidden" name="cno"  id="cno" value="<%= bco.getcNo() %>">
+																		
+																		<div class="updateConfirm sns_detail_btn" id="sns_edit_com" onclick="updateConfirm(this);" >
+																			<a href="#">완료</a>
+																			
+																		</div>	
+																		
+																		 <% } else if(bco.getcLevel() < 3) { %>
+																		 	<input type="hidden" name="writer" value="<%=m.getUserId()%>"/>
+																			<input type="hidden" name="refcno" value="<%=bco.getRefcno()%>" />
+																			<input type="hidden" name="clevel" value="<%=bco.getcLevel() %>" /> 
+																			
+																		 	
+																		 	<div class="sns_detail_btn">
+																				<a href="#">댓글</a> <a class="declaration"
+																					href="javascript:fnReportLayer('491967','1','0','rply','0');">신고</a>
+																			</div>	
+																			
+																			<div class="sns_detail_btn" onclick="reConfirm(this);" style="display:none;">
+																				<a href="#">댓글</a> 
+																			</div>	
+																		 
+																		 <% } else {%>
+																		 <span>댓글 가능 회수를 초과하셨습니다.</span>
+																		 <% } %>
+																</div>
+															</li>
+														</ul>
+														<tr class="comment replyList<%=bco.getcLevel() %>">
+															<td colspan="3" style="background : transparent;">
+															<%-- <div class="sns_list_text" align="left"><%= bco.getcContent() %></div> --%>
+															<textarea class="reply-content" cols="105" rows="3" ><%= bco.getcContent() %></textarea>
+															</td>
+														</tr>
+													</table>
+												</div>
+													<% } %><% } %>
+												<script>
+												function updateReply(obj) {
+													
+													/* alert($(obj).parent().parent().parent().next().find('textarea').text()) */
+													// 현재 위치와 가장 근접한 textarea 접근하기
+													$(obj).parent().parent().parent().next().find('textarea')
+													.removeAttr('readonly'); 
+													
+													// 수정 완료 버튼을 화면 보이게 하기
+													$(obj).parent().parent().parent().parent().next('#replyUpdateBox').css('display','inline');
+													
+													// 수정하기 버튼 숨기기
+													$(obj).parent().parent().parent().parent('#replySelectArea').css('display','none');
+												}
+												
+												function updateConfirm(obj) {
+													// 댓글의 내용 가져오기
+													var content
+													  = $(obj).parent().parent().parent().next().find('textarea').val();
+													
+													// 댓글의 번호 가져오기
+													var cno = $(obj).siblings('input').val();
+													
+													// 게시글 번호 가져오기
+													var bno = '<%= b.getbNO() %>';
+													
+													location.href="/allRight/updateComment.bo?"
+															 +"cno="+cno+"&bno="+bno+"&content="+content;
+												}
+												
+												function deleteReply(){
+													/*  alert($('#cno').val());  */
+
+													// 댓글의 번호 가져오기
+											 		/* var cno = $(obj).siblings('input').val();  */
+											 		var cno = $('#cno').val();
+		
+													// 게시글 번호 가져오기
+													var bno = '<%=  b.getbNO() %>';
+													
+													location.href="/allRight/deleteComment.bo"
+													+"?cno="+cno+"&bno="+bno;
+												}
+												
+												function reComment(obj){
+													// 추가 완료 버튼을 화면 보이게 하기
+													$(obj).siblings('.insertConfirm').css('display','inline');
+													
+													// 클릭한 버튼 숨기기
+													$(obj).css('display', 'none');
+													
+													// 내용 입력 공간 만들기
+													var htmlForm = 
+														'<tr class="comment"><td></td>'
+															+'<td colspan="3" style="background : transparent;">'
+																+ '<textarea class="reply-content" style="background : ivory;" cols="105" rows="3"></textarea>'
+															+ '</td>'
+														+ '</tr>';
+													
+													$(obj).parents('table').append(htmlForm);
+													
+												}
+												
+<%-- 												function reConfirm(obj) {
+													// 댓글의 내용 가져오기
+													
+													// 참조할 댓글의 번호 가져오기
+													var refcno = $(obj).siblings('input[name="refcno"]').val();
+													var level = Number($(obj).siblings('input[name="clevel"]').val()) + 1;
+													
+													// console.log(refcno + " : " + level);
+													
+													// 게시글 번호 가져오기
+													
+													
+													<%-- var parent = $(obj).parent();
+													var grandparent = parent.parent();
+													var siblingsTR = grandparent.siblings().last();
+													
+													var content = siblingsTR.find('textarea').val();
+													
+													// console.log(parent.html());
+													// console.log(grandparent.html());
+													// console.log(siblingsTR.html());
+													
+													// console.log(content);
+
+													// writer, replyContent
+													// bno, refcno, clevel
+													
+													location.href='/myWeb/insertComment.bo'
+													           + '?writer=<%= m.getUserId() %>' 
+													           + '&replyContent=' + content
+													           + '&bno=' + bno
+													           + '&refcno=' + refcno
+													           + '&clevel=' + level;
+												} --%>
+												</script>
+												</div>
 											</div>
 										</div>
 									</div>

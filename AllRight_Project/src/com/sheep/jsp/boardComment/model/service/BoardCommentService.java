@@ -48,7 +48,8 @@ public class BoardCommentService {
 		return bco;
 	}
 
-	/*	public int updateComment(BoardComment bco) {
+	public int updateComment(BoardComment bco) {
+		
 		Connection con = getConnection();
 		
 		int result = bcDao.updateComment(con, bco);
@@ -72,6 +73,6 @@ public class BoardCommentService {
 		close(con);
 		
 		return result;
-	}*/
+	}
 
 }
