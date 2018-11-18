@@ -14,15 +14,15 @@
 <head>
 <!-- 	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script> -->
 </head>
-<body style="background: yellow">
-	<div style="background: blue;" >
+<body>
+	<div >
 		<div style=" align: left">
 			<%=m.getUserName()%>
 			님 <br>
 			<div style="display: inline-block">
 				<label>포인트 :</label><%=p.getPoint()%><br>
 			</div>
-			<div style="display: inline-block; align: right; background: gold">
+			<div style="display: inline-block; align: right; ">
 				Lv.<%=level%>
 			</div>
 

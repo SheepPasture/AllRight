@@ -17,12 +17,12 @@ public class MypageService {
 	private MyPageDao mDao = new MyPageDao();
 
 	//내 게시글 확인
-	public ArrayList<Board> selectMyList(int userno) {
+	public ArrayList<Board> selectMyList(int userno,int currentPage, int limit) {
 		
 		ArrayList<Board> list = null;
 		
 		Connection con = getConnection();
-		list = mDao.selectBList(con,userno);
+		list = mDao.selectBList(con,userno,currentPage, limit);
 		
 		close(con);
 		
@@ -57,6 +57,16 @@ public class MypageService {
 		
 		close(con);
 		return list;
+	}
+	// 게시글 수
+	public int selectbPage(int userno) {
+		
+		Connection con = getConnection();
+		int result = mDao.selectbPage(con,userno);
+		close(con);
+		
+		
+		return result;
 	}
 	
 	

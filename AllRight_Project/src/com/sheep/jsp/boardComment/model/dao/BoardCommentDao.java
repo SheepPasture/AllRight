@@ -41,25 +41,26 @@ public class BoardCommentDao {
 		String sql = prop.getProperty("insertComment");
 		System.out.println(bco);
 		try {
-		
+	
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setInt(1, bco.getbNo());
 			pstmt.setInt(2, bco.getUserNo());
 			pstmt.setString(3, bco.getcContent());
+			pstmt.setInt(4, bco.getcLevel());
 			pstmt.setString(5, bco.getUserId());
-			
+			pstmt.setInt(6, bco.getRefcno());
 
-			if(bco.getRefcno() > 0) {
+/*			if(bco.getRefcno() > 0) {
 				
-				pstmt.setInt(6, bco.getRefcno());
+				pstmt.setInt(5, bco.getRefcno());
 				
 			} else {
 				
-				pstmt.setNull(6, java.sql.Types.NULL);
-			}
+				pstmt.setNull(5, java.sql.Types.NULL);
+			}*/
 			
-			pstmt.setInt(4, bco.getcLevel());
+/*			pstmt.setInt(4, bco.getcLevel());*/
 			
 			result = pstmt.executeUpdate();
 		
@@ -89,14 +90,26 @@ public class BoardCommentDao {
 			
 			clist = new ArrayList<BoardComment>();
 			
+			System.out.println("보드코멘드dao: "+clist);
+			
 			while(rset.next()) {
 				BoardComment comment = new BoardComment();
 	
-				comment.setUserId(rset.getString("userid"));
+				comment.setcNo(rset.getInt("cno"));
+				comment.setbNo(rset.getInt("bno"));
+				comment.setUserNo(rset.getInt("userno"));
+				comment.setcPwd(rset.getInt("cPwd"));
 				comment.setcContent(rset.getString("ccontent"));
 				comment.setcDate(rset.getDate("cdate"));
+				comment.setcLevel(rset.getInt("clevel"));
+				comment.setReport(rset.getInt("report"));
+				comment.setNickname(rset.getString("nickname"));
+				comment.setUserId(rset.getString("userid"));
+				comment.setRefcno(rset.getInt("refcno"));
 				
 				clist.add(comment);
+				
+				System.out.println("보드코멘트dao list완료");
 				
 			}
 			
@@ -144,7 +157,7 @@ public class BoardCommentDao {
 		return bco;
 	}
 
-/*	public int updateComment(Connection con, BoardComment bco) {
+	public int updateComment(Connection con, BoardComment bco) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
@@ -153,13 +166,15 @@ public class BoardCommentDao {
 		try {
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(1, bco.getCcontent());
-			pstmt.setInt(2, bco.getCno());
+			pstmt.setString(1, bco.getcContent());
+			pstmt.setInt(2, bco.getcNo());
 			
 			result = pstmt.executeUpdate();
 		
+			System.out.println("result: "+result);
+			System.out.println("보드코멘트dao업데이트");
+			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
@@ -169,7 +184,7 @@ public class BoardCommentDao {
 		return result;
 	}
 
-	/*
+	
 	public int deleteComment(Connection con, int cno) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -184,13 +199,10 @@ public class BoardCommentDao {
 			result = pstmt.executeUpdate();
 		
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
-			
 		}
-		
 		return result;
-	}*/
+	}
 }

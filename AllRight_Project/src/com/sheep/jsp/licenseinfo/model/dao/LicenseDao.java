@@ -190,7 +190,7 @@ public class LicenseDao {
 				//
 				// System.out.println(list.get(i).getlInfo().get(2));
 
-				pstmt.executeUpdate();
+				result = pstmt.executeUpdate();
 
 			}
 

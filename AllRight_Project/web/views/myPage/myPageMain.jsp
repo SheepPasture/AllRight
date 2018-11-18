@@ -18,18 +18,21 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src='/allRight/resources/js/moment.min.js'></script>
+<script src='/allRight/resources/js/jquery.min.js'></script>
 </head>
 <body>
 
 	<!-- PAGE -->
-	<div id="page" style= "background: green; margin:">
+	<div id="page" style= " margin:">
 
 		<!-- HEADER -->
 		<%@ include file="/views/common/header.jsp"%>
 		<!-- HEADER-END -->
 		<br>
-		<div class="container-fluid text-center" style="background:red">
+		<div class="container-fluid text-center" >
 			<div class="row content">
 				<!-- NAV -->
 				<div class="col-sm-2 sidenav" style="display: inline-block;">
@@ -49,49 +52,31 @@
 						</h1>
 					<!-- </div> -->
 
-					<div class="form-horizontal" id="updateForm" style="background:tomato">
+					<div class="form-horizontal" id="updateForm"  >
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="userId">유저아이디</label>
+							<%-- <label class="col-sm-3 control-label"for="userId" name="userId"><%=m.getUserId()%> --%>
+							</label>
 							<div class="col-sm-6">
-								<input class="form-control" id="userId" name="userId" readonly
-									type="text" readonly placeholder="<%=m.getUserId()%>">
-							</div>
+							 <input class="form-control" id="userId" name="userId" readonly
+							type="" value="<%=m.getUserId()%>">
+							</div> 
 						</div>
-
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="userName">닉네임</label>
+							<label class="col-sm-3 control-label" for="password">비밀번호 입력</label>
 							<div class="col-sm-6">
-								<input class="form-control" id="userName" name="userName"
-									readonly type="text" placeholder="<%=m.getUserName()%>"
-									value="<%=m.getUserName()%>">
+								<input class="form-control" id="password" name="password"
+									type="password" >
 							</div>
 						</div>
-
-						<div class="form-group">
-							<label class="col-sm-3 control-label" for="email">이메일</label>
-							<div class="col-sm-6">
-								<input class="form-control" id="email" name="email" type="email"
-									readonly placeholder="<%=m.getEmail()%>"
-									value="<%=m.getEmail()%>">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-sm-3 control-label" for="userLi">관심자격증</label>
-							<div class="col-sm-6">
-								<input class="form-control" id="userLi" name="userLi" type="text"
-									readonly 
-									value="정처기">
-							</div>
-							
-							
-						</div>
+						
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="userPoint">포인트</label>
-							<div class="col-sm-6">
-								<input class="form-control" id="userPoint" type="text" readonly
-									placeholder=" <%=p.getPoint() %>/ <%=p.getTotalPoint() %> &nbsp;&nbsp; Lv.<%=level%> ">
+							<div class="col-sm-6"><label><%=p.getPoint() %>/<%=p.getTotalPoint() %> &nbsp;&nbsp; Lv.<%=level%>  </label>
+								
+								<%-- <input class="form-control" id="userPoint" type="text" readonly
+									placeholder=" <%=p.getPoint() %>/ <%=p.getTotalPoint() %> &nbsp;&nbsp; Lv.<%=level%> "> --%>
 							</div>
 						</div>
 
@@ -107,9 +92,35 @@
 		</div>
 	</div>
 	<script>
-		function mUpdate() {
-			location.href = "/allRight/views/myPage/updateMember.jsp";
-		}
+
+	function mUpdate(){
+		
+	
+		console.log( $('#userId').val());
+		console.log( $('#password').val());
+		$.ajax({
+			url : "<%=request.getContextPath()%>/pConfirm.me", 
+			type : "POST",
+			data : {
+				userId : $('#userId').val(),
+				password : $('#password').val()
+				}/* , dataType : "json"    */
+				, success : function(data) {
+				    location.href="<%=request.getContextPath()%>/views/myPage/updateMember.jsp";
+				}
+				, error : function(request, status, error) {
+				     alert("일치하지않다");
+				     console.log(request);
+				     
+				     console.log(status);
+				     
+				     console.log(error);
+				}
+				    
+
+		});
+
+	}
 	</script>
 
 	<!-- FOOTER -->
