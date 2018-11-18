@@ -5,11 +5,20 @@ ArrayList<Board> bl = (ArrayList<Board>)request.getAttribute("blist");
 ArrayList<BoardComment> cl = (ArrayList<BoardComment>)request.getAttribute("clist");
 String bmsg = (String)request.getAttribute("bmsg");
 String cmsg = (String)request.getAttribute("cmsg");
+int listCount = (int)request.getAttribute("listCount");
+int currentPage = (int)request.getAttribute("currentPage");
+int maxPage = (int)request.getAttribute("maxPage");
+int startPage = (int)request.getAttribute("startPage");
+int endPage = (int)request.getAttribute("startPage");  
 
 %>
 <!DOCTYPE html>
 <html>
-<head></head>
+<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src='/allRight/resources/js/moment.min.js'></script>
+<script src='/allRight/resources/js/jquery.min.js'></script></head>
 <body>
 	<!-- HEADER -->
 		<%@ include file="/views/common/header.jsp" %>
@@ -39,7 +48,7 @@ String cmsg = (String)request.getAttribute("cmsg");
 							</tr>
 						</thead>
 						
-						<tbody>
+						<tbody id ="bDetail">
 						<%if(bl!=null){ %>
 						 <% for(Board b : bl){ %>
 						<tr>
@@ -58,11 +67,38 @@ String cmsg = (String)request.getAttribute("cmsg");
 						
 						
 					</table> 
+					
+					<div class="pagingArea" align="center">
+						<button onclick="location.href='<%= request.getContextPath() %>/bMyList.bo?currentPage=1'"><<</button>
+						<%  if(currentPage <= 1){  %>
+						<button disabled><</button>
+						<%  }else{ %>
+						<button onclick="location.href='<%= request.getContextPath() %>/bMyList.bo?currentPage=<%=currentPage - 1 %>'"><</button>
+						<%  } %>
+						
+						<% for(int pag = startPage; pag <= endPage; pag++){
+								if(pag == currentPage){	
+						%>
+							<button disabled><%= pag %></button>
+						<%      }else{ %>
+							<button onclick="location.href='<%= request.getContextPath() %>/bMyList.bo?currentPage=<%= pag %>'"><%= pag %></button>
+						<%      } %>
+						<% } %>
+							
+						<%  if(currentPage >= maxPage){  %>
+						<button disabled>></button>
+						<%  }else{ %>
+						<button onclick="location.href='<%= request.getContextPath() %>/bMyList.bo?currentPage=<%=currentPage + 1 %>'">></button>
+						<%  } %>
+						<button onclick="location.href='<%= request.getContextPath() %>/bMyList.bo?currentPage=<%= maxPage %>'">>></button>
+
+
+					</div>
+					
 					<hr>
 					<h1><small>댓글 확인</small></h1>	
 					<table class="table table-hover">
-						<thead>
-											
+						<thead>			
 							<tr>
 								<th class="col-md-1">분야</th>
 								<th class="col-md-1">글번호</td>
@@ -71,7 +107,7 @@ String cmsg = (String)request.getAttribute("cmsg");
 								<th class="col-md-1">작성일</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="cDetail">
 						<% if(cl !=null){ %>
 						 <%for(BoardComment l : cl){%>
 						<tr>
@@ -92,6 +128,29 @@ String cmsg = (String)request.getAttribute("cmsg");
 
 					</div> 
 				</div>
+				<script>
+				$(function(){
+						$("td").mouseout(function(){
+							$(this).parent().removeAttr(css);
+						}).click(function(){
+							var bno = $(this).parent().children().eq(0).text();
+							location.href="<%=request.getContextPath()%>/selectOne.bo?bno=" + bno;
+						});
+						
+					<%-- 	$("#cDetail td").mouseout(function(){
+							$(this).parent().removeAttr(css);
+						}).click(function(){
+							var bno = $(this).parent().children().eq(0).text();
+							location.href="<%=request.getContextPath()%>/selectOne.bo?bno=" + bno;
+						});
+						 --%>
+						
+						
+						
+						
+					});
+				
+				</script>
 			
 		</div>
 	

@@ -37,8 +37,8 @@
 <link href="/allRight/resources/css/animate.css" rel="stylesheet"
 	type="text/css" media="all" />
 <link href="/allRight/resources/css/owl.carousel.css" rel="stylesheet">
-<link href="/allRight/resources/css/style.css" rel="stylesheet"
-	type="text/css" />
+<!-- <link href="/allRight/resources/css/style.css" rel="stylesheet"
+	type="text/css" /> -->
 
 <link href='/allRight/resources/css/fullcalendar.min.css'
 	rel='stylesheet' />
@@ -70,16 +70,12 @@
 			     alert("에러");
 			    }
 			    , success : function(data) {
-  
+
 			    	var list = data.list;
 			    	var dl = data.list.length/11;
 					var arr = [];
 				 	for(var i =0; i< list.length ; i++ ){
 							
-				 	
-				 			
-			 
-				 		
 				 			// start date 구분하기		
 							if(list[i].title.match(/시작/)!=null){
 								arr[i] = { title : list[i].title , 
@@ -96,43 +92,76 @@
 										}
 							}
 							if(!status) arr[i] + ",";
-					
 	
-				 	}
 				 	
-				 // 최근일정 구하기
-				 var date = new Date();
-				 var year = date.getFullYear();
-				 var month = date.getMonth()+1;
-				 var day = date.getDate();
-				    if ((day+"").length < 2) {
-				        day = "0" + day;
-				    }
-				 
-	
-				 for(var j = 0; j <list.length ; j++ ){
-				 		var date1 = new Date(year, month ,day);
-						var date2 = new Date(list[j].date.substr(0,4),list[j].date.substr(5,2),list[j].date.substr(8,2));
-						var diff = date1-date2;
-						dday = parseInt(diff/( 24 * 60 * 60 * 1000))); 
-				 		/* if(!(list[j].title.match(/종료/))){
-				 			console.log(today-list[j].date);
-				 		result.put("dlname",list[j].title);
-				 		result.put("ddate",list[j].date);
-				 		
-				 		
-				 		
-				 		} */
-				 	/* var day = data.day;
-				 	console.log(day.length); */
-			
-				 	}
+				 	
+				 	}// for-end
+				 	
 					event=arr;
-				 	
-			    }	 
-		});
+	  
+				  //테스트
+				   tableTest(list);
+		 
+			  }	 // success-end
+		});// ajax-end
+		
+		
+		
+		function tableTest(list){
+			
+			 /*  $('input[name="category"]:radio[value="all"]').prop('checked',true); */
+		/* console.log( $('input[name="category"]:radio[value="all"]').prop('checked',true).val()); */
 
+			 var result;
+			 result = "-";
+			
+			 
+					 // 라디오 조건 저장하기
+				 	$("input:radio").click(function test(){	
+			 
+					  		/* console.log("함수쪽 " +$(this).index());  */
+		                	var idx = $(this).index();
+		
+		                	var str;
+		                	var j=0;
+		                	
+		                	switch(idx){
+			                	case 1 : result="-";break;
+			                	case 3 : result="접수";break;
+			                	case 5 : result="시험";break;
+			                	default: result="합격";break;
+		
+		                	 }
+        				
+		                	$('#tb').children().siblings().empty();
+		                	var str="";
+			  	 				for(var k = 0 ; k<list.length; k++){
+									// dday 
+			  	 					if(list[k].dday<0){
+					  	 				// 버튼과 일치내용 all:전체	receipt원서 접수 일자	 testdate 시험일자	pass 합격일자
+				    					if(list[k].title.match(result)!=null){
+				    						console.log(list[k].title);
+					    					str = "<tr>"
+					    					  +"<td>"+k+"</td>"
+					    					  +"<td>"+list[k].title+"</td>"
+					    					  +"<td>"+list[k].date+"</td>"
+					    					  +"<td>시행처</td>"
+					    					  +"<td>"+list[k].dday+"</td>"
+					    					  +"</tr>";
+											$('#tb').append(str);
+											j++;
+											if(j>6)break;
+				    					}
+			  	 					}
+		    			     }//for end
+				 		
+				 	});
+			 
 
+		}// table function end
+		
+		
+		
 		$('#calendar').fullCalendar({
 			header: {
 	        left: 'prev,next today',
@@ -146,122 +175,9 @@
 	      events: event
 	    
 	 	});
-		
-
 	});
 
 	
-	
- 	<%--  $(document).ready(function() {
-		
-		var title1 = "<%=al.get(0).getlName()%>";
-		var title2 = "<%=al.get(1).getlName()%>";
-		var title3 = "<%=al.get(2).getlName()%>";
-		var date1 = "<%=al.get(0).getlDate()%>";
-		var date2 = "<%=al.get(1).getlDate()%>";
-		console.log(title1);
-		var date3 = "<%=al.get(2).getlDate()%>"; 
-				 	 $('#calendar').fullCalendar({
-				      header: {
-				        left: 'prev,next today',
-				        center: 'title',
-				        right: 'month,agendaWeek,agendaDay,listWeek'
-				      },
-				      defaultDate: new Date(),
-				      navLinks: true, // can click day/week names to navigate views
-				      editable: true,
-				      eventLimit: true, // allow "more" link when too many events
-				      
-				     /*  events:events(), */
-				      events:
-		      
-				      /* scheduleData, */
-				
-				    	     [ 
-
-				    		  	 	{
-				    		          title: title1,
-				    		          start: date1
-				    		        }, 
-				    		        
-				    		        {
-					    		          title: title2,
-					    		          start: date2
-					    		    }/* ,
-					    		    {
-					    		          title: title3,
-					    		          start: date3
-					    		    } */
-				    		        
-				    		  ]  
-				       
-					<%--    {
-					   <% for (LicenseInfo l : al){%>
-					   	title : <%=l.getlName()%>,
-					    start : <%=l.getlDate()%>
-					   <%}%>
-					   },
-				   <%System.out.println("sd");%> 
-				  		/* 	{
-				  			for(int i =0; i<3; i++){
-				  				title : ''+i,
-				  				start : '2018-11-'+i+""
-				  			}
-				  		}, */
-				  
-				    	});
-		function events(){
-			  
-			/*  String title1[] = String[]{}; */
- 	 				
-			 <%for(int i =0; i<al.size(); i++){
-				/* title1[i] = al.get(i).getlName(); */
-				System.out.println(al.get(0).getlName());
-			}
-			%>  
-			
-			<%for(LicenseInfo l : al){%>
-			
-			  sdata={title:"<%=l.getlName()%>",date:"<%= l.getlDate()%>"};
-			   console.log(sdata);
-			  /*  console.log(l); */
-			   <%
-			   System.out.println(l.);
-			  
-				}%>
-			
-			  /*  console.log(sdata); */
-			/* 
-			[	{
-		          title:'asd',
-		          start: '2018-11-12' 
-	 	 		}
-		        
-	    	  ] */
-				var sdata=[];
-			   for(var i=0 ; i < <%=al.size()%>; i++){
-				   <%for(LicenseInfo l : al){%>
-				   sdata[i]={title:"<%=l.getlName()%>",date:"<%= l.getlDate()%>"};
-				   <%}%>
-				   console.log(i + ":"+sdata[i]);
-				   console.log(<%=al.size()%>);
-			   }
-			  
-		}
-			   
-			   <%for(LicenseInfo l : al){%>
-				var i =0;
-			   sdata[i]={title:"<%=l.getlName()%>",date:"<%= l.getlDate()%>"};
-			 	console.log(i+" : "+sdata[i]);  
-				/* console.log("----"); */
-				title : sdata.title;
-				start : sdata.date;
-				i++;
-				<%}%>
-				/* console.log(sdata); */
-		
-		
-  }); --%>
 </script>
 <style>
 /*   body {
@@ -284,7 +200,7 @@ th {
 }
 </style>
 </head>
-<body>
+<body  style="background:white">
 
 	<!-- HEADER -->
 
@@ -301,18 +217,26 @@ th {
 			<!-- NAV END-->
 			<br>
 			<div class="col-sm-2 sidenav"
-				style="display: inline-block; background: ivory">
+				style="display: inline-block;/*  background: ivory */">
 
 				<%-- 	<%@ include file="/views/common/myPageNav.jsp" %> --%>
 
 			</div>
 
+
 			<div id="showView"
 				style="width: 70%; height: 100%; display: inline-block;">
-				<div>
+			
 					<h1>일정관리</h1>
-					일정정보
-					<div style="background-color: ivory">
+
+					<!-- <fieldset>
+		          		<legend><small>최근일정</small></legend> -->		
+			          <input type="radio" name="category" value="all" id="all"><label for="all">전체</label>&nbsp; &nbsp; 
+			          <input type="radio" name="category" value="receipt" id="receipt"><label for="receipt">원서접수 알자</label>&nbsp; &nbsp; 
+			          <input type="radio" name="category" value="testdate" id="testdate"><label for="testdate">시험일자</label>&nbsp; &nbsp;
+			          <input type="radio" name="category" value="pass"id="pass"><label for="pass">합격일자</label>&nbsp; &nbsp;
+      				 <!-- </fieldset> -->
+					<div >
 						<table id="info" border=1; style="width: 100%; heigh: 100px;">
 							<thead>
 								<tr style="text-align: center">
@@ -323,32 +247,36 @@ th {
 									<th>남은기간</th>
 								</tr>
 							</thead>
-
-							<%
+							<tbody id = "tb">
+							
+							
+							</tbody>
+							
+							<%-- <%
 								if (al != null) {
 							%>
 							<%
 								for (LicenseInfo l : al) {
-							%>
+							%> --%>
 							<tr>
-								<th>1</th>
+								<%-- <th>1</th>
 								<td><%=l.getlName()%></td>
 								<td><%=l.getlDate()%></td>
 
 								<td>큐넷</td>
-								<td style="color: red">D <%=l.getdDay()%></td>
+								<td style="color: red">D <%=l.getdDay()%></td> --%>
 							</tr>
-							<%
+							<%-- <%
 								}
 							%>
 							<%
 								} else {
-							%>
+							%> --%>
 							<tr>
-								<td colspan="5"><%=msg%></td>
-								<%
+								<%-- <td colspan="5"><%=msg%></td> --%>
+								<%-- <%
 									}
-								%>
+								%> --%>
 								<!-- <th>2</th>
 		<td>정기시험</td><td>2018-12-30</td><td>큐넷</td><td>D-</td>
 		</tr> -->

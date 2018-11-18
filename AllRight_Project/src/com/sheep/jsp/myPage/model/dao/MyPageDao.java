@@ -39,7 +39,7 @@ public class MyPageDao {
 		}
 	}
 	// 내 게시글 확인
-	public ArrayList<Board> selectBList(Connection con, int userno) {
+	public ArrayList<Board> selectBList(Connection con, int userno,  int currentPage, int limit) {
 		ArrayList<Board> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset =null;
@@ -47,13 +47,21 @@ public class MyPageDao {
 		
 		try {
 			pstmt=con.prepareStatement(sql);
+			
+			int startRow = (currentPage -1) * limit + 1;
+			int endRow = startRow + limit -1;
+			
 			pstmt.setInt(1,userno);
+			
+			pstmt.setInt(2, endRow);
+			pstmt.setInt(3, startRow);
+			System.out.println("dao - userno " + userno + " :" + endRow+":"+startRow );
 			rset = pstmt.executeQuery();
 			
 			list = new ArrayList<Board>();
 			System.out.println(userno);
 			while(rset.next()){
-				System.out.println(userno+"sdasd");
+				/*System.out.println(userno+"sdasd");*/
 				Board b = new Board();
 				b.setbNO(rset.getInt("BNO"));
 				b.setbTitle(rset.getString("BTITLE"));
@@ -61,9 +69,9 @@ public class MyPageDao {
 				b.setbCount(rset.getInt("BCOUNT"));
 				b.setbDate(rset.getDate("BDATE"));
 			list.add(b);
-			System.out.println(b);
+			/*System.out.println(b);
 			System.out.println("55555");
-			System.out.println(list);
+			System.out.println(list);*/
 			}
 			
 		} catch (SQLException e) {
@@ -212,6 +220,29 @@ public class MyPageDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	public int selectbPage(Connection con, int userno) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset =null;
+		String sql = prop.getProperty("selectBPage");
+		
+	
+			try {
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, userno);
+				rset=pstmt.executeQuery();
+				while(rset.next()){
+					result = rset.getInt(1);
+				}
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+		
+		
+		
+		return result;
 	}
 	
 	

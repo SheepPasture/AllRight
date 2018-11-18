@@ -260,5 +260,46 @@ public class MemberDao {
 		
 		return result;
 	}
+	// 비밀번호 일치 여부
+	public int confirmPassword(Connection con, Member m) {
+
+		/*Member result = null;*/
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+
+		String sql = prop.getProperty("confirmPassword");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m.getUserId());
+			pstmt.setString(2, m.getUserPwd());
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				result = 1;
+				/*result = new Member();
+				
+				result.setUserNo(Integer.parseInt(rset.getString("userno")));
+				result.setUserId(m.getUserId());
+				result.setUserPwd(m.getUserPwd());
+				result.setUserName(rset.getString("username"));
+				result.setEmail(rset.getString("email"));
+				result.setUserLeave(rset.getString("userleave"));
+				result.setUserDate(rset.getDate("userdate"));
+				result.setFinalDate(rset.getDate("finaldate"));
+				
+*/			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
 
 }
