@@ -98,5 +98,17 @@ public class MemberService {
 		return result;
 		
 	}
+	// 비밀번호 일치 여부
+	public int confirmPassword(Member m) /*throws MemberException*/{
+		Connection con = getConnection();
+		
+		int result = mDao.confirmPassword(con,m);
+		/*if(result == null) throw new MemberException("비밀번호가 일치하지않습니다.");*/
+		
+		close(con);
+		
+		return result;
+
+	}
 
 }
