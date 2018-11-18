@@ -21,6 +21,10 @@ public class QuestionService {
 	
 		list = qDao.selectList(con);
 		
+		if(list != null){ commit(con);
+		rollback(con);
+			
+		}
 		close(con);
 	
 		return list;
