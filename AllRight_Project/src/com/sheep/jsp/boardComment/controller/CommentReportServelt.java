@@ -1,30 +1,26 @@
-package com.sheep.jsp.board.controller;
+package com.sheep.jsp.boardComment.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sheep.jsp.board.model.service.BoardService;
-import com.sheep.jsp.board.model.vo.Board;
 import com.sheep.jsp.boardComment.model.service.BoardCommentService;
 import com.sheep.jsp.boardComment.model.vo.BoardComment;
 
 /**
- * Servlet implementation class BoardSelectOneServlet
+ * Servlet implementation class CommentLikeServelt
  */
-@WebServlet("/selectOne.bo")
-public class BoardSelectOneServlet extends HttpServlet {
+@WebServlet("/bcReport.bo")
+public class CommentReportServelt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardSelectOneServlet() {
+    public CommentReportServelt() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,26 +29,24 @@ public class BoardSelectOneServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		int cno = Integer.parseInt(request.getParameter("cno"));
 		
-		int bno = Integer.parseInt(request.getParameter("bno"));
-		System.out.println("selectOne bno: "+bno);
+		System.out.println("cno: " + cno);
 		
-		Board b = new BoardService().selectOne(bno);
-		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bno);
+		BoardComment bc = new BoardCommentService().BoardCommentReport(cno);
 		
-		System.out.println("selectOne clist: "+clist);
-		System.out.println("selectOne b: "+b);
+		System.out.println("bco: "+bc);
 		
 		String page = "";
 		
-		if(b != null){
+		if(bc != null){
 			page = "/views/board/boardDetail.jsp";
-			request.setAttribute("board", b);
-			request.setAttribute("clist", clist);
+			request.setAttribute("BoardComment", bc);
 			
 		} else{
 			page="/views/common/errorPage.jsp";
-			request.setAttribute("msg", "게시물 상세보기 실패!");
+			request.setAttribute("msg", "댓글 신고 실패!");
 		}
 		
 		request.getRequestDispatcher(page).forward(request, response);
