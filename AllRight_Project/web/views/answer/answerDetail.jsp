@@ -5,8 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>ALLRight</title>
-<!-- 제이쿼리 파일 -->
-<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
 </head>
 <body>
 <div align="center"><!--Mobile, PC 페이지 컨테이너 가운데 정렬 시작.-->
@@ -30,7 +28,7 @@
 		<option value='21'>사무 [워드프로세서]</option>
 		<option value='25'>판매 [전자상거래운용사]</option>
 		<option value='30'>회계 [전산회계운용사]</option>
-		<option value='70'>공인 [PC정비사]</option>
+		<option va lue='70'>공인 [PC정비사]</option>
 		<option value='75'>공인 [네트워크관리사]</option>
 		</select>
 		&nbsp;
