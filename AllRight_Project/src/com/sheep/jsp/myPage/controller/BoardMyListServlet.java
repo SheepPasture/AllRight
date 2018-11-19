@@ -37,8 +37,8 @@ public class BoardMyListServlet extends HttpServlet {
 		Member m = (Member)session.getAttribute("member");
 		int userno = m.getUserNo();
 		
-		
-		
+
+		System.out.println(userno);
 		//게시판 및 댓글
 		ArrayList<Board> blist = new ArrayList<Board>();
 		ArrayList<BoardComment> clist= new ArrayList<BoardComment>();
@@ -97,7 +97,8 @@ public class BoardMyListServlet extends HttpServlet {
 			request.setAttribute("cmsg", "작성한 댓글이 없습니다.");
 			
 		}
-
+		System.out.println("blist = " + blist);
+		System.out.println("clist = " + clist);
 		request.getRequestDispatcher(page).forward(request, response);
 	}
 

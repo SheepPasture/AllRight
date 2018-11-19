@@ -10,20 +10,19 @@ import javax.servlet.http.HttpServletResponse;
 import com.sheep.jsp.board.model.service.BoardService;
 import com.sheep.jsp.board.model.vo.Board;
 
-
-
 /**
- * Servlet implementation class NewsInsertServlet
+ * Servlet implementation class BoardLikeServlet
  */
-@WebServlet("/bInsert.bo")
-public class BoardInsertServlet extends HttpServlet {
+@WebServlet("/bLike.bo")
+public class BoardLikeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardInsertServlet() {
+    public BoardLikeServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -31,42 +30,32 @@ public class BoardInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		String bwriter = request.getParameter("userName");
-		int userNo = Integer.parseInt(request.getParameter("userNo"));
-
-		Board b = new Board();
+		int bno = Integer.parseInt(request.getParameter("bno"));
 		
-		System.out.println("title : " + title);
-		System.out.println("content : " + content);
-		System.out.println("bwriter: " + bwriter);
-		System.out.println("userNo: "+userNo);
-
-		b.setbTitle(title);
-		b.setbContent(content);
-		b.setbWriter(bwriter);
-		b.setUserNo(userNo);
+		Board b = new BoardService().boardLike(bno);
 		
-		int result = new BoardService().insertBoard(b);
+		System.out.println("b: "+b);
 		
-		System.out.println("결과: " + result);
+		String page = "";
 		
-		if(result > 0){
-			response.sendRedirect("selectList.bo");
-		} else{
-			request.setAttribute("msg", "게시물 작성 실패");
+		if(b != null){
+			page = "/views/board/boardDetail.jsp";
+			request.setAttribute("board", b);
 			
-			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
+		} else{
+			page="/views/common/errorPage.jsp";
+			request.setAttribute("msg", "추천 실패!");
 		}
 		
+		request.getRequestDispatcher(page).forward(request, response);
+		
 	}
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

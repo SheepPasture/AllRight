@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.sheep.jsp.board.model.vo.*, com.sheep.jsp.announcement.model.vo.*" 
-    import="com.sheep.jsp.member.model.vo.Member"%>
+    pageEncoding="UTF-8" 
+    import="java.util.*, com.sheep.jsp.board.model.vo.*, com.sheep.jsp.announcement.model.vo.*, com.sheep.jsp.member.model.vo.Member"%>
  <% 
+ 	Board b = (Board)request.getAttribute("board"); 
  	ArrayList<Board> blist = (ArrayList<Board>)request.getAttribute("blist"); 
  	ArrayList<Announcement> select2ANN = (ArrayList<Announcement>)request.getAttribute("select2ANN"); 
-  	bPageInfo pi = (bPageInfo)request.getAttribute("pi");
-	int listCount = pi.getListCount();
-	int currentPage = pi.getCurrentPage();
-	int maxPage = pi.getMaxPage();
-	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();  
+  	bPageInfo bpi = (bPageInfo)request.getAttribute("bpi");
+	int listCount = bpi.getListCount();
+	int currentPage = bpi.getCurrentPage();
+	int maxPage = bpi.getMaxPage();
+	int startPage = bpi.getStartPage();
+	int endPage = bpi.getEndPage();  
 	Member m = (Member)session.getAttribute("member");
  %>
 <!DOCTYPE html>
@@ -18,9 +19,7 @@
 
 <title>ALLRight</title>
 
-	<!-- JQuery -->
 	<script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
-	<link href="/allRight/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
 <style>
 /* * {
@@ -94,7 +93,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 	min-width: 1024px;
 }
 
-body {
+/* body {
 	line-height: 1;
 	font-size: 14px;
 }
@@ -104,7 +103,7 @@ body {
 	height: 100%;
 	font-family: Dotum;
 	font-size: 12px;
-}
+} */
 
 html {
 	overflow-y: scroll;
@@ -527,15 +526,16 @@ a {
 														<span>총 </span><strong><%= listCount %></strong><span>개</span><span
 															class="pc">의 게시글이 있습니다.</span>
 													</div>
-															<div class="list_search pc" align="right">
-																<select name="dataOrd" id="dataOrd"
-																	onchange="fnOrdPage();">
-																	<option value="">최신순정렬</option>
-																	<option value="inqCnt">조회순정렬</option>
+															<div class="list_search" align="right">
+																<select name="dataOrd" id="dataOrd" onchange="fnOrdPage();">
+																	<option value="recentCnt" >최신순정렬</option>
+																	<option value="inqCnt" >조회순정렬</option>
 																	<option value="rpyCnt">댓글순</option>
 																</select>
 															</div> 
-
+															<script>
+																
+															</script>
 													<div class="table_main">
 														<div class="table_main_top" >
 															<ul class="board">
@@ -561,26 +561,26 @@ a {
 																		<td class="col-md-1 text-left"><strong>공지</strong></td>
 																		<td class="col-md-7 text-center"><strong><%= a.getAtitle() %></strong></td>
 																		<td id="ano" style="display:none;"><%= a.getAno() %></td>
-																		<td class="col-md-1" ><%= m.getUserId() %></td>
+																		<td class="col-md-1" >관리자</td>
 																		<td class="col-md-1"><strong><%= a.getAcount() %></strong></td>
 																		<td class="col-md-1"><strong><%= a.getAdate() %></strong></td>
 																	</tr>
 																	<% } %>
 											  						
-											  						<% for(Board b : blist){ %>
+											  						<% for(Board bl : blist){ %>
 																	<tr id="boardlist">
-																		<td class="col-md-1 text-left"><%= b.getbNO() %></td>
-																		<td class="col-md-6 text-center"><%= b.getbTitle() %></td>
-																		<td class="col-md-1"><%= b.getbWriter() %></td>
-																		<td class="col-md-1"><%= b.getbCount() %></td>
-																		<td class="col-md-1"><%= b.getbDate() %></td>
+																		<td class="col-md-1 text-left" name="bno"><%= bl.getbNO() %></td>
+																		<td class="col-md-6 text-center" name="btitle"><%= bl.getbTitle() %></td>
+																		<td class="col-md-1" name="userName"><%= bl.getbWriter() %></td>
+																		<td class="col-md-1" name="bcount"><%= bl.getbCount() %></td>
+																		<td class="col-md-1" name="bdate"><%= bl.getbDate() %></td>
 																	</tr>
 																		<% } %> 
 																</tbody>
 															</table>
 															<br /><br />
 															<div class="col-md-11 text-center" align="center">
-																<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=1'"><<</button>
+																<button onclick="location.href='allRight/selectList.bo?currentPage=1'"><<</button>
 																<%  if(currentPage <= 1){  %>
 																<button disabled><</button>
 																<%  }else{ %>
@@ -620,7 +620,7 @@ a {
 						</div>
 					</div>
 					<script>
-						$(function(){
+						$(function(){							
 							$("#annlist td").mouseenter(function(){
 								$(this).parent().css({"cursor":"pointer"});
 							}).click(function(){

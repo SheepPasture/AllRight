@@ -37,16 +37,17 @@
 				<div class="col-sm-8 text-center" style="border: 1px solid to">
 					<h2 align="left">자격증정보</h2>
 					<br />
-					<div role="tabpanel">
+					<div class="autoonoff">
+					<div class="tabpanel" role="tabpanel">
 						<!-- Nav tabs -->
 						<ul class="nav nav-tabs nav-justified" role="tablist">
-							<li role="presentation"><a href="#건설기계운전" aria-controls="건설기계운전" role="tab" data-toggle="tab" id="건설기계운전"><span>건설기계운전</span></a></li>
-							<li role="presentation"><a href="#건설배관" aria-controls="건설배관" role="tab" data-toggle="tab" id="건설배관">건설배관</a></li>
-							<li role="presentation"><a href="#건축" aria-controls="건축" role="tab" data-toggle="tab" id="건축">건축</a></li>
-							<li role="presentation"><a href="#경비청소" aria-controls="경비청소" role="tab" data-toggle="tab" id="경비청소">경비청소</a></li>
+							<li class="tit" role="presentation"><a href="#건설기계운전" aria-controls="건설기계운전" role="tab" data-toggle="tab" id="건설기계운전"><span>건설기계운전</span></a></li>
+							<li class="tit" role="presentation"><a href="#건설배관" aria-controls="건설배관" role="tab" data-toggle="tab" id="건설배관">건설배관</a></li>
+							<li class="tit" role="presentation"><a href="#건축" aria-controls="건축" role="tab" data-toggle="tab" id="건축">건축</a></li>
+							<li class="tit" role="presentation"><a href="#경비청소" aria-controls="경비청소" role="tab" data-toggle="tab" id="경비청소">경비청소</a></li>
 						</ul>
 						<!-- Tab panes -->
-						<div class="tab-content">
+						<div class="tab-content" style="">
 							<div role="tabpanel" class="tab-pane" id="건설기계운전">
 								<table class="table table-justified">
 									<tr>
@@ -104,7 +105,7 @@
 								</table>
 							</div>
 						</div>
-					</div>
+					</div></div>
 	
 					<br>
 			
@@ -174,10 +175,7 @@
 							</table>
 						</div>
 					</div>
-				
 				</div>
-
-				
 			</div>
 		</div>		        
 	</div>
