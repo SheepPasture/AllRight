@@ -63,6 +63,7 @@ public class ANNDao {
 				a.setAdate(rset.getDate("adate"));
 				
 				list.add(a);				
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -236,6 +237,78 @@ public class ANNDao {
 			close(stmt);
 		}
 		return listCount;
+	}
+
+	public int beforeANN(Connection con, int ano) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int result = 0;
+		
+		String sql = prop.getProperty("beforeANN");
+		
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, ano);
+
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				result = rset.getInt(4);
+				
+				System.out.println("resut: "+result);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(rset);
+			close(pstmt);
+			
+		}
+		
+		return result;
+		
+	}
+
+	public int afterANN(Connection con, int ano) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int result = 0;
+		
+		String sql = prop.getProperty("afterANN");
+		
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, ano);
+
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				result = rset.getInt(4);
+				
+				System.out.println("resut: "+result);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(rset);
+			close(pstmt);
+			
+		}
+		
+		return result;
+		
 	}
 
 }

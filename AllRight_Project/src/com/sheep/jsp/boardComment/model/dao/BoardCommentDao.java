@@ -61,6 +61,7 @@ public class BoardCommentDao {
 			}
 			
 			result = pstmt.executeUpdate();
+			
 		
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" 
     import="java.util.*, com.sheep.jsp.board.model.vo.*, com.sheep.jsp.announcement.model.vo.*, com.sheep.jsp.member.model.vo.Member"%>
  <% 
- 	Board b = (Board)request.getAttribute("board"); 
+ 	/* Board b = (Board)request.getAttribute("board");  */
  	ArrayList<Board> blist = (ArrayList<Board>)request.getAttribute("blist"); 
  	ArrayList<Announcement> select2ANN = (ArrayList<Announcement>)request.getAttribute("select2ANN"); 
   	bPageInfo bpi = (bPageInfo)request.getAttribute("bpi");
@@ -11,7 +11,7 @@
 	int maxPage = bpi.getMaxPage();
 	int startPage = bpi.getStartPage();
 	int endPage = bpi.getEndPage();  
-	Member m = (Member)session.getAttribute("member");
+	/* Member m = (Member)session.getAttribute("member"); */
  %>
 <!DOCTYPE html>
 <html>
@@ -500,7 +500,7 @@ a {
 				<br />
 				<div class="col-sm-2 sidenav">
 					<p><a href="selectList.ann">공지사항</a></p>
-					<p><a href="<%= request.getContextPath() %>/views/community/communityList.jsp">커뮤니티</a></p>
+					<p><a href="<%= request.getContextPath() %>/selectList.bo">커뮤니티</a></p>
 					<p>
 						<a href="#">자격증정보</a>
 					</p>
@@ -527,8 +527,8 @@ a {
 															class="pc">의 게시글이 있습니다.</span>
 													</div>
 															<div class="list_search" align="right">
-																<select name="dataOrd" id="dataOrd" onchange="fnOrdPage();">
-																	<option value="recentCnt" >최신순정렬</option>
+																<select>
+																	<option value="" >최신순정렬</option>
 																	<option value="inqCnt" >조회순정렬</option>
 																	<option value="rpyCnt">댓글순</option>
 																</select>
@@ -554,10 +554,9 @@ a {
 																		<th class="col-md-1">작성일</th>
 																	</tr>
 																</thead>
-																	
 																<tbody>
 																	<% for(Announcement a : select2ANN){ %>
-																	<tr id="annlist" class="notice" style="background-color: hsl(120, 100%, 75%, 0.3); bold;">
+																	<tr id="annlist" style="background-color: hsl(120, 100%, 75%, 0.3); bold;">
 																		<td class="col-md-1 text-left"><strong>공지</strong></td>
 																		<td class="col-md-7 text-center"><strong><%= a.getAtitle() %></strong></td>
 																		<td id="ano" style="display:none;"><%= a.getAno() %></td>
@@ -567,20 +566,21 @@ a {
 																	</tr>
 																	<% } %>
 											  						
-											  						<% for(Board bl : blist){ %>
+											  						<% for(Board b : blist){ %>
 																	<tr id="boardlist">
-																		<td class="col-md-1 text-left" name="bno"><%= bl.getbNO() %></td>
-																		<td class="col-md-6 text-center" name="btitle"><%= bl.getbTitle() %></td>
-																		<td class="col-md-1" name="userName"><%= bl.getbWriter() %></td>
-																		<td class="col-md-1" name="bcount"><%= bl.getbCount() %></td>
-																		<td class="col-md-1" name="bdate"><%= bl.getbDate() %></td>
+																		<td name="bid" style="display:none;"><%= b.getbId() %></td>
+																		<td class="col-md-1 text-left" name="bno"><%= b.getbNO() %></td>
+																		<td class="col-md-6 text-center" name="btitle"><%= b.getbTitle() %></td>
+																		<td class="col-md-1" name="userName"><%= b.getbWriter() %></td>
+																		<td class="col-md-1" name="bcount"><%= b.getbCount() %></td>
+																		<td class="col-md-1" name="bdate"><%= b.getbDate() %></td>
 																	</tr>
 																		<% } %> 
 																</tbody>
 															</table>
 															<br /><br />
-															<div class="col-md-11 text-center" align="center">
-																<button onclick="location.href='allRight/selectList.bo?currentPage=1'"><<</button>
+															<div align="center">
+																<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=1'"><<</button>
 																<%  if(currentPage <= 1){  %>
 																<button disabled><</button>
 																<%  }else{ %>
@@ -602,9 +602,7 @@ a {
 																<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage + 1 %>'">></button>
 																<%  } %>
 																<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= maxPage %>'">>></button>
-															</div> 
-														</div>
-														<!--//테이블 리스트-->
+															</div>
 
 													<div class="col-sm-12 text-right">
 														<button class="btn-default"><a href="views/board/boardInsertForm.jsp">작성하기</a></button>

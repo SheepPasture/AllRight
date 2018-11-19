@@ -117,4 +117,33 @@ public class ANNService {
 		
 	}
 
+	public int beforeANN(int ano) {
+		
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		result = aDao.beforeANN(con, ano);
+		
+		close(con);
+		
+		return result;
+		
+	}
+
+	public int afterANN(int ano) {
+
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		result = aDao.afterANN(con, ano);
+		
+		close(con);
+		
+		return result;
+		
+	}
+
+
 }

@@ -30,11 +30,11 @@ public class BoardService {
 		
 		Connection con = getConnection();
 		
-		ArrayList<Board> list = bDao.selectList(con, currentPage, limit);
+		ArrayList<Board> blist = bDao.selectList(con, currentPage, limit);
 		
 		close(con);
 		
-		return list;
+		return blist;
 		
 	}
 
@@ -103,12 +103,12 @@ public class BoardService {
 		return result;
 	}
 	
-	public ArrayList<Announcement> selectList2(){
+	public ArrayList<Announcement> selectList(){
 
 		ArrayList<Announcement> select2ANN = null;
 		Connection con = getConnection();
 		
-		select2ANN = bDao.selectList2(con);
+		select2ANN = bDao.selectList(con);
 		
 		close(con);
 		
