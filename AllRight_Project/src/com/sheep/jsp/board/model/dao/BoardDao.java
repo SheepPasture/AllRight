@@ -173,6 +173,7 @@ public class BoardDao {
 			if(rset.next()){
 				b = new Board();
 				
+				b.setbId(rset.getInt(1));
 				b.setbNO(rset.getInt(2));
 				b.setbTitle(rset.getString(3));
 				b.setbContent(rset.getString(4));

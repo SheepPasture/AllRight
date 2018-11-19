@@ -37,6 +37,7 @@ public class BoardReportServlet extends HttpServlet {
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		
 		Board b = new BoardService().boardReport(bno);
+		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bno);
 		
 		System.out.println("b: "+b);
 		
@@ -45,6 +46,7 @@ public class BoardReportServlet extends HttpServlet {
 		if(b != null){
 			page = "/views/board/boardDetail.jsp";
 			request.setAttribute("board", b);
+			request.setAttribute("clist", clist);
 			
 		} else{
 			page="/views/common/errorPage.jsp";

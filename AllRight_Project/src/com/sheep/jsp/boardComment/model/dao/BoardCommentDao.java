@@ -106,7 +106,6 @@ public class BoardCommentDao {
 				comment.setRefcno(rset.getInt("refcno"));
 				
 				clist.add(comment);
-				
 				System.out.println("보드코멘트dao list완료");
 				
 			}

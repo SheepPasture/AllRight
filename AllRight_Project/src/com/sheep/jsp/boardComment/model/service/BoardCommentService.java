@@ -81,7 +81,8 @@ public class BoardCommentService {
 		Connection con = getConnection();
 		int result = 0;
 		
-		ArrayList<BoardComment> bco = bcDao.selectList(con, cno);
+		System.out.println("서비스 bno : "+bno);
+		ArrayList<BoardComment> bco = bcDao.selectList(con, bno);
 		
 		
 		if(bco!=null){
