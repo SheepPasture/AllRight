@@ -63,6 +63,8 @@ public class MemberLoginServlet extends HttpServlet {
 			
 			System.out.println("로그인 성공!");
 			
+			System.out.println("안드로이드 체크 : " + androidCheck);
+			
 			pt = ps.selectPoint(m.getUserNo());
 			
 			Date today = new Date(new java.util.Date().getTime());
@@ -77,7 +79,7 @@ public class MemberLoginServlet extends HttpServlet {
 			
 			ms.addFinalDate(m);
 
-			
+			System.out.println(m);
 			level=((pt.getTotalPoint()/100)+1);
 			HttpSession session = request.getSession();
 			
@@ -85,7 +87,8 @@ public class MemberLoginServlet extends HttpServlet {
 			session.setAttribute("point", pt);
 			session.setAttribute("level", level);
 			
-			if(androidCheck =="A"){
+			if(androidCheck !=null){
+				System.out.println("안드로이드에서 로그인을 시도합니다.");
 				response.sendRedirect("android.jsp");
 			}else{
 				response.sendRedirect("index.jsp");
