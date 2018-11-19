@@ -41,6 +41,8 @@ public class MemberInsertServlet extends HttpServlet {
 		
 		Member m = new Member(userId,pass,name,email);
 		
+		System.out.println(m);
+		
 		try{
 			ms.insertMember(m);
 			ps.insertPoint(userId);

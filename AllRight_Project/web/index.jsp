@@ -181,7 +181,7 @@
 						<label class="text">ID : </label>
 					</td>
 					<td>
-						<input type="text" name="inputId">
+						<input type="text" name="inputId" id="inputId">
 					</td>
 				</tr>
 					<tr>
@@ -195,7 +195,7 @@
 			</table>
 			
 			<div class="btns">
-				<input type="submit" value="로그인" />
+				<input type="button" value="로그인" onclick="login()"/>
 				<input type="button" value="회원가입" onclick="insert()"/> 
 			</div>
 			
@@ -229,6 +229,25 @@
 		</div>
 		
 		<script>
+		
+		function login(){
+			
+			$('#loginForm').submit();
+			
+			<%-- 
+			<% if ( $("#inputId").val().equls("admin")) {%> 
+			
+			
+			$('#loginForm').submit();
+			location.href = "/allRight/admin.jsp";
+			
+			
+			<% } else {%>
+				
+			$('#loginForm').submit();
+			
+			<% } %> --%>
+		}
 			
 		function insert(){
 			
