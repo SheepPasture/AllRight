@@ -49,18 +49,16 @@ public class BoardCommentDao {
 			pstmt.setString(3, bco.getcContent());
 			pstmt.setInt(4, bco.getcLevel());
 			pstmt.setString(5, bco.getUserId());
-			pstmt.setInt(6, bco.getRefcno());
+/*			pstmt.setInt(6, bco.getRefcno());*/
 
-/*			if(bco.getRefcno() > 0) {
+			if(bco.getRefcno() > 0) {
 				
-				pstmt.setInt(5, bco.getRefcno());
+				pstmt.setInt(6, bco.getRefcno());
 				
 			} else {
 				
-				pstmt.setNull(5, java.sql.Types.NULL);
-			}*/
-			
-/*			pstmt.setInt(4, bco.getcLevel());*/
+				pstmt.setNull(6, java.sql.Types.NULL);
+			}
 			
 			result = pstmt.executeUpdate();
 		
@@ -96,15 +94,15 @@ public class BoardCommentDao {
 				BoardComment comment = new BoardComment();
 	
 				comment.setcNo(rset.getInt("cno"));
-				comment.setbNo(rset.getInt("bno"));
-				comment.setUserNo(rset.getInt("userno"));
+				comment.setbNo(bno);
+				comment.setUserNo(rset.getInt("userNo"));
 				comment.setcPwd(rset.getInt("cPwd"));
 				comment.setcContent(rset.getString("ccontent"));
 				comment.setcDate(rset.getDate("cdate"));
 				comment.setcLevel(rset.getInt("clevel"));
 				comment.setReport(rset.getInt("report"));
 				comment.setNickname(rset.getString("nickname"));
-				comment.setUserId(rset.getString("userid"));
+				comment.setUserId(rset.getString("userId"));
 				comment.setRefcno(rset.getInt("refcno"));
 				
 				clist.add(comment);
@@ -142,9 +140,13 @@ public class BoardCommentDao {
 			while(rset.next()) {
 				bco = new BoardComment();
 
-				bco.setUserId(rset.getString("userid"));
+				bco.setcNo(cno);
+				bco.setUserId(rset.getString("userId"));
+				bco.setbNo(rset.getInt("bno"));
 				bco.setcContent(rset.getString("ccontent"));
 				bco.setcDate(rset.getDate("cdate"));
+				bco.setRefcno(rset.getInt("refcno"));
+				bco.setcLevel(rset.getInt("clevel"));
 			}
 			
 		} catch (SQLException e) {
@@ -204,5 +206,27 @@ public class BoardCommentDao {
 			close(pstmt);
 		}
 		return result;
+	}
+
+	public int boardCommentReport(Connection con, int cno) {
+
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("boardCommentReport");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, cno);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		
+		return result;
+		
 	}
 }

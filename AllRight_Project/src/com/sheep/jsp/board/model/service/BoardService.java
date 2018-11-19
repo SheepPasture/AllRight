@@ -61,8 +61,6 @@ public class BoardService {
 		
 		Board b = bDao.selectOne(con, bno);
 		
-		System.out.println("bno selectone service: "+bno);
-		
 		if(b!=null){
 			result = bDao.updateCount(con, bno);
 			
@@ -127,6 +125,46 @@ public class BoardService {
 		close(con);
 		
 		return list;
+	}
+
+	public Board boardReport(int bno) {
+
+		Connection con = getConnection();
+		int result = 0;
+		
+		Board b = bDao.selectOne(con, bno);
+		
+		if(b!=null){
+			result = bDao.boardReport(con, bno);
+			
+			if(result>0) commit(con);
+			else rollback(con);
+		}
+		
+		close(con);
+		
+		return b;
+		
+	}
+
+	public Board boardLike(int bno) {
+
+		Connection con = getConnection();
+		int result = 0;
+		
+		Board b = bDao.selectOne(con, bno);
+		
+		if(b!=null){
+			result = bDao.boardLike(con, bno);
+			
+			if(result>0) commit(con);
+			else rollback(con);
+		}
+		
+		close(con);
+		
+		return b;
+		
 	}
 
 }

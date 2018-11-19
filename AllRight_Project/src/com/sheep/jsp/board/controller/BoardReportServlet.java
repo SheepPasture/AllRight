@@ -15,16 +15,16 @@ import com.sheep.jsp.boardComment.model.service.BoardCommentService;
 import com.sheep.jsp.boardComment.model.vo.BoardComment;
 
 /**
- * Servlet implementation class BoardSelectOneServlet
+ * Servlet implementation class BoardReportServlet
  */
-@WebServlet("/selectOne.bo")
-public class BoardSelectOneServlet extends HttpServlet {
+@WebServlet("/bReport.bo")
+public class BoardReportServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardSelectOneServlet() {
+    public BoardReportServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,20 +35,16 @@ public class BoardSelectOneServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int bno = Integer.parseInt(request.getParameter("bno"));
-		System.out.println("selectOne bno: "+bno);
 		
-		Board b = new BoardService().selectOne(bno);
-		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bno);
+		Board b = new BoardService().boardReport(bno);
 		
-		System.out.println("selectOne clist: "+clist);
-		System.out.println("selectOne b: "+b);
+		System.out.println("b: "+b);
 		
 		String page = "";
 		
 		if(b != null){
 			page = "/views/board/boardDetail.jsp";
 			request.setAttribute("board", b);
-			request.setAttribute("clist", clist);
 			
 		} else{
 			page="/views/common/errorPage.jsp";
