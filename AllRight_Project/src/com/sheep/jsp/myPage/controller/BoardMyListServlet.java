@@ -37,7 +37,7 @@ public class BoardMyListServlet extends HttpServlet {
 		Member m = (Member)session.getAttribute("member");
 		int userno = m.getUserNo();
 		
-		
+
 		System.out.println(userno);
 		//게시판 및 댓글
 		ArrayList<Board> blist = new ArrayList<Board>();

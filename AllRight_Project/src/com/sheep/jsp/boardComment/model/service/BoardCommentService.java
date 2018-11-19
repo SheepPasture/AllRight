@@ -76,6 +76,7 @@ public class BoardCommentService {
 		return result;
 	}
 
+
 	public ArrayList<BoardComment> BoardCommentReport(int cno, int bno) {
 
 		Connection con = getConnection();

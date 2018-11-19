@@ -49,17 +49,19 @@ public class BoardCommentDao {
 			pstmt.setString(3, bco.getcContent());
 			pstmt.setInt(4, bco.getcLevel());
 			pstmt.setString(5, bco.getUserId());
+
 /*			pstmt.setInt(6, bco.getRefcno());*/
 
-			if(bco.getRefcno() > 0) {
+/*			if(bco.getRefcno() > 0) {
 				
-				pstmt.setInt(6, bco.getRefcno());
+				pstmt.setInt(5, bco.getRefcno());
 				
 			} else {
 				
-				pstmt.setNull(6, java.sql.Types.NULL);
-			}
+				pstmt.setNull(5, java.sql.Types.NULL);
+			}*/
 			
+
 			result = pstmt.executeUpdate();
 		
 		} catch (SQLException e) {
@@ -94,18 +96,23 @@ public class BoardCommentDao {
 				BoardComment comment = new BoardComment();
 	
 				comment.setcNo(rset.getInt("cno"));
+
 				comment.setbNo(bno);
 				comment.setUserNo(rset.getInt("userNo"));
+
 				comment.setcPwd(rset.getInt("cPwd"));
 				comment.setcContent(rset.getString("ccontent"));
 				comment.setcDate(rset.getDate("cdate"));
 				comment.setcLevel(rset.getInt("clevel"));
 				comment.setReport(rset.getInt("report"));
 				comment.setNickname(rset.getString("nickname"));
+
 				comment.setUserId(rset.getString("userId"));
 				comment.setRefcno(rset.getInt("refcno"));
 				
 				clist.add(comment);
+				System.out.println("보드코멘트dao list완료");
+				
 				System.out.println("보드코멘트dao list완료");
 				
 			}
@@ -203,6 +210,7 @@ public class BoardCommentDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+
 		}
 		return result;
 	}
@@ -223,9 +231,9 @@ public class BoardCommentDao {
 			e.printStackTrace();
 		} finally{
 			close(pstmt);
+
 		}
-		
 		return result;
-		
+
 	}
 }

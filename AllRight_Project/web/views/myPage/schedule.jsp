@@ -129,7 +129,9 @@
 		                	switch(idx){
 			                	case 1 : result="-";break;
 			                	case 3 : result="접수";break;
+
 			                	case 5 : result="시험"&&result!="접수";break;
+
 			                	default: result="합격";break;
 		
 		                	 }
@@ -147,7 +149,9 @@
 					    					  +"<td>"+list[k].title+"</td>"
 					    					  +"<td>"+list[k].date+"</td>"
 					    					  +"<td>시행처</td>"
+
 					    					  +"<td style='color:red' >D "+list[k].dday+"</td>"
+
 					    					  +"</tr>";
 											$('#tb').append(str);
 											j++;
@@ -238,6 +242,7 @@ table{
 			</div>
 			<!-- NAV END-->
 
+
 			<div class="col-sm-8 text-center" id="showView">
 				<!-- style="width: 70%; height: 100%; display: inline-block;" -->
 				<div>
@@ -251,6 +256,7 @@ table{
 			          <input type="radio" name="category" value="pass"id="pass"><label for="pass">합격일자</label>&nbsp; &nbsp;
       				 <!-- </fieldset> -->
 					<div >
+
 						<table id="info" border=1; style="width: 100%; heigh: 100px;"  cellspacing='0'
 	cellpadding='0'>
 							<thead>

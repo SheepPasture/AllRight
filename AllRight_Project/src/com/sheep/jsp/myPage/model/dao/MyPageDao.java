@@ -52,6 +52,7 @@ public class MyPageDao {
 			int endRow = startRow + limit -1;
 			
 			pstmt.setInt(1,userno);
+
 			pstmt.setInt(2,userno);
 			pstmt.setInt(3, endRow);
 			pstmt.setInt(4, startRow);

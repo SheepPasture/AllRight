@@ -70,6 +70,7 @@ public class ScheduleMyListServlet extends HttpServlet {
 		JSONArray Array = new JSONArray();
 		JSONArray day = new JSONArray();
 
+
 		String name[];
 		// 기술사=0
 		String name1[] = {"필기시험원서접수시작 일자 ", "필기시험원서접수종료 일자 ", "필기시험일자", "필기시험 합격(예정)자 발표일자 ",
@@ -138,10 +139,12 @@ public class ScheduleMyListServlet extends HttpServlet {
 				date = ld.substring(0, 4).concat("-").concat(ld.substring(4, 6)).concat("-").concat(ld.substring(6, 8));
 
 				// d-day
+
 				long minus = 0;
 				Date today = new Date();
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				String first = sdf.format(today);
+
 
 				String last = String.valueOf(date);
 				/*
