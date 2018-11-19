@@ -110,7 +110,7 @@ public class BoardDao {
 				
 				b.setbNO(rset.getInt("bno"));
 				b.setbTitle(rset.getString("btitle"));
-				b.setbWriter(rset.getString("userName"));
+				b.setbWriter(rset.getString("BWRITER"));
 				b.setbCount(rset.getInt("bcount"));
 				b.setbDate(rset.getDate("bdate"));
 				b.setUserNo(rset.getInt("userNo"));

@@ -34,7 +34,7 @@ public class CommentReportServelt extends HttpServlet {
 		
 		System.out.println("cno: " + cno);
 		
-		BoardComment bc = new BoardCommentService().BoardCommentReport(cno);
+		BoardComment bc = new BoardCommentService().selectOne(cno);
 		
 		System.out.println("bco: "+bc);
 		

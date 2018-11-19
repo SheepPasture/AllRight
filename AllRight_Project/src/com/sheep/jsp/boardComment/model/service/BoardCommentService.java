@@ -76,12 +76,13 @@ public class BoardCommentService {
 		return result;
 	}
 
-	public BoardComment BoardCommentReport(int cno) {
+	public ArrayList<BoardComment> BoardCommentReport(int cno, int bno) {
 
 		Connection con = getConnection();
 		int result = 0;
 		
-		BoardComment bco = bcDao.selectOne(con, cno);
+		ArrayList<BoardComment> bco = bcDao.selectList(con, cno);
+		
 		
 		if(bco!=null){
 			result = bcDao.boardCommentReport(con, cno);
