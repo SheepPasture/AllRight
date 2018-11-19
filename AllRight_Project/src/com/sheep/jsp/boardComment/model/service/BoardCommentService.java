@@ -1,5 +1,6 @@
 package com.sheep.jsp.boardComment.model.service;
 
+import com.sheep.jsp.board.model.vo.Board;
 import com.sheep.jsp.boardComment.model.dao.BoardCommentDao;
 import com.sheep.jsp.boardComment.model.vo.BoardComment;
 
@@ -73,6 +74,28 @@ public class BoardCommentService {
 		close(con);
 		
 		return result;
+	}
+
+	public ArrayList<BoardComment> BoardCommentReport(int cno, int bno) {
+
+		Connection con = getConnection();
+		int result = 0;
+		
+		System.out.println("서비스 bno : "+bno);
+		ArrayList<BoardComment> bco = bcDao.selectList(con, bno);
+		
+		
+		if(bco!=null){
+			result = bcDao.boardCommentReport(con, cno);
+			
+			if(result>0) commit(con);
+			else rollback(con);
+		}
+		
+		close(con);
+		
+		return bco;
+		
 	}
 
 }

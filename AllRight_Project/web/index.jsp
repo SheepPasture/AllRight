@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.sheep.jsp.member.model.vo.Member"
-	import="com.sheep.jsp.point.model.vo.Point"%>
+
+    pageEncoding="UTF-8" import="com.sheep.jsp.member.model.vo.Member"
+    import="com.sheep.jsp.point.model.vo.Point ,java.util.*, com.sheep.jsp.board.model.vo.*"%>
 <%
-	Member m = (Member) session.getAttribute("member");
-	Point pt = (Point) session.getAttribute("point");
-	Object level = session.getAttribute("level");
+	Member m = (Member)session.getAttribute("member");
+	Point pt = (Point)session.getAttribute("point");
+  	Object level=session.getAttribute("level");   
+  	ArrayList<Board> blist = (ArrayList<Board>)request.getAttribute("blist"); 
 %>
 
 
@@ -80,7 +82,6 @@
 				<div class="col-sm-8 text-center"style="border: 1px solid gold">
 					<!-- <h2 align="left">뉴스</h2> -->
 
-
 					<!-- <div class="main" > -->
 					<div class="realtime"
 						style="float: left; width: 50%;border: 1px solid gold">
@@ -108,6 +109,7 @@
 							</table>
 						</div>
 						<!-- <div class="realtime-nav" >
+
 					<ul class="ah_l">
 						<li class="">
 							<span class="realtime-rank">1.</span>
@@ -151,6 +153,7 @@
 
 
 					<!-- 
+
 		<div class="notice" style="float:left; width:33%;">
 			<h3>공지사항</h3>
 			<div>
@@ -310,8 +313,6 @@
 				</div>
 			</div>
 			
-			
-			
 		</div>
 
 
@@ -361,11 +362,13 @@
 					error : function(data) {
 
 						console.log("top5 조회 실패!");
+
 					}
 
 				});
 
 			});
+
 		</script>
 
 

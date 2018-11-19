@@ -3,8 +3,9 @@
 <% 
 
 	Board b = (Board)request.getAttribute("board"); 
-	ArrayList<BoardComment> clist = (ArrayList<BoardComment>) request.getAttribute("clist"); 
+	ArrayList<BoardComment> clist = (ArrayList<BoardComment>) request.getAttribute("clist");
 	Member m = (Member)session.getAttribute("member");
+ 
 
 %>
 <!DOCTYPE html>
@@ -193,7 +194,7 @@ sns_update_list li .sns_list_title {
 
 .icon_wrap .goods span.icon {
 	background:
-		/* url('http://image.ebsi.co.kr/ebsi/images/reNskin2015/dunya/sub/table_icon.png') */
+		url('http://image.ebsi.co.kr/ebsi/images/reNskin2015/dunya/sub/table_icon.png') 
 		no-repeat -60px center;
 	width: 20px;
 	height: 20px;
@@ -391,13 +392,13 @@ sns_update_list li .sns_list_title {
 	<!-- PAGE -->
 	<div id="page">
 		<%@ include file="/views/common/header.jsp"%>
-		<% if(m != null){ %>
+		<%-- <% if(m != null){ %> --%>
 		<div class="container-fluid text-center">
 			<div class="row content">
 				<br />
 				<div class="col-sm-2 sidenav">
 					<p><a href="selectList.ann">공지사항</a></p>
-					<p><a href="<%= request.getContextPath() %>/views/community/communityList.jsp">커뮤니티</a></p>
+					<p><a href="<%= request.getContextPath() %>/views/board/boardList.jsp">커뮤니티</a></p>
 					<p>
 						<a href="#">자격증정보</a>
 					</p>
@@ -421,7 +422,7 @@ sns_update_list li .sns_list_title {
 													<div align="left"><strong><%= b.getbTitle() %></strong></div>
 													<div class="board_detail_wrap">
 														<div class="board_top_detail">
-															<div class="writer"><%= b.getbWriter() %></div>
+															<div class="writer" name="bwriter"><%= b.getbWriter() %></div>
 														</div>
 														<div class="conts_top_detail">
 															<div class="number"><%= b.getbCount() +1 %></div>
@@ -437,37 +438,26 @@ sns_update_list li .sns_list_title {
 											</div>
 											
 											<!--//컨텐츠-->
-
+											
 											<!--sns-->
 											<div class="table_sns board02">
-												<!--신고하기 팝업-->
-												<div style="display: none; z-index: 9999;">
-													<div class="contsArea">
-														<div class="boardUseRule_conts"></div>
-														<div class="boardUseRule_bt">
-															<a class="type02" href="#">신고하기</a> <a onclick=""
-																href="#">취소</a>
-														</div>
-													</div>
-												</div>
 												<!--//신고하기 팝업-->
 												<div class="sns_top">
 
 													<div class="icon_wrap">
-														<div class="like">
+													<input type="hidden" name="bno" id="bno" value="<%= b.getbNO() %>"/>
+														<%-- <div class="like">
 															<span class="icon on">icon</span>
-															<p id="rCnt_491967">2</p>
-														</div>
-														<div class="goods">
+															<p></p>
+														</div --%>
+														<div class="goods" onclick="bLike();">
 															<a href="#"> <span class="icon on">icon</span>
-																<p id="rec_491967">0</p>
+																<p><%= b.getbLike() %></p>
 															</a>
 														</div>
-
-														<div class="declaration">
+														<div class="declaration" onclick="bReport();">
 															<a href="#">신고</a>
 														</div>
-
 													</div>
 													
 												
@@ -475,10 +465,9 @@ sns_update_list li .sns_list_title {
 													<!--테이블 리스트-->
 													<div class="replyWriteArea">
 														<form action="<%= request.getContextPath() %>/insertComment.bo" method="post">
-														<input type="hidden" name="writer" value="<%= m.getUserName() %>"/>
+														<%-- <input type="hidden" name="writer" value="<%= bc.getUserId() %>"/> --%>
 														<input type="hidden" name="userNo" value="<%= m.getUserNo() %>"	>											
 														<%-- <input type="hidden" name="bid" value="<%= b.getbId() %>"/> --%> 
-														
 														<input type="hidden" name="bno" value="<%= b.getbNO() %>"/>
 														<input type="hidden" name="refcno" value="0"/>
 														<input type="hidden" name="clevel" value="1"/> 
@@ -490,7 +479,7 @@ sns_update_list li .sns_list_title {
 														</form>
 													</div>
 													
-													<% if(clist != null) { %>
+														<% if(clist != null) { %>
 													<% for(BoardComment bco : clist) { %>
 													<div id="replySelectArea" class="sns_list_wrap">
 													<table id="replySelectTable"
@@ -501,19 +490,22 @@ sns_update_list li .sns_list_title {
 															<li>
 																<div class="sns_list_title">
 																<input type="hidden" name="userno" value="<%= bco.getUserNo() %>" />
+																<input type="hidden" name="cno"  id="cno" value="<%= bco.getcNo() %>">
 																	<strong><%= bco.getUserId() %></strong>
 
 																	<div class="sns_detail">
 																		<span class="date"><%= bco.getcDate() %></span>
 																	</div>
 																	
-																	<div class="icon_wrap">
-																		<div class="goods">
+																	<!-- <div class="icon_wrap">
+																		<div class="goods" onclick="bcLike();">
 																			<a href="#"> <span class="icon on">icon</span>
-																				<p id="rplyRec_1"></p>
+																				<p></p>
 																			</a>
 																		</div>
-																	</div>
+																	</div> -->
+																	
+																	
 																		 <% if(m.getUserNo() == bco.getUserNo()){ %> 
 																	<%-- 	<% if(m.getUserId().equals(bco.getUserId())){ %> --%>
 																		<input type="hidden" name="cno"  id="cno" value="<%= bco.getcNo() %>">
@@ -533,20 +525,21 @@ sns_update_list li .sns_list_title {
 																			<input type="hidden" name="clevel" value="<%=bco.getcLevel() %>" /> 
 																		 	
 																		 	<div class="sns_detail_btn">
-																				<a href="#">댓글</a> <a class="declaration"
-																					href="javascript:fnReportLayer('491967','1','0','rply','0');">신고</a>
+																				<a href="#">댓글</a> 
+																				<a class="declaration" onclick="bcReport();">신고</a>
 																			</div>	
 																			
 																			<div class="sns_detail_btn" onclick="reConfirm(this);" style="display:none;">
 																				<a href="#">댓글</a> 
 																			</div>	
-																		 
+ 
 																		 <% } else {%>
 																		 <span>댓글 가능 회수를 초과하셨습니다.</span>
 																		 <% } %>
 																</div>
 															</li>
 														</ul>
+
 														<tr class="comment replyList<%=bco.getcLevel() %>">
 															<td colspan="3" style="background : transparent;">
 															<%-- <div class="sns_list_text" align="left"><%= bco.getcContent() %></div> --%>
@@ -565,7 +558,7 @@ sns_update_list li .sns_list_title {
 														<ul class="sns_list" >
 															<li>
 																<div class="sns_list_title">
-																<input type="hidden" name="userno" value="<%= bco.getUserNo() %>" />
+																<input type="hidden" name="userNo" value="<%= bco.getUserNo() %>" />
 																	<strong><%= bco.getUserId() %></strong>
 
 																	<div class="sns_detail">
@@ -589,8 +582,8 @@ sns_update_list li .sns_list_title {
 																		</div>	
 																		
 																		 <% } else if(bco.getcLevel() < 3) { %>
-																		 	<input type="hidden" name="writer" value="<%=m.getUserId()%>"/>
-																			<input type="hidden" name="refcno" value="<%=bco.getRefcno()%>" />
+																		 	<input type="hidden" name="bwriter" value="<%=m.getUserId()%>"/>														
+																			<input type="hidden" name="refcno" value="<%=bco.getRefcno() %>"	>
 																			<input type="hidden" name="clevel" value="<%=bco.getcLevel() %>" /> 
 																			
 																		 	
@@ -611,14 +604,39 @@ sns_update_list li .sns_list_title {
 														</ul>
 														<tr class="comment replyList<%=bco.getcLevel() %>">
 															<td colspan="3" style="background : transparent;">
-															<%-- <div class="sns_list_text" align="left"><%= bco.getcContent() %></div> --%>
 															<textarea class="reply-content" cols="105" rows="3" ><%= bco.getcContent() %></textarea>
 															</td>
 														</tr>
 													</table>
 												</div>
 													<% } %><% } %>
+
 												<script>
+												
+												function bLike() {
+													var bno = $('#bno').val();
+													location.href="/allRight/bLike.bo?"+"bno="+bno;
+												}
+												
+												function bReport() { 
+													var bno = $('#bno').val();												
+													 if(confirm("정말 신고하시겠습니까?") == true){									
+														 location.href="/allRight/bReport.bo?"+"bno="+bno;														 
+													 } else{
+														 return;
+													 }
+												};
+												
+												function bcReport() {
+													var cno = $('#cno').val();
+													var bno = $('#bno').val();
+													 if(confirm("정말 신고하시겠습니까?") == true){									
+														 location.href="/allRight/bcReport.bo?"+"cno="+cno+"&bno="+bno;														 
+													 } else{
+														 return;
+													 }
+												}
+												
 												function updateReply(obj) {
 													
 													/* alert($(obj).parent().parent().parent().next().find('textarea').text()) */
@@ -639,7 +657,8 @@ sns_update_list li .sns_list_title {
 													  = $(obj).parent().parent().parent().next().find('textarea').val();
 													
 													// 댓글의 번호 가져오기
-													var cno = $(obj).siblings('input').val();
+													/* var cno = $(obj).siblings('input').val(); */
+													var cno = $('#cno').val(); 
 													
 													// 게시글 번호 가져오기
 													var bno = '<%= b.getbNO() %>';
@@ -649,11 +668,11 @@ sns_update_list li .sns_list_title {
 												}
 												
 												function deleteReply(){
-													/*  alert($('#cno').val());  */
+													 /*  alert($('#cno').val()); */  
 
 													// 댓글의 번호 가져오기
 											 		/* var cno = $(obj).siblings('input').val();  */
-											 		var cno = $('#cno').val();
+											 		 var cno = $('#cno').val(); 
 		
 													// 게시글 번호 가져오기
 													var bno = '<%=  b.getbNO() %>';
@@ -681,7 +700,7 @@ sns_update_list li .sns_list_title {
 													
 												}
 												
-<%-- 												function reConfirm(obj) {
+ 												function reConfirm(obj) {
 													// 댓글의 내용 가져오기
 													
 													// 참조할 댓글의 번호 가져오기
@@ -693,7 +712,7 @@ sns_update_list li .sns_list_title {
 													// 게시글 번호 가져오기
 													
 													
-													<%-- var parent = $(obj).parent();
+													var parent = $(obj).parent();
 													var grandparent = parent.parent();
 													var siblingsTR = grandparent.siblings().last();
 													
@@ -708,13 +727,13 @@ sns_update_list li .sns_list_title {
 													// writer, replyContent
 													// bno, refcno, clevel
 													
-													location.href='/myWeb/insertComment.bo'
+													location.href='/allRight/insertComment.bo'
 													           + '?writer=<%= m.getUserId() %>' 
 													           + '&replyContent=' + content
 													           + '&bno=' + bno
 													           + '&refcno=' + refcno
 													           + '&clevel=' + level;
-												} --%>
+												} 
 												</script>
 												</div>
 											</div>
@@ -730,11 +749,11 @@ sns_update_list li .sns_list_title {
 				</div>
 			</div>
 		</div>
-		<% } else { 
+<%-- 		<% } else { 
 			request.setAttribute("msg", "회원만 가능한 서비스입니다.");
 			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 			}
-		%>
+		%> --%>
 	</div>
 </body>
 

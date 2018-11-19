@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.sheep.jsp.board.model.vo.*" %>
-<% Board b = (Board)request.getAttribute("board"); %>
+    pageEncoding="UTF-8" import="java.util.*, com.sheep.jsp.board.model.vo.*, com.sheep.jsp.member.model.vo.*" %>
+<% 
+	Board b = (Board)request.getAttribute("board"); 
+	Member m = (Member)session.getAttribute("member");
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,6 +66,7 @@
 									<th class="col-sm-2" id="title">제목</th>
 									<td>
 										<textarea name="title" rows="1" cols="90"  style="resize: none;"><%= b.getbTitle() %></textarea>
+									
 									</td>
 								</tr>
 								<tr>
@@ -71,6 +75,8 @@
 										<script type="text/javascript" src="/allRight/resources/ckeditor/ckeditor.js"></script> 
 										<div class="form-group">
 											 <textarea name="content" class="ckeditor" rows="20" cols="70"><%= b.getbContent() %></textarea>
+											 <input id="bno" name="bno" type="hidden" value="<%= b.getbNO() %>"/>
+											 <input id="userName" name="userName" type="hidden" value="<%= b.getbWriter() %>"/>
 											 <script>
 												CKEDITOR.replace('content', {
 													width: 650,
@@ -89,7 +95,6 @@
 										<button class="btn btn-default" onclick="back();">Back</button>
 									</div>								
 								</td>
-								<td><input id="bno" name="bno" type="hidden" value="<%= b.getbNO() %>"/></td>
 							</tr>
 						</table>
 					<br />
