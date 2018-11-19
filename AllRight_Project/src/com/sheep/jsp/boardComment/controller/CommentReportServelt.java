@@ -1,12 +1,16 @@
 package com.sheep.jsp.boardComment.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sheep.jsp.board.model.service.BoardService;
+import com.sheep.jsp.board.model.vo.Board;
 import com.sheep.jsp.boardComment.model.service.BoardCommentService;
 import com.sheep.jsp.boardComment.model.vo.BoardComment;
 
@@ -31,10 +35,16 @@ public class CommentReportServelt extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		int cno = Integer.parseInt(request.getParameter("cno"));
+		int bno = Integer.parseInt(request.getParameter("bno"));
 		
-		System.out.println("cno: " + cno);
+		System.out.println("신고cno: " + cno);
+		System.out.println("신고bno: " + bno);
 		
-		BoardComment bc = new BoardCommentService().selectOne(cno);
+		
+		ArrayList<BoardComment> bc = new BoardCommentService().BoardCommentReport(cno,bno);
+		Board b = new BoardService().selectOne(bno);
+		
+		System.out.println("신고 보드 " +b);
 		
 		System.out.println("bco: "+bc);
 		
@@ -42,7 +52,8 @@ public class CommentReportServelt extends HttpServlet {
 		
 		if(bc != null){
 			page = "/views/board/boardDetail.jsp";
-			request.setAttribute("BoardComment", bc);
+			request.setAttribute("board", b);
+			request.setAttribute("clist", bc);
 			
 		} else{
 			page="/views/common/errorPage.jsp";
@@ -57,7 +68,6 @@ public class CommentReportServelt extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

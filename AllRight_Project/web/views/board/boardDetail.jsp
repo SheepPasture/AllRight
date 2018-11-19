@@ -5,7 +5,6 @@
 	Board b = (Board)request.getAttribute("board"); 
 	ArrayList<BoardComment> clist = (ArrayList<BoardComment>) request.getAttribute("clist");
 	Member m = (Member)session.getAttribute("member");
- 	BoardComment bc =  (BoardComment)request.getAttribute("BoardComment"); 
  
 
 %>
@@ -630,8 +629,9 @@ sns_update_list li .sns_list_title {
 												
 												function bcReport() {
 													var cno = $('#cno').val();
+													var bno = $('#bno').val();
 													 if(confirm("정말 신고하시겠습니까?") == true){									
-														 location.href="/allRight/bcReport.bo?"+"cno="+cno;														 
+														 location.href="/allRight/bcReport.bo?"+"cno="+cno+"&bno="+bno;														 
 													 } else{
 														 return;
 													 }
