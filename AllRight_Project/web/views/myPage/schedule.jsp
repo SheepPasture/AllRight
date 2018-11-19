@@ -25,6 +25,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <!-- CSS -->
 <script
@@ -128,7 +129,7 @@
 		                	switch(idx){
 			                	case 1 : result="-";break;
 			                	case 3 : result="접수";break;
-			                	case 5 : result="시험";break;
+			                	case 5 : result="시험"&&result!="접수";break;
 			                	default: result="합격";break;
 		
 		                	 }
@@ -146,7 +147,7 @@
 					    					  +"<td>"+list[k].title+"</td>"
 					    					  +"<td>"+list[k].date+"</td>"
 					    					  +"<td>시행처</td>"
-					    					  +"<td>"+list[k].dday+"</td>"
+					    					  +"<td style='color:red' >D "+list[k].dday+"</td>"
 					    					  +"</tr>";
 											$('#tb').append(str);
 											j++;
@@ -167,6 +168,22 @@
 	        left: 'prev,next today',
 	        center: 'title',
 	        right: 'month,agendaWeek,agendaDay,listWeek'
+	        
+	      },
+	      /*  titleFormat: {
+	    	   month: "yyyy년 MMMM",
+	    	   week: "[yyyy] MMM dd일{ [yyyy] MMM dd일}",
+	    	   day: "yyyy년 MMM d일 dddd"
+	      },  */
+	      monthNames: ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
+	      monthNamesShort: ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
+	      dayNames: ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"],
+	      dayNamesShort: ["일","월","화","수","목","금","토"],
+	      buttonText: {
+	      today : "오늘",
+	      month : "월별",
+	      week : "주별",
+	      day : "일별",
 	      },
 	      defaultDate: new Date(),
 	      navLinks: true, // can click day/week names to navigate views
@@ -194,10 +211,15 @@
 th {
 	text-align: center;
 }
-
-#info tr>td:last {
-	color: red;
+td {
+	text-align: center;
 }
+table{
+	 padding-bottom: 5px; 
+	 width: 100%; 
+	
+}
+
 </style>
 </head>
 <body  style="background:white">
@@ -215,18 +237,10 @@ th {
 				<%@ include file="/views/common/myPageNav.jsp"%>
 			</div>
 			<!-- NAV END-->
-			<br>
-			<div class="col-sm-2 sidenav"
-				style="display: inline-block;/*  background: ivory */">
 
-				<%-- 	<%@ include file="/views/common/myPageNav.jsp" %> --%>
-
-			</div>
-
-
-			<div id="showView"
-				style="width: 70%; height: 100%; display: inline-block;">
-			
+			<div class="col-sm-8 text-center" id="showView">
+				<!-- style="width: 70%; height: 100%; display: inline-block;" -->
+				<div>
 					<h1>일정관리</h1>
 
 					<!-- <fieldset>
@@ -237,7 +251,8 @@ th {
 			          <input type="radio" name="category" value="pass"id="pass"><label for="pass">합격일자</label>&nbsp; &nbsp;
       				 <!-- </fieldset> -->
 					<div >
-						<table id="info" border=1; style="width: 100%; heigh: 100px;">
+						<table id="info" border=1; style="width: 100%; heigh: 100px;"  cellspacing='0'
+	cellpadding='0'>
 							<thead>
 								<tr style="text-align: center">
 									<th></th>
@@ -291,7 +306,7 @@ th {
 			</div>
 
 		</div>
-
+</div>
 
 		<!-- <div id="test">
 		<p id ="sdate">2018-11-20</p>
