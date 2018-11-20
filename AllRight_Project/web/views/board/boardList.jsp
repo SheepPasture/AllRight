@@ -11,7 +11,7 @@
 	int maxPage = bpi.getMaxPage();
 	int startPage = bpi.getStartPage();
 	int endPage = bpi.getEndPage();  
-	/* Member m = (Member)session.getAttribute("member"); */
+	Member m = (Member)session.getAttribute("member"); 
  %>
 <!DOCTYPE html>
 <html>
@@ -500,7 +500,7 @@ a {
 				<br />
 				<div class="col-sm-2 sidenav">
 					<p><a href="selectList.ann">공지사항</a></p>
-					<p><a href="<%= request.getContextPath() %>/selectList.bo">커뮤니티</a></p>
+					<p><a href="#">커뮤니티</a></p>
 					<p>
 						<a href="#">자격증정보</a>
 					</p>
@@ -518,7 +518,8 @@ a {
 													<div class="table_top">
 
 														<div class="table_top_input">
-															<h2 align="left">IT Community</h2>
+															<h2 align="left"><a style="text-decoration:none" href="#">IT Community</a></h2>
+															<br />
 														</div>
 													</div>
 
@@ -527,15 +528,12 @@ a {
 															class="pc">의 게시글이 있습니다.</span>
 													</div>
 															<div class="list_search" align="right">
-																<select>
-																	<option value="" >최신순정렬</option>
+																<select onchange="selectList(this.value);">
+																	<option value="">정렬</option>
+																	<option value="recCnt">최신순정렬</option>
 																	<option value="inqCnt" >조회순정렬</option>
-																	<option value="rpyCnt">댓글순</option>
 																</select>
 															</div> 
-															<script>
-																
-															</script>
 													<div class="table_main">
 														<div class="table_main_top" >
 															<ul class="board">
@@ -553,8 +551,7 @@ a {
 																		<th class="col-md-1">조회수</th>
 																		<th class="col-md-1">작성일</th>
 																	</tr>
-																</thead>
-																<tbody>
+
 																	<% for(Announcement a : select2ANN){ %>
 																	<tr id="annlist" style="background-color: hsl(120, 100%, 75%, 0.3); bold;">
 																		<td class="col-md-1 text-left"><strong>공지</strong></td>
@@ -565,21 +562,22 @@ a {
 																		<td class="col-md-1"><strong><%= a.getAdate() %></strong></td>
 																	</tr>
 																	<% } %>
-											  						
-											  						<% for(Board b : blist){ %>
+																	</thead>
+											  						<tbody id="boardlist">
+											  						<% for(Board bl : blist){ %>
 																	<tr id="boardlist">
-																		<td name="bid" style="display:none;"><%= b.getbId() %></td>
-																		<td class="col-md-1 text-left" name="bno"><%= b.getbNO() %></td>
-																		<td class="col-md-6 text-center" name="btitle"><%= b.getbTitle() %></td>
-																		<td class="col-md-1" name="userName"><%= b.getbWriter() %></td>
-																		<td class="col-md-1" name="bcount"><%= b.getbCount() %></td>
-																		<td class="col-md-1" name="bdate"><%= b.getbDate() %></td>
+																		<td class="col-md-1 text-left" name="bno"><%= bl.getbNO() %></td>
+																		<td class="col-md-6 text-center" name="btitle"><%= bl.getbTitle() %></td>
+																		<td class="col-md-1" name="userName"><%= bl.getbWriter() %></td>
+																		<td class="col-md-1" name="bcount"><%= bl.getbCount() %></td>
+																		<td class="col-md-1" name="bdate"><%= bl.getbDate() %></td>
 																	</tr>
 																		<% } %> 
-																</tbody>
-															</table>
+																	</tbody>
+																</table>
+										  						<table class="tbl paginated" id="tbl" style="border: 1px solid tomato;"></table>
 															<br /><br />
-															<div align="center">
+															<!--  <div align="center"> -->
 																<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=1'"><<</button>
 																<%  if(currentPage <= 1){  %>
 																<button disabled><</button>
@@ -602,10 +600,10 @@ a {
 																<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage + 1 %>'">></button>
 																<%  } %>
 																<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= maxPage %>'">>></button>
-															</div>
+															</div> 
 
 													<div class="col-sm-12 text-right">
-														<button class="btn-default"><a href="views/board/boardInsertForm.jsp">작성하기</a></button>
+														<form action="boardInsertForm.jsp" method="GET"><input type="hidden" value="1"/><input type="submit"  value="작성하기"/></form>
 													</div>
 													</div>
 
@@ -617,25 +615,105 @@ a {
 							</div>
 						</div>
 					</div>
-					<script>
-						$(function(){							
-							$("#annlist td").mouseenter(function(){
-								$(this).parent().css({"cursor":"pointer"});
-							}).click(function(){
-								/* alert($(this).parent().children().eq(2).text());  */
- 								var ano = $(this).parent().children().eq(2).text();
-								location.href="<%=request.getContextPath()%>/selectOne.ann?ano=" + ano;
-							});
-							
-							$("#boardlist td").mouseenter(function(){
-								$(this).parent().css({"cursor":"pointer"});
-							}).click(function(){
-								/* alert($(this).parent().children().eq(0).text());  */
- 								var bno = $(this).parent().children().eq(0).text();
-								location.href="<%=request.getContextPath()%>/selectOne.bo?bno=" + bno;
-							});
-							
-						});
+					<script>	
+					
+					var bid = 1;
+					
+					/*  function selectList(recCnt){
+						
+						$.ajax({
+							url : '/allRight/boardrecentView.bo',
+							dataType : "json",
+							type : "get",
+							success : function(data) {
+
+								$table = $('#listArea tbody');				
+								
+								$table.find("tr").remove(); 
+								
+								for (var i in data) {
+
+									console.log(data[i]);
+									
+									var $trBoard = $('<tr>');
+									var $tdBoardNo = $('<td>').text(data[i].bNO);
+									var $tdBoardTitle = $('<td>').text(data[i].bTitle);
+									var $tdBoardWriter = $('<td>').text(data[i].bWriter);
+									var $tdBoardCount = $('<td>').text(data[i].bCount);
+									var $tdBoardDate =  $('<td>').text(data[i].bDate);
+									
+									$trBoard.append($tdBoardNo)
+									.append($tdBoardTitle)
+									.append($tdBoardWriter)
+									.append($tdBoardCount)
+									.append($tdBoardDate);
+									
+									$table.append($trBoard);
+									
+									
+								}
+							}, error : function(data) {
+								console.log("최신 조회 실패!");
+							}
+						});															
+					 }
+					
+					function selectList(inqCnt){	
+						
+						$.ajax({
+							url : '/allRight/boardlistView.bo',
+							dataType : "json",
+							type : "get",
+							success : function(data) {
+
+								$table = $('#listArea tbody');
+								
+								$table.find("tr").remove(); 
+								
+								for (var i in data) {
+
+									console.log(data[i]);
+									
+									var $trBoard = $('<tr>');
+									var $tdBoardNo = $('<td>').text(data[i].bNO);
+									var $tdBoardTitle = $('<td>').text(data[i].bTitle);
+									var $tdBoardWriter = $('<td>').text(data[i].bWriter);
+									var $tdBoardCount = $('<td>').text(data[i].bCount);
+									var $tdBoardDate =  $('<td>').text(data[i].bDate);
+									
+									$trBoard.append($tdBoardNo)
+									.append($tdBoardTitle)
+									.append($tdBoardWriter)
+									.append($tdBoardCount)
+									.append($tdBoardDate);
+									
+									$table.append($trBoard);
+						
+								}
+		
+							}, error : function(data) {
+								console.log("조회순 조회 실패!");
+							}
+						});														
+					} */
+					
+					$("#annlist td").mouseenter(function(){
+						$(this).css({"cursor":"pointer"});
+					}).click(function(){
+						/* alert($(this).parent().children().eq(2).text());  */
+							var ano = $(this).parent().children().eq(2).text();
+						location.href="<%=request.getContextPath()%>/selectOne.ann?ano=" + ano;
+					});
+					
+					$("#boardlist tr").mouseenter(function(){
+						$(this).parent().children().css({"cursor":"pointer"});
+					}).click(function(){
+						
+						alert($(this).parent().children().eq(0).text());
+						var bno = $(this).parent().children().eq(0).text();
+						location.href="<%=request.getContextPath()%>/selectOne.bo?bno=" + bno;
+					});
+						
 		
 					</script>
 				</div>

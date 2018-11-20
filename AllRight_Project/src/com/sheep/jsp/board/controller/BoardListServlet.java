@@ -38,6 +38,9 @@ public class BoardListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		int bid = Integer.parseInt(request.getParameter("bid"));
+		System.out.println("List bid: "+bid);
+		
 		ArrayList<Board> blist = new ArrayList<Board>();
 		ArrayList<Announcement> select2ANN = new ArrayList<Announcement>();
 		String androidCheck = request.getParameter("android");
@@ -62,7 +65,7 @@ public class BoardListServlet extends HttpServlet {
 		}
 		
 		// 전체 게시글 수 조회하기
-		int listCount = bs.getListCount();
+		int listCount = bs.getListCount(bid);
 		
 		System.out.println("전체 게시글 수 : "+ listCount);
 		
@@ -75,7 +78,7 @@ public class BoardListServlet extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		blist = bs.selectList(currentPage, limit);
+		blist = bs.selectList(currentPage, limit, bid);
 		select2ANN = bs.selectList();
 		
 		String page = "";
