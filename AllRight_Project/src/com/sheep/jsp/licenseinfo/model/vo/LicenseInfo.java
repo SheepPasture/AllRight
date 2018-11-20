@@ -12,13 +12,14 @@ public class LicenseInfo {
 	private String lCategory;
 	private String lCost;
 	private String dDay;
+	private String lType;
 	
 	// 생성자
 	
 	public LicenseInfo() {}
 	
 	public LicenseInfo(String lNo, String lName, List<String> lInfo, String lDate, String lCategory, String lCost,
-			String dDay) {
+			String dDay , String lType) {
 		super();
 		this.lNo = lNo;
 		this.lName = lName;
@@ -27,6 +28,7 @@ public class LicenseInfo {
 		this.lCategory = lCategory;
 		this.lCost = lCost;
 		this.dDay = dDay;
+		this.lType=lType;
 	}
 
 	public LicenseInfo(String lNo, String lName, List<String> lInfo, String lDate, String lCategory, String lCost) {
@@ -64,12 +66,13 @@ public class LicenseInfo {
 		this.lInfo = lInfo;
 	}
 	
-	public LicenseInfo(String lName, List<String> lInfo, String lDate, String dDay) {
+	public LicenseInfo(String lName, List<String> lInfo, String lDate, String dDay,String lType) {
 		super();
 		this.lName = lName;
 		this.lInfo = lInfo;
 		this.lDate = lDate;
 		this.dDay = dDay;
+		this.lType=lType;
 	}
 	
 	// getter & setter
@@ -133,12 +136,19 @@ public class LicenseInfo {
 	public void setdDay(String dDay) {
 		this.dDay = dDay;
 	}
+	public String getlType() {
+		return lType;
+	}
+
+	public void setlType(String lType) {
+		this.lType = lType;
+	}
 
 	// toString()
 	@Override
 	public String toString() {
 		return "자격증 번호 =" + lNo + ", 자격증 명 =" + lName + ", 자격증 정보 =" + lInfo + ", 시험 일자 =" + lDate + ", 자격증 분류 ="
-				+ lCategory + ", 응시 비용 =" + lCost + ", 디데이" + dDay;
+				+ lCategory + ", 응시 비용 =" + lCost + ", 디데이" + dDay+", 타입=" +lType ;
 	}
 
 	//hashCode()

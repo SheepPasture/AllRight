@@ -1,6 +1,8 @@
 package com.sheep.jsp.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,21 +11,22 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sheep.jsp.board.model.service.BoardService;
 import com.sheep.jsp.board.model.vo.Board;
-
-
+import com.sheep.jsp.boardComment.model.service.BoardCommentService;
+import com.sheep.jsp.boardComment.model.vo.BoardComment;
 
 /**
- * Servlet implementation class NewsInsertServlet
+ * Servlet implementation class BoardReportServlet
  */
-@WebServlet("/bInsert.bo")
-public class BoardInsertServlet extends HttpServlet {
+@WebServlet("/bReport.bo")
+public class BoardReportServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardInsertServlet() {
+    public BoardReportServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -31,42 +34,35 @@ public class BoardInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		String bwriter = request.getParameter("userName");
-		int userNo = Integer.parseInt(request.getParameter("userNo"));
-
-		Board b = new Board();
+		int bno = Integer.parseInt(request.getParameter("bno"));
 		
-		System.out.println("title : " + title);
-		System.out.println("content : " + content);
-		System.out.println("bwriter: " + bwriter);
-		System.out.println("userNo: "+userNo);
-
-		b.setbTitle(title);
-		b.setbContent(content);
-		b.setbWriter(bwriter);
-		b.setUserNo(userNo);
+		Board b = new BoardService().boardReport(bno);
+		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bno);
 		
-		int result = new BoardService().insertBoard(b);
+		System.out.println("b: "+b);
+		System.out.println("c:" +clist);
 		
-		System.out.println("결과: " + result);
+		String page = "";
 		
-		if(result > 0){
-			response.sendRedirect("selectList.bo");
-		} else{
-			request.setAttribute("msg", "게시물 작성 실패");
+		if(b != null){
+			page = "/views/board/boardDetail.jsp";
+			request.setAttribute("board", b);
+			request.setAttribute("clist", clist);
 			
-			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
+		} else{
+			page="/views/common/errorPage.jsp";
+			request.setAttribute("msg", "게시물 상세보기 실패!");
 		}
 		
+		request.getRequestDispatcher(page).forward(request, response);
+		
 	}
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

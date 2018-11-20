@@ -15,6 +15,10 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src='/allRight/resources/js/moment.min.js'></script>
+<script src='/allRight/resources/js/jquery.min.js'></script>
+
 <style>
 .outer {
 	width: 600px;

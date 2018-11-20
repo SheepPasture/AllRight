@@ -37,8 +37,6 @@ public class BoardListServlet extends HttpServlet {
 		ArrayList<Board> blist = new ArrayList<Board>();
 		ArrayList<Announcement> select2ANN = new ArrayList<Announcement>();
 		
-		System.out.println("blist: " + blist);
-		
 		BoardService bs = new BoardService();
 		
 		// -- 페이징 처리 (데이터를 일정량 끊어서 가져오는 기술) -- //
@@ -71,18 +69,16 @@ public class BoardListServlet extends HttpServlet {
 		}
 		
 		blist = bs.selectList(currentPage, limit);
-		select2ANN = bs.selectList2();
-		
-		System.out.println("Select2ann: "+select2ANN);
+		select2ANN = bs.selectList();
 		
 		String page = "";
 
 		if(blist != null){
 			
-			bPageInfo pi = new bPageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
+			bPageInfo bpi = new bPageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 			
 			page="/views/board/boardList.jsp";
-			request.setAttribute("pi", pi);
+			request.setAttribute("bpi", bpi);
 			request.setAttribute("blist", blist);
 			request.setAttribute("select2ANN", select2ANN);
 			

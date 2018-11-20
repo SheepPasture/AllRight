@@ -30,7 +30,7 @@ public class CommentInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String userId = request.getParameter("writer");
+		String userName = request.getParameter("userName");
 		String cContent = request.getParameter("replyContent");
 		
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
@@ -38,11 +38,11 @@ public class CommentInsertServlet extends HttpServlet {
 		int refcno = Integer.parseInt(request.getParameter("refcno"));
 		int cLevel = Integer.parseInt(request.getParameter("clevel"));
 		
+		System.out.println("userid : " +userName);
 		
 		BoardComment bco = new BoardComment();
-		bco.setUserId(userId);
+		bco.setUserId(userName);
 		bco.setcContent(cContent);
-		
 		bco.setUserNo(userNo);
 		bco.setbNo(bno);
 		bco.setRefcno(refcno);

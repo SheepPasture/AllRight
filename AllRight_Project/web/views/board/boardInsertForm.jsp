@@ -1,6 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.sheep.jsp.board.model.vo.*" %>
-<% Board b = (Board)request.getAttribute("board"); %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
+	 import="java.util.*, com.sheep.jsp.board.model.vo.*,  com.sheep.jsp.member.model.vo.*" %>
+<% 
+	Board b = (Board)request.getAttribute("board"); 
+	Member m = (Member)session.getAttribute("member");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,12 +68,13 @@
 									<th class="col-sm-2" id="title">제목</th>
 									<td>
 										<textarea name="title" rows="1" cols="90"  style="resize: none;"></textarea>
+										<input type="hidden" name="userNo" value="<%= m.getUserNo() %>"	>
+										<input type="hidden" name="userName" value="<%= m.getUserName() %>"	>
 									</td>
 								</tr>
 								<tr>
 									<th class="col-sm-2" id="title">내용</th>
 									<td>
-										<!-- <textarea name="content" class="ckeditor" rows="20" cols="70"></textarea> -->
 										<script type="text/javascript" src="/allRight/resources/ckeditor/ckeditor.js"></script>
 											 
 										<div class="form-group">
@@ -78,7 +82,8 @@
 											 <script>
 												CKEDITOR.replace('content', {
 													width: 650,
-													height: 300
+													height: 300,
+													filebrowserImageUploadUrl:'/allRight/imageUplaod'
 												});
 											 </script>
 										</div>

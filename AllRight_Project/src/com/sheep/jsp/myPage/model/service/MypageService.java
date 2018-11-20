@@ -30,11 +30,11 @@ public class MypageService {
 		
 	}
 	// 내 댓글 확인
-	public ArrayList<BoardComment> selectMyCommnetList(int userno){
+	public ArrayList<BoardComment> selectMyCommnetList(int userno,int currentPage, int limit){
 		
 		ArrayList<BoardComment> list = null;
 		Connection con = getConnection();
-		list = mDao.selectCList(con,userno);
+		list = mDao.selectCList(con,userno, currentPage,  limit);
 		
 		close(con);
 		
@@ -63,6 +63,14 @@ public class MypageService {
 		
 		Connection con = getConnection();
 		int result = mDao.selectbPage(con,userno);
+		close(con);
+		
+		
+		return result;
+	}
+	public int selectcPage(int userno) {
+		Connection con = getConnection();
+		int result = mDao.selectcPage(con,userno);
 		close(con);
 		
 		

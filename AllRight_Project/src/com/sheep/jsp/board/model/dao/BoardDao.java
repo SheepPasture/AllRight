@@ -95,18 +95,11 @@ public class BoardDao {
 			while(rset.next()){
 				Board b = new Board();
 				
-				b.setbId(rset.getInt("bid"));
 				b.setbNO(rset.getInt("bno"));
 				b.setbTitle(rset.getString("btitle"));
-				b.setbContent(rset.getString("bcontent"));
-				b.setbWriter(rset.getString("bwriter"));
+				b.setbWriter(rset.getString("BWRITER"));
 				b.setbCount(rset.getInt("bcount"));
-				b.setbFile(rset.getString("bfile"));
 				b.setbDate(rset.getDate("bdate"));
-				b.seteCount(rset.getInt("ecount"));
-				b.setReport(rset.getInt("report"));
-				b.setbLike(rset.getInt("blike"));
-				b.setUserNo(rset.getInt("userNo"));
 				
 				blist.add(b);	
 			}
@@ -133,7 +126,8 @@ public class BoardDao {
 			
 			pstmt.setString(1, b.getbTitle());
 			pstmt.setString(2, b.getbContent());
-/*			pstmt.setString(3, b.getbWriter());*/
+			pstmt.setString(3, b.getbWriter());
+			pstmt.setInt(4, b.getUserNo());
 			
 			result = pstmt.executeUpdate();
 			
@@ -165,6 +159,7 @@ public class BoardDao {
 			if(rset.next()){
 				b = new Board();
 				
+				b.setbId(rset.getInt(1));
 				b.setbNO(rset.getInt(2));
 				b.setbTitle(rset.getString(3));
 				b.setbContent(rset.getString(4));
@@ -257,15 +252,13 @@ public class BoardDao {
 		
 	}
 	
-	public ArrayList<Announcement> selectList2(Connection con) {
+	public ArrayList<Announcement> selectList(Connection con) {
 		
 		ArrayList<Announcement> select2ANN = null;
 		Statement stmt = null;
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("select2ANN");
-		
-		System.out.println("공지사항 가져오기 도전 dao");
 		
 		try {
 			stmt = con.createStatement();
@@ -335,5 +328,48 @@ public class BoardDao {
 		return list;
 	}
 
+	public int boardReport(Connection con, int bno) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("boardReport");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+
+	public int boardLike(Connection con, int bno) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("boardLike");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
 
 }

@@ -24,6 +24,12 @@ public class Announcement implements Serializable {
 		this.acount = acount;
 		this.adate = adate;
 	}
+	
+	public Announcement(int ano, String atitle){
+		super();
+		this.ano = ano;
+		this.atitle = atitle;
+	}
 
 	public Announcement(int ano, String atitle, int acount, String acontent, Date adate) {
 		super();

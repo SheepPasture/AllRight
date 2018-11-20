@@ -11,36 +11,41 @@ import com.sheep.jsp.announcement.model.service.ANNService;
 import com.sheep.jsp.announcement.model.vo.Announcement;
 
 /**
- * Servlet implementation class ANNSelectOneServlet
+ * Servlet implementation class ANNafterServlet
  */
-@WebServlet("/selectOne.ann")
-public class ANNSelectOneServlet extends HttpServlet {
+@WebServlet("/aAfter.ann")
+public class ANNafterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ANNSelectOneServlet() {
+    public ANNafterServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		int ano = Integer.parseInt(request.getParameter("ano"));
 		
-		Announcement a = new ANNService().selectOne(ano);
+		int fAno = new ANNService().afterANN(ano);
+		
+		Announcement a = new ANNService().selectOne(fAno);
 
-
-		System.out.println("SelectOne ano: "+ano);
+		System.out.println("ANNbeforeServlet ano: "+ano);
+		System.out.println("ANNbeforeServlet nAno: "+fAno);
+		System.out.println("ANNbeforeServlet a: "+a);
 		
 		String page = "";
 		
 		if(a != null){
 			page = "/views/announcement/ANNDetail.jsp";
 			request.setAttribute("announcement", a);
+			
 		} else{
 			page="/views/common/errorPage.jsp";
 			request.setAttribute("msg", "공지사항 상세보기에 실패하였습니다. 관리자에게 문의바랍니다.");
@@ -48,12 +53,14 @@ public class ANNSelectOneServlet extends HttpServlet {
 		
 		request.getRequestDispatcher(page).forward(request, response);
 		
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
