@@ -173,9 +173,9 @@
             </div>
             
             
-            <div class="col-sm-10 text-right">
+           <!--  <div class="col-sm-10 text-right">
                <button class="btn btn-default" type="button"><a href="views/news/newWrite.jsp">작성하기</a></button>
-            </div>
+            </div> -->
             
          </div>
          
