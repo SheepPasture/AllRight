@@ -34,6 +34,7 @@ public class BoardSelectOneServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int bid = Integer.parseInt(request.getParameter("bid"));
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		System.out.println("selectOne bno: "+bno);
 		

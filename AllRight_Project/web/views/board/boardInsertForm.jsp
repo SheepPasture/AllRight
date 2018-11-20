@@ -68,6 +68,7 @@
 									<th class="col-sm-2" id="title">제목</th>
 									<td>
 										<textarea name="title" rows="1" cols="90"  style="resize: none;"></textarea>
+										<input type="hidden" name="bId" value=""	>
 										<input type="hidden" name="userNo" value="<%= m.getUserNo() %>"	>
 										<input type="hidden" name="userName" value="<%= m.getUserName() %>"	>
 									</td>
@@ -97,14 +98,19 @@
 			<div align="center">
  				<button id="save" class="btn btn-primary" onclick="save()" type="submit">Save</button>
 				<button id="back" class="btn btn-primary" onclick="location.href='/allRight/selectList.bo'" type="reset">Back</button>
-			</div></form>
+			</div>
+			<script>
+				function save(){
+					var bid = 1;	
+					location.href="<%=request.getContextPath()%>/selectList.bo?bid=" + bid;
+				}
+				
+			</script>
+			</form>
 			</div><br /><br /><br /><br /><br />
 		</div>
 	</div>
-	<!-- FOOTER -->
-	<footer>
-			
-	</footer><!-- //FOOTER -->
+
 	
 
 </div>
