@@ -26,18 +26,6 @@ public class BoardService {
 		
 	}
 
-	public ArrayList<Board> selectList(int currentPage, int limit) {
-		
-		Connection con = getConnection();
-		
-		ArrayList<Board> blist = bDao.selectList(con, currentPage, limit);
-		
-		close(con);
-		
-		return blist;
-		
-	}
-
 	public int insertBoard(Board b) {
 
 		Connection con = getConnection();
@@ -164,6 +152,42 @@ public class BoardService {
 		close(con);
 		
 		return b;
+		
+	}
+
+	public ArrayList<Board> boardlistView(int currentPage, int limit) {
+
+		Connection con = getConnection();
+		
+		ArrayList<Board> list = bDao.boardlistView(con, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+		
+	}
+	
+	public ArrayList<Board> boardrecentView(int currentPage, int limit) {
+
+		Connection con = getConnection();
+		
+		ArrayList<Board> list = bDao.boardrecentView(con, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+		
+	}
+
+	public ArrayList<Board> boardcomView() {
+		
+		Connection con = getConnection();
+		
+		ArrayList<Board> list = bDao.boardcomView(con);
+		
+		close(con);
+		
+		return list;
 		
 	}
 

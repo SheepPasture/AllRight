@@ -518,7 +518,8 @@ a {
 													<div class="table_top">
 
 														<div class="table_top_input">
-															<h2 align="left">IT Community</h2>
+															<h2 align="left"><a style="text-decoration:none" href="<%= request.getContextPath() %>/selectList.bo">IT Community</a></h2>
+															<br />
 														</div>
 													</div>
 
@@ -527,15 +528,12 @@ a {
 															class="pc">의 게시글이 있습니다.</span>
 													</div>
 															<div class="list_search" align="right">
-																<select>
-																	<option value="" >최신순정렬</option>
+																<select onchange="selectList(this.value);">
+																	<option value="">정렬</option>
+																	<option value="recCnt">최신순정렬</option>
 																	<option value="inqCnt" >조회순정렬</option>
-																	<option value="rpyCnt">댓글순</option>
 																</select>
 															</div> 
-															<script>
-																
-															</script>
 													<div class="table_main">
 														<div class="table_main_top" >
 															<ul class="board">
@@ -553,8 +551,7 @@ a {
 																		<th class="col-md-1">조회수</th>
 																		<th class="col-md-1">작성일</th>
 																	</tr>
-																</thead>
-																<tbody>
+
 																	<% for(Announcement a : select2ANN){ %>
 																	<tr id="annlist" style="background-color: hsl(120, 100%, 75%, 0.3); bold;">
 																		<td class="col-md-1 text-left"><strong>공지</strong></td>
@@ -565,21 +562,15 @@ a {
 																		<td class="col-md-1"><strong><%= a.getAdate() %></strong></td>
 																	</tr>
 																	<% } %>
-											  						
-											  						<% for(Board b : blist){ %>
-																	<tr id="boardlist">
-																		<td name="bid" style="display:none;"><%= b.getbId() %></td>
-																		<td class="col-md-1 text-left" name="bno"><%= b.getbNO() %></td>
-																		<td class="col-md-6 text-center" name="btitle"><%= b.getbTitle() %></td>
-																		<td class="col-md-1" name="userName"><%= b.getbWriter() %></td>
-																		<td class="col-md-1" name="bcount"><%= b.getbCount() %></td>
-																		<td class="col-md-1" name="bdate"><%= b.getbDate() %></td>
-																	</tr>
-																		<% } %> 
-																</tbody>
-															</table>
+																	</thead>
+											  						<tbody id="boardlist">
+																	</tbody>
+																</table>
+										  						<table class="tbl paginated" id="tbl" style="border: 1px solid tomato;"></table>
 															<br /><br />
 															<div align="center">
+															
+															 <div align="center">
 																<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=1'"><<</button>
 																<%  if(currentPage <= 1){  %>
 																<button disabled><</button>
@@ -602,7 +593,7 @@ a {
 																<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage + 1 %>'">></button>
 																<%  } %>
 																<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= maxPage %>'">>></button>
-															</div>
+															</div> 
 
 													<div class="col-sm-12 text-right">
 														<button class="btn-default"><a href="views/board/boardInsertForm.jsp">작성하기</a></button>
@@ -617,25 +608,298 @@ a {
 							</div>
 						</div>
 					</div>
-					<script>
-						$(function(){							
-							$("#annlist td").mouseenter(function(){
-								$(this).parent().css({"cursor":"pointer"});
-							}).click(function(){
-								/* alert($(this).parent().children().eq(2).text());  */
- 								var ano = $(this).parent().children().eq(2).text();
-								location.href="<%=request.getContextPath()%>/selectOne.ann?ano=" + ano;
-							});
+					<script>	
+					/*  $(function() {  */
+					 function selectList(recCnt){
+						
+						$.ajax({
+							url : '/allRight/boardrecentView.bo',
+							dataType : "json",
+							type : "get",
+							success : function(data) {
+
+								$table = $('#listArea tbody');				
+								
+								$table.find("tr").remove(); 
+								
+								for (var i in data) {
+
+									console.log(data[i]);
+									
+									var $trBoard = $('<tr>');
+									var $tdBoardNo = $('<td>').text(data[i].bNO);
+									var $tdBoardTitle = $('<td>').text(data[i].bTitle);
+									var $tdBoardWriter = $('<td>').text(data[i].bWriter);
+									var $tdBoardCount = $('<td>').text(data[i].bCount);
+									var $tdBoardDate =  $('<td>').text(data[i].bDate);
+									
+									$trBoard.append($tdBoardNo)
+									.append($tdBoardTitle)
+									.append($tdBoardWriter)
+									.append($tdBoardCount)
+									.append($tdBoardDate);
+									
+									$table.append($trBoard);
+									
+									
+								}
+							}, error : function(data) {
+								console.log("최신 조회 실패!");
+							}
+						});															
+					 }; 
+					
+					function selectList(inqCnt){	
+						
+						$.ajax({
+							url : '/allRight/boardlistView.bo',
+							dataType : "json",
+							type : "get",
+							success : function(data) {
+
+								$table = $('#listArea tbody');
+								
+								$table.find("tr").remove(); 
+								
+								for (var i in data) {
+
+									console.log(data[i]);
+									
+									var $trBoard = $('<tr>');
+									var $tdBoardNo = $('<td>').text(data[i].bNO);
+									var $tdBoardTitle = $('<td>').text(data[i].bTitle);
+									var $tdBoardWriter = $('<td>').text(data[i].bWriter);
+									var $tdBoardCount = $('<td>').text(data[i].bCount);
+									var $tdBoardDate =  $('<td>').text(data[i].bDate);
+									
+									$trBoard.append($tdBoardNo)
+									.append($tdBoardTitle)
+									.append($tdBoardWriter)
+									.append($tdBoardCount)
+									.append($tdBoardDate);
+									
+									$table.append($trBoard);
+									
+						
+								}
+		
+							}, error : function(data) {
+								console.log("조회순 조회 실패!");
+							}
+						});															
+					}
+					
+ 					/* function page(){
+						
+						$('table.paginated').each(function() { 
+							var currentPage = 0; 
+							var numPerPage = 5; 
 							
-							$("#boardlist td").mouseenter(function(){
-								$(this).parent().css({"cursor":"pointer"});
-							}).click(function(){
-								/* alert($(this).parent().children().eq(0).text());  */
- 								var bno = $(this).parent().children().eq(0).text();
-								location.href="<%=request.getContextPath()%>/selectOne.bo?bno=" + bno;
-							});
+							var $table = $(this); 
 							
+							var repaginate = function() { 
+								$table.find('tbody tr').hide() 
+								.slice(currentPage * numPerPage,
+								(currentPage + 1) * numPerPage)
+								.show();
+							};
+						
+							var numRows = $table.find('tbody tr').length; 
+							//length로 전체길이구함 
+							var numPages = Math.ceil(numRows / numPerPage); 
+							//Math.ceil를 이용하여 반올림
+							
+							var $pager = $('<div class="pager"></div>');
+						    for (var page = 0; page < numPages; page++) {
+						      $('<span class="page-number"></span>').text(page + 1)
+						        .bind('click', {newPage: page}, function(event) {
+						          currentPage = event.data['newPage'];
+						          $table.trigger('repaginate');
+						          $(this).addClass('active')
+						            .siblings().removeClass('active');
+						        }).appendTo($pager).addClass('clickable');
+						    }
+						    $pager.insertBefore($table)
+						      .find('span.page-number:first').addClass('active');
 						});
+					};
+						
+						var $pager = $('');
+						
+						     //pager라는 클래스의 div엘리먼트 작성
+						     for (var page = 0; page < numPages; page++) {
+						       $('').text(page + 1)
+						         .bind('click', {newPage: page}, function(event) {         
+						           currentPage = event.data['newPage'];
+						           repaginate();
+						           //for구문을 이용하여 페이지 수만큼
+						           //버튼을 구현
+						           $(this).addClass('active')
+						           //활성화된페이지에는 active라는 클래스명을 붙여준다.
+						             .siblings().removeClass('active');
+						         }).appendTo($pager).addClass('clickable');
+						     }	 
+						     $pager.insertBefore($table)
+							 //앞서 설정한 페이지키를 삽입
+						       .find('span.page-number:first').addClass('active');
+						   });
+						
+					}; */
+					
+					/* function page(){ 
+						var reSortColors = function($table) {
+						  $('tbody tr:odd td', $table).removeClass('even').removeClass('listtd').addClass('odd');
+						  $('tbody tr:even td', $table).removeClass('odd').removeClass('listtd').addClass('even');
+						 };
+						 $('table.paginated').each(function() {
+						  var pagesu = 10;  //페이지 번호 갯수
+						  var currentPage = 0;
+						  var numPerPage = 10;  //목록의 수
+						  var $table = $(this);    
+						  
+						  //length로 원래 리스트의 전체길이구함
+						  var numRows = $table.find('tbody tr').length;
+						  //Math.ceil를 이용하여 반올림
+						  var numPages = Math.ceil(numRows / numPerPage);
+						  //리스트가 없으면 종료
+						  if (numPages==0) return;
+						  //pager라는 클래스의 div엘리먼트 작성
+						  var $pager = $('<td align="center" id="remo" colspan="10"><div class="pager"></div></td>');
+						  
+						  var nowp = currentPage;
+						  var endp = nowp+10;
+						  
+						  //페이지를 클릭하면 다시 셋팅
+						  $table.bind('repaginate', function() {
+						  //기본적으로 모두 감춘다, 현재페이지+1 곱하기 현재페이지까지 보여준다
+						  
+						   $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
+						   $("#remo").html("");
+						   
+						   if (numPages > 1) {     // 한페이지 이상이면
+						    if (currentPage < 5 && numPages-currentPage >= 5) {   // 현재 5p 이하이면
+						     nowp = 0;     // 1부터 
+						     endp = pagesu;    // 10까지
+						    }else{
+						     nowp = currentPage -5;  // 6넘어가면 2부터 찍고
+						     endp = nowp+pagesu;   // 10까지
+						     pi = 1;
+						    }
+						    
+						    if (numPages < endp) {   // 10페이지가 안되면
+						     endp = numPages;   // 마지막페이지를 갯수 만큼
+						     nowp = numPages-pagesu;  // 시작페이지를   갯수 -10
+						    }
+						    if (nowp < 1) {     // 시작이 음수 or 0 이면
+						     nowp = 0;     // 1페이지부터 시작
+						    }
+						   }else{       // 한페이지 이하이면
+						    nowp = 0;      // 한번만 페이징 생성
+						    endp = numPages;
+						   }
+						   // [처음]
+						   $('<br /><span class="page-number" cursor: "pointer">[처음]</span>').bind('click', {newPage: page},function(event) {
+						          currentPage = 0;   
+						          $table.trigger('repaginate');  
+						          $($(".page-number")[2]).addClass('active').siblings().removeClass('active');
+						      }).appendTo($pager).addClass('clickable');
+						    // [이전]
+						      $('<span class="page-number" cursor: "pointer">&nbsp;&nbsp;&nbsp;[이전]&nbsp;</span>').bind('click', {newPage: page},function(event) {
+						          if(currentPage == 0) return; 
+						          currentPage = currentPage-1;
+						    $table.trigger('repaginate'); 
+						    $($(".page-number")[(currentPage-nowp)+2]).addClass('active').siblings().removeClass('active');
+						   }).appendTo($pager).addClass('clickable');
+						    // [1,2,3,4,5,6,7,8]
+						   for (var page = nowp ; page < endp; page++) {
+						    $('<span class="page-number" cursor: "pointer" style="margin-left: 8px;"></span>').text(page + 1).bind('click', {newPage: page}, function(event) {
+						     currentPage = event.data['newPage'];
+						     $table.trigger('repaginate');
+						     $($(".page-number")[(currentPage-nowp)+2]).addClass('active').siblings().removeClass('active');
+						     }).appendTo($pager).addClass('clickable');
+						   } 
+						    // [다음]
+						      $('<span class="page-number" cursor: "pointer">&nbsp;&nbsp;&nbsp;[다음]&nbsp;</span>').bind('click', {newPage: page},function(event) {
+						    if(currentPage == numPages-1) return;
+						        currentPage = currentPage+1;
+						    $table.trigger('repaginate'); 
+						     $($(".page-number")[(currentPage-nowp)+2]).addClass('active').siblings().removeClass('active');
+						   }).appendTo($pager).addClass('clickable');
+						    // [끝]
+						   $('<span class="page-number" cursor: "pointer">&nbsp;[끝]</span>').bind('click', {newPage: page},function(event) {
+						           currentPage = numPages-1;
+						           $table.trigger('repaginate');
+						           $($(".page-number")[endp-nowp+1]).addClass('active').siblings().removeClass('active');
+						   }).appendTo($pager).addClass('clickable');
+						     
+						     $($(".page-number")[2]).addClass('active');
+						reSortColors($table);
+						  });
+						   $pager.insertAfter($table).find('span.page-number:first').next().next().addClass('active');   
+						   $pager.appendTo($table);
+						   $table.trigger('repaginate');
+						 });
+						} */
+
+
+						
+					
+					
+					/* function selectList(rpyCnt){	
+						
+						$.ajax({
+							url : '/allRight/boardcomView.bo',
+							dataType : "json",
+							type : "get",
+							success : function(data) {
+
+								$table = $('#listArea tbody');
+								
+								$table.find("tr").remove(); 
+								
+								for (var i in data) {
+
+									console.log(data[i]);
+									
+									var $trBoard = $('<tr>');
+									var $tdBoardNo = $('<td>').text(data[i].bNo);
+									var $tdBoardTitle = $('<td>').text(data[i].bTitle);
+									var $tdBoardWriter = $('<td>').text(data[i].bWriter);
+									var $tdBoardCount = $('<td>').text(data[i].bCount);
+									var $tdBoardDate =  $('<td>').text(data[i].bDate);
+									
+									$trBoard.append($tdBoardNo)
+									.append($tdBoardTitle)
+									.append($tdBoardWriter)
+									.append($tdBoardCount)
+									.append($tdBoardDate);
+									
+									$table.append($trBoard);
+								}
+									
+							}, error : function(data) {
+								console.log("조회순 조회 실패!");
+							}
+						});															
+					} */
+					
+					$("#annlist td").mouseenter(function(){
+						$(this).css({"cursor":"pointer"});
+					}).click(function(){
+						/* alert($(this).parent().children().eq(2).text());  */
+							var ano = $(this).parent().children().eq(2).text();
+						location.href="<%=request.getContextPath()%>/selectOne.ann?ano=" + ano;
+					});
+					
+					$("#boardlist tr").mouseenter(function(){
+						$(this).parent().children().css({"cursor":"pointer"});
+					}).click(function(){
+						
+						alert($(this).parent().children().eq(0).text());
+						var bno = $(this).parent().children().eq(0).text();
+						location.href="<%=request.getContextPath()%>/selectOne.bo?bno=" + bno;
+					});
+						
 		
 					</script>
 				</div>

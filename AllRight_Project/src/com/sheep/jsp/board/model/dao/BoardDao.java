@@ -372,4 +372,133 @@ public class BoardDao {
 		
 	}
 
+	public ArrayList<Board> boardlistView(Connection con, int currentPage, int limit) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Board> list = null;
+		
+		String sql = prop.getProperty("boardlistView");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			int startRow = (currentPage -1) * limit + 1;
+			int endRow = startRow + limit -1;
+			
+			pstmt.setInt(1, endRow);
+			pstmt.setInt(2, startRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Board>();
+			
+			while(rset.next()){
+				
+				Board b = new Board();
+				
+				b.setbNO(rset.getInt("BNO"));
+				b.setbTitle(rset.getString("BTITLE"));
+				b.setbWriter(rset.getString("BWRITER"));
+				b.setbCount(rset.getInt("BCOUNT"));
+				b.setbDate(rset.getDate("BDATE"));
+				
+				list.add(b);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally{
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+
+	public ArrayList<Board> boardrecentView(Connection con, int currentPage, int limit) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Board> list = null;
+		
+		String sql = prop.getProperty("boardrecentView");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			int startRow = (currentPage -1) * limit + 1;
+			int endRow = startRow + limit -1;
+			
+			pstmt.setInt(1, endRow);
+			pstmt.setInt(2, startRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Board>();
+			
+			while(rset.next()){
+				
+				Board b = new Board();
+				
+				b.setbNO(rset.getInt("BNO"));
+				b.setbTitle(rset.getString("BTITLE"));
+				b.setbWriter(rset.getString("BWRITER"));
+				b.setbCount(rset.getInt("BCOUNT"));
+				b.setbDate(rset.getDate("BDATE"));
+				
+				list.add(b);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally{
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+
+	public ArrayList<Board> boardcomView(Connection con) {
+		
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<Board> list = null;
+		
+		String sql = prop.getProperty("boardcomView");
+		
+		try {
+			
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);			
+			list = new ArrayList<Board>();
+			
+			while(rset.next()){
+				
+				Board b = new Board();
+				
+				b.setbNO(rset.getInt("BNO"));
+				b.setbTitle(rset.getString("BTITLE"));
+				b.setbWriter(rset.getString("BWRITER"));
+				b.setbCount(rset.getInt("BCOUNT"));
+				b.setbDate(rset.getDate("BDATE"));
+				
+				list.add(b);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally{
+			close(rset);
+			close(stmt);
+		}
+		return list;
+	}
+
 }
