@@ -43,35 +43,33 @@ public class BoardDao {
 		
 	}
 	
-	public int getListCount(Connection con) {
+	public int getListCount(Connection con, int bid) {
 
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		int listCount = 0;
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("listCount");
 		
 		try {
-			stmt = con.createStatement();
+			pstmt = con.prepareStatement(sql);
 			
-			rset = stmt.executeQuery(sql);
+			pstmt.setInt(1, bid);
 			
-			if(rset.next()){
-				listCount = rset.getInt(1);
-			}
+			rset = pstmt.executeQuery();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
-			close(stmt);
+			close(pstmt);
 		}
 		
 		return listCount;
 		
 	}
 
-	public ArrayList<Board> selectList(Connection con, int currentPage, int limit) {
+	public ArrayList<Board> selectList(Connection con, int currentPage, int limit, int bid) {
 
 		ArrayList<Board> blist = null;
 		PreparedStatement pstmt = null;
@@ -85,8 +83,9 @@ public class BoardDao {
 			int startRow = (currentPage -1) * limit + 1;
 			int endRow = startRow + limit -1;
 			
-			pstmt.setInt(1, endRow);
-			pstmt.setInt(2, startRow);
+			pstmt.setInt(1, bid);
+			pstmt.setInt(2, endRow);
+			pstmt.setInt(3, startRow);
 			
 			rset = pstmt.executeQuery();
 			
@@ -114,7 +113,7 @@ public class BoardDao {
 	
 	}
 
-	public int insertBoard(Connection con, Board b) {
+	public int insertBoard(Connection con, Board b, int bid) {
 
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -124,10 +123,11 @@ public class BoardDao {
 		try {
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(1, b.getbTitle());
-			pstmt.setString(2, b.getbContent());
-			pstmt.setString(3, b.getbWriter());
-			pstmt.setInt(4, b.getUserNo());
+			pstmt.setInt(1, b.getbId());
+			pstmt.setString(2, b.getbTitle());
+			pstmt.setString(3, b.getbContent());
+			pstmt.setString(4, b.getbWriter());
+			pstmt.setInt(5, b.getUserNo());
 			
 			result = pstmt.executeUpdate();
 			
@@ -500,5 +500,6 @@ public class BoardDao {
 		}
 		return list;
 	}
+
 
 }

@@ -14,11 +14,11 @@ public class BoardService {
 	
 	private BoardDao bDao = new BoardDao();
 
-	public int getListCount() {
+	public int getListCount(int bid) {
 
 		Connection con = getConnection();
 		
-		int listCount = bDao.getListCount(con);
+		int listCount = bDao.getListCount(con, bid);
 		
 		close(con);
 		
@@ -26,11 +26,11 @@ public class BoardService {
 		
 	}
 
-	public int insertBoard(Board b) {
+	public int insertBoard(Board b, int bid) {
 
 		Connection con = getConnection();
 		
-		int result = bDao.insertBoard(con, b);
+		int result = bDao.insertBoard(con, b, bid);
 		
 		if(result > 0) commit(con);
 		else rollback(con);
@@ -166,10 +166,22 @@ public class BoardService {
 		return list;
 		
 	}
+
+	public ArrayList<Board> selectList(int currentPage, int limit, int bid) {
+		
+		Connection con = getConnection();
+		
+		ArrayList<Board> blist = bDao.selectList(con, currentPage, limit, bid);
+		
+		close(con);
+		
+		return blist;
+		
+	}
 	
 	public ArrayList<Board> boardrecentView(int currentPage, int limit) {
 
-		Connection con = getConnection();
+	Connection con = getConnection();
 		
 		ArrayList<Board> list = bDao.boardrecentView(con, currentPage, limit);
 		
@@ -190,5 +202,6 @@ public class BoardService {
 		return list;
 		
 	}
+
 
 }

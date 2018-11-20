@@ -290,7 +290,7 @@ jQuery(document).ready(function() {
                         <li class="sub-menu activ">
 							<a href="javascript:void(0)">커뮤니티</a>
 							<ul>
-								<li class="active"><a href="<%= request.getContextPath() %>/selectList.bo">게시판</a>
+								<li class="active"><a href="<%= request.getContextPath() %>/views/board/boardMain.jsp">게시판</a>
 								</li>
 								<li><a href="<%= request.getContextPath() %>/views/licenseinfo/licenseinfoList.jsp">자격증 정보</a></li>
 							</ul>
