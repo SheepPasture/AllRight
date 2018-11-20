@@ -46,55 +46,86 @@ public class BoardMyListServlet extends HttpServlet {
 		MypageService ms = new MypageService();
 		
 		//페이지
-		int listCount = ms.selectbPage(userno);
-		int startPage=1;
-		int endPage;	
-		int maxPage;	
-		int currentPage=1;
+		int blistCount = ms.selectbPage(userno);
+		int clistCount = ms.selectcPage(userno);
+		int bstartPage=1,cstartPage=1;
+		int bendPage,cendPage;	
+		int bmaxPage,cmaxPage;	
+		int bcurrentPage=1,ccurrentPage=1;
 		int limit=5;      
 		
-		currentPage = 1;
+		bcurrentPage = 1;
+		ccurrentPage = 1;
 		
-		if(request.getParameter("currentPage") != null){
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		if(request.getParameter("bcurrentPage") != null){
+			bcurrentPage = Integer.parseInt(request.getParameter("bcurrentPage"));
 		}
-		System.out.println("전체 게시글 수 : "+ listCount);
+		System.out.println("전체 게시글 수 : "+ blistCount);
 		
-		maxPage = (int)((double)listCount / limit + 0.9);
-		startPage = ((int)((double)currentPage / limit + 0.9) - 1 ) * limit + 1;
+		bmaxPage = (int)((double)blistCount / limit + 0.9);
+		bstartPage = ((int)((double)bcurrentPage / limit + 0.9) - 1 ) * limit + 1;
 		
-		endPage = startPage + limit -1; 
+		bendPage = bstartPage + limit -1; 
 		
-		if(endPage > maxPage){
-			endPage = maxPage;
+		if(bendPage > bmaxPage){
+			bendPage = bmaxPage;
 		}
-		System.out.println("userno = "+userno);
-		System.out.println("listCount = "+listCount);
-		blist = ms.selectMyList(userno,currentPage, limit);
-		clist = ms.selectMyCommnetList(userno);
+		
+		if(request.getParameter("ccurrentPage") != null){
+			ccurrentPage = Integer.parseInt(request.getParameter("ccurrentPage"));
+		}
+		System.out.println("전체 게시글 수 : "+ clistCount);
+		
+		cmaxPage = (int)((double)clistCount / limit + 0.9);
+		cstartPage = ((int)((double)ccurrentPage / limit + 0.9) - 1 ) * limit + 1;
+		
+		cendPage = cstartPage + limit -1; 
+		
+		if(cendPage > cmaxPage){
+			cendPage = cmaxPage;
+		}
+		
+		/*System.out.println("userno = "+userno);
+		System.out.println("listCount = "+listCount);*/
+		blist = ms.selectMyList(userno,bcurrentPage, limit);
+		clist = ms.selectMyCommnetList(userno,ccurrentPage,limit);
 		
 		String page="/views/myPage/viewBoard.jsp";
 		System.out.println(blist);
 		
 		if(blist.size()!=0){
 			request.setAttribute("blist", blist);
-			request.setAttribute("listCount", listCount);
-			request.setAttribute("startPage", startPage);
-			request.setAttribute("endPage", endPage);
-			request.setAttribute("maxPage", maxPage);
-			request.setAttribute("currentPage", currentPage);
+			request.setAttribute("listCount", blistCount);
+			request.setAttribute("startPage", bstartPage);
+			request.setAttribute("endPage", bendPage);
+			request.setAttribute("maxPage", bmaxPage);
+			request.setAttribute("currentPage", bcurrentPage);
 			
 	
 		}else{
 			request.setAttribute("bmsg", "작성한 게시글이 없습니다.");
-			
+			request.setAttribute("listCount", 1);
+			request.setAttribute("startPage", 1);
+			request.setAttribute("endPage", 1);
+			request.setAttribute("maxPage", 1);
+			request.setAttribute("currentPage", 1);
 		}
 		
 		if(clist.size()!=0){
 			request.setAttribute("clist", clist);
+			request.setAttribute("clistCount", clistCount);
+			request.setAttribute("cstartPage", cstartPage);
+			request.setAttribute("cendPage", cendPage);
+			request.setAttribute("cmaxPage", cmaxPage);
+			request.setAttribute("ccurrentPage", ccurrentPage);
 	
 		}else{
 			request.setAttribute("cmsg", "작성한 댓글이 없습니다.");
+			request.setAttribute("clistCount", 1);
+			request.setAttribute("cstartPage", 1);
+			request.setAttribute("cendPage", 1);
+			request.setAttribute("cmaxPage", 1);
+			request.setAttribute("ccurrentPage", 1);
 			
 		}
 		System.out.println("blist = " + blist);
