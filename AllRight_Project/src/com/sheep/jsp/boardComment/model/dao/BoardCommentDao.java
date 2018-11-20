@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -72,7 +71,7 @@ public class BoardCommentDao {
 		return result;
 	}
 
-	public ArrayList<BoardComment> selectList(Connection con, int bno) {
+	public ArrayList<BoardComment> selectList(Connection con, int bid, int bno) {
 		ArrayList<BoardComment> clist = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -83,19 +82,19 @@ public class BoardCommentDao {
 		
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setInt(1, bno);
+			pstmt.setInt(1, bid);
+			pstmt.setInt(2, bno);
 			
 			rset = pstmt.executeQuery();
 			
 			clist = new ArrayList<BoardComment>();
-			
-			System.out.println("보드코멘드dao: "+clist);
 			
 			while(rset.next()) {
 				BoardComment comment = new BoardComment();
 	
 				comment.setcNo(rset.getInt("cno"));
 				comment.setbNo(bno);
+				comment.setbId(bid);
 				comment.setUserNo(rset.getInt("userNo"));
 				comment.setcPwd(rset.getInt("cPwd"));
 				comment.setcContent(rset.getString("ccontent"));

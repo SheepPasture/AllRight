@@ -13,8 +13,8 @@ public class Board implements Serializable{
 	
 	// 필드 
 	
-	private int bId;
 	private int bNO;
+	private int bId;
 	private String bTitle;
 	private String bContent;
 	private String bWriter;
@@ -22,21 +22,18 @@ public class Board implements Serializable{
 	private String bFile;
 	private Date bDate;
 	private String bStatus;
-	private int eCount;
 	private int report;
 	private int bLike;
 	private int userNo;
 	
 	
 	// 생성자
-	
-	
 	public Board() {
 		super();
 	}
 
 	public Board(int bId, int bNO, String bTitle, String bContent, String bWriter, int bCount, String bFile,
-			Date bDate, String bStatus, int eCount, int report, int bLike, int userNo) {
+			Date bDate, String bStatus, int report, int bLike, int userNo) {
 		super();
 		this.bId = bId;
 		this.bNO = bNO;
@@ -47,7 +44,6 @@ public class Board implements Serializable{
 		this.bFile = bFile;
 		this.bDate = bDate;
 		this.bStatus = bStatus;
-		this.eCount = eCount;
 		this.report = report;
 		this.bLike = bLike;
 		this.userNo = userNo;
@@ -127,14 +123,6 @@ public class Board implements Serializable{
 		this.bStatus = bStatus;
 	}
 
-	public int geteCount() {
-		return eCount;
-	}
-
-	public void seteCount(int eCount) {
-		this.eCount = eCount;
-	}
-
 	public int getReport() {
 		return report;
 	}
@@ -171,7 +159,7 @@ public class Board implements Serializable{
 	public String toString() {
 		return "Member [bId=" + bId + ", bNO=" + bNO + ", bTitle=" + bTitle + ", bContent=" + bContent + ", bWriter="
 				+ bWriter + ", bCount=" + bCount + ", bFile=" + bFile + ", bDate=" + bDate + ", bStatus=" + bStatus
-				+ ", eCount=" + eCount + ", report=" + report + ", bLike=" + bLike + ", userNo=" + userNo + "]";
+				+ ", report=" + report + ", bLike=" + bLike + ", userNo=" + userNo + "]";
 	}
 
 	
@@ -192,7 +180,6 @@ public class Board implements Serializable{
 		result = prime * result + ((bStatus == null) ? 0 : bStatus.hashCode());
 		result = prime * result + ((bTitle == null) ? 0 : bTitle.hashCode());
 		result = prime * result + ((bWriter == null) ? 0 : bWriter.hashCode());
-		result = prime * result + eCount;
 		result = prime * result + report;
 		result = prime * result + userNo;
 		return result;
@@ -244,8 +231,6 @@ public class Board implements Serializable{
 			if (other.bWriter != null)
 				return false;
 		} else if (!bWriter.equals(other.bWriter))
-			return false;
-		if (eCount != other.eCount)
 			return false;
 		if (report != other.report)
 			return false;

@@ -52,12 +52,11 @@
 				<br>
 				<div class="col-sm-2 sidenav">
 					<p><a href="selectList.ann">공지사항</a></p>
-					<p><a href="<%= request.getContextPath() %>/views/community/communityList.jsp">커뮤니티</a></p>
+					<p><a href="<%= request.getContextPath() %>/views/board/boardMain.jsp">커뮤니티</a></p>
 					<p><a href="/views/license/licenseinfo.jsp">자격증정보</a></p>
 				</div>
 				<div class="col-sm-8 text-left">
 					<h3 align="left">글쓰기</h3>
-					<form id="updateForm" action="<%= request.getContextPath()%>/bInsert.bo" method="post">
 					<!-- 게시판(뷰)시작 -->
 					<div class="board_area">
 						<table class="view">
@@ -73,7 +72,7 @@
 									<th class="col-sm-2" id="title">내용</th>
 									<td>
 										<script type="text/javascript" src="/allRight/resources/ckeditor/ckeditor.js"></script> 
-										<div class="form-group">
+										<div>
 											 <textarea name="content" class="ckeditor" rows="20" cols="70"><%= b.getbContent() %></textarea>
 											 <input id="bno" name="bno" type="hidden" value="<%= b.getbNO() %>"/>
 											 <input id="userName" name="userName" type="hidden" value="<%= b.getbWriter() %>"/>
@@ -105,21 +104,22 @@
 				<button id="del" class="btn btn-default" onclick="location.href='/allRight/bDelete.bo?bno='+<%= b.getbNO() %>">Delete</button>
 				<button id="back" class="btn btn-default" onclick="location.href='/allRight/selectList.bo'" type="reset">Back</button>
 			</div> --%>
-				</form>
 				<br />
 		 		<script>	 		
-	 		 		function edit(){
-	 		 			$("#updateForm").attr("action", "<%=request.getContextPath()%>/bUpdate.bo");
-	 		 		}
 
 	 		 		var bno = $("#bno").val();
+	 		 		var bid = 1;
+	 		 		
+					function edit(){
+						location.href="<%=request.getContextPath()%>/bUpdate.bo?bid=" + bid+"&bno="+bno;
+					}
 					
 					function del(){
-						$("#updateForm").attr("action","<%=request.getContextPath() %>/bDelete.bo?bno="+bno);
+						location.href="<%=request.getContextPath()%>/bDelete.bo?bid="+bid+"&bno="+bno;
 					}
 					
 					function back(){		
-						$("#updateForm").attr("action","<%=request.getContextPath() %>/selectOne.bo?bno=" + bno);
+						location.href="<%=request.getContextPath()%>/selectOne.bo?bid="+bid+"&bno="+bno;
 					}
 					
 		 		</script>

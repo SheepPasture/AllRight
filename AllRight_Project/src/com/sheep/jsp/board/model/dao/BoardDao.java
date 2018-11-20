@@ -15,7 +15,7 @@ import java.util.Properties;
 
 import com.sheep.jsp.announcement.model.vo.Announcement;
 import com.sheep.jsp.board.model.vo.Board;
-import com.sheep.jsp.news.model.dao.NewsDao;
+
 
 public class BoardDao {
 
@@ -55,6 +55,8 @@ public class BoardDao {
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, bid);
+			
+			System.out.println("getListCount dao: "+listCount);
 			
 			rset = pstmt.executeQuery();
 			
@@ -123,13 +125,15 @@ public class BoardDao {
 		try {
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setInt(1, b.getbId());
+			pstmt.setInt(1, bid);
 			pstmt.setString(2, b.getbTitle());
 			pstmt.setString(3, b.getbContent());
 			pstmt.setString(4, b.getbWriter());
 			pstmt.setInt(5, b.getUserNo());
 			
 			result = pstmt.executeUpdate();
+			
+			System.out.println("insertBoard dao: "+result);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -141,7 +145,7 @@ public class BoardDao {
 		
 	}
 
-	public Board selectOne(Connection con, int bno) {
+	public Board selectOne(Connection con,  int bid, int bno) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -152,7 +156,8 @@ public class BoardDao {
 		try {
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setInt(1, bno);
+			pstmt.setInt(1, bid);
+			pstmt.setInt(2, bno);
 			
 			rset = pstmt.executeQuery();
 			
@@ -180,7 +185,7 @@ public class BoardDao {
 		
 	}
 
-	public int updateCount(Connection con, int bno) {
+	public int updateCount(Connection con, int bid, int bno) {
 		
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -189,9 +194,14 @@ public class BoardDao {
 		
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, bno);
+			
+			pstmt.setInt(1, bid);
+			pstmt.setInt(2, bno);
 			
 			result = pstmt.executeUpdate();
+			
+			System.out.println("updateCount dao: "+result);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
@@ -201,7 +211,7 @@ public class BoardDao {
 		return result;
 	}
 
-	public int deleteBoard(Connection con, int bno) {
+	public int deleteBoard(Connection con, int bid, int bno) {
 	
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -213,9 +223,13 @@ public class BoardDao {
 		try {
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setInt(1, bno);
+			pstmt.setInt(1, bid);
+			pstmt.setInt(2, bno);
 			
 			result = pstmt.executeUpdate();
+			
+			System.out.println("deleteBoard dao: "+result);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -225,7 +239,7 @@ public class BoardDao {
 		return result;
 	}
 
-	public int updateBoard(Connection con, Board b) {
+	public int updateBoard(Connection con, Board b, int bid) {
 
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -239,9 +253,13 @@ public class BoardDao {
 			
 			pstmt.setString(1, b.getbTitle());
 			pstmt.setString(2, b.getbContent());
-			pstmt.setInt(3, b.getbNO());
+			pstmt.setInt(3, bid);
+			pstmt.setInt(4, b.getbNO());
 			
 			result = pstmt.executeUpdate();
+			
+			System.out.println("updateBoard dao: "+result);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -313,7 +331,6 @@ public class BoardDao {
 				b.setbNO(rset.getInt("BNO"));
 				b.setbTitle(rset.getString("BTITLE"));
 				b.setbWriter(rset.getString("BWRITER"));
-				b.seteCount(rset.getInt("ECOUNT"));
 				
 				list.add(b);
 			}
@@ -328,7 +345,7 @@ public class BoardDao {
 		return list;
 	}
 
-	public int boardReport(Connection con, int bno) {
+	public int boardReport(Connection con, int bid, int bno) {
 		
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -337,7 +354,9 @@ public class BoardDao {
 		
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, bno);
+			
+			pstmt.setInt(1, bid);
+			pstmt.setInt(2, bno);
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -350,7 +369,7 @@ public class BoardDao {
 		
 	}
 
-	public int boardLike(Connection con, int bno) {
+	public int boardLike(Connection con, int bid, int bno) {
 		
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -359,7 +378,9 @@ public class BoardDao {
 		
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, bno);
+			
+			pstmt.setInt(1, bid);
+			pstmt.setInt(2, bno);
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -500,6 +521,5 @@ public class BoardDao {
 		}
 		return list;
 	}
-
 
 }

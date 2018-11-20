@@ -36,14 +36,12 @@ public class BoardSelectOneServlet extends HttpServlet {
 		
 		int bid = Integer.parseInt(request.getParameter("bid"));
 		int bno = Integer.parseInt(request.getParameter("bno"));
-		System.out.println("selectOne bno: "+bno);
 		
-		Board b = new BoardService().selectOne(bno);
-		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bno);
+		Board b = new BoardService().selectOne(bid, bno);
+		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bid, bno);
 		
-		System.out.println("selectOne clist: "+clist);
-
 		System.out.println("selectOne b: "+b);
+		System.out.println("selectOne clist: "+clist);
 		
 		String page = "";
 		
