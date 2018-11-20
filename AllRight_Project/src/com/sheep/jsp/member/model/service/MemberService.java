@@ -1,9 +1,12 @@
 package com.sheep.jsp.member.model.service;
 
-import static com.sheep.jsp.common.JDBCTemplate.*;
+import static com.sheep.jsp.common.JDBCTemplate.close;
+import static com.sheep.jsp.common.JDBCTemplate.commit;
+import static com.sheep.jsp.common.JDBCTemplate.getConnection;
+import static com.sheep.jsp.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Collection;
 
 import com.sheep.jsp.member.exception.MemberException;
 import com.sheep.jsp.member.model.dao.MemberDao;
