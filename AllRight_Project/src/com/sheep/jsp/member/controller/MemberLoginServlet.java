@@ -86,8 +86,14 @@ public class MemberLoginServlet extends HttpServlet {
 			session.setAttribute("level", level);
 			
 			if(androidCheck =="A"){
+				
 				response.sendRedirect("android.jsp");
-			}else{
+				
+			} else if( m != null && m.getUserId().equals("admin")){
+				
+				response.sendRedirect("admin.jsp");
+				
+			}	else{
 				response.sendRedirect("index.jsp");
 			}
 		} catch(MemberException e){
