@@ -92,6 +92,7 @@ public class MemberLoginServlet extends HttpServlet {
 			session.setAttribute("point", pt);
 			session.setAttribute("level", level);
 			
+
 			if(androidCheck !=null){
 				System.out.println("안드로이드에서 로그인을 시도합니다.");
 				JSONObject jsonMember = new JSONObject();
@@ -106,8 +107,13 @@ public class MemberLoginServlet extends HttpServlet {
 				out.println(jsonMember.toJSONString());
 				System.out.println("안드로이드 로그인 성공");
 				
+
+			} else if(m.getUserId().equals("admin")){
 				
-			}else{
+				response.sendRedirect("admin.jsp");
+				
+			}	else{
+
 				response.sendRedirect("index.jsp");
 			}
 		} catch(MemberException e){

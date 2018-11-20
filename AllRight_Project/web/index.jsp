@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 
     pageEncoding="UTF-8" import="com.sheep.jsp.member.model.vo.Member"
-    import="com.sheep.jsp.point.model.vo.Point ,java.util.*, com.sheep.jsp.board.model.vo.*"%>
+    import="com.sheep.jsp.point.model.vo.Point, com.sheep.jsp.news.model.vo.*,java.util.*, com.sheep.jsp.board.model.vo.*"%>
 <%
 	Member m = (Member)session.getAttribute("member");
 	Point pt = (Point)session.getAttribute("point");
   	Object level=session.getAttribute("level");   
-  	ArrayList<Board> blist = (ArrayList<Board>)request.getAttribute("blist"); 
+  	ArrayList<Board> blist = (ArrayList<Board>)request.getAttribute("blist");
+  	 ArrayList<News> nlist = (ArrayList<News>)request.getAttribute("list"); 
 %>
 
 
@@ -37,6 +38,77 @@
 .notice {
 	margin-left: 300px;
 }
+ 	.col-sm-8{
+		font : 12px/20px 돋움;
+		color:#424242;
+		background:#fff;
+		padding:10px;
+		width:500px;
+		margin:0;
+	}
+	.col-sm-8 h1 {
+		margin:0;
+		font-size:20px;
+		text-shadow:2px 2px 2px #aeaeae;
+	}
+	.col-sm-8 h2{
+		margin:5px 0;
+		padding:0;
+	}
+
+	.col-sm-8 h2 a{
+		font-size:15px;
+		display:block;
+		font-weight:normal;
+		color:#424242;
+		text-shadow:2px 2px 2px #aeaeae;
+		text-decoration:none;
+		margin:0;
+		padding:10px;
+		background:#8f8f8f;
+	}
+
+	.col-sm-8 h2 a{
+		font-size:15px;
+		display:block;
+		font-weight:normal;
+		color:#424242;
+		text-shadow:2px 2px 2px #aeaeae;
+		text-decoration:none;
+		margin:0;
+		padding:10px;
+		background:-moz-linear-gradient(top,#cecece,#8f8f8f);
+		background:-webkit-gradient(linear,left top, left bottom, from(#cecece), to(#8f8f8f));
+		-webkit-border-radius:5px;
+		-moz-border-radius:5px;
+		border-radius:5px;
+	}
+
+	.col-sm-8 :target h2 a,
+	.col-sm-8 h2 a:focus,
+	.col-sm-8 h2 a:hover,
+	.col-sm-8 h2 :active {
+		background:#2288dd;
+		background:-moz-linear-gradient(top,#6bb2ff,#2288dd);
+		background:-webkit-gradient(linear,left top, left bottom, from(#6bb2ff), to(#2288dd));
+		color:#fff;
+	}
+
+	.col-sm-8 p {
+		padding:0 10px;
+		margin:0;
+		height:0;
+		overflow:hidden;
+		-moz-transition:height 0.5s ease-in;
+		-webkit-transition:height 0.5s ease-in;
+		-o-transition:hegith 0.5s ease-in;
+		transition:height 0.5s ease-in;
+	}
+
+	.col-sm-8 :target p{
+		overflow: auto;
+		height:100px;
+	} 
 </style>
 
 <!-- <script>
@@ -86,28 +158,20 @@
 					<div class="realtime"
 						style="float: left; width: 50%;border: 1px solid gold">
 						<h3>실시간 게시판 순위</h3>
-						<div id="refresh" class="col-sm-4" >
-							<table id="boardTop5">
+						<div id="refresh"  >
+							<table id="boardTop5" class="top5" >
 								<thead>
 									<tr>
-										<th>게시판 이름</th>
+										<th></th>
+										<th scope="cols">실시간 게시판 순위</th>
+										
 									</tr>
 								</thead>
 								<tbody>
 								</tbody>
 							</table>
 						</div>
-						<div id="refresh" class="col-sm-4">
-							<table id="boardTop5">
-								<thead>
-									<tr>
-										<th>뉴스</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
-						</div>
+						
 						<!-- <div class="realtime-nav" >
 
 					<ul class="ah_l">
@@ -135,20 +199,23 @@
 				</div> -->
 					</div>
 					<div >
-						<div class="col-sm-4" style="float: left; width: 50%;border: 1px solid gold">
-							<h1>뭐 들어가는 거지 ??</h1>
+						<div class="col-sm-4"
+							style="float: left; width: 50%; border: 1px solid gold">
+							<h1>공지사항</h1>
 							<div class="col-sm-4">
-							<table id="#">
-								<thead>
-								
+								<table id="#">
+									<thead>
 									
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
+
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+							</div>
+							
 						</div>
-						</div>
-						
+
+
 					</div>
 
 
@@ -236,59 +303,46 @@
 
 				</div>
 				
-				<div class="col-sm-2" style="background: ivory">
+				<!-- 로그인 폼  -->
+		
+			<div class="loginArea" style="float:left; width:50%;">
+	<%if ( m == null ) { %>
 
-					<!-- 로그인 폼  -->
+		<form id="loginForm" action="/allRight/mLogin.me" method="post">
+			<table>
+				<tr>
+					<td>
+						<label class="text">ID : </label>
+					</td>
+					<td>
+						<input type="text" name="inputId" id="inputId">
+					</td>
+				</tr>
+					<tr>
+					<td>
+						<label class="text">PWD : </label>
+					</td>
+					<td>
+						<input type="password" name="inputPassword" >
+					</td>
+				</tr>
+			</table>
+			
+			<div class="btns">
+				<input type="button" value="로그인" onclick="login()"/>
+				<input type="button" value="회원가입" onclick="insert()"/> 
+			</div>
+			
+		</form>
+		<% } else { %>
+		<div id="userInfo">
+			<label><%= m.getUserName() %>님의 방문을 환영합니다.</label><br>
+			<label> 현재 포인트 : <%= pt.getPoint() %> 누적 포인트 : <%= pt.getTotalPoint() %></label>
 
-					<div class="loginArea" style="float: left; width: 50%;">
-						<%
-							if (m == null) {
-						%>
+ 		 	<label> 현재 레벨 :Lv.<%= level %></label>
+			<div class="btns" >
+				<input type="button" value="로그아웃" onclick="logout()" />
 
-						<form id="loginForm" action="/allRight/mLogin.me" method="post">
-							<div>
-								<table>
-									<tr>
-										<td><label class="text">ID : </label></td>
-										<td><input type="text" name="inputId"></td>
-									</tr>
-									<tr>
-										<td><label class="text">PWD : </label></td>
-										<td><input type="password" name="inputPassword">
-										</td>
-									</tr>
-								</table>
-							</div>
-							<!-- <div class="btns"> -->
-							<div >
-								<div>
-									<input type="submit" value="로그인" />
-									<input type="button" value="회원가입" onclick="insert()" />
-								</div>
-							</div>
-
-						</form>
-						<%
-							} else {
-						%>
-						<div id="userInfo">
-							<label><%=m.getUserName()%>님의 방문을 환영합니다.</label><br> <label>
-								현재 포인트 : <%=pt.getPoint()%> 누적 포인트 : <%=pt.getTotalPoint()%></label> <label>
-								현재 레벨 :Lv.<%=level%></label>
-							<div class="btns">
-								<input type="button" value="로그아웃" onclick="logout()" />
-							</div>
-
-						</div>
-						<%
-							}
-						%>
-
-					</div>
-
-				</div><!--로그인폼 끝  -->
-
-				<br> <br> <br> <br> <br> <br>
 			</div>
 
 
@@ -297,19 +351,23 @@
 				<div class="col-sm-1 sidenav"></div><!-- 왼쪽 공간 -->
 				<div class="col-sm-8 text-center" style="border: 1px solid gold">
 					<h1>자격증 목록</h1>
-					<div class="col-sm-4">
-						자격증 1 목록
-						
+					
+					<div id="html5" class="col-sm-3">
+					<h2><a href="#html5">자격증 1 목록</a></h2>
+					<p><a>게시판</a>	</p>
 					</div>
-					<div class="col-sm-4">
-						자격증 2 목록 
+					<div id="css3" class="col-sm-3">
+						<h2><a href="#css3">자격증 2 목록</a></h2>
+						<p><a>게시판</a>	</p>
 					</div>
-					<div class="col-sm-4">
-						자격증 3 목록 
+					<div id="api" class="col-sm-3">
+						<h2><a href="#api">자격증 3목록</a></h2>
+						<p><a>게시판</a>	</p>
 					</div>
-					<div class="col-sm-4">
-						자격증 4 목록 
-					</div>
+					
+					
+					
+					
 				</div>
 			</div>
 			
@@ -317,18 +375,78 @@
 
 
 		<script>
-			function insert() {
+		
+		function login(){
+			
+			$('#loginForm').submit();
+			
+			<%-- 
+			<% if ( $("#inputId").val().equls("admin")) {%> 
+			
+			
+			$('#loginForm').submit();
+			location.href = "/allRight/admin.jsp";
+			
+			
+			<% } else {%>
+				
+			$('#loginForm').submit();
+			
+			<% } %> --%>
+		}
+			
+		function insert(){
+			
+			location.href = "/allRight/views/member/memberInsertView.jsp";
+			
+		}
+	
+		function logout(){
+			
+			location.href = "mLogout.me";
+		}
+		
+		
+		/* function autoRefresh_div(){
+			
+			var currentLocation = window.location;
+			$("#refresh").load(currentLocation + ' #refresh')
+		}
+		
+		setInterval('autoRefresh_div()', 3000); */
+			
+		
+		
+		
+		 //실시간 순위
+		$(function(){
+			
+			$.ajax({
+				
+				url: '/allRight/top5.bo',
+				dataType: "json",
+				type : "get",
+				success : function(data){
+					
+					$table = $('#boardTop5 tbody');
+					
+					$("#boardTop5").find("tr:gt(0)").remove();
+					
+					for(var i in data){
+						
+						console.log(data[i]);
+						var $trBoard = $('<tr>');
+						var $tdBoardTitle = $('<td>').text(data[i].bTitle);
+						
+						$trBoard.append($tdBoardTitle);
+						
+						$table.append($trBoard);
+					}
+				}, error : function(data){
+					
+					console.log("top5 조회 실패!");
+				}
 
-				location.href = "/allRight/views/member/memberInsertView.jsp";
-
-			}
-
-			function logout() {
-
-				location.href = "mLogout.me";
-			}
-
-			/* function autoRefresh_div(){
 				
 				var currentLocation = window.location;
 				$("#refresh").load(currentLocation + ' #refresh')
@@ -368,6 +486,10 @@
 				});
 
 			});
+
+
+		});
+		
 
 		</script>
 

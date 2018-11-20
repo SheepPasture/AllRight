@@ -59,6 +59,7 @@
 	var result;
 
 	var a = [{title: 'title1', start:'2018-11-11' },{title: 'title1', start:'2018-11-11'}]
+	 
 	event = a; 
 
 			$.ajax({
@@ -192,7 +193,7 @@
 	      defaultDate: new Date(),
 	      navLinks: true, // can click day/week names to navigate views
 	      editable: true,
-	      eventLimit: true, // allow "more" link when too many events
+	      eventLimit: false, // 드래그옵션
 	      events: event
 	    
 	 	});
