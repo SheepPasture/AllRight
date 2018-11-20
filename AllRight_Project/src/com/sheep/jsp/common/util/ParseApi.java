@@ -34,21 +34,6 @@ public class ParseApi {
 		return nValue.getNodeValue();
 	}
 
-	private ArrayList<String> getTagValues(String tag, Element eElement) {
-
-		ArrayList<String> result = new ArrayList<String>();
-
-		for (int i = 0; i < eElement.getElementsByTagName(tag).getLength(); i++) {
-
-			NodeList nlList = eElement.getElementsByTagName(tag).item(i).getChildNodes();
-			result.add(nlList.item(i).toString());
-
-		}
-
-		return result;
-
-	}
-
 	private NodeList common(String url) {
 
 		NodeList nList = null;
@@ -99,8 +84,7 @@ public class ParseApi {
 			doc = builder.parse(is);
 			XPathFactory xpathFactory = XPathFactory.newInstance();
 			XPath xpath = xpathFactory.newXPath();
-			// XPathExpression expr =
-			// xpath.compile("/response/body/items/item");
+
 			XPathExpression expr = xpath.compile("//contents");
 			nList = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
 
@@ -138,8 +122,7 @@ public class ParseApi {
 			doc = builder.parse(is);
 			XPathFactory xpathFactory = XPathFactory.newInstance();
 			XPath xpath = xpathFactory.newXPath();
-			// XPathExpression expr =
-			// xpath.compile("/response/body/items/item");
+
 			XPathExpression expr = xpath.compile("//items/item");
 			nList = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
 
@@ -191,8 +174,6 @@ public class ParseApi {
 
 			NodeList nList = common(url);
 
-			LicenseInfo l = null;
-
 			for (int j = 0; j < nList.getLength(); j++) {
 
 				Node nNode = nList.item(j);
@@ -243,39 +224,24 @@ public class ParseApi {
 				NodeList child = nodeList.item(j).getChildNodes();
 
 				for (int k = 0; k < child.getLength(); k++) {
+					String info = child.item(k).getTextContent();
+					
+					if( info.startsWith("BODY")){
+						info = info.substring(info.lastIndexOf("}")+1);
+					}
+					
+					infoList.set(j, info);
 
-					// 자격증에 info 데이터 setting
-					infoList.set(j, child.item(k).getTextContent());
-					// System.out.println("====child.item(k)====\n"+child.item(k).getTextContent());
-					// 자격증 정보 다 담음.
 				}
 			}
 
 			licenseInfo.setlInfo(infoList);
-
-			/*
-			 * for(i = 0; i < licenseInfo.getlInfo().size(); i++){
-			 * System.out.println("====licenseInfo.getlInfo().get()====\n"+
-			 * licenseInfo.getlInfo().get(0));
-			 * System.out.println(licenseInfo.getlInfo().get(1));
-			 * System.out.println(licenseInfo.getlInfo().get(2)); }
-			 * licenseInfo.getlInfo().get(0); 에만 자격증 정보가 담김.
-			 */
 
 			i++;
 
 			resultList.add(licenseInfo);
 
 		}
-
-		/*
-		 * for(i = 0; i < resultList.size(); i++){
-		 * System.out.println("====resultList.get(i).getlInfo().get()====\n"+
-		 * resultList.get(i).getlInfo().get(0));
-		 * System.out.println(resultList.get(i).getlInfo().get(1));
-		 * System.out.println(resultList.get(i).getlInfo().get(2)); }
-		 * resultList.get(i).getlInfo().get(0)); 에만 자격증 정보가 담김.
-		 */
 
 		return resultList;
 	}
@@ -290,37 +256,38 @@ public class ParseApi {
 
 		for (int i = 1; i < 5; i++) {
 			String url = "";
-			
-			if(i == 1){
-			
+
+			if (i == 1) {
+
 				url = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getPEList?"
 						+ "ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
-			} else if (i == 2){
-				
+			} else if (i == 2) {
+
 				url = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getEList?"
 						+ "ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
-			} else if (i == 3){
-				
+			} else if (i == 3) {
+
 				url = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getMCList?"
 						+ "ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
 			} else {
-				
+
 				url = "http://openapi.q-net.or.kr/api/service/rest/InquiryTestInformationNTQSVC/getCList?"
 						+ "ServiceKey=Oi%2FEbWNVg5PdT0l9KErR0viwEKN9SzcsbQaeVE%2BxvL3%2FYY0FT1vmy3qVxHNj1HPH4vO0x6LdFRETO8txrEDnxQ%3D%3D";
 			}
-			
 
 			NodeList nodeList = commonDate(url);
 			for (int j = 0; j < nodeList.getLength(); j++) {
+
 				NodeList child = nodeList.item(j).getChildNodes();
+
 				for (int k = 0; k < child.getLength(); k++) {
+
 					Node node = child.item(k);
 
 					if (node.getNodeName() == "description") {
 						continue;
 					}
-					
-//					System.out.println(node.getTextContent());
+
 					list1.add(node.getTextContent());
 					list2.add(node.getTextContent());
 					list3.add(node.getTextContent());
@@ -329,7 +296,7 @@ public class ParseApi {
 				}
 			}
 		}
-		
+
 		list.addAll(list1);
 		list.addAll(list2);
 		list.addAll(list3);

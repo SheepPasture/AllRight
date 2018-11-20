@@ -162,40 +162,24 @@ public class LicenseDao {
 
 		String sql = prop.getProperty("updateLicense");
 
-		// UPDATE LICENSEINFO SET LINFO1 = ?, LINFO2 = ?, LINFO3 = ?, LCOST = ?
-		// WHERE LNO = ?
-		String text = "";
 		try {
 
 			pstmt = con.prepareStatement(sql);
 
 			for (int i = 0; i < list.size(); i++) {
-				// int j = 2;
-				// int k = 2;
-				//
-				// for(; j < list.get(i).getlInfo().size(); j++){
-				// pstmt.setString(1, list.get(i).getlInfo().get(j+1));
-				//
-				// }
-				text = list.get(i).getlNo();
+				
 				pstmt.setString(1, list.get(i).getlInfo().get(0));
 				pstmt.setString(2, list.get(i).getlInfo().get(1));
 				pstmt.setString(3, list.get(i).getlInfo().get(2));
 				pstmt.setString(4, list.get(i).getlCost());
 				pstmt.setString(5, list.get(i).getlNo());
 
-				// System.out.println("==========="+list.get(i).getlName()+"=============\n"+list.get(i).getlInfo().get(0));
-				//
-				// System.out.println(list.get(i).getlInfo().get(1));
-				//
-				// System.out.println(list.get(i).getlInfo().get(2));
-
 				result = pstmt.executeUpdate();
 
 			}
 
 		} catch (SQLException e) {
-			System.out.println("에러나는 자격증 >> " + text);
+	
 			e.printStackTrace();
 
 		} finally {
