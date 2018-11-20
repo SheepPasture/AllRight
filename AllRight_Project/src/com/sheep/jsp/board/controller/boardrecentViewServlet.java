@@ -9,33 +9,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sheep.jsp.announcement.model.service.ANNService;
-import com.sheep.jsp.announcement.model.vo.Announcement;
+import com.google.gson.Gson;
 import com.sheep.jsp.board.model.service.BoardService;
 import com.sheep.jsp.board.model.vo.Board;
-import com.sheep.jsp.board.model.vo.bPageInfo;
 
 /**
- * Servlet implementation class BoardListServlet
+ * Servlet implementation class boardrecentViewServlet
  */
-@WebServlet("/selectList.bo")
-public class BoardListServlet extends HttpServlet {
+@WebServlet("/boardrecentView.bo")
+public class boardrecentViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardListServlet() {
+    public boardrecentViewServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		ArrayList<Board> blist = new ArrayList<Board>();
-		ArrayList<Announcement> select2ANN = new ArrayList<Announcement>();
 		
 		BoardService bs = new BoardService();
 		
@@ -54,10 +50,7 @@ public class BoardListServlet extends HttpServlet {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		// 전체 게시글 수 조회하기
 		int listCount = bs.getListCount();
-		
-		System.out.println("전체 게시글 수 : "+ listCount);
 		
 		maxPage = (int)((double)listCount / limit + 0.9);
 		startPage = ((int)((double)currentPage / limit + 0.9) - 1 ) * limit + 1;
@@ -68,26 +61,11 @@ public class BoardListServlet extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		select2ANN = bs.selectList();
+		ArrayList<Board> blist = bs.boardrecentView(currentPage, limit);
 		
-		String page = "";
-
-		if(blist != null){
-			
-			bPageInfo bpi = new bPageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
-			
-			page="/views/board/boardList.jsp";
-			request.setAttribute("bpi", bpi);
-			request.setAttribute("blist", blist);
-			request.setAttribute("select2ANN", select2ANN);
-			
-		} else {
-			page = "/views/common/errorPage.jsp";
-			request.setAttribute("msg", "공지사항 조회에 실패했습니다. 관리자에게 문의해주세요.");
-			
-		}
+		response.setContentType("application/json; charset=UTF-8");
 		
-		request.getRequestDispatcher(page).forward(request, response);
+		new Gson().toJson(blist, response.getWriter());
 		
 	}
 
@@ -95,6 +73,7 @@ public class BoardListServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
