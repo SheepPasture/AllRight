@@ -299,14 +299,11 @@ html {
 	
 		<div class="container-fluid text-center">    
 			<div class="row content">
-				<br />
-				
 				<div class="col-sm-8 text-center">
-					<h2 align="left">공지사항</h2>
 					<table class="table table-hover" id="listArea">
 					<thead>
 						<tr>
-							<th class="col-md-1">글번호</th>
+							<th class="col-md-2">글번호</th>
 							<th class="col-md-6 text-center">글제목</th>
 							<th class="col-md-1">작성자</th>
 							<th class="col-md-1">조회수</th>
