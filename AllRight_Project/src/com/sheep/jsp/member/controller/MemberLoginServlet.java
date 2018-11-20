@@ -1,6 +1,7 @@
 package com.sheep.jsp.member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONObject;
 
 import com.sheep.jsp.member.exception.MemberException;
 import com.sheep.jsp.member.model.service.MemberService;
@@ -47,6 +50,8 @@ public class MemberLoginServlet extends HttpServlet {
 		String userId = request.getParameter("inputId");
 		String userPwd = request.getParameter("inputPassword");
 		String androidCheck = request.getParameter("android");
+		
+		PrintWriter out = response.getWriter();
 		
 		MemberService ms = new MemberService();
 		
@@ -89,21 +94,36 @@ public class MemberLoginServlet extends HttpServlet {
 			
 			if(androidCheck !=null){
 				System.out.println("안드로이드에서 로그인을 시도합니다.");
-//				response.sendRedirect("android.jsp");
-				request.setAttribute("member", m);
-				request.getRequestDispatcher("android.jsp").forward(request, response);
+				JSONObject jsonMember = new JSONObject();
+				jsonMember.put("userNo", m.getUserNo());
+				jsonMember.put("userName", m.getUserName());
+				jsonMember.put("userid",m.getUserId());
+				jsonMember.put("userDate",m.getUserDate());
+				jsonMember.put("finaldate",m.getFinalDate());
+				jsonMember.put("userEmail", m.getEmail());
+				jsonMember.put("userPwd",m.getUserPwd());
+				
+				out.println(jsonMember.toJSONString());
+				System.out.println("안드로이드 로그인 성공");
+				
 				
 			}else{
 				response.sendRedirect("index.jsp");
 			}
 		} catch(MemberException e){
 			
-			request.setAttribute("msg", "로그인 실패");
+			if(androidCheck !=null){
+				out.println();
+				System.out.println("안드로이드 로그인 실패");
+				
+			} else {
 			
-			request.setAttribute("exception", e);
-			
-			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
-			
+				request.setAttribute("msg", "로그인 실패");
+				
+				request.setAttribute("exception", e);
+				
+				request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
+			}
 		} 
 		
 	}

@@ -16,6 +16,7 @@
    String inputId = request.getParameter("inputId");
    String inputPassword = request.getParameter("inputPassword");
    String android = request.getParameter("android");   
+   System.out.println("아이디 : "+inputId+"\n비밀번호 : "+inputPassword+"\n안드로이드 : "+android);
    
    request.setAttribute("inputId", inputId);
    request.setAttribute("inputPassword",inputPassword);
