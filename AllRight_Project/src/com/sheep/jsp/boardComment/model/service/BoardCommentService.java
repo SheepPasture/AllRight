@@ -75,4 +75,27 @@ public class BoardCommentService {
 		return result;
 	}
 
+	public ArrayList<BoardComment> BoardCommentReport(int cno, int bno) {
+
+		Connection con = getConnection();
+		int result = 0;
+		
+		System.out.println("서비스 bno : "+bno);
+		ArrayList<BoardComment> bco = bcDao.selectList(con, bno);
+		
+		
+		if(bco!=null){
+			result = bcDao.boardCommentReport(con, cno);
+			
+			if(result>0) commit(con);
+			else rollback(con);
+		}
+		
+		close(con);
+		
+		return bco;
+		
+	}
+
 }
+

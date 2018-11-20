@@ -41,6 +41,8 @@ public class BoardSelectOneServlet extends HttpServlet {
 		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bno);
 		
 		System.out.println("selectOne clist: "+clist);
+
+		System.out.println("selectOne b: "+b);
 		
 		String page = "";
 		

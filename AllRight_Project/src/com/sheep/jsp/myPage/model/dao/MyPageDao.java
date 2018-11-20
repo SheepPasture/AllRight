@@ -52,9 +52,10 @@ public class MyPageDao {
 			int endRow = startRow + limit -1;
 			
 			pstmt.setInt(1,userno);
-			
-			pstmt.setInt(2, endRow);
-			pstmt.setInt(3, startRow);
+
+			pstmt.setInt(2,userno);
+			pstmt.setInt(3, endRow);
+			pstmt.setInt(4, startRow);
 			System.out.println("dao - userno " + userno + " :" + endRow+":"+startRow );
 			rset = pstmt.executeQuery();
 			
@@ -87,7 +88,7 @@ public class MyPageDao {
 	}
 
 	// 내 댓글 확인
-	public ArrayList<BoardComment> selectCList(Connection con, int userno) {
+	public ArrayList<BoardComment> selectCList(Connection con, int userno, int currentPage, int limit) {
 		ArrayList<BoardComment> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset =null;
@@ -95,8 +96,16 @@ public class MyPageDao {
 
 		try {
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, userno);
-			rset=pstmt.executeQuery();
+			int startRow = (currentPage -1) * limit + 1;
+			int endRow = startRow + limit -1;
+			
+			pstmt.setInt(1,userno);
+			pstmt.setInt(2,userno);
+			pstmt.setInt(3, endRow);
+			pstmt.setInt(4, startRow);
+			
+			rset = pstmt.executeQuery();
+			
 			
 			list = new ArrayList<BoardComment>();
 		
@@ -127,7 +136,7 @@ public class MyPageDao {
 		ArrayList<LicenseInfo> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset =null;
-		String sql = prop.getProperty("selectlInfo");
+		String sql = prop.getProperty("myLdate");
 		
 		try {
 			pstmt=con.prepareStatement(sql);
@@ -142,6 +151,8 @@ public class MyPageDao {
 			
 				li.setlName(rset.getString("LNAME"));
 				li.setlDate(rset.getString("LDATE"));
+				li.setlCategory(rset.getString("LCATEGORY"));
+				li.setlType(rset.getString("LTYPE"));
 				
 				/*long minus=0;
 				Date today = new Date(); 
@@ -226,6 +237,29 @@ public class MyPageDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset =null;
 		String sql = prop.getProperty("selectBPage");
+		
+	
+			try {
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, userno);
+				rset=pstmt.executeQuery();
+				while(rset.next()){
+					result = rset.getInt(1);
+				}
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+		
+		
+		
+		return result;
+	}
+	public int selectcPage(Connection con, int userno) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset =null;
+		String sql = prop.getProperty("selectCPage");
 		
 	
 			try {
