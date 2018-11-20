@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"  import = "com.sheep.jsp.announcement.model.vo.*, java.util.*, com.oreilly.servlet.*"%>
-<% Announcement a = (Announcement)request.getAttribute("announcement"); %>
+<% 
+	Announcement a = (Announcement)request.getAttribute("announcement"); 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,9 +22,9 @@
 
     .btn_area2 { text-align:right; padding-top:20px; font-size:14px; font-weight:600;   }
     .btn_area2 a { display:inline-block; padding:7px 20px; background:#666; color:#fff; }
-
-    table.view { width:100%; border-top:2px solid #000;    }
-    table.view tbody tr th { background:#f4f4f4; border-bottom:1px solid #cfcfcf; border-right:1px solid #cfcfcf; padding:10px 0;   }
+    
+    table.view { width:100%; border-top:2px solid #000; }
+    table.view tbody tr th { background:#f4f4f4; border-bottom:1px solid #cfcfcf; border-right:1px solid #cfcfcf; padding: 2px 2px 2px 10px;  }
     table.view tbody tr td { background:#fff; border-bottom:1px solid #cfcfcf; padding:10px 20px; line-height:170%;   }
     table.view tbody tr td.board_contents { padding:20px 20px; }
     table.view tbody tr td img { width:100%; height:auto; }
@@ -40,10 +42,8 @@
 				<br />
 				 <div class="col-sm-2 sidenav">
 					<p><a href="<%= request.getContextPath() %>/selectList.ann">공지사항</a></p>
-					<p><a href="<%= request.getContextPath() %>/views/community/communityList.jsp">커뮤니티</a></p>
-					<p>
-						<a href="#">자격증정보</a>
-					</p>
+					<p><a href="<%= request.getContextPath() %>/views/board/boardList.jsp">커뮤니티</a></p>
+					<p><a href="#">자격증정보</a></p>
 				</div> 
 				<div class="col-sm-8 text-left">
 					<h2 align="left">공지사항</h2>
@@ -56,8 +56,8 @@
 								<tr>
 									<th>제목</th>
  									<td class="title"><%= a.getAtitle()%></td>
-									<th >조회수</th>
-									<td><%= a.getAcount() + 1 %></td>
+									<th><div>글번호</div><br /><div>조회수</div></th>
+									<td><div><%= a.getAno() %></div><br /><div><%= a.getAcount() %></div></td>
 								</tr>
 								<tr>
 									<th>작성자</th>
@@ -81,11 +81,14 @@
 								} %>
 								<tr>
 									<th>이전글&nbsp; ▲</th>
-									<td colspan="3"><a href="">1번째 공지사항입니다.</a></td>
+									
+									<td colspan="3"><a href="#" onclick="before();">
+										<%= a.getAno()-1 %>번째 글입니다.
+									</a></td>
 								</tr>
 								<tr>
 									<th>다음글&nbsp; ▼</th>
-									<td colspan="3"><a href="">3번째 공지사항입니다.</a></td>
+									<td colspan="3"><a href="" onclick="after();"><%= a.getAno()+1 %>번째 글입니다.</a></td>
 								</tr>
 							</tbody>
 						</table>
@@ -94,9 +97,18 @@
 								<button onclick="edit();">수정</button>
 						</div> </form>
 						<script>
-							var ano = $("#ano").val();
+							function before(){
+								var ano = $("#ano").val();
+								location.href="/allRight/abefore.ann?"+"ano="+ano;
+							}
+							
+							function after(){
+								var ano = $("#ano").val();
+								location.href="/allRight/aAfter.ann?"+"ano="+ano;
+							}
 						
 							function edit(){
+								var ano = $("#ano").val();
 			 		 			$("#updateForm").attr("action", "<%=request.getContextPath()%>/aUpView.ann?ano="+ano);
 			 		 		}
 						

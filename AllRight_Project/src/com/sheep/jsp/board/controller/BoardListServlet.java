@@ -69,11 +69,7 @@ public class BoardListServlet extends HttpServlet {
 		}
 		
 		blist = bs.selectList(currentPage, limit);
-		select2ANN = bs.selectList2();
-		
-/*		System.out.println("blist: " + blist);*/
-		
-/*		System.out.println("Select2ann: "+select2ANN);*/
+		select2ANN = bs.selectList();
 		
 		String page = "";
 

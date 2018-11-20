@@ -1,6 +1,5 @@
 package com.sheep.jsp.boardComment.model.service;
 
-import com.sheep.jsp.board.model.vo.Board;
 import com.sheep.jsp.boardComment.model.dao.BoardCommentDao;
 import com.sheep.jsp.boardComment.model.vo.BoardComment;
 
@@ -76,7 +75,6 @@ public class BoardCommentService {
 		return result;
 	}
 
-
 	public ArrayList<BoardComment> BoardCommentReport(int cno, int bno) {
 
 		Connection con = getConnection();
@@ -100,3 +98,4 @@ public class BoardCommentService {
 	}
 
 }
+

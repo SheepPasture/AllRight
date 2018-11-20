@@ -6,7 +6,6 @@
 	ArrayList<BoardComment> clist = (ArrayList<BoardComment>) request.getAttribute("clist");
 	Member m = (Member)session.getAttribute("member");
  
-
 %>
 <!DOCTYPE html>
 <html>
@@ -467,7 +466,8 @@ sns_update_list li .sns_list_title {
 													<div class="replyWriteArea">
 														<form action="<%= request.getContextPath() %>/insertComment.bo" method="post">
 
-														<%-- <input type="hidden" name="writer" value="<%= bc.getUserId() %>"/> --%>
+														<input type="hidden" name="userName" value="<%= m.getUserName() %>"/>
+
 														<input type="hidden" name="userNo" value="<%= m.getUserNo() %>"	>											
 														<%-- <input type="hidden" name="bid" value="<%= b.getbId() %>"/> --%> 
 
@@ -528,7 +528,7 @@ sns_update_list li .sns_list_title {
 																			<a href="#">삭제</a>
 																		</div>
 																		 <% } else if(bco.getcLevel() < 3) { %>
-																		 	<input type="hidden" name="writer" value="<%=m.getUserId()%>"/>
+																		 	<input type="hidden" name="cwriter" value="<%=m.getUserId()%>"/>
 																			<input type="hidden" name="refcno" value="<%= bco.getcNo()%>" />
 																			<input type="hidden" name="clevel" value="<%=bco.getcLevel() %>" /> 
 																		 	

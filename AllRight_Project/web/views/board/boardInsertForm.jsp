@@ -83,7 +83,7 @@
 												CKEDITOR.replace('content', {
 													width: 650,
 													height: 300,
-													filebrowserImageUploadUrl: './upload.php'
+													filebrowserImageUploadUrl:'/allRight/imageUplaod'
 												});
 											 </script>
 										</div>

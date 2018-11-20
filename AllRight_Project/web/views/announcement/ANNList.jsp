@@ -28,12 +28,12 @@
 	<!-- HEADER -->
 	<%@ include file ="/views/common/header.jsp" %>
 	<!-- HEADER-END -->
-		<div class="container-fluid text-center">    
+		<div class="container-fluid text-center" >    
 			<div class="row content">
 				<br />
-				<div class="col-sm-2 sidenav">
+				<div class="col-sm-2 sidenav" >
 					<p><a href="selectList.ann">공지사항</a></p>
-					<p><a href="<%= request.getContextPath() %>/views/community/communityList.jsp">커뮤니티</a></p>
+					<p><a href="<%= request.getContextPath() %>/selectList.bo">커뮤니티</a></p>
 					<p><a href="#">자격증정보</a></p>
 				</div>
 				<div class="col-sm-8 text-center">
@@ -60,10 +60,10 @@
 							<% } %> 
 					</tbody>
 				</table>  
-			</div>
+			
 			<%-- 페이지 처리 --%>
 			<br /><br />
-			<div class="col-sm-8" align="center">
+			<div align="center">
 				<button onclick="location.href='<%= request.getContextPath() %>/selectList.ann?currentPage=1'"><<</button>
 				<%  if(currentPage <= 1){  %>
 				<button disabled><</button>
@@ -88,10 +88,10 @@
 				<button onclick="location.href='<%= request.getContextPath() %>/selectList.ann?currentPage=<%= maxPage %>'">>></button>
 			</div>
 			
- 		 	<div class="col-sm-10 text-right">
+ 		 	<div class="text-right">
 				<button type="button"><a href="views/announcement/ANNInsertForm.jsp">작성하기</a></button>
 			</div> 
-			
+			</div>
 		</div>
 	</div>
 	 	<script>

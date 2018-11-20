@@ -95,25 +95,11 @@ public class BoardDao {
 			while(rset.next()){
 				Board b = new Board();
 				
-			/*	b.setbId(rset.getInt("bid"));
-				b.setbNO(rset.getInt("bno"));
-				b.setbTitle(rset.getString("btitle"));
-				b.setbContent(rset.getString("bcontent"));
-				b.setbWriter(rset.getString("userName"));
-				b.setbCount(rset.getInt("bcount"));
-				b.setbFile(rset.getString("bfile"));
-				b.setbDate(rset.getDate("bdate"));
-				b.seteCount(rset.getInt("ecount"));
-				b.setReport(rset.getInt("report"));
-				b.setbLike(rset.getInt("blike"));
-				b.setUserNo(rset.getInt("userNo"));*/
-				
 				b.setbNO(rset.getInt("bno"));
 				b.setbTitle(rset.getString("btitle"));
 				b.setbWriter(rset.getString("BWRITER"));
 				b.setbCount(rset.getInt("bcount"));
 				b.setbDate(rset.getDate("bdate"));
-				b.setUserNo(rset.getInt("userNo"));
 				
 				blist.add(b);	
 			}
@@ -266,7 +252,7 @@ public class BoardDao {
 		
 	}
 	
-	public ArrayList<Announcement> selectList2(Connection con) {
+	public ArrayList<Announcement> selectList(Connection con) {
 		
 		ArrayList<Announcement> select2ANN = null;
 		Statement stmt = null;

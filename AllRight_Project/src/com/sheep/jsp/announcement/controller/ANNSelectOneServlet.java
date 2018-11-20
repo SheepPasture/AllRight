@@ -33,6 +33,7 @@ public class ANNSelectOneServlet extends HttpServlet {
 		
 		Announcement a = new ANNService().selectOne(ano);
 
+
 		System.out.println("SelectOne ano: "+ano);
 		
 		String page = "";
