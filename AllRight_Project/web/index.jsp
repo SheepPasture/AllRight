@@ -344,7 +344,8 @@
 				<input type="button" value="로그아웃" onclick="logout()" />
 
 			</div>
-
+			</div>
+			<% } %>
 
 			<div class="row content"><!-- 행 div  -->
 				<br />
