@@ -28,7 +28,7 @@
 		<option value='21'>사무 [워드프로세서]</option>
 		<option value='25'>판매 [전자상거래운용사]</option>
 		<option value='30'>회계 [전산회계운용사]</option>
-		<option va lue='70'>공인 [PC정비사]</option>
+		<option value='70'>공인 [PC정비사]</option>
 		<option value='75'>공인 [네트워크관리사]</option>
 		</select>
 		&nbsp;
@@ -146,22 +146,22 @@
 	<td align='center'>1과목</td>
 	<td align='center'>응시전<br />20문제<br /></td><td>&nbsp;</td>
 	<td colspan='1' align='center'><a href="<%=request.getContextPath() %>/question.qu" style='color:#79a5e4; font-weight:bold'>응시하기</a></td>
-	<td colspan='1' align='center'><a href="" style='color:#79a5e4; font-weight:bold'>응시하기</a></td></td></tr>
+	<td colspan='1' align='center'><a href="<%=request.getContextPath() %>/question.qu" style='color:#79a5e4; font-weight:bold'>응시하기</a></td></td></tr>
 	<tr style='padding:3px 2px 1px 2px' height='33'>
 	<td align='center'>2과목</td>
 	<td align='center'>응시전<br />10문제<br /></td><td>&nbsp;</td>
-	<td colspan='1' align='center'><a href="javascript:start_test(2, 'first', 21, 10)" style='color:#79a5e4; font-weight:bold'>응시하기</a></td>
-	<td colspan='1' align='center'><a href="javascript:start_testEach(2, 'first', 21, 10)" style='color:#79a5e4; font-weight:bold'>응시하기</a></td></td></tr>
+	<td colspan='1' align='center'><a href="" style='color:#79a5e4; font-weight:bold'>응시하기</a></td>
+	<td colspan='1' align='center'><a href="" style='color:#79a5e4; font-weight:bold'>응시하기</a></td></td></tr>
 	
 	<tr style='padding:3px 2px 1px 2px' height='33'>
 	<td align='center'>3과목</td><td align='center'>응시전<br />20문제<br /></td><td>&nbsp;</td>
-	<td colspan='1' align='center'><a href="javascript:start_test(3, 'first', 31, 20)" style='color:#79a5e4; font-weight:bold'>응시하기</a></td>
-	<td colspan='1' align='center'><a href="javascript:start_testEach(3, 'first', 31, 20)" style='color:#79a5e4; font-weight:bold'>응시하기</a></td></td></tr>
+	<td colspan='1' align='center'><a href="" style='color:#79a5e4; font-weight:bold'>응시하기</a></td>
+	<td colspan='1' align='center'><a href="" style='color:#79a5e4; font-weight:bold'>응시하기</a></td></td></tr>
 	
 	<tr style='padding:3px 2px 1px 2px' height='33'>
 	<td align='center'>4과목</td><td align='center'>응시전<br />10문제<br /></td><td>&nbsp;</td>
-	<td colspan='1' align='center'><a href="javascript:start_test(4, 'first', 51, 10)" style='color:#79a5e4; font-weight:bold'>응시하기</a></td>
-	<td colspan='1' align='center'><a href="javascript:start_testEach(4, 'first', 51, 10)" style='color:#79a5e4; font-weight:bold'>응시하기</a></td></td></tr>
+	<td colspan='1' align='center'><a href="" style='color:#79a5e4; font-weight:bold'>응시하기</a></td>
+	<td colspan='1' align='center'><a href="" style='color:#79a5e4; font-weight:bold'>응시하기</a></td></td></tr>
 	</table>
 	</td>
 	</tr>

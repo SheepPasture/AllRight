@@ -89,7 +89,10 @@ public class MemberLoginServlet extends HttpServlet {
 			
 			if(androidCheck !=null){
 				System.out.println("안드로이드에서 로그인을 시도합니다.");
-				response.sendRedirect("android.jsp");
+//				response.sendRedirect("android.jsp");
+				request.setAttribute("member", m);
+				request.getRequestDispatcher("android.jsp").forward(request, response);
+				
 			}else{
 				response.sendRedirect("index.jsp");
 			}

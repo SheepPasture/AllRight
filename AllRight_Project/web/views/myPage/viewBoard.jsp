@@ -5,11 +5,13 @@ ArrayList<Board> bl = (ArrayList<Board>)request.getAttribute("blist");
 ArrayList<BoardComment> cl = (ArrayList<BoardComment>)request.getAttribute("clist");
 String bmsg = (String)request.getAttribute("bmsg");
 String cmsg = (String)request.getAttribute("cmsg");
+
  int listCount = (int)request.getAttribute("listCount");
 int currentPage = (int)request.getAttribute("currentPage");
 int maxPage = (int)request.getAttribute("maxPage");
 int startPage = (int)request.getAttribute("startPage");
 int endPage = (int)request.getAttribute("endPage");   
+
 
 %>
 <!DOCTYPE html>
@@ -18,8 +20,10 @@ int endPage = (int)request.getAttribute("endPage");
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src='/allRight/resources/js/moment.min.js'></script>
+
 <script src='/allRight/resources/js/jquery.min.js'></script>
 </head>
+
 <body>
 	<!-- HEADER -->
 		<%@ include file="/views/common/header.jsp" %>
@@ -68,7 +72,7 @@ int endPage = (int)request.getAttribute("endPage");
 						
 						
 					</table> 
-				 	
+
 					<div class="pagingArea" align="center">
 						<button onclick="location.href='<%= request.getContextPath() %>/bMyList.bo?currentPage=1'"><<</button>
 						<%  if(currentPage <= 1){  %>
@@ -95,7 +99,7 @@ int endPage = (int)request.getAttribute("endPage");
 
 
 					</div>
-					 
+
 					<hr>
 					<h1><small>댓글 확인</small></h1>	
 					<table class="table table-hover">
@@ -129,6 +133,7 @@ int endPage = (int)request.getAttribute("endPage");
 
 					</div> 
 				</div>
+
 				 <script>
 				$(function(){
 						$("td").mouseout(function(){
@@ -138,7 +143,9 @@ int endPage = (int)request.getAttribute("endPage");
 							location.href="<%=request.getContextPath()%>/selectOne.bo?bno=" + bno;
 						});
 						
+
 						$("#cDetail td").mouseout(function(){
+
 							$(this).parent().removeAttr(css);
 						}).click(function(){
 							var bno = $(this).parent().children().eq(0).text();
@@ -148,9 +155,9 @@ int endPage = (int)request.getAttribute("endPage");
 						
 						
 						
-						
 					});
 				
+
 				</script> 
 			
 		</div>
