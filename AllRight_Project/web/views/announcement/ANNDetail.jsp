@@ -83,7 +83,7 @@
 									<th>이전글&nbsp; ▲</th>
 									
 									<td colspan="3"><a href="#" onclick="before();">
-										<%= a.getAno()-1 %>번째 글입니다.
+							<%-- 			<%= a.getAno()-1 %>번째 글입니다. --%><%= a.getAtitle() %>
 									</a></td>
 								</tr>
 								<tr>

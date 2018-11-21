@@ -31,13 +31,14 @@ public class CommentDeleteServlet extends HttpServlet {
 		
 		System.out.println("코멘드딜리트서블릿");
 		
+		int bid = Integer.parseInt(request.getParameter("bid"));
 		int cno = Integer.parseInt(request.getParameter("cno"));
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		
 		int result = new BoardCommentService().deleteComment(cno);
 		
 		if(result > 0) {
-			response.sendRedirect("selectOne.bo?bno="+bno);
+			response.sendRedirect("selectOne.bo?bid="+bid+"&bno="+bno);
 			System.out.println("댓글 삭제 성공!");
 		} else {
 			request.setAttribute("msg", "댓글 삭제 실패!");

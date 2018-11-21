@@ -39,17 +39,15 @@ public class BoardUpdateServlet extends HttpServlet {
 		System.out.println("selectOne bno: "+bno);
 		
 		Board b = new Board();
-		
+/*		b.setbId(bid);*/
 		b.setbTitle(title);
 		b.setbContent(content);
 		b.setbNO(bno);
 		
-		System.out.println("업데이트서블릿완료");
-		
 		int result = new BoardService().updateBoard(b, bid);
 		
 		if(result>0){
-			System.out.println("업데이트서블릿결과완료");
+			System.out.println("업데이트서블릿 result: "+result);
 			response.sendRedirect("selectOne.bo?bid"+bid+"&bno="+bno);
 		} else{
 			request.setAttribute("msg", "게시물 수정 실패");

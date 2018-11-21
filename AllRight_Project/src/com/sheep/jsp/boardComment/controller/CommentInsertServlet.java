@@ -34,15 +34,13 @@ public class CommentInsertServlet extends HttpServlet {
 		String cContent = request.getParameter("replyContent");
 		
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
-		int bno = Integer.parseInt(request.getParameter("bno"));
 		int bid = Integer.parseInt(request.getParameter("bid"));
+		int bno = Integer.parseInt(request.getParameter("bno"));
 		int cLevel = Integer.parseInt(request.getParameter("clevel"));
 		
-		System.out.println("userid : " +userName);
-		
 		BoardComment bco = new BoardComment();
+		bco.setbId(bid);
 		bco.setbNo(bno);
-/*		bco.setbId(bid);*/
 		bco.setUserNo(userNo);
 		bco.setcContent(cContent);
 		bco.setcLevel(cLevel);

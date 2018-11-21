@@ -72,7 +72,7 @@
 									<td>
 										<script type="text/javascript" src="/allRight/resources/ckeditor/ckeditor.js"></script> 
 										<div>
-											 <textarea name="content" class="ckeditor" rows="20" cols="70"><%= b.getbContent() %></textarea>
+											 <textarea name="content" id="content" class="ckeditor" rows="20" cols="70"><%= b.getbContent() %></textarea>
 											 <input id="bno" name="bno" type="hidden" value="<%= b.getbNO() %>"/>
 											 <input id="userName" name="userName" type="hidden" value="<%= b.getbWriter() %>"/>
 											 <script>
@@ -97,17 +97,11 @@
 						</table>
 					<br />
 				</div>
-			<br />
-			<%-- <div align="center">
- 				<button id="edit" class="btn btn-default" onclick="location.href=/allRight/bUpdate.bo">Edit</button>
-				<button id="del" class="btn btn-default" onclick="location.href='/allRight/bDelete.bo?bno='+<%= b.getbNO() %>">Delete</button>
-				<button id="back" class="btn btn-default" onclick="location.href='/allRight/selectList.bo'" type="reset">Back</button>
-			</div> --%>
-				<br />
+			<br /><br />
 		 		<script>	 		
 
-	 		 		var bno = $("#bno").val();
 	 		 		var bid = 1;
+	 		 		var bno = $("#bno").val();
 	 		 		
 					function edit(){
 						location.href="<%=request.getContextPath()%>/bUpdate.bo?bid=" + bid+"&bno="+bno;
