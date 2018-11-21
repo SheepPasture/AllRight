@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -91,9 +90,9 @@ public class BoardListServlet extends HttpServlet {
 			request.setAttribute("bpi", bpi);
 			request.setAttribute("blist", blist);
 			request.setAttribute("select2ANN", select2ANN);
-			
 			// 안드로이드 전송값
 			if(androidCheck != null){
+				System.out.println("안드로이드에서 접근합니다");
 				JSONArray arrBoard = new JSONArray();
 				for(int i=0;i<blist.size();i++){
 					
@@ -102,25 +101,29 @@ public class BoardListServlet extends HttpServlet {
 					jsonBoard.put("bno", blist.get(i).getbNO());
 					jsonBoard.put("btitle",blist.get(i).getbTitle());
 					jsonBoard.put("bwriter",blist.get(i).getbWriter());
-					jsonBoard.put("bcontent",blist.get(i).getbContent());
+					jsonBoard.put("bcount",blist.get(i).getbCount());
 					jsonBoard.put("bdate",blist.get(i).getbDate());
 					
 					arrBoard.add(jsonBoard);
 				}
+				
+				System.out.println(arrBoard.get(0));
 				out.println(arrBoard.toJSONString());
+//				out.println("fail");
+				out.close();
 			}
 			
 		} else {
 			if(androidCheck != null){
-				out.print("fail");
+				out.close();
 			}else{
 				page = "/views/common/errorPage.jsp";
 				request.setAttribute("msg", "공지사항 조회에 실패했습니다. 관리자에게 문의해주세요.");
 			}
 		}
 		
-		
 		request.getRequestDispatcher(page).forward(request, response);
+		
 		
 	}
 
