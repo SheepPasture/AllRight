@@ -6,7 +6,9 @@
 <%
 	Member m = (Member)session.getAttribute("member");
 	Point pt = (Point)session.getAttribute("point");
-  	Object level=session.getAttribute("level");   
+  Object level=session.getAttribute("level"); 
+  int ttc = (Integer) session.getAttribute("totalCount"); // 총 방문자 수 
+	int tdc = (Integer) session.getAttribute("todayCount"); // 오늘 방문자 수
 
 %>
 
@@ -88,6 +90,40 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/themify-icons.css" rel="stylesheet">
+  
+    <!-- 구글 차트 -->
+    <script type="text/javascript"
+	  src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script>
+	  google.charts.load('current', {packages: ['corechart', 'bar']});
+	  google.charts.setOnLoadCallback(drawBasic);
+
+	  function drawBasic() {
+
+	       var data = google.visualization.arrayToDataTable([
+	          ['구분', '방문자 수'],
+	          ['총 방문자', <%= ttc %>],
+	          ['오늘 방문자', <%= tdc %>],
+	        ]);
+
+	        var options = {
+	          title: '',
+	          chartArea: {width: '75%'},
+	         hAxis: {
+	            title: '방문자 수',
+	            minValue: 0
+	          },
+	          vAxis: {
+	            title: ' '
+	          }
+	        };
+  
+	        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+  
+	        chart.draw(data, options);
+	      }
+	  </script>
 
 	
 	
@@ -445,5 +481,6 @@
 		
 		
 		</script>
+
 
 </html>

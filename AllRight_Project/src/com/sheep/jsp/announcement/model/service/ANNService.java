@@ -117,11 +117,11 @@ public class ANNService {
 		
 	}
 
-	public int beforeANN(int ano) {
+	public ArrayList<Object> beforeANN(int ano) {
 		
 		Connection con = getConnection();
 		
-		int result = 0;
+		ArrayList<Object> result = null;
 		
 		result = aDao.beforeANN(con, ano);
 		
@@ -131,11 +131,11 @@ public class ANNService {
 		
 	}
 
-	public int afterANN(int ano) {
+	public ArrayList<Announcement> afterANN(int ano) {
 
 		Connection con = getConnection();
 		
-		int result = 0;
+		ArrayList<Announcement> result = null;
 		
 		result = aDao.afterANN(con, ano);
 		
