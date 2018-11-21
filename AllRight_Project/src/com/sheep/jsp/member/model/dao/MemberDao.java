@@ -349,15 +349,21 @@ public class MemberDao {
 		
 		try {
 			pstmt = con.prepareStatement(sql);
-
-			for(int i = 0; i<lNo.length;i++){
-				if(lNo[i]!=null){
-				/*pstmt.setInt(1,lNo[i]);*/
+			if(lNo.length==1){
+				pstmt.setInt(1,Integer.parseInt(lNo[0]));
 				pstmt.setInt(2,userNo);
-				pstmt.setInt(3,userNo);
-				result = pstmt.executeUpdate();
-				}
+				
+			}else{
+				pstmt.setInt(1,Integer.parseInt(lNo[0]));
+				pstmt.setInt(2,userNo);
+				sql = prop.getProperty("insertUserLicense");
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, userNo);
+				pstmt.setString(2, lNo[1]);
+				
 			}
+			result = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			throw new MemberException(e.getMessage());
 		} finally {

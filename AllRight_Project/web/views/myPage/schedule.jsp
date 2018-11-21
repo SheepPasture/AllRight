@@ -155,6 +155,10 @@
 											$('#tb').append(str);
 											j++;
 											if(j>6)break;
+				    					}else{
+				    						
+				    						str="<tr><td colspan='5'>최근 일정이 없습니다.</td></tr>"
+				    						$('#tb').append(str);
 				    					}
 			  	 					}
 		    			     }//for end
