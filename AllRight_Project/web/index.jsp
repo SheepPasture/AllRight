@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 
     pageEncoding="UTF-8" import="com.sheep.jsp.member.model.vo.Member"
-    import="com.sheep.jsp.point.model.vo.Point, com.sheep.jsp.news.model.vo.*,java.util.*, com.sheep.jsp.board.model.vo.*"%>
+    import="com.sheep.jsp.point.model.vo.Point, com.sheep.jsp.news.model.vo.*,java.util.*, com.sheep.jsp.board.model.vo.* , com.sheep.jsp.category.model.vo.*"%>
 <%
    Member m = (Member)session.getAttribute("member");
    Point pt = (Point)session.getAttribute("point");
      Object level=session.getAttribute("level");   
      ArrayList<Board> blist = (ArrayList<Board>)request.getAttribute("blist");
       ArrayList<News> nlist = (ArrayList<News>)request.getAttribute("list"); 
+      ArrayList<Category> clist = (ArrayList<Category>)request.getAttribute("clist");
 %>
 
 
@@ -155,59 +156,22 @@
 					<!-- <h2 align="left">뉴스</h2> -->
 
 					<!-- <div class="main" > -->
-					<div class="realtime"
-						style="float: left; width: 50%;border: 1px solid gold">
-						<h3>실시간 게시판 순위</h3>
-						<div id="refresh" class="col-sm-4" >
-							<table id="boardTop5">
-								<thead>
-									<tr>
-										<th></th>
-										<th scope="cols">실시간 게시판 순위</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
-						</div>
-						<div id="refresh" class="col-sm-4">
-							<table id="boardTop5">
-								<thead>
-									<tr>
-										<th>뉴스</th>
-									</tr>
-									<tr><
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
-						</div>
-						<!-- <div class="realtime-nav" >
+					<div class="realtime" style="float:left; width:50%; border: 1px solid black;">
+				<div id="refresh">
+			<table id="boardTop5" class="top5">
+				<thead>
+					<tr>
+						<th></th>
+						<th scope="cols">실시간 게시판 순위</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+			</div>
+			
 
-					<ul class="ah_l">
-						<li class="">
-							<span class="realtime-rank">1.</span>
-							<span class="realtime-rank">정보통신</span>
-						</li>
-						<li class="">
-							<span class="realtime-rank">2.</span>
-							<span class="realtime-rank">조리<span>
-						</li>
-						<li class="">
-							<span class="realtime-rank">3.</span>
-							<span class="realtime-rank">건축</span>
-						</li>
-						<li class="">
-							<span class="realtime-rank">4.</span>
-							<span class="realtime-rank">전기</span>
-						</li>
-						<li class="">
-							<span class="realtime-rank">5.</span>
-							<span class="realtime-rank">제과제빵</span>
-						</li>
-					</ul>
-				</div> -->
-					</div>
+			</div> 
 					<div >
 						<div class="col-sm-4" style="float: left; width: 50%;border: 1px solid gold">
 							<h1>공지사항</h1>
@@ -413,39 +377,71 @@
 			}
 			
 			setInterval('autoRefresh_div()', 3000); */
-
 			//실시간 순위
-			$(function() {
-
+			$(function(){
+				
 				$.ajax({
-
-					url : '/allRight/top5.bo',
-					dataType : "json",
+					
+					url: '/allRight/cTop5.ca',
+					dataType: "json",
 					type : "get",
-					success : function(data) {
-
+					success : function(data){
+						
 						$table = $('#boardTop5 tbody');
-
-						for ( var i in data) {
-
+						
+						$("#boardTop5").find("tr:gt(0)").remove();
+						
+						for(var i in data){
+							
 							console.log(data[i]);
 							var $trBoard = $('<tr>');
-							var $tdBoardTitle = $('<td>').text(data[i].bTitle);
-
+							var $tdBoardTitle = $('<td>').text(data[i].etitle);
+							
 							$trBoard.append($tdBoardTitle);
-
+							
 							$table.append($trBoard);
 						}
-					},
-					error : function(data) {
-
+					}, error : function(data){
+						
 						console.log("top5 조회 실패!");
-
 					}
-
+					
 				});
+				
+				timer = setInterval (function() {
+				$.ajax({
+					
+					url: '/allRight/cTop5.ca',
+					dataType: "json",
+					type : "get",
+					success : function(data){
+						
+						$table = $('#boardTop5 tbody');
+						
+						$("#boardTop5").find("tr:gt(0)").remove();
+						
+						for(var i in data){
+							
+							console.log(data[i]);
+							var $trBoard = $('<tr>');
+							var $tdBoardTitle = $('<td>').text(data[i].etitle);
+							
+							$trBoard.append($tdBoardTitle);
+							
+							$table.append($trBoard);
+						}
+					}, error : function(data){
+						
+						console.log("top5 조회 실패!");
+					}
+					
+				});
+				
+				}, 10000);
+				
 
-			});
+			}); 
+		     
 
 		</script>
 
