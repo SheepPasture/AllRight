@@ -1,6 +1,7 @@
 package com.sheep.jsp.board.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -8,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONObject;
 
 import com.sheep.jsp.board.model.service.BoardService;
 import com.sheep.jsp.board.model.vo.Board;
@@ -26,7 +29,6 @@ public class BoardSelectOneServlet extends HttpServlet {
      */
     public BoardSelectOneServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -36,6 +38,9 @@ public class BoardSelectOneServlet extends HttpServlet {
 		
 		int bid = Integer.parseInt(request.getParameter("bid"));
 		int bno = Integer.parseInt(request.getParameter("bno"));
+		String androidCheck = null;
+		
+		PrintWriter out = response.getWriter();
 		
 		Board b = new BoardService().selectOne(bid, bno);
 		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bno);
@@ -49,6 +54,15 @@ public class BoardSelectOneServlet extends HttpServlet {
 			page = "/views/board/boardDetail.jsp";
 			request.setAttribute("board", b);
 			request.setAttribute("clist", clist);
+			
+			if(androidCheck !=null){
+				System.out.println("안드로이드에서 게시물에 접근합니다.");
+				JSONObject boardOne = new JSONObject();
+				boardOne.put("btitle", b.getbTitle());
+				boardOne.put("bcontent", b.getbContent());
+				boardOne.put("bwriter", b.getbWriter());
+				
+			}
 			
 		} else{
 			page="/views/common/errorPage.jsp";
