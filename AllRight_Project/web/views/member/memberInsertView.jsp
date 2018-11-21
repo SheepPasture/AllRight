@@ -298,11 +298,13 @@
 		}
 
 		$("#insertForm").submit(function(event) {
+			var 	
+		
 			if ($("#userPwd").val() == "" || $("#userId").val() == "")
 				alert("아이디나 비밀번호는 필수 값입니다.");
 			else if ($('#userPwd').val() != $('#userPwd2').val())
 				alert("비밀번호 확인 값과 다릅니다.");
-			else
+			else if($("#userPwd").val()=)
 				return;
 			event.preventDefault();
 		});
