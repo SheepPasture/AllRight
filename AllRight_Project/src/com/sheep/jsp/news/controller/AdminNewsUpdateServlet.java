@@ -85,7 +85,7 @@ public class AdminNewsUpdateServlet extends HttpServlet {
 			
 		} else{
 			
-			page = "/views/common/errorPage.jsp";
+			page = "/views/common/adminErrorPage.jsp";
 			request.setAttribute("msg", "뉴스 수정 실패");
 			
 		}

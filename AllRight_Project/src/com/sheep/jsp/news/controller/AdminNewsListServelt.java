@@ -89,7 +89,7 @@ public class AdminNewsListServelt extends HttpServlet {
 					request.setAttribute("firstlist", firstlist);
 				} else {
 					
-					page = "/views/common/errorPage.jsp";
+					page = "/views/common/adminErrorPage.jsp";
 					request.setAttribute("msg", "뉴스 조회 실패");
 				}
 				

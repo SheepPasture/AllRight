@@ -11,16 +11,16 @@ import com.sheep.jsp.announcement.model.service.ANNService;
 import com.sheep.jsp.announcement.model.vo.Announcement;
 
 /**
- * Servlet implementation class AdminANNInsertServlet
+ * Servlet implementation class AdminANNUpdateViewServlet
  */
-@WebServlet("/aInsert.ad")
-public class AdminANNInsertServlet extends HttpServlet {
+@WebServlet("/annUpView.ad")
+public class AdminANNUpdateViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminANNInsertServlet() {
+    public AdminANNUpdateViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,25 +29,24 @@ public class AdminANNInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
+		int ano = Integer.parseInt(request.getParameter("ano"));
+
+		System.out.println("annupdateviews");
 		
-		Announcement a = new Announcement();
+		Announcement a = new ANNService().selectOne(ano);
 		
-		System.out.println(title + content);
+		String page = "";
 		
-		a.setAtitle(title);
-		a.setAcontent(content);
-		
-		int result = new ANNService().insertANN(a);
-		
-		if(result > 0){
-			response.sendRedirect("selectList.ad");
-		} else{
-			request.setAttribute("msg", "공지 작성 실패");
+		if(a!=null){
+			page = "/views/admin/ANNUpdate.jsp";
+			request.setAttribute("announcement", a);
 			
-			request.getRequestDispatcher("/views/common/adminErrorPage.jsp").forward(request, response);
+		} else {
+			page = "/views/common/adminErrorPage.jsp";
+			request.setAttribute("msg", "공지 수정 실패!");
 		}
+		
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**

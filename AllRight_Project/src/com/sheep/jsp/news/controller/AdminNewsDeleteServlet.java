@@ -53,7 +53,7 @@ if(!ServletFileUpload.isMultipartContent(request)){
 		} else{
 			
 			request.setAttribute("msg", "뉴스 삭제 실패");
-			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/common/adminErrorPage.jsp").forward(request, response);
 		}
 	}
 
