@@ -83,13 +83,13 @@
                         <p>뉴스 게시판 수정</p>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="<%= request.getContextPath() %>/bReportList.ad">
                         <i class="ti-face-sad"></i>
                         <p>신고된 글 관리</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="<%= request.getContextPath() %>/bReportList.ad">
                         <i class="ti-face-sad"></i>
                         <p>신고된 댓글 관리</p>
