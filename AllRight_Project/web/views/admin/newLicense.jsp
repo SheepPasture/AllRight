@@ -164,7 +164,7 @@
             
             	<h1>자격증 입력을 위해 버튼을 눌러 주세요</h1>
 				<br />
-				<button id="push">자격증 입력</button>
+				<button class="btn btn-primary" id="push">자격증 입력</button>
 				<script>
 					$("#push").click(function(){
 						alert("확인을 누르시면 DB에 자격증 저장을 시작 합니다. \n잠시 기다려 주세요!");
