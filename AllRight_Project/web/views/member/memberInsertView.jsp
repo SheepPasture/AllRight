@@ -131,14 +131,15 @@
 
 			<div class="form-group">
 				<label class="col-sm-3 control-label" for="userId">관심자격증</label>
-				<div>
-					<select name="selectCategory" id="selectCategory">
+				<div id = "selectDiv">
+					<!-- <select name="selectCategory" id="selectCategory">
 						<option value="">선택하세요</option>
 
 					</select> <select name="licenseName" id="licenseName">
 						<option value="">선택하세요</option>
 
-					</select>
+					</select> -->
+					<button onclick="addSelect();">추가</button>
 					<script>
 						/* var str = "<option>선택하세요</option>";
 
@@ -152,56 +153,70 @@
 							success : function(data) {
 								console.log(data);
 								console.log(data.list)
-								var list = data.lArray;
-								var l = data.list;
-								/* console.log(l);
-								console.log(l[0].listName); */
-								/* 	  console.log(l);  */
-								/* console.log(list.length);
-								console.log(list[0].category); */
-								/* console.log(lArray.category);  */
-								for (var i = 0; i < l.length; i++) {
 
-									$('#selectCategory').append(
-											"<option>" + l[i].listName
-													+ "</option>");
-
-								}
-
-								$('#selectCategory').change(sCategory);
-								function sCategory() {
-
-									$('#licenseName').children().remove();
-									for (var i = 0; i < list.length; i++) {
-
-										var value = $('option:selected').val();
-										console.log(value);
-
-										if (list[i].category == value) {
-											$('#licenseName').append(
-													"<option value="+list[i].lno+">"
-															+ list[i].name
-															+ "</option>");
-
-										}
-
-									}
-								}
-								;
-								$('#licenseName').change(lCategory);
-								function lCategory() {
-									var value = $(
-											'#licenseName option:selected')
-											.val();
-									console.log(value);
-								}
-								;
+								selectOption(data);
 
 							},
 							error : function() {
 								alert("실패");
 							}
 						});
+
+						function selectOption(data) { /* selectOption 시작 */
+							$('#selectDiv').append('<select name="selectCategory" id="selectCategory">'+
+							'<option value="">선택하세요</option>'+
+
+							'</select> <select name="licenseName" id="licenseName">'+
+							'<option value="">선택하세요</option>'+
+
+							'</select>');
+							var list = data.lArray;
+							var l = data.list;
+
+							for (var i = 0; i < l.length; i++) {
+
+								$('#selectCategory').append(
+										"<option>" + l[i].listName
+												+ "</option>");
+
+							}
+
+							$('#selectCategory').change(sCategory);
+							function sCategory() {
+
+								$('#licenseName').children().remove();
+								for (var i = 0; i < list.length; i++) {
+
+									var value = $('option:selected').val();
+									console.log(value);
+
+									if (list[i].category == value) {
+										$('#licenseName').append(
+												"<option value="+list[i].lno+">"
+														+ list[i].name
+														+ "</option>");
+
+									}
+
+								}
+							}
+							;
+							$('#licenseName').change(lCategory);
+							function lCategory() {
+								var value = $('#licenseName option:selected')
+										.val();
+								console.log(value);
+							}
+							;
+
+						}/*selectOption 끝  */
+						
+						function addSelect(){
+
+							selectOption(data);
+						}
+						
+						
 					</script>
 
 				</div>
