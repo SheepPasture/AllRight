@@ -48,9 +48,8 @@ public class BoardCommentDao {
 			pstmt.setString(3, bco.getcContent());
 			pstmt.setInt(4, bco.getcLevel());
 			pstmt.setString(5, bco.getUserId());
-/*			pstmt.setInt(6, bco.getRefcno());*/
 
-			if(bco.getRefcno() > 0) {
+/*			if(bco.getRefcno() > 0) {
 				
 				pstmt.setInt(6, bco.getRefcno());
 				
@@ -58,7 +57,7 @@ public class BoardCommentDao {
 				
 				pstmt.setNull(6, java.sql.Types.NULL);
 			}
-			
+			*/
 			result = pstmt.executeUpdate();
 			
 		
@@ -71,7 +70,7 @@ public class BoardCommentDao {
 		return result;
 	}
 
-	public ArrayList<BoardComment> selectList(Connection con, int bid, int bno) {
+	public ArrayList<BoardComment> selectList(Connection con, int bno) {
 		ArrayList<BoardComment> clist = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -82,19 +81,19 @@ public class BoardCommentDao {
 		
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setInt(1, bid);
-			pstmt.setInt(2, bno);
+			pstmt.setInt(1, bno);
 			
 			rset = pstmt.executeQuery();
 			
 			clist = new ArrayList<BoardComment>();
+			
+			System.out.println("보드코멘드dao: "+clist);
 			
 			while(rset.next()) {
 				BoardComment comment = new BoardComment();
 	
 				comment.setcNo(rset.getInt("cno"));
 				comment.setbNo(bno);
-				comment.setbId(bid);
 				comment.setUserNo(rset.getInt("userNo"));
 				comment.setcPwd(rset.getInt("cPwd"));
 				comment.setcContent(rset.getString("ccontent"));

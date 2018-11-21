@@ -12,11 +12,11 @@ public class BoardCommentService {
 
 	private BoardCommentDao bcDao = new BoardCommentDao();
 	
-	public ArrayList<BoardComment> selectList(int bid, int bno){
+	public ArrayList<BoardComment> selectList(int bno){
 
 		Connection con = getConnection();
 		
-		ArrayList<BoardComment> clist = bcDao.selectList(con, bid, bno);
+		ArrayList<BoardComment> clist = bcDao.selectList(con, bno);
 		
 		close(con);
 		
@@ -75,13 +75,13 @@ public class BoardCommentService {
 		return result;
 	}
 
-	public ArrayList<BoardComment> BoardCommentReport(int cno, int bid, int bno) {
+	public ArrayList<BoardComment> BoardCommentReport(int cno, int bno) {
 
 		Connection con = getConnection();
 		int result = 0;
 		
 		System.out.println("서비스 bno : "+bno);
-		ArrayList<BoardComment> bco = bcDao.selectList(con, bid, bno);
+		ArrayList<BoardComment> bco = bcDao.selectList(con, bno);
 		
 		
 		if(bco!=null){

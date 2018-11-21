@@ -38,7 +38,7 @@ public class BoardReportServlet extends HttpServlet {
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		
 		Board b = new BoardService().boardReport(bid, bno);
-		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bid, bno);
+		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bno);
 		
 		System.out.println("b: "+b);
 		System.out.println("c:" +clist);
