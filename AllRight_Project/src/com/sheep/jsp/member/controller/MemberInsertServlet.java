@@ -38,14 +38,17 @@ public class MemberInsertServlet extends HttpServlet {
 		String email = request.getParameter("inputEmail");
 		
 		// 자격증 선택시 lno값
-		String lNo = request.getParameter("licenseName");
-		
+		String lNo[]=new String[2];
+				lNo[0] = request.getParameter("licenseName");
+				lNo[1] = request.getParameter("licenseName1");
+				
+		System.out.println("lno : " +lNo[0] + ":" + lNo[1]);	
 		MemberService ms = new MemberService();
 		PointService ps = new PointService();
 		
 		Member m = new Member(userId,pass,name,email);
 		
-		UserLicense u =new UserLicense();
+		/*UserLicense u =new UserLicense();*/
 		
 		System.out.println(m);
 		

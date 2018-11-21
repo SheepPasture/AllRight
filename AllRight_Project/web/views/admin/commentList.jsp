@@ -8,7 +8,7 @@
 	Point pt = (Point)session.getAttribute("point");
   	Object level=session.getAttribute("level");   
   	ArrayList<BoardComment> list = (ArrayList<BoardComment>)request.getAttribute("list");
-  	bPageInfo bpi = (bPageInfo)request.getAttribute("bpi");
+  	bcPageInfo bpi = (bcPageInfo)request.getAttribute("bpi");
 	int listCount = bpi.getListCount();
 	int currentPage = bpi.getCurrentPage();
 	int maxPage = bpi.getMaxPage();

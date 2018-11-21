@@ -3,6 +3,7 @@ package com.sheep.jsp.member.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 
+import com.sheep.jsp.licenseinfo.model.service.LicenseService;
+import com.sheep.jsp.licenseinfo.model.vo.LicenseInfo;
 import com.sheep.jsp.member.exception.MemberException;
 import com.sheep.jsp.member.model.service.MemberService;
 import com.sheep.jsp.member.model.vo.Member;
@@ -57,9 +60,12 @@ public class MemberLoginServlet extends HttpServlet {
 		PointService ps = new PointService();
 
 		Member m = new Member(userId, userPwd);
-
+		
 		Point pt = null;
-
+		ArrayList<LicenseInfo> li = new ArrayList<LicenseInfo>();
+		
+		LicenseService ls = new LicenseService();
+		
 		Object level = new Object();
 		try {
 
@@ -70,7 +76,11 @@ public class MemberLoginServlet extends HttpServlet {
 			System.out.println("안드로이드 체크 : " + androidCheck);
 
 			pt = ps.selectPoint(m.getUserNo());
-
+			
+			li=ls.selectMyLicenseInfo(m.getUserNo());
+			
+			
+			System.out.println(li);
 			Date today = new Date(new java.util.Date().getTime());
 
 			if (ms.checkDate(m.getUserNo()) == 1) {
@@ -90,7 +100,7 @@ public class MemberLoginServlet extends HttpServlet {
 			session.setAttribute("member", m);
 			session.setAttribute("point", pt);
 			session.setAttribute("level", level);
-
+			session.setAttribute("li", li);
 			if (androidCheck != null) {
 				System.out.println("안드로이드에서 로그인을 시도합니다.");
 				JSONObject jsonMember = new JSONObject();
