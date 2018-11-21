@@ -239,12 +239,12 @@ public class ANNDao {
 		return listCount;
 	}
 
-	public ArrayList<Object> beforeANN(Connection con, int ano) {
+public int beforeANN(Connection con, int ano) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		ArrayList<Object> result = new ArrayList<Object>();
+		int result = 0;
 		
 		String sql = prop.getProperty("beforeANN");
 		
@@ -257,10 +257,7 @@ public class ANNDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()){
-				result.add(0, rset.getString(3));
-				result.add(1, rset.getInt(4));
-				
-				System.out.println("result: "+result);
+				result = rset.getInt(4);
 			}
 			
 			
@@ -276,12 +273,12 @@ public class ANNDao {
 		
 	}
 
-	public ArrayList<Announcement> afterANN(Connection con, int ano) {
+	public int afterANN(Connection con, int ano) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		ArrayList<Announcement> result = new ArrayList<>();
+		int result = 0;
 		
 		String sql = prop.getProperty("afterANN");
 		
@@ -293,11 +290,8 @@ public class ANNDao {
 
 			rset = pstmt.executeQuery();
 			
-			if(rset.next()){ 
-			
-			result.add(0, rset.getString(3));
-			result.add(1, rset.getInt(4));
-			
+			if(rset.next()){
+				result = rset.getInt(4);
 				
 				System.out.println("resut: "+result);
 			}

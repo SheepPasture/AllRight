@@ -40,7 +40,6 @@ public class ANNSelectOneServlet extends HttpServlet {
 		if(a != null){
 			page = "/views/announcement/ANNDetail.jsp";
 			request.setAttribute("announcement", a);
-			request.setAttribute("fAno", fANo);
 		} else{
 			page="/views/common/errorPage.jsp";
 			request.setAttribute("msg", "공지사항 상세보기에 실패하였습니다. 관리자에게 문의바랍니다.");

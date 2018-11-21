@@ -37,7 +37,6 @@ public class ANNListServlet extends HttpServlet {
 		ANNService as = new ANNService();
 		
 		// -- 페이징 처리 (데이터를 일정량 끊어서 가져오는 기술) -- //
-		
 		int startPage; // 한 번에 표시되는 페이지의 첫 페이지 (1, 2, 3, 4, 5) --> 1
 		int endPage;	// 한 번에 표시되는 페이지의 마지막 페이지 (1, 2, 3, 4, 5) --> 5
 		int maxPage;	// 전체 페이지의 마지막 페이지 (21, 22)  --> 22
