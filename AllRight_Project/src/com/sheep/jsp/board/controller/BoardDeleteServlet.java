@@ -35,7 +35,7 @@ public class BoardDeleteServlet extends HttpServlet {
 		int result = new BoardService().deleteBoard(bid, bno);
 		
 		if(result>0){
-			response.sendRedirect("selectList.bo?bid"+bid);
+			response.sendRedirect("selectList.bo?bid="+bid);
 			System.out.println();
 		} else {
 			request.setAttribute("msg", "게시물 삭제 불가");

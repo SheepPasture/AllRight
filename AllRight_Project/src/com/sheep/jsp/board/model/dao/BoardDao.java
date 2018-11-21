@@ -57,7 +57,6 @@ public class BoardDao {
 			pstmt.setInt(1, bid);
 			rset = pstmt.executeQuery();
 			if(rset.next())listCount = rset.getInt(1);
-			System.out.println("getListCount dao: "+listCount);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -163,8 +162,8 @@ public class BoardDao {
 			if(rset.next()){
 				b = new Board();
 				
-				b.setbId(rset.getInt(1));
-				b.setbNO(rset.getInt(2));
+				b.setbNO(rset.getInt(1));
+				b.setbId(rset.getInt(2));
 				b.setbTitle(rset.getString(3));
 				b.setbContent(rset.getString(4));
 				b.setbWriter(rset.getString(5));
@@ -199,8 +198,6 @@ public class BoardDao {
 			
 			result = pstmt.executeUpdate();
 			
-			System.out.println("updateCount dao: "+result);
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
@@ -227,8 +224,6 @@ public class BoardDao {
 			
 			result = pstmt.executeUpdate();
 			
-			System.out.println("deleteBoard dao: "+result);
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -245,14 +240,12 @@ public class BoardDao {
 		
 		String sql = prop.getProperty("updateBoard");
 		
-		System.out.println("업데이트dao오나료");
-		
 		try {
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, b.getbTitle());
 			pstmt.setString(2, b.getbContent());
-			pstmt.setInt(3, bid);
+			pstmt.setInt(3, b.getbId());
 			pstmt.setInt(4, b.getbNO());
 			
 			result = pstmt.executeUpdate();
