@@ -219,7 +219,104 @@ css 작업 ing. -->
 
 </div></div></table></div>
 
-<div id="div01" style="display: none; width: 100%; height: 100%;">
+<div id="div01" style="display: block; width: 100%; height: 100%;">
+<table width="100%" cellspacing="0" cellspacing="0" style="margin:0px" border="1">
+	<% if ( qs != null) { %> 
+<td align="left" valign="top"> 
+	<!-- 왼쪽 문제 -->
+	<div id="que_01" style="margin:0px; position:absolute; width:55px; height:45px">
+<% for(int i = 0; i < 3; i++, qNo+=4) { %>
+<% Question question = qs.get(qNo); %>
+	</div>
+	
+<table style="margin-bottom:10px; width:100%; height:150px; border:0" cellspacing="0" cellspacing="5">
+	<tbody>
+		<tr>
+			<td style="padding-left:8px; width:25px; text-align:left" valign="top"  ><b><%= question.getqNo() %>. </b></td>
+			<td style="width:98%" valign="top" ><b><%= question.getqContent() %></b>
+			<% if(question.getqNo()==8) { %><img src="resources/images/answer/rate8.png"/><% } %>
+			<span id="rate8" class="rightRate" style="display:none">[정답률: 68%]</span></td>
+		</tr>
+		<% for(int j = qNo; j < qNo+4; j++){ %>
+		<tr>
+			<td></td>
+			<td><%= qs.get(j).getqPre() %></td>
+		</tr>
+		
+		<% } %>
+	</tbody>
+</table>
+<% } %>
+
+<td valign="top" style="padding-top:5px; border-left:none"> 
+	<!-- 오른쪽 문제 -->
+<% for(int i = 0; i < 2; i++, qNo+=4) { %>
+<% Question question = qs.get(qNo); %>
+<table style="margin-bottom:10px; width:100%; height:150px; border:0" cellspacing="0" cellspacing="5">
+	<tbody>
+		<tr>
+			<td style="padding-left:8px; width:25px; text-align:left" valign="top"><b><%= question.getqNo() %>. </b></td>
+			<td style="width:98%" valign="top"><b><%= question.getqContent() %></b>
+			<% if(question.getqNo()==9){ %><img src="resources/images/answer/rate9.png"/>
+			<% } %></td>
+			
+		</tr>
+		
+		
+		<% for(int j = qNo; j < qNo+4; j++){ %>
+		<tr>
+		
+			<td></td>
+			<td><%= qs.get(j).getqPre() %>
+			<% if(question.getqNo()==9){ %><img src="resources/images/answer/rate9-1.png"><% } %></td>
+		</tr>
+		<% } %>
+		</tbody>
+</table>
+<% } %>
+<td style="padding-left:4px; border:none; width:130px;" valign="top">
+<!-- 답안지 -->
+<div id="ans0" style="display: block; width: 100%; height: 100%; padding-left: 0px;">
+<table width="100%" height="30" align="center" cellspacing="0" cellspacing="2">
+<tbody>
+	<tr>
+		<td align="center" colspan="5" style="color:tomato; font-weight:bold; 
+		border:solid 0px #ccc; border-bottom:none">1과목</td>
+	</tr>
+	<% for(int i = 1 ; i < 21 ; i++) { %>
+	<tr style="height:0px;">
+		<td style="color:green; font-weight:bold; text-align:center;"><%= i %></td>
+		<td width="22px" align="center" valign="middle">①</td>
+		<td width="22px" align="center" valign="middle">②</td>
+		<td width="22px" align="center" valign="middle">③</td>
+		<td width="22px" align="center" valign="middle">④</td>
+	</tr>
+	<% } %>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p align="right" style="display:block; margin: 10px 15px 5px 15px;">
+<input class="btn btn-danger" type="button" value="답안제출" style="width:90px"></p>
+
+<table width="100%" cellspacing="0" cellspacing="5">
+	<tbody>
+		<tr>
+			<td width="450px" align="right" style="padding-right:10px;">
+			<input class="btn btn-success" type="button" value="이전" onclick="previous_div('1과목, 0, 0')" class="btn01_qpass"/>
+</td>
+			<td style="padding-left:0px;" >
+			<input class="btn btn-success" type="button" value="다음" onclick="next_div('1과목, 0, 0')" class="btn01_qpass"/>
+</td>
+		</tr>
+	</tbody>
+</table>
+<% } %>
+<!-- 문제 끝. -->
+</div></td></tr></tbody>
+<div id="div02" style="display: ; width: 100%; height: 100%;">
 <table width="100%" cellspacing="0" cellspacing="0" style="margin:0px" border="1">
 	<% if ( qs != null) { %> 
 <td align="left" valign="top"> 
@@ -306,7 +403,7 @@ css 작업 ing. -->
 <% } %>
 <!-- 문제 끝. -->
 </div></td></tr></tbody>
-<div id="div02" style="display: none; width: 100%; height: 100%;">
+<div id="div03" style="display: block; width: 100%; height: 100%;">
 <table width="100%" cellspacing="0" cellspacing="0" style="margin:0px" border="1">
 	<% if ( qs != null) { %> 
 <td align="left" valign="top"> 
@@ -319,94 +416,8 @@ css 작업 ing. -->
 	<tbody>
 		<tr>
 			<td style="padding-left:8px; width:25px; text-align:left" valign="top"  ><b><%= question.getqNo() %>. </b></td>
-			<td style="width:98%" valign="top" ><b><%= question.getqContent() %></b>
-			<span id="rate1" style="display:none">[정답률: 72%]</span></td>
-		</tr>
-		<% for(int j = qNo; j < qNo+4; j++){ %>
-		<tr>
-			<td></td>
-			<td><%= qs.get(j).getqPre() %></td>
-		</tr>
-		<% } %>
-	</tbody>
-</table>
-<% } %>
-
-<td valign="top" style="padding-top:5px; border-left:none"> 
-	<!-- 오른쪽 문제 -->
-<% for(int i = 0; i < 2; i++, qNo+=4) { %>
-<% Question question = qs.get(qNo); %>
-<table style="margin-bottom:10px; width:100%; height:150px; border:0" cellspacing="0" cellspacing="5">
-	<tbody>
-		<tr>
-			<td style="padding-left:8px; width:25px; text-align:left" valign="top"><b><%= question.getqNo() %>. </b></td>
-			<td style="width:98%" valign="top"><b><%= question.getqContent() %></b></td>	
-		</tr>
-		<% for(int j = qNo; j < qNo+4; j++){ %>
-		<tr>
-			<td></td>
-			<td><%= qs.get(j).getqPre() %></td>
-		</tr>
-		<% } %>
-		</tbody>
-</table>
-<% } %>
-<td style="padding-left:4px; border:none; width:130px;" valign="top">
-<!-- 답안지 -->
-<div id="ans0" style="display: block; width: 100%; height: 100%; padding-left: 0px;">
-<table width="100%" height="30" align="center" cellspacing="0" cellspacing="2">
-<tbody>
-	<tr>
-		<td align="center" colspan="5" style="color:tomato; font-weight:bold; 
-		border:solid 0px #ccc; border-bottom:none">1과목</td>
-	</tr>
-	<% for(int i = 1 ; i < 21 ; i++) { %>
-	<tr style="height:0px;">
-		<td style="color:green; font-weight:bold; text-align:center;"><%= i %></td>
-		<td width="22px" align="center" valign="middle">①</td>
-		<td width="22px" align="center" valign="middle">②</td>
-		<td width="22px" align="center" valign="middle">③</td>
-		<td width="22px" align="center" valign="middle">④</td>
-	</tr>
-	<% } %>
-</tbody>
-</table>
-</td>
-</tr>
-</tbody>
-</table>
-<p align="right" style="display:block; margin: 10px 15px 5px 15px;">
-<input class="btn btn-danger" type="button" value="답안제출" style="width:90px"></p>
-
-<table width="100%" cellspacing="0" cellspacing="5">
-	<tbody>
-		<tr>
-			<td width="450px" align="right" style="padding-right:10px;">
-			<input class="btn btn-success" type="button" value="이전" onclick="previous_div('1과목, 0, 0')" class="btn01_qpass"/>
-</td>
-			<td style="padding-left:0px;" >
-			<input class="btn btn-success" type="button" value="다음" onclick="next_div('1과목, 0, 0')" class="btn01_qpass"/>
-</td>
-		</tr>
-	</tbody>
-</table>
-<% } %>
-<!-- 문제 끝. -->
-</div></td></tr></tbody>
-<div id="div03" style="display: none; width: 100%; height: 100%;">
-<table width="100%" cellspacing="0" cellspacing="0" style="margin:0px" border="1">
-	<% if ( qs != null) { %> 
-<td align="left" valign="top"> 
-	<!-- 왼쪽 문제 -->
-	<div id="que_01" style="margin:0px; position:absolute; width:55px; height:45px">
-<% for(int i = 0; i < 3; i++, qNo+=4) { %>
-<% Question question = qs.get(qNo); %>
-	</div>
-<table style="margin-bottom:10px; width:100%; height:150px; border:0" cellspacing="0" cellspacing="5">
-	<tbody>
-		<tr>
-			<td style="padding-left:8px; width:25px; text-align:left" valign="top"  ><b><%= question.getqNo() %>. </b></td>
-			<td style="width:98%" valign="top" ><b><%= question.getqContent() %></b>
+			<td style="width:98%" valign="top" ><b><%= question.getqContent() %></b><br>
+			<% if(question.getqNo()==16){ %><img src="resources/images/answer/rate16.png"/><% } %>
 			<span id="rate1" style="display:none">[정답률: 72%]</span></td>
 		</tr>
 		<% for(int j = qNo; j < qNo+4; j++){ %>
