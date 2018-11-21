@@ -686,8 +686,8 @@ sns_update_list li .sns_list_title {
 													// 게시글 번호 가져오기
 													var bno = '<%=  b.getbNO() %>';
 													
-													location.href="/allRight/deleteComment.bo"
-													+"?cno="+cno+"&bno="+bno;
+													location.href="/allRight/deleteComment.bo?"
+														+"bid="+bid+"&cno="+cno+"&bno="+bno;
 												}
 												
 												function reComment(obj){

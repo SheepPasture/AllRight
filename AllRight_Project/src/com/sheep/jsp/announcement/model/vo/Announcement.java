@@ -12,6 +12,7 @@ public class Announcement implements Serializable {
 	private int acount;
 	private String acontent;
 	private Date adate;
+	private String fAno;
 	
 	public Announcement() {
 		super();
@@ -84,6 +85,14 @@ public class Announcement implements Serializable {
 	public String toString() {
 		return "Announcement [ano=" + ano + ", atitle=" + atitle + ", acount=" + acount + ", acontent=" + acontent
 				+ ", adate=" + adate + "]";
+	}
+
+	public String getfAno() {
+		return fAno;
+	}
+
+	public void setfAno(String fAno) {
+		this.fAno = fAno;
 	}
 	
 	
