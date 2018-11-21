@@ -116,8 +116,6 @@
 
 			 var result;
 			 result = "-";
-			
-			 
 					 // 라디오 조건 저장하기
 				 	$("input:radio").click(function test(){	
 			 

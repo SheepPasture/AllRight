@@ -36,6 +36,7 @@ public class BoardLikeServlet extends HttpServlet {
 		
 		int bid = Integer.parseInt(request.getParameter("bid"));
 		int bno = Integer.parseInt(request.getParameter("bno"));
+
 		
 		Board b = new BoardService().boardLike(bid, bno);
 		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bno);
