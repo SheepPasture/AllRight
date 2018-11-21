@@ -18,469 +18,89 @@ css 작업 ing. -->
 <script src="/allRight/resources/js/jquery.min.js" type="text/javascript"></script>
 </head>
 <body id="body_style">
-<div align="center"><!--Mobile, PC 페이지 컨테이너 가운데 정렬 시작.-->
-<div style="margin:auto; width:1008px; background:#fff; border-radius:8px;"><!--PC 컨테이너 시작.-->
-<div style="padding:15px;"><!--PC 컨테이너 여백 시작.-->
+<div align="center"><!--Mobile, PC 페이지 컨테이너 가운데 정렬 시작-->
+<div style="margin:auto; width:1008px; background:#fff; border-radius:8px;"><!--PC 컨테이너 시작-->
+<div style="padding:15px;"><!--PC 컨테이너 여백 시작-->
 
+<script type="text/javascript" language="javascript">
+var max_five = Array(10); </script>
 
 <table style="margin-bottom:5px; width:100%; border:solid 0px #ccc; background:beige;" cellspacing="0" cellpadding="0">
-		<tr>
-		<td style="padding:15px 0px; width:120px; font-family:tahoma; text-align:center;" >
-		<div id="testing" style="display:none;">
-		</td>
-		<td>	
-		<div id="top" style="padding:12px 0px; text-align:left;"><!--PC 리본메뉴, 문제집중뷰 시작.-->
-		<form name='form' action="<%= request.getContextPath() %> /answer.te" method='post' style='margin:0px;'>
-		<select id='menu_top_select' name='top' onchange='topOptChange(this.form)'>
-		<option value=''>응시 분야를 선택하세요.</option>
-		<option value='10'>기능·기술 [기사]</option>
-		<option value='11'>기능·기술 [산업기사]</option>
-		<option value='12' selected>기능·기술 [기능사]</option>
-		<option value='15'>기능·기술 [미용사]</option>
-		<option value='18'>서비스 [멀티미디어]</option>
-		<option value='19'>서비스 [텔레마케팅]</option>
-		<option value='20'>사무 [컴퓨터활용능력]</option>
-		<option value='21'>사무 [워드프로세서]</option>
-		<option value='25'>판매 [전자상거래운용사]</option>
-		<option value='30'>회계 [전산회계운용사]</option>
-		<option va lue='70'>공인 [PC정비사]</option>
-		<option value='75'>공인 [네트워크관리사]</option>
-		</select>
-		&nbsp;
-		<select name='menu_top_select' name='mid' onchange='midOptChange(this.form)'>
-		<option value=''>종목을 선택하세요.</option>
-		<option value="1210" selected>정보처리기능사</option>
-		</select>
-		&nbsp;
-		<select name='menu_top_select' name='small' onchange='smallOptChange(this.form)'>
-		<option value=''>회차를 선택하세요.</option>
-		<option value="-2">랜덤 모의고사</option>
-		<option value="121049" selected>2011년 1회</option>
-		<option value="121050">2011년 2회</option>
-		</select>
+	<tbody>	
+	<tr>	
+	<td>	
+		<div id="top" style="padding:12px 0px; text-align:left;"><!--PC 탑 메뉴-->
 		
-		</form>
-		<script type="text/javascript"></script>	
-	 <div style="margin-top:10px; height:125px;"><!--구글검색 영역 시작.-->
-	 <div style="float:left;">
-	 <div id="google_search" style="height:30px;"><!--구글검색 (전체 웹 검색)-->
-	 <form action="http://www.google.co.kr" id="cse-search-box" target="_blank">
-			<div>
-				<input type="hidden" name="cx" value="partner-pub-1981615758276157:4489152794" />
-				<input type="hidden" name="ie" value="UTF-8" />
-				<input type="text" name="q" size="54" />
-				<input type="submit" name="sa" value="검색" />
-			</div>
-			</form>
-			<script type="text/javascript" src="http://www.google.co.kr/coop/cse/brand?form=cse-search-box&amp;lang=ko"></script>
-	</div></div></div></div></td></tr>
-</table>
+<form method="post" action="<%= request.getContextPath() %> /answer.te"  style="margin:0px;">
+		<select id="menu_top_select" name="bigCode" onchange="bigOptChange(this.form)">
+		<option value=>응시 분야를 선택하세요.</option>
+		<option value="10">기능·기술 [기사]</option>
+		<option value="11">기능·기술 [산업기사]</option>
+		<option value="12" selected>기능·기술 [기능사]</option>
+		<option value="15">기능·기술 [미용사]</option>
+		<option value="18">서비스 [멀티미디어]</option>
+		<option value="19">서비스 [텔레마케팅]</option>
+		<option value="20">사무 [컴퓨터활용능력]</option>
+		<option value="21">사무 [워드프로세서]</option>
+		<option value="25">판매 [전자상거래운용사]</option>
+		<option value="30">회계 [전산회계운용사]</option>
+		<option va lue="70">공인 [PC정비사]</option>
+		<option value="75">공인 [네트워크관리사]</option></select>
+		"&nbsp;"
+		<select id="menu_top_select" name="midCode" onchange="midOptChange(this.form)">
+		<option value>종목을 선택하세요.</option>
+		<option value="1210" selected>정보처리기능사</option>
+		<option value="1211">정보기기운용기능사</option>
+		<option value="1212">컴퓨터그래픽스운용기능사</option>
+		<option value="1213">웹디자인기능사</option>
+		<option value="1214">전자출판기능사</option>
+		<option value="1220">조리기능사</option>
+		<option value="1221">제과기능사</option>
+		<option value="1222">제빵기능사</option>
+		<option value="1221">조주기능사</option></select>
+		"&nbsp;";
+		<select id="menu_top_select" name="smallCode" onchange="changeSmallOptChange(this.form, this.value)">
+		<option value=>회차를 선택하세요.</option>
+		<option value="-2">랜덤 모의고사</option>
+		<option value="121049">2011년 5회</option>
+		<option value="121048">2011년 4회</option>
+		<option value="121047">2011년 2회</option>
+		<option value="121046" selected>2011년 1회</option></select>
+		<span style="padding-left: 20px;"></span>
+		<a href="#">"랜덤모의고사 메인"</a>
+		<span style="padding-left: 15px;"></span>
+		<a href="#">기출문제 메인</a>
+</form>
+				
+<script type="text/javascript">
+var randomTest = "";
+function bigOptChange(f) {
+//alert(f.smallCode);
+	
+	if( typeof(f.midCode) != "undefined" ) f.midCode.value = "";
+	if( typeof(f.smallCode) != "undefined" ) f.smallCode.value = "";
 
-<div style="padding: 5px 5px 35px 5px; min-height: 600px; border: solid 1px #ccc;"> <!-- 시험 영역 시작. -->
+	if(randomTest == 1) { f.action = "indexRandom.php"; }
+	f.submit();
+}
 
-<table style="margin:0px 0px 5px 0px; width:100%; border:1px solid #ccc; background:#f8f8f8" align="center">
-	<!-- 상단 타이틀 시작. -->
-	<tbody>
-	<tr style="height:45px;">
-	<td style="font-family:MalgunGothic,Sans-serif; font-weight:bolder; color:lightskyblue; font-size:11pt" align="center" valign="middle">
-	정보처리기능사 필기 (2011년 1회 기출문제) 응시
-	<span style="font-size:10pt; font-weight:500">
-		<span style="padding-left:8px; font-weight:500">Timer</span>
-		<span id="min" style="width:15px; font-weight:500; text-align:right"></span>분
-		<span id="sec" style="width:15px; font-weight:500; text-align:right"></span>초
-	</span>
+function midOptChange(f) {
+	if( typeof(f.smallCode) != "undefined" ) f.smallCode.value = "";
+	
+	if(randomTest == 1) { f.action = "indexRandom.php"; }
+	f.submit();
+}
 
-	<script type="text/javascript" language="javascript">
-	function updateTime() {
-		var now = new Date();
-		var t = now.getTime() - startDate.getTime();
-		var s = Math.round(t/1000);
-
-		min.innerHTML = Math.floor(s/60);
-		sec.innerHTML = s%60;
-		setTimeout("updateTime()",500);
+function changeSmallCode(f, value) {
+	if(value == -2) {
+	location.href = "indexRandom.php?midCode="+f.midCode.value;
 	}
-	var startDate = new Date();
-	updateTime();
-	</script>
-</td>
-
-<td style="padding-right:5px; text-align:right";>
-	<input type="button" value="첫화면" style="width:65px; border:1px solid tomato;" onclick="main()">
-</td>
-</tr>
-</tbody>
-</table>
-	<!-- 상단 타이틀 끝. -->
-<input type='hidden' id='current_i' value='0' size='3'>
-<input type='hidden' id='current_j' value='0' size='3'>
-<input type='hidden' id='current_startNum' value='' size='3'>
-<input type='hidden' id='current_questionTotal' value='' size='3'>
-<input type='hidden' id='current_mode' value='' size='3'>
-
-	<!-- 문제 시작.-->
-<table width="100%" align="center" cellspacing="0" cellspacing="0" style="margin:0px" border="0">
-<tbody>
-<tr>
-<td align="left" valign="top">
-<div id="div00" style="display: block; width: 100%; height: 100%;">
-<table width="100%" cellspacing="0" cellspacing="0" style="margin:0px" border="1">
-	<% if ( qs != null) { %> 
-
-
-<td align="left" valign="top"> 
-	<!-- 왼쪽 문제 -->
-	<div id="que_01" style="margin:0px; position:absolute; width:55px; height:45px">
-<% for(int i = 0; i < 3; i++, qNo+=4) { %>
-<% Question question = qs.get(qNo); %>
-	</div>
-<table style="margin-bottom:10px; width:100%; height:150px; border:0" cellspacing="0" cellspacing="5">
-	<tbody>
-		<tr>
-			<td style="padding-left:8px; width:25px; text-align:left" valign="top"  ><b><%= question.getqNo() %>. </b></td>
-			<td style="width:98%" valign="top" ><b><%= question.getqContent() %></b>
-			<span id="rate1" style="display:none">[정답률: 72%]</span></td>
-		</tr>
-		<% for(int j = qNo; j < qNo+4; j++){ %>
-		<tr>
-			<td></td>
-			<td><%= qs.get(j).getqPre() %></td>
-		</tr>
-		<% } %>
-	</tbody>
-</table>
-<% } %>
-
-<td valign="top" style="padding-top:5px; border-left:none"> 
-	<!-- 오른쪽 문제 -->
-<% for(int i = 0; i < 2; i++, qNo+=4) { %>
-<% Question question = qs.get(qNo); %>
-<table style="margin-bottom:10px; width:100%; height:150px; border:0" cellspacing="0" cellspacing="5">
-	<tbody>
-		<tr>
-			<td style="padding-left:8px; width:25px; text-align:left" valign="top"><b><%= question.getqNo() %>. </b></td>
-			<td style="width:98%" valign="top"><b><%= question.getqContent() %></b></td>
-		</tr>
-		<% for(int j = qNo; j < qNo+4; j++){ %>
-		<tr>
-			<td></td>
-			<td><%= qs.get(j).getqPre() %></td>
-		</tr>
-		<% } %>
-		</tbody>
-</table>
-
-<% } %>
-
-<td style="padding-left:4px; border:none; width:130px;" valign="top">
-<!-- 답안지 -->
-<div id="ans0" style="display: block; width: 100%; height: 100%; padding-left: 0px;">
-<table width="100%" height="30" align="center" cellspacing="0" cellspacing="2">
-<tbody>
-	<tr>
-		<td align="center" colspan="5" style="color:tomato; font-weight:bold; 
-		border:solid 0px #ccc; border-bottom:none">1과목</td>
-	</tr>
-	<% for(int i = 1 ; i < 21 ; i++) { %>
-	<tr style="height:0px;">
-		<td style="color:green; font-weight:bold; text-align:center;"><%= i %></td>
-		<td width="22px" align="center" valign="middle">①</td>
-		<td width="22px" align="center" valign="middle">②</td>
-		<td width="22px" align="center" valign="middle">③</td>
-		<td width="22px" align="center" valign="middle">④</td>
-	</tr>
-	<% } %>
-</tbody>
-</table>
-</td>
-</tr>
-
-
-</tbody>
-</table>
-<p align="right" style="display:block; margin: 10px 15px 5px 15px;">
-<input class="btn btn-danger" type="button" value="답안제출" style="width:90px"></p>
-
-<table width="100%" cellspacing="0" cellspacing="5">
-	<tbody>
-		<tr>
-			<td width="450px" align="right" style="padding-right:10px;">
-			<input class="btn btn-success" type="button" value="이전" onclick="previous_div('1과목, 0, 0')" class="btn01_qpass"/>
-</td>
-			<td style="padding-left:0px;" >
-			<input class="btn btn-success" type="button" value="다음" onclick="next_div('1과목, 0, 0')" class="btn01_qpass"/>
-</td>
-		</tr>
-	</tbody>
-</table>
-<% } %>
-<!-- 문제 끝. -->
-</div></td></tr></tbody>
-
-</div></div></table></div>
-
-<div id="div01" style="display: none; width: 100%; height: 100%;">
-<table width="100%" cellspacing="0" cellspacing="0" style="margin:0px" border="1">
-	<% if ( qs != null) { %> 
-<td align="left" valign="top"> 
-	<!-- 왼쪽 문제 -->
-	<div id="que_01" style="margin:0px; position:absolute; width:55px; height:45px">
-<% for(int i = 0; i < 3; i++, qNo+=4) { %>
-<% Question question = qs.get(qNo); %>
-	</div>
-<table style="margin-bottom:10px; width:100%; height:150px; border:0" cellspacing="0" cellspacing="5">
-	<tbody>
-		<tr>
-			<td style="padding-left:8px; width:25px; text-align:left" valign="top"  ><b><%= question.getqNo() %>. </b></td>
-			<td style="width:98%" valign="top" ><b><%= question.getqContent() %></b>
-			<span id="rate1" style="display:none">[정답률: 72%]</span></td>
-		</tr>
-		<% for(int j = qNo; j < qNo+4; j++){ %>
-		<tr>
-			<td></td>
-			<td><%= qs.get(j).getqPre() %></td>
-		</tr>
-		<% } %>
-	</tbody>
-</table>
-<% } %>
-
-<td valign="top" style="padding-top:5px; border-left:none"> 
-	<!-- 오른쪽 문제 -->
-<% for(int i = 0; i < 2; i++, qNo+=4) { %>
-<% Question question = qs.get(qNo); %>
-<table style="margin-bottom:10px; width:100%; height:150px; border:0" cellspacing="0" cellspacing="5">
-	<tbody>
-		<tr>
-			<td style="padding-left:8px; width:25px; text-align:left" valign="top"><b><%= question.getqNo() %>. </b></td>
-			<td style="width:98%" valign="top"><b><%= question.getqContent() %></b></td>	
-		</tr>
-		<% for(int j = qNo; j < qNo+4; j++){ %>
-		<tr>
-			<td></td>
-			<td><%= qs.get(j).getqPre() %></td>
-		</tr>
-		<% } %>
-		</tbody>
-</table>
-<% } %>
-<td style="padding-left:4px; border:none; width:130px;" valign="top">
-<!-- 답안지 -->
-<div id="ans0" style="display: block; width: 100%; height: 100%; padding-left: 0px;">
-<table width="100%" height="30" align="center" cellspacing="0" cellspacing="2">
-<tbody>
-	<tr>
-		<td align="center" colspan="5" style="color:tomato; font-weight:bold; 
-		border:solid 0px #ccc; border-bottom:none">1과목</td>
-	</tr>
-	<% for(int i = 1 ; i < 21 ; i++) { %>
-	<tr style="height:0px;">
-		<td style="color:green; font-weight:bold; text-align:center;"><%= i %></td>
-		<td width="22px" align="center" valign="middle">①</td>
-		<td width="22px" align="center" valign="middle">②</td>
-		<td width="22px" align="center" valign="middle">③</td>
-		<td width="22px" align="center" valign="middle">④</td>
-	</tr>
-	<% } %>
-</tbody>
-</table>
-</td>
-</tr>
-</tbody>
-</table>
-<p align="right" style="display:block; margin: 10px 15px 5px 15px;">
-<input class="btn btn-danger" type="button" value="답안제출" style="width:90px"></p>
-
-<table width="100%" cellspacing="0" cellspacing="5">
-	<tbody>
-		<tr>
-			<td width="450px" align="right" style="padding-right:10px;">
-			<input class="btn btn-success" type="button" value="이전" onclick="previous_div('1과목, 0, 0')" class="btn01_qpass"/>
-</td>
-			<td style="padding-left:0px;" >
-			<input class="btn btn-success" type="button" value="다음" onclick="next_div('1과목, 0, 0')" class="btn01_qpass"/>
-</td>
-		</tr>
-	</tbody>
-</table>
-<% } %>
-<!-- 문제 끝. -->
-</div></td></tr></tbody>
-<div id="div02" style="display: none; width: 100%; height: 100%;">
-<table width="100%" cellspacing="0" cellspacing="0" style="margin:0px" border="1">
-	<% if ( qs != null) { %> 
-<td align="left" valign="top"> 
-	<!-- 왼쪽 문제 -->
-	<div id="que_01" style="margin:0px; position:absolute; width:55px; height:45px">
-<% for(int i = 0; i < 3; i++, qNo+=4) { %>
-<% Question question = qs.get(qNo); %>
-	</div>
-<table style="margin-bottom:10px; width:100%; height:150px; border:0" cellspacing="0" cellspacing="5">
-	<tbody>
-		<tr>
-			<td style="padding-left:8px; width:25px; text-align:left" valign="top"  ><b><%= question.getqNo() %>. </b></td>
-			<td style="width:98%" valign="top" ><b><%= question.getqContent() %></b>
-			<span id="rate1" style="display:none">[정답률: 72%]</span></td>
-		</tr>
-		<% for(int j = qNo; j < qNo+4; j++){ %>
-		<tr>
-			<td></td>
-			<td><%= qs.get(j).getqPre() %></td>
-		</tr>
-		<% } %>
-	</tbody>
-</table>
-<% } %>
-
-<td valign="top" style="padding-top:5px; border-left:none"> 
-	<!-- 오른쪽 문제 -->
-<% for(int i = 0; i < 2; i++, qNo+=4) { %>
-<% Question question = qs.get(qNo); %>
-<table style="margin-bottom:10px; width:100%; height:150px; border:0" cellspacing="0" cellspacing="5">
-	<tbody>
-		<tr>
-			<td style="padding-left:8px; width:25px; text-align:left" valign="top"><b><%= question.getqNo() %>. </b></td>
-			<td style="width:98%" valign="top"><b><%= question.getqContent() %></b></td>	
-		</tr>
-		<% for(int j = qNo; j < qNo+4; j++){ %>
-		<tr>
-			<td></td>
-			<td><%= qs.get(j).getqPre() %></td>
-		</tr>
-		<% } %>
-		</tbody>
-</table>
-<% } %>
-<td style="padding-left:4px; border:none; width:130px;" valign="top">
-<!-- 답안지 -->
-<div id="ans0" style="display: block; width: 100%; height: 100%; padding-left: 0px;">
-<table width="100%" height="30" align="center" cellspacing="0" cellspacing="2">
-<tbody>
-	<tr>
-		<td align="center" colspan="5" style="color:tomato; font-weight:bold; 
-		border:solid 0px #ccc; border-bottom:none">1과목</td>
-	</tr>
-	<% for(int i = 1 ; i < 21 ; i++) { %>
-	<tr style="height:0px;">
-		<td style="color:green; font-weight:bold; text-align:center;"><%= i %></td>
-		<td width="22px" align="center" valign="middle">①</td>
-		<td width="22px" align="center" valign="middle">②</td>
-		<td width="22px" align="center" valign="middle">③</td>
-		<td width="22px" align="center" valign="middle">④</td>
-	</tr>
-	<% } %>
-</tbody>
-</table>
-</td>
-</tr>
-</tbody>
-</table>
-<p align="right" style="display:block; margin: 10px 15px 5px 15px;">
-<input class="btn btn-danger" type="button" value="답안제출" style="width:90px"></p>
-
-<table width="100%" cellspacing="0" cellspacing="5">
-	<tbody>
-		<tr>
-			<td width="450px" align="right" style="padding-right:10px;">
-			<input class="btn btn-success" type="button" value="이전" onclick="previous_div('1과목, 0, 0')" class="btn01_qpass"/>
-</td>
-			<td style="padding-left:0px;" >
-			<input class="btn btn-success" type="button" value="다음" onclick="next_div('1과목, 0, 0')" class="btn01_qpass"/>
-</td>
-		</tr>
-	</tbody>
-</table>
-<% } %>
-<!-- 문제 끝. -->
-</div></td></tr></tbody>
-<div id="div03" style="display: none; width: 100%; height: 100%;">
-<table width="100%" cellspacing="0" cellspacing="0" style="margin:0px" border="1">
-	<% if ( qs != null) { %> 
-<td align="left" valign="top"> 
-	<!-- 왼쪽 문제 -->
-	<div id="que_01" style="margin:0px; position:absolute; width:55px; height:45px">
-<% for(int i = 0; i < 3; i++, qNo+=4) { %>
-<% Question question = qs.get(qNo); %>
-	</div>
-<table style="margin-bottom:10px; width:100%; height:150px; border:0" cellspacing="0" cellspacing="5">
-	<tbody>
-		<tr>
-			<td style="padding-left:8px; width:25px; text-align:left" valign="top"  ><b><%= question.getqNo() %>. </b></td>
-			<td style="width:98%" valign="top" ><b><%= question.getqContent() %></b>
-			<span id="rate1" style="display:none">[정답률: 72%]</span></td>
-		</tr>
-		<% for(int j = qNo; j < qNo+4; j++){ %>
-		<tr>
-			<td></td>
-			<td><%= qs.get(j).getqPre() %></td>
-		</tr>
-		<% } %>
-	</tbody>
-</table>
-<% } %>
-
-<td valign="top" style="padding-top:5px; border-left:none"> 
-	<!-- 오른쪽 문제 -->
-<% for(int i = 0; i < 2; i++, qNo+=4) { %>
-<% Question question = qs.get(qNo); %>
-<table style="margin-bottom:10px; width:100%; height:150px; border:0" cellspacing="0" cellspacing="5">
-	<tbody>
-		<tr>
-			<td style="padding-left:8px; width:25px; text-align:left" valign="top"><b><%= question.getqNo() %>. </b></td>
-			<td style="width:98%" valign="top"><b><%= question.getqContent() %></b></td>	
-		</tr>
-		<% for(int j = qNo; j < qNo+4; j++){ %>
-		<tr>
-			<td></td>
-			<td><%= qs.get(j).getqPre() %></td>
-		</tr>
-		<% } %>
-		</tbody>
-</table>
-<% } %>
-<td style="padding-left:4px; border:none; width:130px;" valign="top">
-<!-- 답안지 -->
-<div id="ans0" style="display: block; width: 100%; height: 100%; padding-left: 0px;">
-<table width="100%" height="30" align="center" cellspacing="0" cellspacing="2">
-<tbody>
-	<tr>
-		<td align="center" colspan="5" style="color:tomato; font-weight:bold; 
-		border:solid 0px #ccc; border-bottom:none">1과목</td>
-	</tr>
-	<% for(int i = 1 ; i < 21 ; i++) { %>
-	<tr style="height:0px;">
-		<td style="color:green; font-weight:bold; text-align:center;"><%= i %></td>
-		<td width="22px" align="center" valign="middle">①</td>
-		<td width="22px" align="center" valign="middle">②</td>
-		<td width="22px" align="center" valign="middle">③</td>
-		<td width="22px" align="center" valign="middle">④</td>
-	</tr>
-	<% } %>
-</tbody>
-</table>
-</td>
-</tr>
-</tbody>
-</table>
-<p align="right" style="display:block; margin: 10px 15px 5px 15px;">
-<input class="btn btn-danger" type="button" value="답안제출" style="width:90px"></p>
-
-<table width="100%" cellspacing="0" cellspacing="5">
-	<tbody>
-		<tr>
-			<td width="450px" align="right" style="padding-right:10px;">
-			<input class="btn btn-success" type="button" value="이전" onclick="previous_div('1과목, 0, 0')" class="btn01_qpass"/>
-</td>
-			<td style="padding-left:0px;" >
-			<input class="btn btn-success" type="button" value="다음" onclick="next_div('1과목, 0, 0')" class="btn01_qpass"/>
-</td>
-		</tr>
-	</tbody>
-</table>
-<% } %>
-<!-- 문제 끝. -->
-</div></td></tr></tbody>
-
+	else {
+		f.action = "index.php";
+		f.submit();
+	}
+}
+</script>
 
 <script>
 /* 첫화면으로 이동*/
@@ -571,7 +191,6 @@ function restore_exam(targetDiv, course) {
 	f.targetDiv.value = targetDiv;
 	f.submit();
 }
-
 
 /* 해당 구역으로 이동*/
 function replace_div(divNum, fiveNum) {
@@ -943,6 +562,11 @@ function finish_exam(divIndex) {
 }
 </script>
 
+
+</div> 
+</div> <!-- PC 컨테이너 여백 끝 -->
+</div> <!-- PC 컨테이너 끝  -->
 </div> <!--Mobile, PC 페이지 컨테이너 가운데 정렬 시작.-->	
+
 </body>
 </html>

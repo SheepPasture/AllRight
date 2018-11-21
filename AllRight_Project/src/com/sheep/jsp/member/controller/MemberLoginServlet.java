@@ -116,6 +116,7 @@ public class MemberLoginServlet extends HttpServlet {
 
 				out.println(jsonMember.toJSONString());
 				System.out.println("안드로이드 로그인 성공");
+				out.close();
 
 			} else if (m.getUserId().equals("admin")) {
 
@@ -125,6 +126,7 @@ public class MemberLoginServlet extends HttpServlet {
 
 				response.sendRedirect("index.jsp");
 			}
+			
 		} catch (MemberException e) {
 
 			if (androidCheck != null) {

@@ -83,7 +83,7 @@ public class MemberDao {
 			if (rset.next()) {
 				result = new Member();
 
-				result.setUserNo(Integer.parseInt(rset.getString("userno")));
+				result.setUserNo(rset.getInt("userno"));
 				result.setUserId(m.getUserId());
 				result.setUserPwd(m.getUserPwd());
 				result.setUserName(rset.getString("username"));
@@ -237,7 +237,7 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 
 			if (rset.next())
-				result = rset.getInt("checkdate");
+				result = rset.getInt(1);
 
 		} catch (SQLException e) {
 			e.printStackTrace();

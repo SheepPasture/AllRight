@@ -32,7 +32,7 @@ public class AdminANNListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-ArrayList<Announcement> alist = null;
+		ArrayList<Announcement> alist = null;
 		
 		ANNService as = new ANNService();
 		

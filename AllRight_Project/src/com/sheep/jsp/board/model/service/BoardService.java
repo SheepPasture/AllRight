@@ -109,16 +109,6 @@ public class BoardService {
 		
 	}
 
-	public ArrayList<Board> top5() {
-		
-		Connection con = getConnection();
-		
-		ArrayList<Board> list = bDao.top5(con);
-		
-		close(con);
-		
-		return list;
-	}
 
 	public Board boardReport(int bid, int bno) {
 
@@ -206,6 +196,27 @@ public class BoardService {
 		
 		return list;
 		
+	}
+
+	public int getReportListCount() {
+		
+		Connection con = getConnection();
+		
+		int listCount = bDao.getReportListCount(con);
+		
+		close(con);
+		return listCount;
+	}
+
+	public ArrayList<Board> selectReportList(int currentPage, int limit) {
+		
+		Connection con = getConnection();
+		
+		ArrayList<Board> list = bDao.selectReportList(con, currentPage, limit);
+		
+		close(con);
+		
+		return list;
 	}
 
 }

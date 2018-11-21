@@ -63,15 +63,13 @@
 					
 					<!-- 게시판(뷰)시작 -->
 					<div class="board_area">
-					<form action="save();" method="post">
+					<form id="writeForm" method="post">
 						<table class="view">
 							<tbody>
 								<tr>
 									<th class="col-sm-2">제목</th>
 									<td>
-										<textarea name="title" rows="1" cols="90"  style="resize: none;"></textarea>
-										<input type="hidden" name="userNo" id="userNo"  value="<%= m.getUserNo() %>"	>
-										<input type="hidden" name="userName" id="userName" value="<%= m.getUserName() %>"	>
+										<textarea name="title" rows="1" cols="90" style="resize: none;"></textarea>
 									</td>
 								</tr>
 								<tr>
@@ -102,7 +100,11 @@
 			<script>
  				function save(){
 					var bid = 1;
-					location.href="<%=request.getContextPath()%>/bInsert.bo?bid=" + bid;
+					$('#writeForm').attr('action', '<%=request.getContextPath()%>/bInsert.bo?bid='+bid);
+					
+					$('#writeForm').submit();
+					
+					<%-- location.href="<%=request.getContextPath()%>/bInsert.bo?bid=" + bid; --%>
 				}
 				
 				function back(){

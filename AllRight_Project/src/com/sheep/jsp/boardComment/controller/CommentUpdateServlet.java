@@ -30,6 +30,7 @@ public class CommentUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int bid = Integer.parseInt(request.getParameter("bid"));
 		int cno = Integer.parseInt(request.getParameter("cno"));
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		String content = request.getParameter("content");
@@ -52,7 +53,7 @@ public class CommentUpdateServlet extends HttpServlet {
 		
 		if(result > 0) {
 			System.out.println("댓글업데이트서블릿성공");
-			response.sendRedirect("selectOne.bo?bno="+bno);
+			response.sendRedirect("selectOne.bo?bid="+bid+"&bno="+bno);
 		} else {
 			request.setAttribute("msg", "댓글 수정 실패!");
 			request.getRequestDispatcher("views/common/errorPage.jsp");

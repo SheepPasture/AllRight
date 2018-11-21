@@ -6,9 +6,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.sheep.jsp.board.model.vo.Board;
 import com.sheep.jsp.boardComment.model.vo.BoardComment;
 
 import static com.sheep.jsp.common.JDBCTemplate.*;
@@ -44,10 +46,11 @@ public class BoardCommentDao {
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setInt(1, bco.getbNo());
-			pstmt.setInt(2, bco.getUserNo());
-			pstmt.setString(3, bco.getcContent());
-			pstmt.setInt(4, bco.getcLevel());
-			pstmt.setString(5, bco.getUserId());
+			pstmt.setInt(2, bco.getbId());
+			pstmt.setInt(3, bco.getUserNo());
+			pstmt.setString(4, bco.getcContent());
+			pstmt.setInt(5, bco.getcLevel());
+			pstmt.setString(6, bco.getUserId());
 
 /*			if(bco.getRefcno() > 0) {
 				
@@ -226,6 +229,79 @@ public class BoardCommentDao {
 		
 		return result;
 		
+	}
+
+	public int getReportListCount(Connection con) {
+		Statement stmt = null;
+		int listCount = 0;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("reportListCount");
+		
+		try {
+			
+			stmt = con.createStatement();
+			
+			rset = stmt.executeQuery(sql);
+			
+			if(rset.next()){
+				
+				listCount = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		return listCount;
+	}
+
+	public ArrayList<BoardComment> selectReportList(Connection con, int currentPage, int limit) {
+		ArrayList<BoardComment> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectReportList");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit -1 ;
+			
+			pstmt.setInt(1, endRow);
+			pstmt.setInt(2, startRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<BoardComment>();
+			
+			while(rset.next()){
+				BoardComment b = new BoardComment();
+				
+				b.setbId(rset.getInt("BID"));
+				b.setbNo(rset.getInt("BNO"));
+				b.setcContent(rset.getString("CCONTENT"));
+				b.setUserId(rset.getString("USERID"));
+				b.setcDate(rset.getDate("CDATE"));
+				b.setReport(rset.getInt("REPORT"));
+				
+				list.add(b);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
 	}
 }
 

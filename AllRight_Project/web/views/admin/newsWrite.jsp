@@ -104,21 +104,21 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<%= request.getContextPath() %>/views/admin/List.jsp">
+                    <a href="<%= request.getContextPath() %>/bReportList.ad">
                         <i class="ti-face-sad"></i>
-                        <p>신고된 글,회원 관리</p>
+                        <p>신고된 글 관리</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<%= request.getContextPath() %>/commentList.co">
+                        <i class="ti-face-sad"></i>
+                        <p>신고된 댓글 관리</p>
                     </a>
                 </li>
              <li>
                     <a href="<%= request.getContextPath() %>/views/admin/newLicense.jsp">
                         <i class="ti-plus"></i>
                         <p>자격증 추가</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="<%= request.getContextPath() %>/views/admin/viewCount.jsp">
-                        <i class="ti-plus"></i>
-                        <p>사이트 접속자 수 조회</p>
                     </a>
                 </li>
                 <!-- 
