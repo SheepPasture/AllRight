@@ -42,7 +42,7 @@ int nno = Integer.parseInt(request.getParameter("nno"));
 			request.setAttribute("news", n);
 		} else{
 			
-			page = "/views/common/errorPage.jsp";
+			page = "/views/common/adminErrorPage.jsp";
 			request.setAttribute("msg", "뉴스 수정 실패!");
 		}
 		

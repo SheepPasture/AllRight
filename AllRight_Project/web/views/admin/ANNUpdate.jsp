@@ -181,85 +181,64 @@
          <div class="row content">
 				
 				<div class="col-sm-11 text-left">
-					
-					<% if(a != null) { %>
+					<h4 align="left">공지 수정</h4>
+					<form id="updateForm" method="post">
 					<!-- 게시판(뷰)시작 -->
 					<div class="board_area">
-						<form id="updateForm" method="post">
-						<table class="view">
+						<table class="view" id="listArea">
 							<tbody>
 								<tr>
-									<th>제목</th>
- 									<td class="title"><%= a.getAtitle()%></td>
-									<th><div>글번호</div><br /><div>조회수</div></th>
-									<td><div><%= a.getAno() %></div><br /><div><%= a.getAcount() %></div></td>
+									<th class="col-sm-2">제목</th>
+									<td><textarea name="title" rows="1" cols="90" ><%= a.getAtitle() %></textarea></td>
 								</tr>
 								<tr>
-									<th>작성자</th>
-									<td>관리자</td>
-									<th>등록일시</th>
-				 					<td><%= a.getAdate() %></td>
-								</tr> 
-								<tr>
-									<th>내용</th>
-								 	<td colspan="3"><%= a.getAcontent() %></td>
-								</tr>			
-								<tr>
-									<td colspan="5">
-										<input id="ano" name="ano" type="hidden" value="<%= a.getAno() %>"/>
+									<th class="col-sm-2">내용</th>
+									<td>
+										<!-- <textarea name="content" class="ckeditor" rows="20" cols="70"></textarea> -->
+										<script type="text/javascript" src="/allRight/resources/ckeditor/ckeditor.js"></script>
+											 
+										<div class="form-group">
+											 <textarea name="content" class="ckeditor" rows="20" cols="70"><%= a.getAcontent() %></textarea>
+											 <script>
+												CKEDITOR.replace('content', {
+													width: 650,
+													height: 300
+												});
+											 </script>
+										</div>
 									</td>
-									
-								</tr>
-								<% } else { 
-							 		request.setAttribute("msg", "회원만 가능한 서비스 입니다."); 
-									request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
-								} %>
+								</tr>	
 								<tr>
-									<th>이전글&nbsp; ▲</th>
-									
-									<td colspan="3"><a href="#" onclick="before();">
-										<%= a.getAno()-1 %>번째 글입니다.
-									</a></td>
-								</tr>
-								<tr>
-									<th>다음글&nbsp; ▼</th>
-									<td colspan="3"><a href="" onclick="after();"><%= a.getAno()+1 %>번째 글입니다.</a></td>
+									<td colspan="5"><input id="ano" name="ano" type="hidden" value="<%= a.getAno() %>"/></td>
 								</tr>
 							</tbody>
 						</table>
- 						<div class="btn_area2">
- 								<button class="btn btn-primary" onclick="back();">목록으로 바로가기</button>
- 								
- 								<button class="btn btn-danger" onclick="del();">삭제</button>
-								<button class="btn btn-warning" onclick="edit();">수정</button>
-						</div> </form>
-						<script>
-							function before(){
-								var ano = $("#ano").val();
-								location.href="/allRight/annBefore.ad?"+"ano="+ano;
-							}
-							
-							function after(){
-								var ano = $("#ano").val();
-								location.href="/allRight/annAfter.ad?"+"ano="+ano;
-							}
-						
-							function edit(){
-								var ano = $("#ano").val();
-			 		 			$("#updateForm").attr("action", "<%=request.getContextPath()%>/annUpView.ad?ano="+ano);
-			 		 		}
-						
-							function back(){	
-								$("#updateForm").attr("action","<%=request.getContextPath() %>/selectList.ad");
-							}
-							
-							function del(){
-								var ano = $("#ano").val();
-								$("#updateForm").attr("action","<%=request.getContextPath() %>/annDelete.ad?ano="+ano);
-							}
-						</script>
-					</div>		
+					</div>
+					<br />
+				<div class="btn_area2" align="center">
+					<button class="btn btn-primary" onclick="edit();">Edit</button>
+	 				<button class="btn btn-primary" onclick="del();">Delete</button>
+					<button class="btn btn-primary" onclick="back();">Back</button>
 				</div>
+				</form>
+		 		<script>	 		
+			 		var ano = $("#ano").val();
+					/* alert(("#ano").val()); */
+					
+	 		 		function edit(){
+	 		 			$("#updateForm").attr("action", "<%=request.getContextPath()%>/annUpdate.ad");
+	 		 		}
+				
+					function del(){
+						$("#updateForm").attr("action","<%=request.getContextPath() %>/annDelete.ad?ano="+ano);
+					}
+					
+					function back(){		
+						$("#updateForm").attr("action","<%=request.getContextPath() %>/annSelectOne.ad?ano=" + ano);
+					}
+					
+		 		</script>
+			</div>
 			</div>
   
             </div>

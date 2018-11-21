@@ -77,7 +77,7 @@ public class AdminNewsInsertServlet extends HttpServlet {
 				} else{
 					request.setAttribute("msg", "뉴스 작성 실패");
 					
-					request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
+					request.getRequestDispatcher("/views/common/adminErrorPage.jsp").forward(request, response);
 				}
 	}
 

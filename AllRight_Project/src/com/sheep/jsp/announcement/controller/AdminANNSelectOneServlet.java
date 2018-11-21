@@ -13,7 +13,7 @@ import com.sheep.jsp.announcement.model.vo.Announcement;
 /**
  * Servlet implementation class AdminANNSelectOneServlet
  */
-@WebServlet("/selectOne.ad")
+@WebServlet("/annSelectOne.ad")
 public class AdminANNSelectOneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -42,7 +42,7 @@ int ano = Integer.parseInt(request.getParameter("ano"));
 			page = "/views/admin/ANNDetail.jsp";
 			request.setAttribute("announcement", a);
 		} else{
-			page="/views/common/errorPage.jsp";
+			page="/views/common/adminErrorPage.jsp";
 			request.setAttribute("msg", "공지사항 상세보기에 실패하였습니다. 관리자에게 문의바랍니다.");
 		}
 		

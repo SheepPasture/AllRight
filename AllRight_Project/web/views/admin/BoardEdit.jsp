@@ -378,7 +378,7 @@ html {
 			}).click(function(){
 				console.log($(this).parent().children().eq(0).text());
 				var ano = $(this).parent().children().eq(0).text();
-				location.href="<%=request.getContextPath()%>/selectOne.ad?ano=" + ano;
+				location.href="<%=request.getContextPath()%>/annSelectOne.ad?ano=" + ano;
 			});
 		});
 	</script> 
