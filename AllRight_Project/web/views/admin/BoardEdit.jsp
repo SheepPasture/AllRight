@@ -222,6 +222,12 @@ html {
                         <p>자격증 추가</p>
                     </a>
                 </li>
+                <li>
+                    <a href="<%= request.getContextPath() %>/views/admin/viewCount.jsp">
+                        <i class="ti-plus"></i>
+                        <p>사이트 접속자 수 조회</p>
+                    </a>
+                </li>
                 <!-- 
                 <li>
                     <a href="maps.html">
