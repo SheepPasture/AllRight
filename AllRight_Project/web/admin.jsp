@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.sheep.jsp.member.model.vo.Member"
-    import="com.sheep.jsp.point.model.vo.Point ,java.util.*, com.sheep.jsp.board.model.vo.*"%>
-    
+	pageEncoding="UTF-8" import="com.sheep.jsp.member.model.vo.Member"
+	import="com.sheep.jsp.point.model.vo.Point ,java.util.*, com.sheep.jsp.board.model.vo.*"%>
+
 
 <%
 	Member m = (Member)session.getAttribute("member");
 	Point pt = (Point)session.getAttribute("point");
   	Object level=session.getAttribute("level");   
-
+	int ttc = (Integer) session.getAttribute("totalCount"); // 총 방문자 수 
+	int tdc = (Integer) session.getAttribute("todayCount"); // 오늘 방문자 수
 %>
 
 <%-- 
@@ -57,99 +58,133 @@
 </html>
 
  --%>
- 
- 
- <!doctype html>
+
+
+<!doctype html>
 <html lang="en">
 <head>
 
-	<meta charset="UTF-8" />
-	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="UTF-8" />
+<link rel="apple-touch-icon" sizes="76x76"
+	href="assets/img/apple-icon.png">
+<link rel="icon" type="image/png" sizes="96x96"
+	href="assets/img/favicon.png">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>admin page</title>
+<title>admin page</title>
 
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
-
-
-    <!-- Bootstrap core CSS     -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-
-    <!-- Animation library for notifications   -->
-    <link href="assets/css/animate.min.css" rel="stylesheet"/>
-
-    <!--  Paper Dashboard core CSS    -->
-    <link href="assets/css/paper-dashboard.css" rel="stylesheet"/>
+<meta
+	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
+	name='viewport' />
+<meta name="viewport" content="width=device-width" />
 
 
-    <!--  Fonts and icons     -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-    <link href="assets/css/themify-icons.css" rel="stylesheet">
+<!-- Bootstrap core CSS     -->
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 
-	
-	
+<!-- Animation library for notifications   -->
+<link href="assets/css/animate.min.css" rel="stylesheet" />
+
+<!--  Paper Dashboard core CSS    -->
+<link href="assets/css/paper-dashboard.css" rel="stylesheet" />
+
+
+<!--  Fonts and icons     -->
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
+	rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Muli:400,300'
+	rel='stylesheet' type='text/css'>
+<link href="assets/css/themify-icons.css" rel="stylesheet">
+
+<!-- 구글 차트 -->
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script>
+	google.charts.load('current', {packages: ['corechart', 'bar']});
+	google.charts.setOnLoadCallback(drawBasic);
+
+	function drawBasic() {
+
+	      var data = google.visualization.arrayToDataTable([
+	        ['구분', '방문자 수'],
+	        ['총 방문자', <%= ttc %>],
+	        ['오늘 방문자', <%= tdc %>],
+	      ]);
+
+	      var options = {
+	        title: '',
+	        chartArea: {width: '75%'},
+	        hAxis: {
+	          title: '방문자 수',
+	          minValue: 0
+	        },
+	        vAxis: {
+	          title: ' '
+	        }
+	      };
+
+	      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+	      chart.draw(data, options);
+	    }
+	</script>
+
 </head>
 <body>
 
-<div class="wrapper">
-    <div class="sidebar" data-background-color="white" data-active-color="danger">
+	<div class="wrapper">
+		<div class="sidebar" data-background-color="white"
+			data-active-color="danger">
 
-    <!--
+			<!--
 		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
 		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
 	-->
 
-    	<div class="sidebar-wrapper">
-    	<!-- LOGO -->
-            <div class="logo">
-                <a href="<%= request.getContextPath() %>/admin.jsp"  class="simple-text">
-                <b>A L L</b> R I G H T 
-                </a>
-            </div><!-- //LOGO -->
-           
+			<div class="sidebar-wrapper">
+				<!-- LOGO -->
+				<div class="logo">
+					<a href="<%= request.getContextPath() %>/admin.jsp"
+						class="simple-text"> <b>A L L</b> R I G H T
+					</a>
+				</div>
+				<!-- //LOGO -->
 
-            <ul class="nav">
-                <li class="active">
-                    <a href="<%= request.getContextPath() %>/admin.jsp">
-                        <i class="ti-panel"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="<%= request.getContextPath() %>/selectList.ad">
-                        <i class="ti-pencil-alt2"></i>
-                        <p>공지 게시판 수정</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="<%= request.getContextPath() %>/newsSelectList.ad">
-                        <i class="ti-pencil-alt2"></i>
-                        <p>뉴스 게시판 수정</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="<%= request.getContextPath() %>/views/admin/List.jsp">
-                        <i class="ti-face-sad"></i>
-                        <p>신고된 글,회원 관리</p>
-                    </a>
-                </li>
-               <li>
-                    <a href="<%= request.getContextPath() %>/views/admin/newLicense.jsp">
-                        <i class="ti-plus"></i>
-                        <p>자격증 추가</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="<%= request.getContextPath() %>/views/admin/viewCount.jsp">
-                        <i class="ti-plus"></i>
-                        <p>사이트 접속자 수 조회</p>
-                    </a>
-                </li>
-                <!-- 
+
+				<ul class="nav">
+					<li class="active"><a
+						href="<%= request.getContextPath() %>/admin.jsp"> <i
+							class="ti-panel"></i>
+							<p>Dashboard</p>
+					</a></li>
+
+					<li><a href="<%= request.getContextPath() %>/selectList.ad">
+							<i class="ti-pencil-alt2"></i>
+							<p>공지 게시판 수정</p>
+					</a></li>
+					<li><a
+						href="<%= request.getContextPath() %>/newsSelectList.ad"> <i
+							class="ti-pencil-alt2"></i>
+							<p>뉴스 게시판 수정</p>
+					</a></li>
+					<li><a
+						href="<%= request.getContextPath() %>/views/admin/List.jsp"> <i
+							class="ti-face-sad"></i>
+							<p>신고된 글,회원 관리</p>
+					</a></li>
+					<li><a
+						href="<%= request.getContextPath() %>/views/admin/newLicense.jsp">
+							<i class="ti-plus"></i>
+							<p>자격증 추가</p>
+					</a></li>
+					<li><a
+						href="<%= request.getContextPath() %>/views/admin/viewCount.jsp">
+							<i class="ti-plus"></i>
+							<p>사이트 접속자 수 조회</p>
+					</a></li>
+					<!-- 
                 <li>
                     <a href="maps.html">
                         <i class="ti-map"></i>
@@ -162,276 +197,264 @@
                         <p>Notifications</p>
                     </a>
                 </li> -->
-				<li class="active-pro">
-                   
-                </li>
-            </ul>
-    	</div>
-    </div>
-
-    <div class="main-panel">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar bar1"></span>
-                        <span class="icon-bar bar2"></span>
-                        <span class="icon-bar bar3"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Dashboard</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <div class="loginArea" >
-	 <% if(m != null && m.getUserId().equals("admin")) {%>
-		
-		<div style="float:left; width:250px;">
-		<form id="loginForm" action="/allRight/mLogin.me" method="post">
-			<div id="userInfo" style = "padding-top:23px;">
-			<label><%= m.getUserName() %>님의 방문을 환영합니다.</label><br>
-
-		</div>
-		
-		</div>
-		
-		<div class="btns" style = "float:left; padding-right:15px;">
-				<input type="button" class="btn btn-danger" value="로그아웃" onclick="logout()" />
+					<li class="active-pro"></li>
+				</ul>
 			</div>
-			
-		</form>
+		</div>
 
-	<% } else {
+		<div class="main-panel">
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle">
+							<span class="sr-only">Toggle navigation</span> <span
+								class="icon-bar bar1"></span> <span class="icon-bar bar2"></span>
+							<span class="icon-bar bar3"></span>
+						</button>
+						<a class="navbar-brand" href="#">Dashboard</a>
+					</div>
+					<div class="collapse navbar-collapse">
+						<ul class="nav navbar-nav navbar-right">
+							<div class="loginArea">
+								<% if(m != null && m.getUserId().equals("admin")) {%>
+
+								<div style="float: left; width: 250px;">
+									<form id="loginForm" action="/allRight/mLogin.me" method="post">
+										<div id="userInfo" style="padding-top: 23px;">
+											<label><%= m.getUserName() %>님의 방문을 환영합니다.</label><br>
+
+										</div>
+								</div>
+
+								<div class="btns" style="float: left; padding-right: 15px;">
+									<input type="button" class="btn btn-danger" value="로그아웃"
+										onclick="logout()" />
+								</div>
+
+								</form>
+
+								<% } else {
 	request.setAttribute("msg","관계자 외에 접근이 불가능한 페이지입니다.");
 	request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 } %>
-	
+
+							</div>
+
+						</ul>
+
+					</div>
+				</div>
+			</nav>
+
+
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-3 col-sm-6">
+							<div class="card">
+								<div class="content">
+									<div class="row">
+										<div class="col-xs-5">
+											<div class="icon-big icon-warning text-center">
+												<i class="ti-server"></i>
+											</div>
+										</div>
+										<div class="col-xs-7">
+											<div class="numbers">
+												<p>Capacity</p>
+												105GB
+											</div>
+										</div>
+									</div>
+									<div class="footer">
+										<hr />
+										<div class="stats">
+											<i class="ti-reload"></i> Updated now
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-sm-6">
+							<div class="card">
+								<div class="content">
+									<div class="row">
+										<div class="col-xs-5">
+											<div class="icon-big icon-success text-center">
+												<i class="ti-wallet"></i>
+											</div>
+										</div>
+										<div class="col-xs-7">
+											<div class="numbers">
+												<p>Revenue</p>
+												$1,345
+											</div>
+										</div>
+									</div>
+									<div class="footer">
+										<hr />
+										<div class="stats">
+											<i class="ti-calendar"></i> Last day
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-sm-6">
+							<div class="card">
+								<div class="content">
+									<div class="row">
+										<div class="col-xs-5">
+											<div class="icon-big icon-danger text-center">
+												<i class="ti-pulse"></i>
+											</div>
+										</div>
+										<div class="col-xs-7">
+											<div class="numbers">
+												<p>Errors</p>
+												23
+											</div>
+										</div>
+									</div>
+									<div class="footer">
+										<hr />
+										<div class="stats">
+											<i class="ti-timer"></i> In the last hour
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-sm-6">
+							<div class="card">
+								<div class="content">
+									<div class="row">
+										<div class="col-xs-5">
+											<div class="icon-big icon-info text-center">
+												<i class="ti-twitter-alt"></i>
+											</div>
+										</div>
+										<div class="col-xs-7">
+											<div class="numbers">
+												<p>Followers</p>
+												+45
+											</div>
+										</div>
+									</div>
+									<div class="footer">
+										<hr />
+										<div class="stats">
+											<i class="ti-reload"></i> Updated now
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+
+						<div class="col-md-12">
+							<div class="card">
+								<div class="header">
+									<h4 class="title">방문자 통계</h4>
+									<p class="category">24 Hours performance</p>
+								</div>
+								<div class="content">
+									<div id="chart_div" style="width: 100%; height: 500;"></div>
+									<hr>
+									<div class="stats">
+										<i class="ti-reload"></i> Updated 3 minutes ago
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="card">
+								<div class="header">
+									<h4 class="title">Email Statistics</h4>
+									<p class="category">Last Campaign Performance</p>
+								</div>
+								<div class="content">
+									<div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+
+									<div class="footer">
+										<div class="chart-legend">
+											<i class="fa fa-circle text-info"></i> Open <i
+												class="fa fa-circle text-danger"></i> Bounce <i
+												class="fa fa-circle text-warning"></i> Unsubscribe
+										</div>
+										<hr>
+										<div class="stats">
+											<i class="ti-timer"></i> Campaign sent 2 days ago
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="card ">
+								<div class="header">
+									<h4 class="title">2015 Sales</h4>
+									<p class="category">All products including Taxes</p>
+								</div>
+								<div class="content">
+									<div id="chartActivity" class="ct-chart"></div>
+
+									<div class="footer">
+										<div class="chart-legend">
+											<i class="fa fa-circle text-info"></i> Tesla Model S <i
+												class="fa fa-circle text-warning"></i> BMW 5 Series
+										</div>
+										<hr>
+										<div class="stats">
+											<i class="ti-check"></i> Data information certified
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<footer class="footer">
+				<div class="container-fluid"></div>
+			</footer>
+
+		</div>
 	</div>
-                        
-                    </ul>
-
-                </div>
-            </div>
-        </nav>
-
-
-        <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                        <div class="icon-big icon-warning text-center">
-                                            <i class="ti-server"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-                                            <p>Capacity</p>
-                                            105GB
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                    <div class="stats">
-                                        <i class="ti-reload"></i> Updated now
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                        <div class="icon-big icon-success text-center">
-                                            <i class="ti-wallet"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-                                            <p>Revenue</p>
-                                            $1,345
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                    <div class="stats">
-                                        <i class="ti-calendar"></i> Last day
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                        <div class="icon-big icon-danger text-center">
-                                            <i class="ti-pulse"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-                                            <p>Errors</p>
-                                            23
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                    <div class="stats">
-                                        <i class="ti-timer"></i> In the last hour
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                        <div class="icon-big icon-info text-center">
-                                            <i class="ti-twitter-alt"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-                                            <p>Followers</p>
-                                            +45
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                    <div class="stats">
-                                        <i class="ti-reload"></i> Updated now
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Users Behavior</h4>
-                                <p class="category">24 Hours performance</p>
-                            </div>
-                            <div class="content">
-                                <div id="chartHours" class="ct-chart"></div>
-                                <div class="footer">
-                                    <div class="chart-legend">
-                                        <i class="fa fa-circle text-info"></i> Open
-                                        <i class="fa fa-circle text-danger"></i> Click
-                                        <i class="fa fa-circle text-warning"></i> Click Second Time
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="ti-reload"></i> Updated 3 minutes ago
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Email Statistics</h4>
-                                <p class="category">Last Campaign Performance</p>
-                            </div>
-                            <div class="content">
-                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
-
-                                <div class="footer">
-                                    <div class="chart-legend">
-                                        <i class="fa fa-circle text-info"></i> Open
-                                        <i class="fa fa-circle text-danger"></i> Bounce
-                                        <i class="fa fa-circle text-warning"></i> Unsubscribe
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="ti-timer"></i> Campaign sent 2 days ago
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card ">
-                            <div class="header">
-                                <h4 class="title">2015 Sales</h4>
-                                <p class="category">All products including Taxes</p>
-                            </div>
-                            <div class="content">
-                                <div id="chartActivity" class="ct-chart"></div>
-
-                                <div class="footer">
-                                    <div class="chart-legend">
-                                        <i class="fa fa-circle text-info"></i> Tesla Model S
-                                        <i class="fa fa-circle text-warning"></i> BMW 5 Series
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="ti-check"></i> Data information certified
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <footer class="footer">
-            <div class="container-fluid">
-               
-            </div>
-        </footer>
-
-    </div>
-</div>
 
 
 </body>
 
-    <!--   Core JS Files   -->
-    <script src="assets/js/jquery.min.js" type="text/javascript"></script>
-	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+<!--   Core JS Files   -->
+<script src="assets/js/jquery.min.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 
-	<!--  Checkbox, Radio & Switch Plugins -->
-	<script src="assets/js/bootstrap-checkbox-radio.js"></script>
+<!--  Checkbox, Radio & Switch Plugins -->
+<script src="assets/js/bootstrap-checkbox-radio.js"></script>
 
-	<!--  Charts Plugin -->
-	<script src="assets/js/chartist.min.js"></script>
+<!--  Charts Plugin -->
+<script src="assets/js/chartist.min.js"></script>
 
-    <!--  Notifications Plugin    -->
-    <script src="assets/js/bootstrap-notify.js"></script>
+<!--  Notifications Plugin    -->
+<script src="assets/js/bootstrap-notify.js"></script>
 
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+<!--  Google Maps Plugin    -->
+<script type="text/javascript"
+	src="https://maps.googleapis.com/maps/api/js"></script>
 
-    <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
-	<script src="assets/js/paper-dashboard.js"></script>
+<!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+<script src="assets/js/paper-dashboard.js"></script>
 
-	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-	<script src="assets/js/demo.js"></script>
+<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+<script src="assets/js/demo.js"></script>
 
 
-	
-		<script>
+<script>
 			
 		function logout(){
 			location.href = "/allRight/mLogout.me";
