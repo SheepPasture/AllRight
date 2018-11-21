@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.sheep.jsp.member.model.vo.Member"
-    import="com.sheep.jsp.point.model.vo.Point ,java.util.*, com.sheep.jsp.announcement.model.vo.* , com.oreilly.servlet.*"%>
+    pageEncoding="UTF-8" isErrorPage = "true" 
+    import="com.sheep.jsp.member.model.vo.Member"
+    import="com.sheep.jsp.point.model.vo.Point ,java.util.*"%>
     
 
 <%
 	Member m = (Member)session.getAttribute("member");
 	Point pt = (Point)session.getAttribute("point");
   	Object level=session.getAttribute("level");   
-  	Announcement a = (Announcement)request.getAttribute("announcement");
+  	String msg = (String)request.getAttribute("msg");
+	Exception e = (Exception)request.getAttribute("exception");
 
 %>
 
@@ -41,24 +43,6 @@
     <link href="/allRight/assets/css/themify-icons.css" rel="stylesheet">
 	
 	
-	 <style type="text/css">
-   
-  /* 게시판관련 */
-    .board_area { font-size:13px !important;  }
-
-    .paging { text-align:center; padding:30px 0 0 0; }
-
-    .btn_area2 { text-align:right; padding-top:20px; font-size:14px; font-weight:600;   }
-    .btn_area2 a { display:inline-block; padding:7px 20px; background:#666; color:#fff; }
-
-    table.view { width:100%; border-top:2px solid #000;    }
-    table.view tbody tr th { background:#f4f4f4; border-bottom:1px solid #cfcfcf; border-right:1px solid #cfcfcf; padding:10px 0;   }
-    table.view tbody tr td { background:#fff; border-bottom:1px solid #cfcfcf; padding:10px 20px; line-height:170%;   }
-    table.view tbody tr td.board_contents { padding:20px 20px; }
-    table.view tbody tr td img { width:100%; height:auto; }
-    table.view tbody tr td.title { font-weight:600; }
-   
-   </style>
 </head>
 <body>
 
@@ -84,7 +68,7 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                 <li class="active">
+                 <li>
                     <a href="<%= request.getContextPath() %>/selectList.ad">
                         <i class="ti-pencil-alt2"></i>
                         <p>공지 게시판 수정</p>
@@ -106,12 +90,6 @@
                     <a href="<%= request.getContextPath() %>/views/admin/newLicense.jsp">
                         <i class="ti-plus"></i>
                         <p>자격증 추가</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="<%= request.getContextPath() %>/views/admin/viewCount.jsp">
-                        <i class="ti-plus"></i>
-                        <p>사이트 접속자 수 조회</p>
                     </a>
                 </li>
                 <!-- 
@@ -186,85 +164,18 @@
             <div class="container-fluid">   
          <div class="row content">
 				
-				<div class="col-sm-11 text-left">
+				<div class="col-sm-11 text-center">
+					<h3 align="left">에러 페이지</h2>
+					<br /><br />
+					<%if(msg!= null) {%>
 					
-					<% if(a != null) { %>
-					<!-- 게시판(뷰)시작 -->
-					<div class="board_area">
-						<form id="updateForm" method="post">
-						<table class="view">
-							<tbody>
-								<tr>
-									<th>제목</th>
- 									<td class="title"><%= a.getAtitle()%></td>
-									<th><div>글번호</div><br /><div>조회수</div></th>
-									<td><div><%= a.getAno() %></div><br /><div><%= a.getAcount() %></div></td>
-								</tr>
-								<tr>
-									<th>작성자</th>
-									<td>관리자</td>
-									<th>등록일시</th>
-				 					<td><%= a.getAdate() %></td>
-								</tr> 
-								<tr>
-									<th>내용</th>
-								 	<td colspan="3"><%= a.getAcontent() %></td>
-								</tr>			
-								<tr>
-									<td colspan="5">
-										<input id="ano" name="ano" type="hidden" value="<%= a.getAno() %>"/>
-									</td>
-									
-								</tr>
-								<% } else { 
-							 		request.setAttribute("msg", "회원만 가능한 서비스 입니다."); 
-									request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
-								} %>
-								<tr>
-									<th>이전글&nbsp; ▲</th>
-									
-									<td colspan="3"><a href="#" onclick="before();">
-										<%= a.getAno()-1 %>번째 글입니다.
-									</a></td>
-								</tr>
-								<tr>
-									<th>다음글&nbsp; ▼</th>
-									<td colspan="3"><a href="" onclick="after();"><%= a.getAno()+1 %>번째 글입니다.</a></td>
-								</tr>
-							</tbody>
-						</table>
- 						<div class="btn_area2">
- 								<button class="btn btn-primary" onclick="back();">목록으로 바로가기</button>
- 								
- 								<button class="btn btn-danger" onclick="del();">삭제</button>
-								<button class="btn btn-warning" onclick="edit();">수정</button>
-						</div> </form>
-						<script>
-							function before(){
-								var ano = $("#ano").val();
-								location.href="/allRight/annBefore.ad?"+"ano="+ano;
-							}
-							
-							function after(){
-								var ano = $("#ano").val();
-								location.href="/allRight/annAfter.ad?"+"ano="+ano;
-							}
-						
-							function edit(){
-								var ano = $("#ano").val();
-			 		 			$("#updateForm").attr("action", "<%=request.getContextPath()%>/annUpView.ad?ano="+ano);
-			 		 		}
-						
-							function back(){	
-								$("#updateForm").attr("action","<%=request.getContextPath() %>/selectList.ad");
-							}
-							
-							function del(){
-								var ano = $("#ano").val();
-								$("#updateForm").attr("action","<%=request.getContextPath() %>/annDelete.ad?ano="+ano);
-							}
-						</script>
-					</div>		
+					<h3>에러명 :: <%= msg %><%-- <%= e.getMessage() %> --%></h3>
+					
+					<% } %>
+					
+					<h4> <br /><br />
+					에러가 계속 발생시 담당자에게 연락부탁드립니다.
+					</h4>
 				</div>
 			</div>
   

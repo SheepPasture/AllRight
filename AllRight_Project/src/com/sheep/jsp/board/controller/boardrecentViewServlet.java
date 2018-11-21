@@ -33,6 +33,7 @@ public class boardrecentViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int bid = Integer.parseInt(request.getParameter("bid"));
 		BoardService bs = new BoardService();
 		
 		// -- 페이징 처리 (데이터를 일정량 끊어서 가져오는 기술) -- //
@@ -50,7 +51,7 @@ public class boardrecentViewServlet extends HttpServlet {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		int listCount = bs.getListCount();
+		int listCount = bs.getListCount(bid);
 		
 		maxPage = (int)((double)listCount / limit + 0.9);
 		startPage = ((int)((double)currentPage / limit + 0.9) - 1 ) * limit + 1;

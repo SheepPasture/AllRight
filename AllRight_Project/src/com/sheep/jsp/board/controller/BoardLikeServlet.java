@@ -34,9 +34,11 @@ public class BoardLikeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int bid = Integer.parseInt(request.getParameter("bid"));
 		int bno = Integer.parseInt(request.getParameter("bno"));
-		String 
-		Board b = new BoardService().boardLike(bid,bno);
+
+		
+		Board b = new BoardService().boardLike(bid, bno);
 		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bno);
 		
 		System.out.println("b: "+b);

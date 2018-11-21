@@ -46,7 +46,7 @@ public class AdminNewsSelectOneServlet extends HttpServlet {
 			request.setAttribute("news", n);
 		} else{
 			
-			page = "/views/common/errorPage.jsp";
+			page = "/views/common/adminErrorPage.jsp";
 			request.setAttribute("msg", "뉴스 상세보기 실패");
 		}
 		

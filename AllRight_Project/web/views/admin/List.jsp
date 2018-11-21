@@ -82,10 +82,16 @@
                         <p>신고된 글,회원 관리</p>
                     </a>
                 </li>
-             <li>
+             	<li>
                     <a href="<%= request.getContextPath() %>/views/admin/newLicense.jsp">
                         <i class="ti-plus"></i>
                         <p>자격증 추가</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<%= request.getContextPath() %>/views/admin/viewCount.jsp">
+                        <i class="ti-plus"></i>
+                        <p>사이트 접속자 수 조회</p>
                     </a>
                 </li>
                 <!-- 
@@ -121,7 +127,7 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#">공지 게시판 수정</a>
+                    <a class="navbar-brand" href="#">신고된 글, 회원 관리</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">

@@ -34,6 +34,7 @@ public class CommentReportServelt extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		int bid = Integer.parseInt(request.getParameter("bid"));
 		int cno = Integer.parseInt(request.getParameter("cno"));
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		
@@ -42,7 +43,7 @@ public class CommentReportServelt extends HttpServlet {
 		
 		
 		ArrayList<BoardComment> bc = new BoardCommentService().BoardCommentReport(cno,bno);
-		Board b = new BoardService().selectOne(bno);
+		Board b = new BoardService().selectOne(bid, bno);
 		
 		System.out.println("신고 보드 " +b);
 		

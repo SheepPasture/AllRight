@@ -1,30 +1,26 @@
-package com.sheep.jsp.board.controller;
+package com.sheep.jsp.announcement.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sheep.jsp.board.model.service.BoardService;
-import com.sheep.jsp.board.model.vo.Board;
-import com.sheep.jsp.boardComment.model.service.BoardCommentService;
-import com.sheep.jsp.boardComment.model.vo.BoardComment;
+import com.sheep.jsp.announcement.model.service.ANNService;
+import com.sheep.jsp.announcement.model.vo.Announcement;
 
 /**
- * Servlet implementation class BoardReportServlet
+ * Servlet implementation class AdminANNafterServlet
  */
-@WebServlet("/bReport.bo")
-public class BoardReportServlet extends HttpServlet {
+@WebServlet("/annAfter.ad")
+public class AdminANNafterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardReportServlet() {
+    public AdminANNafterServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,30 +29,28 @@ public class BoardReportServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+int ano = Integer.parseInt(request.getParameter("ano"));
 		
-		int bid = Integer.parseInt(request.getParameter("bid"));
-		int bno = Integer.parseInt(request.getParameter("bno"));
+		int fAno = new ANNService().afterANN(ano);
 		
-		Board b = new BoardService().boardReport(bid, bno);
-		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bno);
-		
-		System.out.println("b: "+b);
-		System.out.println("c:" +clist);
+		Announcement a = new ANNService().selectOne(fAno);
+
+		System.out.println("ANNbeforeServlet ano: "+ano);
+		System.out.println("ANNbeforeServlet nAno: "+fAno);
+		System.out.println("ANNbeforeServlet a: "+a);
 		
 		String page = "";
 		
-		if(b != null){
-			page = "/views/board/boardDetail.jsp";
-			request.setAttribute("board", b);
-			request.setAttribute("clist", clist);
+		if(a != null){
+			page = "/views/admin/ANNDetail.jsp";
+			request.setAttribute("announcement", a);
 			
 		} else{
-			page="/views/common/errorPage.jsp";
-			request.setAttribute("msg", "게시물 상세보기 실패!");
+			page="/views/common/adminErrorPage.jsp";
+			request.setAttribute("msg", "공지사항 상세보기에 실패하였습니다. 관리자에게 문의바랍니다.");
 		}
 		
 		request.getRequestDispatcher(page).forward(request, response);
-		
 	}
 
 	/**

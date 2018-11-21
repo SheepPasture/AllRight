@@ -65,7 +65,6 @@
 									<th class="col-sm-2" id="title">제목</th>
 									<td>
 										<textarea name="title" rows="1" cols="90"  style="resize: none;"><%= b.getbTitle() %></textarea>
-									
 									</td>
 								</tr>
 								<tr>

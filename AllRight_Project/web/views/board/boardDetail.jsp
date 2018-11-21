@@ -464,22 +464,20 @@ sns_update_list li .sns_list_title {
 												<div id="rplyArea">
 													<!--테이블 리스트-->
 													<div class="replyWriteArea">
-														<form action="<%= request.getContextPath() %>/insertComment.bo" method="post">
+														 <form action="<%= request.getContextPath() %>/insertComment.bo" method="post"> 
 
-														<input type="hidden" name="userName" value="<%= m.getUserName() %>"/>
-
-														<input type="hidden" name="userNo" value="<%= m.getUserNo() %>"	>											
-														<%-- <input type="hidden" name="bid" value="<%= b.getbId() %>"/> --%> 
-
-														<input type="hidden" name="bno" value="<%= b.getbNO() %>"/>
-														<input type="hidden" name="refcno" value="0"/>
-														<input type="hidden" name="clevel" value="1"/> 
 														
 														<div class="sns_input">
+															<input type="hidden" name="userName" value="<%= m.getUserName() %>"/>
+															<input type="hidden" name="userNo" value="<%= m.getUserNo() %>"	>											
+															<input type="hidden" name="bid" value="<%= b.getbId() %>"/> 
+															<input type="hidden" name="bno" value="<%= b.getbNO() %>"/>
+															<input type="hidden" name="refcno" value="0"/>
+															<input type="hidden" name="clevel" value="1"/> 
 															<textarea  id="replyContent" name="replyContent" placeholder="댓글을 입력하세요"></textarea>
-															<button class="sns_input_submit" type="submit" id="addReply"><div>등록</div></button>
+															<button class="sns_input_submit" type="submit" id="addReply" onclick="submit();"><div>등록</div></button>
 														</div>
-														</form>
+														</form> 
 													</div>
 													
 
