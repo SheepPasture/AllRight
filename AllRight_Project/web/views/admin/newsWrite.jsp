@@ -7,16 +7,6 @@
 	Member m = (Member)session.getAttribute("member");
 	Point pt = (Point)session.getAttribute("point");
   	Object level=session.getAttribute("level");   
-  	
-  	ArrayList<News> list = (ArrayList<News>)request.getAttribute("list"); 
-    ArrayList<News> poplist = (ArrayList<News>)request.getAttribute("poplist");
-    ArrayList<News> firstlist = (ArrayList<News>)request.getAttribute("firstlist");
-    PageInfo pi = (PageInfo)request.getAttribute("pi");
-    int listCount = pi.getListCount();
-    int currentPage = pi.getCurrentPage();
-    int maxPage = pi.getMaxPage();
-    int startPage = pi.getStartPage();
-    int endPage = pi.getEndPage();
 
 %>
 
@@ -57,12 +47,12 @@
    }
    
    .name{
-      width : 450px;
+      width : 420px;
       text-overflow : ellipsis;
       white-space : nowrap;
       overflow : hidden;
       display : block;
-      padding-left : 40px;
+      padding-left : 0px;
       
    }
    
@@ -158,7 +148,7 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#">뉴스 게시판 수정</a>
+                    <a class="navbar-brand" href="#">공지 게시판 수정</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -168,7 +158,7 @@
 		<div style="float:left; width:250px;">
 		<form id="loginForm" action="/allRight/mLogin.me" method="post">
 			<div id="userInfo" style = "padding-top:23px;">
-			<label><%= m.getUserName() %>님의 방문을 환영합니다.</label><br>
+			<label><%= m.getUserName()%>님의 방문을 환영합니다.</label><br>
 
 		</div>
 		
@@ -195,120 +185,38 @@
 
         <div class="content">
             <div class="container-fluid">   
-         <div class="row content">
-         
-            <div class="col-sm-11 text-center">
-               <!-- <h2 align="left">뉴스</h2> -->
-               
-               
-               <table class="table table-hover" id="listArea">
-                  <thead>
-                     <tr>
-                        <th class="col-md-7" style="font-size:25px; border : 0px;">이 시각 인기 뉴스</th>
-                     </tr>
-                  </thead>
-                  
-                  <tbody>
-                     
-                     <%for(News n : firstlist) {%>
-                  <tr>
-                     <td style="display:none;"><%= n.getNNO() %></td>
-                     <td rowspan = "7" ><img src="<%= request.getContextPath()%>/resources/newsUploadFiles/<%= n.getNFILE() %>" style ="width:400px;"><br><br><p class="name"><%= n.getNTITLE() %></p></td>
-                  </tr>
-                  
-                     <% } %>
-                  
-                       <% for(News n: poplist){ %>
-                  <tr>
-                     
-                     <td class="col-md-1" style="display:none;"><%= n.getNNO() %></td>
-                     
-                     <td class="col-md-10 text-left"><p class="name2"><%= n.getNTITLE() %></p></td>
-                     
-                     <td class="col-md-1" style="display:none;">관리자</td>
-                     <td class="col-md-1" style="display:none;"><%= n.getNDATE() %></td>
-                     <td class="col-md-2" style="display:none;"><%= n.getNCOUNT() %></td>
-                  </tr>
-                     <% } %> 
-               </tbody>
-            
-               </table>
-               
-               <hr style="border: solid 0.5px lightgray; width : 980px;">
-            
-               
-               <table class="table table-hover" id="listArea">
-                  <thead>
-                     <th class="col-md-7" style="font-size:25px; border : 0px;">자격증 관련 뉴스</th>
-                  </thead>
-                  
-                  <!-- 
-                  
-                  <tr>
-                        
-                     </tr>
-                     <thead>
-                     <tr>
-                        
-                        <th class="col-md-7 text-center">글제목</td>
-                        <th class="col-md-1 text-center">작성자</th>
-                        <th class="col-md-1 text-center">조회수</th>
-                        <th class="col-md-2 text-center">작성일</th>
-                     </tr>
-                     </thead>
-                   -->
-                  
-                  <tbody>
-                       <% for(News n: list){ %>
-                  <tr>
-                     
-                     <td class="col-md-1 " style="display:none;"><%= n.getNNO() %></td>
-                     
-                     <td class="col-md-6 text-left"><%= n.getNTITLE() %></td>
-                     
-                     <td class="col-md-1" style="display:none;">관리자</td>
-                     <td class="col-md-1" style="display:none;"><%= n.getNCOUNT() %></td>
-                     <td class="col-md-2"><%= n.getNDATE() %></td>
-                  </tr>
-                     <% } %> 
-               </tbody>
-               </table> 
-            </div>
-            
- 
-            <div class="col-md-11 text-center" align="center" >
-            
-            	<br>
-            
-               <button class="btn btn-default" onclick="location.href='<%= request.getContextPath()%>/newsSelectList.ad?currentPage=1'"><<</button>
-               <%   if(currentPage <= 1) {%>
-               <button class="btn btn-default" disabled><</button>
-               <% }else {%>
-               <button class="btn btn-default" onclick="location.href='<%= request.getContextPath()%>/newsSelectList.ad?currentPage=<%= currentPage - 1 %>'"><</button>
-               <% } %>   
-               
-               <% for(int p = startPage; p <= endPage; p++) { 
-                     if(p == currentPage){ %>
-                     <button class="btn btn-default" disabled><%= p %></button>
-               <%   } else { %>
-                     <button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/newsSelectList.ad?currentPage=<%= p%>'"><%= p %></button>
-               <%   } %>
-               <% } %>      
-               
-               <% if(currentPage >= maxPage) {%>   
-               <button class="btn btn-default" disabled>></button>
-               <% } else { %>
-               <button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/newsSelectList.ad?currentPage=<%= currentPage + 1%>'">></button>
-               <% } %>
-               <button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/newsSelectList.ad?currentPage=<%= maxPage%>'">>></button>
-            </div>
-            
-            
-            <div class="col-sm-11 text-right">
-               <button class="btn btn-default" type="button"><a href="views/admin/newsWrite.jsp">작성하기</a></button>
-            </div>
-            
-         </div>
+         <form action="<%= request.getContextPath()%>/nInsert.ad"
+				method="post" enctype="multipart/form-data">
+				<div class="col-sm-8 text-left">
+					<br>
+					<h3 align="left">뉴스 작성하기</h3>
+					<div class="form-group"> 
+						<label for="subject">제목</label> 
+						<input type="text" class="form-control" name ="subject" id="subject" placeholder="제목을 입력하세요"> 
+					</div> 
+					<div class="form-group"> 
+						<label for="File">뉴스 사진</label> 
+						<input type="file" id="File" name="file"> 
+					</div> 
+					<div class="form-group"> 
+						<label for="content">뉴스 내용</label> 
+						<textarea class="form-control" cols="60" rows="10" name="content" id="content" style="resize:none;" placeholder="최대 3000자 이내로 입력하세요."></textarea> 
+					</div> 
+				</div>
+
+					
+			 		<button type="submit" class="btn btn-success">등록하기</button>
+			 		<button type="reset" class="btn btn-danger" onclick="back()">취소하기</button>
+			 		<br><br><br>
+			 		</form>
+			 		
+			 		<script>
+			 			
+			 			function back(){
+			 				location.href="/allRight/newsSelectList.ad";
+			 			}
+			 			
+			 		</script>
          
          <br><br><br>
          <br><br><br>
@@ -321,18 +229,7 @@
             </div>
         </footer>
 
-		  <script>
-         
-         $(function(){
-            $("#listArea td").mouseenter(function(){
-               $(this).parent().css({"cursor":"pointer"});
-            }).click(function(){
-               
-               var nno = $(this).parent().children().eq(0).text();
-               location.href="<%=request.getContextPath()%>/selectOne.ad?nno=" + nno;
-            });
-         });
-      </script>
+		
     </div>
 </div>
 

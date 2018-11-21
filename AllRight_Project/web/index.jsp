@@ -3,20 +3,20 @@
     pageEncoding="UTF-8" import="com.sheep.jsp.member.model.vo.Member"
     import="com.sheep.jsp.point.model.vo.Point, com.sheep.jsp.news.model.vo.*,java.util.*, com.sheep.jsp.board.model.vo.*"%>
 <%
-	Member m = (Member)session.getAttribute("member");
-	Point pt = (Point)session.getAttribute("point");
-  	Object level=session.getAttribute("level");   
-  	ArrayList<Board> blist = (ArrayList<Board>)request.getAttribute("blist");
-  	 ArrayList<News> nlist = (ArrayList<News>)request.getAttribute("list"); 
+   Member m = (Member)session.getAttribute("member");
+   Point pt = (Point)session.getAttribute("point");
+     Object level=session.getAttribute("level");   
+     ArrayList<Board> blist = (ArrayList<Board>)request.getAttribute("blist");
+      ArrayList<News> nlist = (ArrayList<News>)request.getAttribute("list"); 
 %>
 
 
 <!DOCTYPE html>
 <head>
 <link href="/allRight/resources/css/style.css" rel="stylesheet"
-	type="text/css" />
+   type="text/css" />
 <script src="/allRight/resources/js/jquery.min.js"
-	type="text/javascript"></script>
+   type="text/javascript"></script>
 <title>ALLRight</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
@@ -24,118 +24,118 @@
 
 <style type="text/css">
 .realtime-nav {
-	border: solid;
+   border: solid;
 }
 
 .realtime-rank {
-	/* 	font-family: 'Roboto', sans-serif; 
-		margin:3px;	*/
-	/* font-family: 'Roboto', sans-serif;
-		font-family: 'Poor Story', cursive; */
-	font-size: 20px;
+   /*    font-family: 'Roboto', sans-serif; 
+      margin:3px;   */
+   /* font-family: 'Roboto', sans-serif;
+      font-family: 'Poor Story', cursive; */
+   font-size: 20px;
 }
 
 .notice {
-	margin-left: 300px;
+   margin-left: 300px;
 }
- 	.col-sm-8{
-		font : 12px/20px 돋움;
-		color:#424242;
-		background:#fff;
-		padding:10px;
-		width:500px;
-		margin:0;
-	}
-	.col-sm-8 h1 {
-		margin:0;
-		font-size:20px;
-		text-shadow:2px 2px 2px #aeaeae;
-	}
-	.col-sm-8 h2{
-		margin:5px 0;
-		padding:0;
-	}
+    .col-sm-8{
+      font : 12px/20px 돋움;
+      color:#424242;
+      background:#fff;
+      padding:10px;
+      width:500px;
+      margin:0;
+   }
+   .col-sm-8 h1 {
+      margin:0;
+      font-size:20px;
+      text-shadow:2px 2px 2px #aeaeae;
+   }
+   .col-sm-8 h2{
+      margin:5px 0;
+      padding:0;
+   }
 
-	.col-sm-8 h2 a{
-		font-size:15px;
-		display:block;
-		font-weight:normal;
-		color:#424242;
-		text-shadow:2px 2px 2px #aeaeae;
-		text-decoration:none;
-		margin:0;
-		padding:10px;
-		background:#8f8f8f;
-	}
+   .col-sm-8 h2 a{
+      font-size:15px;
+      display:block;
+      font-weight:normal;
+      color:#424242;
+      text-shadow:2px 2px 2px #aeaeae;
+      text-decoration:none;
+      margin:0;
+      padding:10px;
+      background:#8f8f8f;
+   }
 
-	.col-sm-8 h2 a{
-		font-size:15px;
-		display:block;
-		font-weight:normal;
-		color:#424242;
-		text-shadow:2px 2px 2px #aeaeae;
-		text-decoration:none;
-		margin:0;
-		padding:10px;
-		background:-moz-linear-gradient(top,#cecece,#8f8f8f);
-		background:-webkit-gradient(linear,left top, left bottom, from(#cecece), to(#8f8f8f));
-		-webkit-border-radius:5px;
-		-moz-border-radius:5px;
-		border-radius:5px;
-	}
+   .col-sm-8 h2 a{
+      font-size:15px;
+      display:block;
+      font-weight:normal;
+      color:#424242;
+      text-shadow:2px 2px 2px #aeaeae;
+      text-decoration:none;
+      margin:0;
+      padding:10px;
+      background:-moz-linear-gradient(top,#cecece,#8f8f8f);
+      background:-webkit-gradient(linear,left top, left bottom, from(#cecece), to(#8f8f8f));
+      -webkit-border-radius:5px;
+      -moz-border-radius:5px;
+      border-radius:5px;
+   }
 
-	.col-sm-8 :target h2 a,
-	.col-sm-8 h2 a:focus,
-	.col-sm-8 h2 a:hover,
-	.col-sm-8 h2 :active {
-		background:#2288dd;
-		background:-moz-linear-gradient(top,#6bb2ff,#2288dd);
-		background:-webkit-gradient(linear,left top, left bottom, from(#6bb2ff), to(#2288dd));
-		color:#fff;
-	}
+   .col-sm-8 :target h2 a,
+   .col-sm-8 h2 a:focus,
+   .col-sm-8 h2 a:hover,
+   .col-sm-8 h2 :active {
+      background:#2288dd;
+      background:-moz-linear-gradient(top,#6bb2ff,#2288dd);
+      background:-webkit-gradient(linear,left top, left bottom, from(#6bb2ff), to(#2288dd));
+      color:#fff;
+   }
 
-	.col-sm-8 p {
-		padding:0 10px;
-		margin:0;
-		height:0;
-		overflow:hidden;
-		-moz-transition:height 0.5s ease-in;
-		-webkit-transition:height 0.5s ease-in;
-		-o-transition:hegith 0.5s ease-in;
-		transition:height 0.5s ease-in;
-	}
+   .col-sm-8 p {
+      padding:0 10px;
+      margin:0;
+      height:0;
+      overflow:hidden;
+      -moz-transition:height 0.5s ease-in;
+      -webkit-transition:height 0.5s ease-in;
+      -o-transition:hegith 0.5s ease-in;
+      transition:height 0.5s ease-in;
+   }
 
-	.col-sm-8 :target p{
-		overflow: auto;
-		height:100px;
-	} 
+   .col-sm-8 :target p{
+      overflow: auto;
+      height:100px;
+   } 
 </style>
 
 <!-- <script>
-		
-		//BlackAndWhite
-		$(window).load(function(){
-			$('.client_img').BlackAndWhite({
-				hoverEffect : true, // default true
-				// set the path to BnWWorker.js for a superfast implementation
-				webworkerPath : false,
-				// for the images with a fluid width and height 
-				responsive:true,
-				// to invert the hover effect
-				invertHoverEffect: false,
-				// this option works only on the modern browsers ( on IE lower than 9 it remains always 1)
-				intensity:1,
-				speed: { //this property could also be just speed: value for both fadeIn and fadeOut
-					fadeIn: 300, // 200ms for fadeIn animations
-					fadeOut: 300 // 800ms for fadeOut animations
-				},
-				onImageReady:function(img) {
-					// this callback gets executed anytime an image is converted
-				}
-			});
-		});
-	
-	</script> -->
+      
+      //BlackAndWhite
+      $(window).load(function(){
+         $('.client_img').BlackAndWhite({
+            hoverEffect : true, // default true
+            // set the path to BnWWorker.js for a superfast implementation
+            webworkerPath : false,
+            // for the images with a fluid width and height 
+            responsive:true,
+            // to invert the hover effect
+            invertHoverEffect: false,
+            // this option works only on the modern browsers ( on IE lower than 9 it remains always 1)
+            intensity:1,
+            speed: { //this property could also be just speed: value for both fadeIn and fadeOut
+               fadeIn: 300, // 200ms for fadeIn animations
+               fadeOut: 300 // 800ms for fadeOut animations
+            },
+            onImageReady:function(img) {
+               // this callback gets executed anytime an image is converted
+            }
+         });
+      });
+   
+   </script> -->
 
 </head>
 <body>
@@ -457,6 +457,6 @@
 
 	</div>
 	<!-- 메인끝  -->
+
 </body>
 </html>
-

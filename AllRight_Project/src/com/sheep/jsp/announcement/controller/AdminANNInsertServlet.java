@@ -1,4 +1,4 @@
-package com.sheep.jsp.board.controller;
+package com.sheep.jsp.announcement.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sheep.jsp.board.model.service.BoardService;
-import com.sheep.jsp.board.model.vo.Board;
+import com.sheep.jsp.announcement.model.service.ANNService;
+import com.sheep.jsp.announcement.model.vo.Announcement;
 
 /**
- * Servlet implementation class BoardUpdateServlet
+ * Servlet implementation class AdminANNInsertServlet
  */
-@WebServlet("/bUpdate.bo")
-public class BoardUpdateServlet extends HttpServlet {
+@WebServlet("/aInsert.ad")
+public class AdminANNInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardUpdateServlet() {
+    public AdminANNInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,33 +29,25 @@ public class BoardUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int bid = Integer.parseInt(request.getParameter("bid"));
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		int bno = Integer.parseInt(request.getParameter("bno"));
 		
-		System.out.println("selectOne bid: "+bid);
-		System.out.println("selectOne bno: "+bno);
+		Announcement a = new Announcement();
 		
-		Board b = new Board();
+		System.out.println(title + content);
 		
-		b.setbTitle(title);
-		b.setbContent(content);
-		b.setbNO(bno);
+		a.setAtitle(title);
+		a.setAcontent(content);
 		
-		System.out.println("업데이트서블릿완료");
+		int result = new ANNService().insertANN(a);
 		
-		int result = new BoardService().updateBoard(b, bid);
-		
-		if(result>0){
-			System.out.println("업데이트서블릿결과완료");
-			response.sendRedirect("selectOne.bo?bid"+bid+"bno="+bno);
+		if(result > 0){
+			response.sendRedirect("selectList.ad");
 		} else{
-			request.setAttribute("msg", "게시물 수정 실패");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			request.setAttribute("msg", "공지 작성 실패");
+			
+			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 		}
-		
 	}
 
 	/**

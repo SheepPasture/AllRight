@@ -65,13 +65,13 @@
                     </a>
                 </li>
                  <li>
-                    <a href="<%= request.getContextPath() %>/views/admin/BoardEdit.jsp">
+                    <a href="<%= request.getContextPath() %>/selectList.ad">
                         <i class="ti-pencil-alt2"></i>
                         <p>공지 게시판 수정</p>
                     </a>
                 </li>
                 <li>
-                    <a href="<%= request.getContextPath() %>/views/admin/NewsEdit.jsp">
+                    <a href="<%= request.getContextPath() %>/newsSelectList.ad">
                         <i class="ti-pencil-alt2"></i>
                         <p>뉴스 게시판 수정</p>
                     </a>
@@ -82,12 +82,13 @@
                         <p>신고된 글,회원 관리</p>
                     </a>
                 </li>
-             <!--    <li>
-                    <a href="icons.html">
-                        <i class="ti-pencil-alt2"></i>
-                        <p>Icons</p>
+             <li>
+                    <a href="<%= request.getContextPath() %>/views/admin/newLicense.jsp">
+                        <i class="ti-plus"></i>
+                        <p>자격증 추가</p>
                     </a>
                 </li>
+                <!-- 
                 <li>
                     <a href="maps.html">
                         <i class="ti-map"></i>

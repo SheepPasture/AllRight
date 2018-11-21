@@ -25,119 +25,120 @@ import com.sheep.jsp.point.model.vo.Point;
 @WebServlet("/mLogin.me")
 public class MemberLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1001L;
-	
-	
-	 private static MemberLoginServlet instance = new MemberLoginServlet();
 
-	    public static MemberLoginServlet getInstance() {
-	        return instance;
-	    }
+	private static MemberLoginServlet instance = new MemberLoginServlet();
 
-
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public MemberLoginServlet() {
-        super();
-    }
+	public static MemberLoginServlet getInstance() {
+		return instance;
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	public MemberLoginServlet() {
+		super();
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String userId = request.getParameter("inputId");
 		String userPwd = request.getParameter("inputPassword");
 		String androidCheck = request.getParameter("android");
-		
+
 		PrintWriter out = response.getWriter();
-		
+
 		MemberService ms = new MemberService();
-		
+
 		PointService ps = new PointService();
-		
-		Member m = new Member(userId,userPwd);
-		
+
+		Member m = new Member(userId, userPwd);
+
 		Point pt = null;
 
 		Object level = new Object();
-		try{
-			
+		try {
+
 			m = ms.selectMember(m);
-			
+
 			System.out.println("로그인 성공!");
-			
+
 			System.out.println("안드로이드 체크 : " + androidCheck);
-			
+
 			pt = ps.selectPoint(m.getUserNo());
-			
+
 			Date today = new Date(new java.util.Date().getTime());
 
-			if(ms.checkDate(m.getUserNo())==1){
-				pt.setPoint(pt.getPoint()+10);
-				pt.setTotalPoint(pt.getTotalPoint()+10);
+			if (ms.checkDate(m.getUserNo()) == 1) {
+				pt.setPoint(pt.getPoint() + 10);
+				pt.setTotalPoint(pt.getTotalPoint() + 10);
 				ps.addPoint(pt);
 			}
-			
+
 			m.setFinalDate(today);
-			
+
 			ms.addFinalDate(m);
 
 			System.out.println(m);
-			level=((pt.getTotalPoint()/100)+1);
+			level = ((pt.getTotalPoint() / 100) + 1);
 			HttpSession session = request.getSession();
-			
-			session.setAttribute("member",m);
+
+			session.setAttribute("member", m);
 			session.setAttribute("point", pt);
 			session.setAttribute("level", level);
-			
 
-			if(androidCheck !=null){
+			if (androidCheck != null) {
 				System.out.println("안드로이드에서 로그인을 시도합니다.");
 				JSONObject jsonMember = new JSONObject();
 				jsonMember.put("userNo", m.getUserNo());
 				jsonMember.put("userName", m.getUserName());
-				jsonMember.put("userid",m.getUserId());
-				jsonMember.put("userDate",m.getUserDate());
-				jsonMember.put("finaldate",m.getFinalDate());
+				jsonMember.put("userid", m.getUserId());
+				jsonMember.put("userDate", m.getUserDate());
+				jsonMember.put("finaldate", m.getFinalDate());
 				jsonMember.put("userEmail", m.getEmail());
-				jsonMember.put("userPwd",m.getUserPwd());
-				
+				jsonMember.put("userPwd", m.getUserPwd());
+				jsonMember.put("userpoint", pt.getPoint());
+				jsonMember.put("usertotalpoint", pt.getTotalPoint());
+
 				out.println(jsonMember.toJSONString());
 				System.out.println("안드로이드 로그인 성공");
-				
 
-			} else if(m.getUserId().equals("admin")){
-				
+			} else if (m.getUserId().equals("admin")) {
+
 				response.sendRedirect("admin.jsp");
-				
-			}	else{
+
+			} else {
 
 				response.sendRedirect("index.jsp");
 			}
-		} catch(MemberException e){
-			
-			if(androidCheck !=null){
-				out.println();
+		} catch (MemberException e) {
+
+			if (androidCheck != null) {
+				out.println("fail");
 				System.out.println("안드로이드 로그인 실패");
-				
+
 			} else {
-			
+
 				request.setAttribute("msg", "로그인 실패");
-				
+
 				request.setAttribute("exception", e);
-				
+
 				request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 			}
-		} 
-		
+		}
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

@@ -391,13 +391,13 @@ sns_update_list li .sns_list_title {
 	<!-- PAGE -->
 	<div id="page">
 		<%@ include file="/views/common/header.jsp"%>
-		<%-- <% if(m != null){ %> --%>
+		<% if(m != null){ %>
 		<div class="container-fluid text-center">
 			<div class="row content">
 				<br />
 				<div class="col-sm-2 sidenav">
 					<p><a href="selectList.ann">공지사항</a></p>
-					<p><a href="<%= request.getContextPath() %>/views/board/boardList.jsp">커뮤니티</a></p>
+					<p><a href="<%= request.getContextPath() %>/views/board/boardMain.jsp">커뮤니티</a></p>
 					<p>
 						<a href="#">자격증정보</a>
 					</p>
@@ -769,17 +769,25 @@ sns_update_list li .sns_list_title {
 							</div>
 						</div>
 					</div>
-						<button class="edit" onclick="location.href='<%= request.getContextPath()%>/bUpView.bo?bno='+<%=b.getbNO() %>">수정</button>
-						<button class="back" onclick="location.href='<%= request.getContextPath()%>/selectList.bo'">목록으로 바로가기 </button>
+						<%-- <button class="edit" onclick="location.href='<%= request.getContextPath()%>/bUpView.bo?bid='+<%=b.getbId() %>+'&bno='+<%=b.getbNO() %>">수정</button> --%>
+						<button class="edit" onclick="edit();">수정</button>
+						<button class="back" onclick="location.href='<%= request.getContextPath()%>/selectList.bo?bid='+1">목록으로 바로가기 </button>
+						<script>
+							function edit(){
+								var bid = 1;
+								var bno = $('#bno').val();
+								location.href="<%=request.getContextPath()%>/bUpView.bo?bid=" + bid+"&bno="+bno;
+							}
+						</script>
 						<br /><br />
 				</div>
 			</div>
 		</div>
-<%-- 		<% } else { 
+		<% } else { 
 			request.setAttribute("msg", "회원만 가능한 서비스입니다.");
 			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 			}
-		%> --%>
+		%> 
 	</div>
 </body>
 

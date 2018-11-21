@@ -1,26 +1,29 @@
 package com.sheep.jsp.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.sheep.jsp.board.model.service.BoardService;
 import com.sheep.jsp.board.model.vo.Board;
 
 /**
- * Servlet implementation class BoardUpdateServlet
+ * Servlet implementation class boardcomViewServlet
  */
-@WebServlet("/bUpdate.bo")
-public class BoardUpdateServlet extends HttpServlet {
+@WebServlet("/boardcomView.bo")
+public class boardcomViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardUpdateServlet() {
+    public boardcomViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,31 +33,13 @@ public class BoardUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int bid = Integer.parseInt(request.getParameter("bid"));
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		int bno = Integer.parseInt(request.getParameter("bno"));
+		BoardService bs = new BoardService();
 		
-		System.out.println("selectOne bid: "+bid);
-		System.out.println("selectOne bno: "+bno);
+		ArrayList<Board> list = bs.boardcomView();
 		
-		Board b = new Board();
+		response.setContentType("application/json; charset=UTF-8");
 		
-		b.setbTitle(title);
-		b.setbContent(content);
-		b.setbNO(bno);
-		
-		System.out.println("업데이트서블릿완료");
-		
-		int result = new BoardService().updateBoard(b, bid);
-		
-		if(result>0){
-			System.out.println("업데이트서블릿결과완료");
-			response.sendRedirect("selectOne.bo?bid"+bid+"bno="+bno);
-		} else{
-			request.setAttribute("msg", "게시물 수정 실패");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-		}
+		new Gson().toJson(list, response.getWriter());
 		
 	}
 

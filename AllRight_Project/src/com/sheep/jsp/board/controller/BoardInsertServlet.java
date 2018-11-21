@@ -31,29 +31,33 @@ public class BoardInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int bid = Integer.parseInt(request.getParameter("bid"));
+		
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String bwriter = request.getParameter("userName");
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
-
-		Board b = new Board();
 		
+		System.out.println("bid: " + bid);
 		System.out.println("title : " + title);
 		System.out.println("content : " + content);
 		System.out.println("bwriter: " + bwriter);
 		System.out.println("userNo: "+userNo);
+
+		Board b = new Board();
 
 		b.setbTitle(title);
 		b.setbContent(content);
 		b.setbWriter(bwriter);
 		b.setUserNo(userNo);
 		
-		int result = new BoardService().insertBoard(b);
+		int result = new BoardService().insertBoard(b, bid);
 		
 		System.out.println("결과: " + result);
 		
 		if(result > 0){
-			response.sendRedirect("selectList.bo");
+			/*response.sendRedirect("selectList.bo");*/
+			System.out.println("insert result 완료");
 		} else{
 			request.setAttribute("msg", "게시물 작성 실패");
 			

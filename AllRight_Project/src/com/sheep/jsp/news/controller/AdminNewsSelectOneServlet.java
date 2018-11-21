@@ -1,4 +1,4 @@
-package com.sheep.jsp.board.controller;
+package com.sheep.jsp.news.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sheep.jsp.board.model.service.BoardService;
-import com.sheep.jsp.board.model.vo.Board;
+import com.sheep.jsp.news.model.service.NewsService;
+import com.sheep.jsp.news.model.vo.News;
 
 /**
- * Servlet implementation class BoardUpdateViewServlet
+ * Servlet implementation class AdminNewsSelectOneServlet
  */
-@WebServlet("/bUpView.bo")
-public class BoardUpdateViewServlet extends HttpServlet {
+@WebServlet("/selectOne.ad")
+public class AdminNewsSelectOneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardUpdateViewServlet() {
+    public AdminNewsSelectOneServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,26 +30,27 @@ public class BoardUpdateViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		int bid = Integer.parseInt(request.getParameter("bid"));
-		int bno = Integer.parseInt(request.getParameter("bno"));
+		int nno = Integer.parseInt(request.getParameter("nno"));
 		
-		Board b = new BoardService().selectOne(bid, bno);
+		System.out.println("nno : " + nno);
+		
+		NewsService ns = new NewsService();
+		
+		News n = ns.selectOne(nno);
 		
 		String page = "";
 		
-		if(b!=null){
-			page="/views/board/boardUpdate.jsp";
-			request.setAttribute("board", b);
+		if(n != null){
 			
-			System.out.println("보드업데이트 완료");
-		} else {
-			page="/views/common/errorPage.jsp";
-			request.setAttribute("msg", "공지 수정 실패");
-			System.out.println("보드업데이트 실패");
+			page = "/views/admin/newsDetail.jsp";
+			request.setAttribute("news", n);
+		} else{
+			
+			page = "/views/common/errorPage.jsp";
+			request.setAttribute("msg", "뉴스 상세보기 실패");
 		}
 		
 		request.getRequestDispatcher(page).forward(request, response);
-		
 	}
 
 	/**

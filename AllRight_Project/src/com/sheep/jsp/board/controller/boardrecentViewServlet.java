@@ -1,26 +1,29 @@
 package com.sheep.jsp.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.sheep.jsp.board.model.service.BoardService;
 import com.sheep.jsp.board.model.vo.Board;
 
 /**
- * Servlet implementation class BoardUpdateServlet
+ * Servlet implementation class boardrecentViewServlet
  */
-@WebServlet("/bUpdate.bo")
-public class BoardUpdateServlet extends HttpServlet {
+@WebServlet("/boardrecentView.bo")
+public class boardrecentViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardUpdateServlet() {
+    public boardrecentViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,31 +33,39 @@ public class BoardUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int bid = Integer.parseInt(request.getParameter("bid"));
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		int bno = Integer.parseInt(request.getParameter("bno"));
+		BoardService bs = new BoardService();
 		
-		System.out.println("selectOne bid: "+bid);
-		System.out.println("selectOne bno: "+bno);
+		// -- 페이징 처리 (데이터를 일정량 끊어서 가져오는 기술) -- //
+		int startPage; 
+		int endPage;	
+		int maxPage;	
+		int currentPage;
+		int limit;
 		
-		Board b = new Board();
+		currentPage = 1;
 		
-		b.setbTitle(title);
-		b.setbContent(content);
-		b.setbNO(bno);
+		limit = 10; 
 		
-		System.out.println("업데이트서블릿완료");
-		
-		int result = new BoardService().updateBoard(b, bid);
-		
-		if(result>0){
-			System.out.println("업데이트서블릿결과완료");
-			response.sendRedirect("selectOne.bo?bid"+bid+"bno="+bno);
-		} else{
-			request.setAttribute("msg", "게시물 수정 실패");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+		if(request.getParameter("currentPage") != null){
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
+		
+		int listCount = bs.getListCount();
+		
+		maxPage = (int)((double)listCount / limit + 0.9);
+		startPage = ((int)((double)currentPage / limit + 0.9) - 1 ) * limit + 1;
+		
+		endPage = startPage + limit -1; 
+		
+		if(endPage > maxPage){
+			endPage = maxPage;
+		}
+		
+		ArrayList<Board> blist = bs.boardrecentView(currentPage, limit);
+		
+		response.setContentType("application/json; charset=UTF-8");
+		
+		new Gson().toJson(blist, response.getWriter());
 		
 	}
 
