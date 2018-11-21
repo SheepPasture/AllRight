@@ -38,7 +38,7 @@ public class BoardSelectOneServlet extends HttpServlet {
 		
 		int bid = Integer.parseInt(request.getParameter("bid"));
 		int bno = Integer.parseInt(request.getParameter("bno"));
-		String androidCheck = null;
+		String androidCheck = request.getParameter("android");
 		
 		PrintWriter out = response.getWriter();
 		
@@ -62,9 +62,17 @@ public class BoardSelectOneServlet extends HttpServlet {
 				boardOne.put("bcontent", b.getbContent());
 				boardOne.put("bwriter", b.getbWriter());
 				
+				out.println(boardOne.toJSONString());
+				System.out.println("게시물 전송 성공");
+				out.close();
 			}
 			
 		} else{
+			if(androidCheck !=null){
+				out.println("fail");
+				System.out.println("안드로이드에 보내기 실패");
+				out.close();
+			}
 			page="/views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시물 상세보기 실패!");
 		}
