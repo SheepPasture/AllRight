@@ -198,4 +198,25 @@ public class BoardService {
 		
 	}
 
+	public int getReportListCount() {
+		
+		Connection con = getConnection();
+		
+		int listCount = bDao.getReportListCount(con);
+		
+		close(con);
+		return listCount;
+	}
+
+	public ArrayList<Board> selectReportList(int currentPage, int limit) {
+		
+		Connection con = getConnection();
+		
+		ArrayList<Board> list = bDao.selectReportList(con, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+	}
+
 }

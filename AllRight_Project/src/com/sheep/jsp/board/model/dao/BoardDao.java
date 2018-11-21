@@ -477,4 +477,79 @@ public class BoardDao {
 		return list;
 	}
 
+	public int getReportListCount(Connection con) {
+		
+		Statement stmt = null;
+		int listCount = 0;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("reportListCount");
+		
+		try {
+			
+			stmt = con.createStatement();
+			
+			rset = stmt.executeQuery(sql);
+			
+			if(rset.next()){
+				
+				listCount = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		return listCount;
+	}
+
+	public ArrayList<Board> selectReportList(Connection con, int currentPage, int limit) {
+		
+		ArrayList<Board> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectReportList");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit -1 ;
+			
+			pstmt.setInt(1, endRow);
+			pstmt.setInt(2, startRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Board>();
+			
+			while(rset.next()){
+				Board b = new Board();
+				
+				b.setbId(rset.getInt("BID"));
+				b.setbNO(rset.getInt("BNO"));
+				b.setbTitle(rset.getString("BTITLE"));
+				b.setbWriter(rset.getString("BWRITER"));
+				b.setbDate(rset.getDate("BDATE"));
+				b.setReport(rset.getInt("REPORT"));
+				
+				list.add(b);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
 }
