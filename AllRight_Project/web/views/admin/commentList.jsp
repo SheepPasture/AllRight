@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.sheep.jsp.member.model.vo.Member"
-    import="com.sheep.jsp.point.model.vo.Point ,java.util.*, com.sheep.jsp.board.model.vo.*"%>
+    import="com.sheep.jsp.point.model.vo.Point ,java.util.*, com.sheep.jsp.boardComment.model.vo.*"%>
     
 
 <%
 	Member m = (Member)session.getAttribute("member");
 	Point pt = (Point)session.getAttribute("point");
   	Object level=session.getAttribute("level");   
-  	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+  	ArrayList<BoardComment> list = (ArrayList<BoardComment>)request.getAttribute("list");
   	bPageInfo bpi = (bPageInfo)request.getAttribute("bpi");
 	int listCount = bpi.getListCount();
 	int currentPage = bpi.getCurrentPage();
@@ -26,7 +26,7 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="/allRight/assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>신고된 글,회원 관리</title>
+	<title>신고된 댓글 관리</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -90,7 +90,7 @@
                     </a>
                 </li>
                 <li class="active">
-                    <a href="<%= request.getContextPath() %>/bReportList.ad">
+                    <a href="<%= request.getContextPath() %>/commentList.co">
                         <i class="ti-face-sad"></i>
                         <p>신고된 댓글 관리</p>
                     </a>
@@ -140,7 +140,7 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#">신고된 글 관리</a>
+                    <a class="navbar-brand" href="#">신고된 댓글 관리</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -181,26 +181,26 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">신고된 글 List</h4>
+                                <h4 class="title">신고된 댓글 List</h4>
                                 <p class="category">신고가 많이 들어온 순서대로 나타납니다.</p>
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-striped">
                                     <thead>
                                         <th width="200px;">게시글 번호</th>
-                                    	<th>제목</th>
+                                    	<th>댓글 내용</th>
                                     	<th>작성자</th>
                                     	<th>작성 날짜</th>
                                     	<th>신고 수</th>
                                     </thead>
                                     <tbody>
-                                    <%for (Board b : list) { %>
+                                    <%for (BoardComment b : list) { %>
                                     <tr>
                                     		<input type ="hidden" value="<%= b.getbId()%>">
-                                        	<td style="padding-left:40px;"><%= b.getbNO() %></td>
-                                        	<td><%= b.getbTitle() %></td>
-                                        	<td><%= b.getbWriter() %></td>
-                                        	<td><%= b.getbDate() %></td>
+                                        	<td style="padding-left:40px;"><%= b.getbNo() %></td>
+                                        	<td><%= b.getcContent() %></td>
+                                        	<td><%= b.getUserId() %></td>
+                                        	<td><%= b.getcDate() %></td>
                                         	<td><%= b.getReport() %></td>
                                     </tr>
                                     
@@ -255,27 +255,27 @@
                         
                         <div class="col-md-11 text-center" align="center" >
             
-               <button class="btn btn-default" onclick="location.href='<%= request.getContextPath()%>/bReportList.ad?currentPage=1'"><<</button>
+               <button class="btn btn-default" onclick="location.href='<%= request.getContextPath()%>/commentList.co?currentPage=1'"><<</button>
                <%   if(currentPage <= 1) {%>
                <button class="btn btn-default" disabled><</button>
                <% }else {%>
-               <button class="btn btn-default" onclick="location.href='<%= request.getContextPath()%>/bReportList.ad?currentPage=<%= currentPage - 1 %>'"><</button>
+               <button class="btn btn-default" onclick="location.href='<%= request.getContextPath()%>/commentList.co?currentPage=<%= currentPage - 1 %>'"><</button>
                <% } %>   
                
                <% for(int p = startPage; p <= endPage; p++) { 
                      if(p == currentPage){ %>
                      <button class="btn btn-default" disabled><%= p %></button>
                <%   } else { %>
-                     <button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/bReportList.ad?currentPage=<%= p%>'"><%= p %></button>
+                     <button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/commentList.co?currentPage=<%= p%>'"><%= p %></button>
                <%   } %>
                <% } %>      
                
                <% if(currentPage >= maxPage) {%>   
                <button class="btn btn-default" disabled>></button>
                <% } else { %>
-               <button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/bReportList.ad?currentPage=<%= currentPage + 1%>'">></button>
+               <button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/commentList.co?currentPage=<%= currentPage + 1%>'">></button>
                <% } %>
-               <button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/bReportList.ad?currentPage=<%= maxPage%>'">>></button>
+               <button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/commentList.co?currentPage=<%= maxPage%>'">>></button>
             </div>
                         
                     </div>

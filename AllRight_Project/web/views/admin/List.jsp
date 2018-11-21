@@ -26,7 +26,7 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="/allRight/assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>신고된 글,회원 관리</title>
+	<title>신고된 글 관리</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -90,7 +90,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<%= request.getContextPath() %>/bReportList.ad">
+                    <a href="<%= request.getContextPath() %>/commentList.co">
                         <i class="ti-face-sad"></i>
                         <p>신고된 댓글 관리</p>
                     </a>

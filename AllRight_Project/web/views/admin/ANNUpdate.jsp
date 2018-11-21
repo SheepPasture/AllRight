@@ -103,7 +103,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<%= request.getContextPath() %>/bReportList.ad">
+                    <a href="<%= request.getContextPath() %>/commentList.co">
                         <i class="ti-face-sad"></i>
                         <p>신고된 댓글 관리</p>
                     </a>
