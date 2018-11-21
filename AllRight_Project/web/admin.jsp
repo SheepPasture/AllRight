@@ -7,7 +7,7 @@
 	Member m = (Member)session.getAttribute("member");
 	Point pt = (Point)session.getAttribute("point");
   Object level=session.getAttribute("level"); 
-  int ttc = (Integer) session.getAttribute("totalCount"); // 총 방문자 수 
+  	int ttc = (Integer) session.getAttribute("totalCount"); // 총 방문자 수 
 	int tdc = (Integer) session.getAttribute("todayCount"); // 오늘 방문자 수
 
 %>

@@ -2,9 +2,8 @@ package com.sheep.jsp.boardComment.model.vo;
 
 import java.io.Serializable;
 
-public class bPageInfo implements Serializable{
+public class bcPageInfo implements Serializable{
 	
-private static final long serialVersionUID = 6016663892598480571L;
 	
 	private int currentPage;
 	private int listCount;
@@ -13,11 +12,11 @@ private static final long serialVersionUID = 6016663892598480571L;
 	private int startPage;
 	private int endPage;
 	
-	public bPageInfo() {
+	public bcPageInfo() {
 		super();
 	}
 
-	public bPageInfo(int currentPage, int listCount, int limit, int maxPage, int startPage, int endPage) {
+	public bcPageInfo(int currentPage, int listCount, int limit, int maxPage, int startPage, int endPage) {
 		super();
 		this.currentPage = currentPage;
 		this.listCount = listCount;
