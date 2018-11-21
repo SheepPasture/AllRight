@@ -57,7 +57,6 @@ public class BoardDao {
 			pstmt.setInt(1, bid);
 			rset = pstmt.executeQuery();
 			if(rset.next())listCount = rset.getInt(1);
-			System.out.println("getListCount dao: "+listCount);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -163,8 +162,8 @@ public class BoardDao {
 			if(rset.next()){
 				b = new Board();
 				
-				b.setbId(rset.getInt(1));
-				b.setbNO(rset.getInt(2));
+				b.setbNO(rset.getInt(1));
+				b.setbId(rset.getInt(2));
 				b.setbTitle(rset.getString(3));
 				b.setbContent(rset.getString(4));
 				b.setbWriter(rset.getString(5));
@@ -199,8 +198,6 @@ public class BoardDao {
 			
 			result = pstmt.executeUpdate();
 			
-			System.out.println("updateCount dao: "+result);
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
@@ -227,8 +224,6 @@ public class BoardDao {
 			
 			result = pstmt.executeUpdate();
 			
-			System.out.println("deleteBoard dao: "+result);
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -244,8 +239,6 @@ public class BoardDao {
 		int result = 0;
 		
 		String sql = prop.getProperty("updateBoard");
-		
-		System.out.println("업데이트dao오나료");
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -306,43 +299,6 @@ public class BoardDao {
 		return select2ANN;
 	}
 
-	public ArrayList<Board> top5(Connection con) {
-		
-		Statement stmt = null;
-		ResultSet rset = null;
-		ArrayList<Board> list = null;
-		
-		String sql = prop.getProperty("selectTop5");
-		
-		try {
-			
-			stmt = con.createStatement();
-			
-			rset = stmt.executeQuery(sql);
-			
-			list = new ArrayList<Board>();
-			
-			while(rset.next()){
-				
-				Board b = new Board();
-				
-				b.setbId(rset.getInt("BID"));
-				b.setbNO(rset.getInt("BNO"));
-				b.setbTitle(rset.getString("BTITLE"));
-				b.setbWriter(rset.getString("BWRITER"));
-				
-				list.add(b);
-			}
-			
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		} finally{
-			close(rset);
-			close(stmt);
-		}
-		return list;
-	}
 
 	public int boardReport(Connection con, int bid, int bno) {
 		
@@ -518,6 +474,81 @@ public class BoardDao {
 			close(rset);
 			close(stmt);
 		}
+		return list;
+	}
+
+	public int getReportListCount(Connection con) {
+		
+		Statement stmt = null;
+		int listCount = 0;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("reportListCount");
+		
+		try {
+			
+			stmt = con.createStatement();
+			
+			rset = stmt.executeQuery(sql);
+			
+			if(rset.next()){
+				
+				listCount = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		return listCount;
+	}
+
+	public ArrayList<Board> selectReportList(Connection con, int currentPage, int limit) {
+		
+		ArrayList<Board> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectReportList");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit -1 ;
+			
+			pstmt.setInt(1, endRow);
+			pstmt.setInt(2, startRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Board>();
+			
+			while(rset.next()){
+				Board b = new Board();
+				
+				b.setbId(rset.getInt("BID"));
+				b.setbNO(rset.getInt("BNO"));
+				b.setbTitle(rset.getString("BTITLE"));
+				b.setbWriter(rset.getString("BWRITER"));
+				b.setbDate(rset.getDate("BDATE"));
+				b.setReport(rset.getInt("REPORT"));
+				
+				list.add(b);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally{
+			close(rset);
+			close(pstmt);
+		}
+		
 		return list;
 	}
 

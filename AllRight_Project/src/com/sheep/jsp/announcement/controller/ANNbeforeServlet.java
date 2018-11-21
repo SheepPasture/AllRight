@@ -1,6 +1,8 @@
 package com.sheep.jsp.announcement.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,9 +34,9 @@ public class ANNbeforeServlet extends HttpServlet {
 		
 		int ano = Integer.parseInt(request.getParameter("ano"));
 		
-		int nAno = new ANNService().beforeANN(ano);
+		ArrayList<Object> nAno = new ANNService().beforeANN(ano);
 		
-		Announcement a = new ANNService().selectOne(nAno);
+		Announcement a = new ANNService().selectOne((int) nAno.get(1));
 
 		System.out.println("ANNbeforeServlet ano: "+ano);
 		System.out.println("ANNbeforeServlet nAno: "+nAno);
@@ -48,7 +50,7 @@ public class ANNbeforeServlet extends HttpServlet {
 			
 		} else{
 			page="/views/common/errorPage.jsp";
-			request.setAttribute("msg", "공지사항 상세보기에 실패하였습니다. 관리자에게 문의바랍니다.");
+			request.setAttribute("msg", "공지사항 이전 상세보기에 실패하였습니다. 관리자에게 문의바랍니다.");
 		}
 		
 		request.getRequestDispatcher(page).forward(request, response);

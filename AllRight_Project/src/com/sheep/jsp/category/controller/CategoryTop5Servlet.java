@@ -1,4 +1,4 @@
-package com.sheep.jsp.board.controller;
+package com.sheep.jsp.category.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,18 +12,20 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.sheep.jsp.board.model.service.BoardService;
 import com.sheep.jsp.board.model.vo.Board;
+import com.sheep.jsp.category.model.service.CategoryService;
+import com.sheep.jsp.category.model.vo.Category;
 
 /**
- * Servlet implementation class BoardTop5Servlet
+ * Servlet implementation class CategoryTop5Servlet
  */
-@WebServlet("/top5.bo")
-public class BoardTop5Servlet extends HttpServlet {
+@WebServlet("/cTop5.ca")
+public class CategoryTop5Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardTop5Servlet() {
+    public CategoryTop5Servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +34,13 @@ public class BoardTop5Servlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		CategoryService cs = new CategoryService();
 		
-		BoardService bs = new BoardService();
-		
-		ArrayList<Board> list = bs.top5();
+		ArrayList<Category> clist = cs.top5();
 		
 		response.setContentType("application/json; charset=UTF-8");
 		
-		new Gson().toJson(list, response.getWriter());
+		new Gson().toJson(clist, response.getWriter());
 	}
 
 	/**

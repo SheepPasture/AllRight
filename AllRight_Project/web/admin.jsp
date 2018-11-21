@@ -143,48 +143,61 @@
 		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
 	-->
 
-			<div class="sidebar-wrapper">
-				<!-- LOGO -->
-				<div class="logo">
-					<a href="<%= request.getContextPath() %>/admin.jsp"
-						class="simple-text"> <b>A L L</b> R I G H T
-					</a>
-				</div>
-				<!-- //LOGO -->
 
+    	<div class="sidebar-wrapper">
+    	<!-- LOGO -->
+            <div class="logo">
+                <a href="<%= request.getContextPath() %>/admin.jsp"  class="simple-text">
+                <b>A L L</b> R I G H T 
+                </a>
+            </div><!-- //LOGO -->
+           
 
-				<ul class="nav">
-					<li class="active"><a
-						href="<%= request.getContextPath() %>/admin.jsp"> <i
-							class="ti-panel"></i>
-							<p>Dashboard</p>
-					</a></li>
-
-					<li><a href="<%= request.getContextPath() %>/selectList.ad">
-							<i class="ti-pencil-alt2"></i>
-							<p>공지 게시판 수정</p>
-					</a></li>
-					<li><a
-						href="<%= request.getContextPath() %>/newsSelectList.ad"> <i
-							class="ti-pencil-alt2"></i>
-							<p>뉴스 게시판 수정</p>
-					</a></li>
-					<li><a
-						href="<%= request.getContextPath() %>/views/admin/List.jsp"> <i
-							class="ti-face-sad"></i>
-							<p>신고된 글,회원 관리</p>
-					</a></li>
-					<li><a
-						href="<%= request.getContextPath() %>/views/admin/newLicense.jsp">
-							<i class="ti-plus"></i>
-							<p>자격증 추가</p>
-					</a></li>
-					<li><a
-						href="<%= request.getContextPath() %>/views/admin/viewCount.jsp">
-							<i class="ti-plus"></i>
-							<p>사이트 접속자 수 조회</p>
-					</a></li>
-					<!-- 
+            <ul class="nav">
+                <li class="active">
+                    <a href="<%= request.getContextPath() %>/admin.jsp">
+                        <i class="ti-panel"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="<%= request.getContextPath() %>/selectList.ad">
+                        <i class="ti-pencil-alt2"></i>
+                        <p>공지 게시판 수정</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<%= request.getContextPath() %>/newsSelectList.ad">
+                        <i class="ti-pencil-alt2"></i>
+                        <p>뉴스 게시판 수정</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<%= request.getContextPath() %>/bReportList.ad">
+                        <i class="ti-face-sad"></i>
+                        <p>신고된 글 관리</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<%= request.getContextPath() %>/bReportList.ad">
+                        <i class="ti-face-sad"></i>
+                        <p>신고된 댓글 관리</p>
+                    </a>
+                </li>
+               <li>
+                    <a href="<%= request.getContextPath() %>/views/admin/newLicense.jsp">
+                        <i class="ti-plus"></i>
+                        <p>자격증 추가</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<%= request.getContextPath() %>/views/admin/viewCount.jsp">
+                        <i class="ti-plus"></i>
+                        <p>사이트 접속자 수 조회</p>
+                    </a>
+                </li>
+                <!-- 
                 <li>
                     <a href="maps.html">
                         <i class="ti-map"></i>

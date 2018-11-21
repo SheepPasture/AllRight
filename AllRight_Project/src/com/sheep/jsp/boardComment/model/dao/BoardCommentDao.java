@@ -44,10 +44,11 @@ public class BoardCommentDao {
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setInt(1, bco.getbNo());
-			pstmt.setInt(2, bco.getUserNo());
-			pstmt.setString(3, bco.getcContent());
-			pstmt.setInt(4, bco.getcLevel());
-			pstmt.setString(5, bco.getUserId());
+			pstmt.setInt(2, bco.getbId());
+			pstmt.setInt(3, bco.getUserNo());
+			pstmt.setString(4, bco.getcContent());
+			pstmt.setInt(5, bco.getcLevel());
+			pstmt.setString(6, bco.getUserId());
 
 /*			if(bco.getRefcno() > 0) {
 				

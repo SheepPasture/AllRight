@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"  import = "com.sheep.jsp.announcement.model.vo.*, java.util.*, com.oreilly.servlet.*"%>
 <% 
 	Announcement a = (Announcement)request.getAttribute("announcement"); 
+	ArrayList<Object> fAno = (ArrayList<Object>)request.getAttribute("fAno"); 
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -83,12 +85,15 @@
 									<th>이전글&nbsp; ▲</th>
 									
 									<td colspan="3"><a href="#" onclick="before();">
-										<%= a.getAno()-1 %>번째 글입니다.
+							 			<%= a.getAno()-1 %>번째 글입니다. 				 			
 									</a></td>
 								</tr>
 								<tr>
 									<th>다음글&nbsp; ▼</th>
-									<td colspan="3"><a href="" onclick="after();"><%= a.getAno()+1 %>번째 글입니다.</a></td>
+									<td colspan="3"><a href="#" onclick="after();">
+						 			<%-- <%= a.getAno()+1 %>번째 글입니다.  --%>
+									 <%=a.getAtitle() %> <%--  <%= fAno.get(0) % --%> </a> 
+									</td>
 								</tr>
 							</tbody>
 						</table>

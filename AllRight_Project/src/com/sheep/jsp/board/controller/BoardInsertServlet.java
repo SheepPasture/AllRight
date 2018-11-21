@@ -6,9 +6,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sheep.jsp.board.model.service.BoardService;
 import com.sheep.jsp.board.model.vo.Board;
+import com.sheep.jsp.member.model.vo.Member;
 
 
 
@@ -34,8 +36,13 @@ public class BoardInsertServlet extends HttpServlet {
 		int bid = Integer.parseInt(request.getParameter("bid"));
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		String bwriter = request.getParameter("userName");
-		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		
+		HttpSession session = request.getSession(false);
+		if (session == null) {}
+		Member member = (Member)session.getAttribute("member");
+		
+		String bwriter = member.getUserName();
+		int userNo = member.getUserNo();
 		
 		System.out.println("bid: " + bid);
 		System.out.println("title : " + title);
@@ -55,8 +62,7 @@ public class BoardInsertServlet extends HttpServlet {
 		System.out.println("결과: " + result);
 		
 		if(result > 0){
-			response.sendRedirect("selectList.bo?bid"+bid);
-			System.out.println("insert result 완료");
+			response.sendRedirect("selectList.bo?bid="+bid);
 		} else{
 			request.setAttribute("msg", "게시물 작성 실패");
 			
