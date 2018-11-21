@@ -63,7 +63,6 @@ public class BoardInsertServlet extends HttpServlet {
 		
 		if(result > 0){
 			response.sendRedirect("selectList.bo?bid="+bid);
-			System.out.println("insert result 완료");
 		} else{
 			request.setAttribute("msg", "게시물 작성 실패");
 			
