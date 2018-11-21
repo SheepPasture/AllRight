@@ -1,5 +1,6 @@
 package com.sheep.jsp.boardComment.model.service;
 
+import com.sheep.jsp.board.model.vo.Board;
 import com.sheep.jsp.boardComment.model.dao.BoardCommentDao;
 import com.sheep.jsp.boardComment.model.vo.BoardComment;
 
@@ -95,6 +96,27 @@ public class BoardCommentService {
 		
 		return bco;
 		
+	}
+
+	public int getReportListCount() {
+		
+		Connection con = getConnection();
+		
+		int listCount = bcDao.getReportListCount(con);
+		
+		close(con);
+		return listCount;
+	}
+
+	public ArrayList<BoardComment> selectReportList(int currentPage, int limit) {
+		
+		Connection con = getConnection();
+		
+		ArrayList<BoardComment> list = bcDao.selectReportList(con, currentPage, limit);
+		
+		close(con);
+		
+		return list;
 	}
 
 }
