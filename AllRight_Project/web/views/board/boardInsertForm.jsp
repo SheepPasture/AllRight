@@ -44,8 +44,8 @@
 
 </head>
 <body>
-    	 <%@ include file="/views/common/header.jsp" %>   
 
+    <%@ include file="/views/common/header.jsp" %>   
 	<!-- PAGE -->
 	<div id="page">
 
@@ -54,31 +54,31 @@
 				<br>
 				<div class="col-sm-2 sidenav">
 					<p><a href="selectList.ann">공지사항</a></p>
-					<p><a href="<%= request.getContextPath() %>/views/community/communityList.jsp">커뮤니티</a></p>
+					<p><a href="<%= request.getContextPath() %>/views/board/boardMain.jsp">커뮤니티</a></p>
 					<p><a href="/views/license/licenseinfo.jsp">자격증정보</a></p>
 				</div>
+				
 				<div class="col-sm-8 text-left">
 					<h3 align="left">글쓰기</h3>
-					<form action="<%= request.getContextPath()%>/bInsert.bo" method="post">
+					
 					<!-- 게시판(뷰)시작 -->
 					<div class="board_area">
+					<form action="save();" method="post">
 						<table class="view">
 							<tbody>
 								<tr>
-									<th class="col-sm-2" id="title">제목</th>
+									<th class="col-sm-2">제목</th>
 									<td>
 										<textarea name="title" rows="1" cols="90"  style="resize: none;"></textarea>
-										<input type="hidden" name="bId" value=""	>
-										<input type="hidden" name="userNo" value="<%= m.getUserNo() %>"	>
-										<input type="hidden" name="userName" value="<%= m.getUserName() %>"	>
+										<input type="hidden" name="userNo" id="userNo"  value="<%= m.getUserNo() %>"	>
+										<input type="hidden" name="userName" id="userName" value="<%= m.getUserName() %>"	>
 									</td>
 								</tr>
 								<tr>
-									<th class="col-sm-2" id="title">내용</th>
+									<th class="col-sm-2">내용</th>
 									<td>
-										<script type="text/javascript" src="/allRight/resources/ckeditor/ckeditor.js"></script>
-											 
-										<div class="form-group">
+										<script type="text/javascript" src="/allRight/resources/ckeditor/ckeditor.js"></script> 
+										<div>
 											 <textarea name="content" class="ckeditor" rows="20" cols="70"></textarea>
 											 <script>
 												CKEDITOR.replace('content', {
@@ -92,27 +92,28 @@
 								</tr>			
 							</tbody>
 						</table>
-
+						</form>
 				</div>
 			<br />
 			<div align="center">
- 				<button id="save" class="btn btn-primary" onclick="save()" type="submit">Save</button>
-				<button id="back" class="btn btn-primary" onclick="location.href='/allRight/selectList.bo'" type="reset">Back</button>
+ 				<button class="btn btn-primary" onclick="save();">Save</button>
+				<button class="btn btn-primary" onclick="back();">Back</button> 
 			</div>
 			<script>
-				function save(){
-					var bid = 1;	
-					location.href="<%=request.getContextPath()%>/selectList.bo?bid=" + bid;
+ 				function save(){
+					var bid = 1;
+					location.href="<%=request.getContextPath()%>/bInsert.bo?bid=" + bid;
 				}
 				
+				function back(){
+					var bid = 1;
+					location.href="<%=request.getContextPath()%>/selectList.bo?bid=" + bid;
+				}
 			</script>
-			</form>
-			</div><br /><br /><br /><br /><br />
+			</div>
+			<br /><br /><br /><br /><br />
 		</div>
 	</div>
-
-	
-
 </div>
 </body>
 </html>

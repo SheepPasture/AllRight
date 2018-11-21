@@ -5,7 +5,6 @@ import static com.sheep.jsp.common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.sheep.jsp.announcement.model.dao.ANNDao;
 import com.sheep.jsp.announcement.model.vo.Announcement;
 import com.sheep.jsp.board.model.dao.BoardDao;
 import com.sheep.jsp.board.model.vo.Board;
@@ -20,6 +19,8 @@ public class BoardService {
 		
 		int listCount = bDao.getListCount(con, bid);
 		
+		System.out.println("BoardService listCount: "+listCount);
+		
 		close(con);
 		
 		return listCount;
@@ -32,6 +33,8 @@ public class BoardService {
 		
 		int result = bDao.insertBoard(con, b, bid);
 		
+		System.out.println("insertBoard result: "+result);
+		
 		if(result > 0) commit(con);
 		else rollback(con);
 		
@@ -41,16 +44,18 @@ public class BoardService {
 		
 	}
 
-	public Board selectOne(int bno) {
+	public Board selectOne(int bid, int bno) {
 		
 		Connection con = getConnection();
 		
 		int result = 0;
 		
-		Board b = bDao.selectOne(con, bno);
+		Board b = bDao.selectOne(con, bid, bno);
 		
 		if(b!=null){
-			result = bDao.updateCount(con, bno);
+			result = bDao.updateCount(con, bid, bno);
+			
+			System.out.println("selectOne service: "+result);
 			
 			if(result>0) commit(con);
 			else rollback(con);
@@ -61,11 +66,11 @@ public class BoardService {
 		return b;
 	}
 
-	public int deleteBoard(int bno) {
+	public int deleteBoard(int bid, int bno) {
 
 		Connection con = getConnection();
 		
-		int result = bDao.deleteBoard(con, bno);
+		int result = bDao.deleteBoard(con, bid, bno);
 		
 		System.out.println("삭제 서비스");
 		
@@ -75,13 +80,13 @@ public class BoardService {
 		
 	}
 
-	public int updateBoard(Board b) {
+	public int updateBoard(Board b, int bid) {
 
 		Connection con = getConnection();
 		
-		int result = bDao.updateBoard(con, b);
+		int result = bDao.updateBoard(con, b, bid);
 		
-		System.out.println("업데이트서비스완료");
+		System.out.println("updateBoard service: "+result);
 		
 		if(result>0) commit(con);
 		else rollback(con);
@@ -115,15 +120,15 @@ public class BoardService {
 		return list;
 	}
 
-	public Board boardReport(int bno) {
+	public Board boardReport(int bid, int bno) {
 
 		Connection con = getConnection();
 		int result = 0;
 		
-		Board b = bDao.selectOne(con, bno);
+		Board b = bDao.selectOne(con, bid, bno);
 		
 		if(b!=null){
-			result = bDao.boardReport(con, bno);
+			result = bDao.boardReport(con, bid, bno);
 			
 			if(result>0) commit(con);
 			else rollback(con);
@@ -135,15 +140,15 @@ public class BoardService {
 		
 	}
 
-	public Board boardLike(int bno) {
+	public Board boardLike(int bid, int bno) {
 
 		Connection con = getConnection();
 		int result = 0;
 		
-		Board b = bDao.selectOne(con, bno);
+		Board b = bDao.selectOne(con, bid, bno);
 		
 		if(b!=null){
-			result = bDao.boardLike(con, bno);
+			result = bDao.boardLike(con, bid, bno);
 			
 			if(result>0) commit(con);
 			else rollback(con);

@@ -30,9 +30,13 @@ public class BoardUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int bid = Integer.parseInt(request.getParameter("bid"));
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		int bno = Integer.parseInt(request.getParameter("bno"));
+		
+		System.out.println("selectOne bid: "+bid);
+		System.out.println("selectOne bno: "+bno);
 		
 		Board b = new Board();
 		
@@ -42,12 +46,11 @@ public class BoardUpdateServlet extends HttpServlet {
 		
 		System.out.println("업데이트서블릿완료");
 		
-		int result = new BoardService().updateBoard(b);
+		int result = new BoardService().updateBoard(b, bid);
 		
 		if(result>0){
-			
 			System.out.println("업데이트서블릿결과완료");
-			response.sendRedirect("selectOne.bo?bno="+bno);
+			response.sendRedirect("selectOne.bo?bid"+bid+"bno="+bno);
 		} else{
 			request.setAttribute("msg", "게시물 수정 실패");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);

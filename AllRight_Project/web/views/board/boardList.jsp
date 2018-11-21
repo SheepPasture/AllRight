@@ -510,7 +510,6 @@ a {
 						<div class="conwrap">
 							<div class="sub_wrap"> -->
 								<div class="list_wrap">
-									<form name="listForm" id="listForm" method="get">
 										<div class="table_wrap">
 											<div class="table">
 												<div class="table_in">
@@ -543,7 +542,7 @@ a {
 														<!--테이블 리스트(통합게시판형 class='board' 추가)-->
 														<div class="table_main_conts board">
 															<table class="table table-hover" id="listArea">
-																<thead>
+																<thead class="thead">
 																	<tr>
 																		<th class="col-md-1 text-left">글번호</th>
 																		<th class="col-md-6 text-center">글제목</th>
@@ -551,7 +550,6 @@ a {
 																		<th class="col-md-1">조회수</th>
 																		<th class="col-md-1">작성일</th>
 																	</tr>
-
 																	<% for(Announcement a : select2ANN){ %>
 																	<tr id="annlist" style="background-color: hsl(120, 100%, 75%, 0.3); bold;">
 																		<td class="col-md-1 text-left"><strong>공지</strong></td>
@@ -562,8 +560,8 @@ a {
 																		<td class="col-md-1"><strong><%= a.getAdate() %></strong></td>
 																	</tr>
 																	<% } %>
-																	</thead>
-											  						<tbody id="boardlist">
+																</thead>
+										  						<tbody id="boardlist">
 											  						<% for(Board bl : blist){ %>
 																	<tr id="boardlist">
 																		<td class="col-md-1 text-left" name="bno"><%= bl.getbNO() %></td>
@@ -572,8 +570,8 @@ a {
 																		<td class="col-md-1" name="bcount"><%= bl.getbCount() %></td>
 																		<td class="col-md-1" name="bdate"><%= bl.getbDate() %></td>
 																	</tr>
-																		<% } %> 
-																	</tbody>
+																	<% } %> 
+																</tbody>
 																</table>
 										  						<table class="tbl paginated" id="tbl" style="border: 1px solid tomato;"></table>
 															<br /><br />
@@ -603,21 +601,21 @@ a {
 															</div> 
 
 													<div class="col-sm-12 text-right">
-														<form action="boardInsertForm.jsp" method="GET"><input type="hidden" value="1"/><input type="submit"  value="작성하기"/></form>
+														<form action="views/board/boardInsertForm.jsp">
+														<input type="hidden" name="bid" value="1" />
+														<input type="submit"  value="작성하기"/>
+														</form>
 													</div>
 													</div>
 
 												</div>
 											</div>
 										</div>
-									</form>
 								</div>
 							</div>
 						</div>
 					</div>
 					<script>	
-					
-					var bid = 1;
 					
 					/*  function selectList(recCnt){
 						
@@ -698,22 +696,20 @@ a {
 					} */
 					
 					$("#annlist td").mouseenter(function(){
-						$(this).css({"cursor":"pointer"});
+					 	$(this).parent().children().css({"cursor":"pointer"}); 
 					}).click(function(){
-						/* alert($(this).parent().children().eq(2).text());  */
-							var ano = $(this).parent().children().eq(2).text();
+						var ano = $(this).parent().children().eq(2).text();
 						location.href="<%=request.getContextPath()%>/selectOne.ann?ano=" + ano;
 					});
 					
-					$("#boardlist tr").mouseenter(function(){
+					$("#boardlist td").mouseenter(function(){
 						$(this).parent().children().css({"cursor":"pointer"});
 					}).click(function(){
-						
-						alert($(this).parent().children().eq(0).text());
+						/* alert($(this).parent().children().eq(0).text()); */
+						var bid = 1;
 						var bno = $(this).parent().children().eq(0).text();
-						location.href="<%=request.getContextPath()%>/selectOne.bo?bno=" + bno;
+						location.href="<%=request.getContextPath()%>/selectOne.bo?bid=" + bid + "&bno="+bno;
 					});
-						
 		
 					</script>
 				</div>

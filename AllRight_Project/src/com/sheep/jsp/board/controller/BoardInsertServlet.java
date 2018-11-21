@@ -32,20 +32,20 @@ public class BoardInsertServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int bid = Integer.parseInt(request.getParameter("bid"));
+		
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String bwriter = request.getParameter("userName");
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
-
-		Board b = new Board();
-	
+		
 		System.out.println("bid: " + bid);
 		System.out.println("title : " + title);
 		System.out.println("content : " + content);
 		System.out.println("bwriter: " + bwriter);
 		System.out.println("userNo: "+userNo);
 
-		b.setbId(bid);
+		Board b = new Board();
+
 		b.setbTitle(title);
 		b.setbContent(content);
 		b.setbWriter(bwriter);

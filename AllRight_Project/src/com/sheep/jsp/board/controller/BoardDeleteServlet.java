@@ -29,14 +29,14 @@ public class BoardDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int bid = Integer.parseInt(request.getParameter("bid"));		
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		
-		int result = new BoardService().deleteBoard(bno);
-		
-		System.out.println("삭제 서블릿");
+		int result = new BoardService().deleteBoard(bid, bno);
 		
 		if(result>0){
-			response.sendRedirect("selectList.bo");
+			response.sendRedirect("selectList.bo?bid"+bid);
+			System.out.println();
 		} else {
 			request.setAttribute("msg", "게시물 삭제 불가");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
