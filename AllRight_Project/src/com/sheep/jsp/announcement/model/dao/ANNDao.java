@@ -259,7 +259,7 @@ public class ANNDao {
 			if(rset.next()){
 				result = rset.getInt(4);
 				
-				System.out.println("resut: "+result);
+				System.out.println("result: "+result);
 			}
 			
 			
@@ -280,7 +280,7 @@ public class ANNDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		int result = 0;
+		Object result = new Object();
 		
 		String sql = prop.getProperty("afterANN");
 		

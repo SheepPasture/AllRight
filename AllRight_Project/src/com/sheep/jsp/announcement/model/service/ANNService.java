@@ -47,7 +47,7 @@ public class ANNService {
 		System.out.println("ano" +ano);
 		System.err.println("con" + con);
 		
-		if( a!=null){
+		if(a!=null){
 			result = aDao.updateCount(con, ano);
 
 			if(result>0) commit(con);

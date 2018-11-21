@@ -58,6 +58,7 @@
 				<div class="col-sm-8 text-left">
 					<h3 align="left">글쓰기</h3>
 					<!-- 게시판(뷰)시작 -->
+					<form id="updateForm" method="post">
 					<div class="board_area">
 						<table class="view">
 							<tbody>
@@ -96,7 +97,7 @@
 							</tr>
 						</table>
 					<br />
-				</div>
+				</div></form>
 			<br /><br />
 		 		<script>	 		
 
@@ -104,7 +105,9 @@
 	 		 		var bno = $("#bno").val();
 	 		 		
 					function edit(){
-						location.href="<%=request.getContextPath()%>/bUpdate.bo?bid=" + bid+"&bno="+bno;
+						$('#updateForm').attr('action', '<%=request.getContextPath()%>/bUpdate.bo?bid=' + bid + '&bno='+bno);
+						$('#updateForm').submit();
+						<%-- location.href="<%=request.getContextPath()%>/bUpdate.bo?bid=" + bid+"&bno="+bno; --%>
 					}
 					
 					function del(){

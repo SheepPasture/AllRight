@@ -245,7 +245,7 @@ public class BoardDao {
 			
 			pstmt.setString(1, b.getbTitle());
 			pstmt.setString(2, b.getbContent());
-			pstmt.setInt(3, b.getbId());
+			pstmt.setInt(3, bid);
 			pstmt.setInt(4, b.getbNO());
 			
 			result = pstmt.executeUpdate();
