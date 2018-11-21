@@ -158,20 +158,30 @@
 					<div class="realtime"
 						style="float: left; width: 50%;border: 1px solid gold">
 						<h3>실시간 게시판 순위</h3>
-						<div id="refresh"  >
-							<table id="boardTop5" class="top5" >
+						<div id="refresh" class="col-sm-4" >
+							<table id="boardTop5">
 								<thead>
 									<tr>
 										<th></th>
 										<th scope="cols">실시간 게시판 순위</th>
-										
 									</tr>
 								</thead>
 								<tbody>
 								</tbody>
 							</table>
 						</div>
-						
+						<div id="refresh" class="col-sm-4">
+							<table id="boardTop5">
+								<thead>
+									<tr>
+										<th>뉴스</th>
+									</tr>
+									<tr><
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
 						<!-- <div class="realtime-nav" >
 
 					<ul class="ah_l">
@@ -199,23 +209,20 @@
 				</div> -->
 					</div>
 					<div >
-						<div class="col-sm-4"
-							style="float: left; width: 50%; border: 1px solid gold">
+						<div class="col-sm-4" style="float: left; width: 50%;border: 1px solid gold">
 							<h1>공지사항</h1>
 							<div class="col-sm-4">
-								<table id="#">
-									<thead>
+							<table id="#">
+								<thead>
+								
 									
-
-									</thead>
-									<tbody>
-									</tbody>
-								</table>
-							</div>
-							
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
 						</div>
-
-
+						</div>
+						
 					</div>
 
 
@@ -303,49 +310,61 @@
 
 				</div>
 				
-				<!-- 로그인 폼  -->
-		
-			<div class="loginArea" style="float:left; width:50%;">
-	<%if ( m == null ) { %>
+				<div class="col-sm-2" style="background: ivory">
 
-		<form id="loginForm" action="/allRight/mLogin.me" method="post">
-			<table>
-				<tr>
-					<td>
-						<label class="text">ID : </label>
-					</td>
-					<td>
-						<input type="text" name="inputId" id="inputId">
-					</td>
-				</tr>
-					<tr>
-					<td>
-						<label class="text">PWD : </label>
-					</td>
-					<td>
-						<input type="password" name="inputPassword" >
-					</td>
-				</tr>
-			</table>
-			
-			<div class="btns">
-				<input type="button" value="로그인" onclick="login()"/>
-				<input type="button" value="회원가입" onclick="insert()"/> 
-			</div>
-			
-		</form>
-		<% } else { %>
-		<div id="userInfo">
-			<label><%= m.getUserName() %>님의 방문을 환영합니다.</label><br>
-			<label> 현재 포인트 : <%= pt.getPoint() %> 누적 포인트 : <%= pt.getTotalPoint() %></label>
+					<!-- 로그인 폼  -->
 
- 		 	<label> 현재 레벨 :Lv.<%= level %></label>
-			<div class="btns" >
-				<input type="button" value="로그아웃" onclick="logout()" />
+					<div class="loginArea" style="float: left; width: 50%;">
+						<%
+							if (m == null) {
+						%>
 
+						<form id="loginForm" action="/allRight/mLogin.me" method="post">
+							<div>
+								<table>
+									<tr>
+										<td><label class="text">ID : </label></td>
+										<td><input type="text" name="inputId"></td>
+									</tr>
+									<tr>
+										<td><label class="text">PWD : </label></td>
+										<td><input type="password" name="inputPassword">
+										</td>
+									</tr>
+								</table>
+							</div>
+							<!-- <div class="btns"> -->
+							<div >
+								<div>
+									<input type="submit" value="로그인" />
+									<input type="button" value="회원가입" onclick="insert()" />
+								</div>
+							</div>
+
+						</form>
+						<%
+							} else {
+						%>
+						<div id="userInfo">
+							<label><%=m.getUserName()%>님의 방문을 환영합니다.</label><br> <label>
+								현재 포인트 : <%=pt.getPoint()%> 누적 포인트 : <%=pt.getTotalPoint()%></label> <label>
+								현재 레벨 :Lv.<%=level%></label>
+							<div class="btns">
+								<input type="button" value="로그아웃" onclick="logout()" />
+							</div>
+
+						</div>
+						<%
+							}
+						%>
+
+					</div>
+
+				</div><!--로그인폼 끝  -->
+
+				<br> <br> <br> <br> <br> <br>
 			</div>
-			</div>
-			<% } %>
+
 
 			<div class="row content"><!-- 행 div  -->
 				<br />
@@ -376,78 +395,18 @@
 
 
 		<script>
-		
-		function login(){
-			
-			$('#loginForm').submit();
-			
-			<%-- 
-			<% if ( $("#inputId").val().equls("admin")) {%> 
-			
-			
-			$('#loginForm').submit();
-			location.href = "/allRight/admin.jsp";
-			
-			
-			<% } else {%>
-				
-			$('#loginForm').submit();
-			
-			<% } %> --%>
-		}
-			
-		function insert(){
-			
-			location.href = "/allRight/views/member/memberInsertView.jsp";
-			
-		}
-	
-		function logout(){
-			
-			location.href = "mLogout.me";
-		}
-		
-		
-		/* function autoRefresh_div(){
-			
-			var currentLocation = window.location;
-			$("#refresh").load(currentLocation + ' #refresh')
-		}
-		
-		setInterval('autoRefresh_div()', 3000); */
-			
-		
-		
-		
-		 //실시간 순위
-		$(function(){
-			
-			$.ajax({
-				
-				url: '/allRight/top5.bo',
-				dataType: "json",
-				type : "get",
-				success : function(data){
-					
-					$table = $('#boardTop5 tbody');
-					
-					$("#boardTop5").find("tr:gt(0)").remove();
-					
-					for(var i in data){
-						
-						console.log(data[i]);
-						var $trBoard = $('<tr>');
-						var $tdBoardTitle = $('<td>').text(data[i].bTitle);
-						
-						$trBoard.append($tdBoardTitle);
-						
-						$table.append($trBoard);
-					}
-				}, error : function(data){
-					
-					console.log("top5 조회 실패!");
-				}
+			function insert() {
 
+				location.href = "/allRight/views/member/memberInsertView.jsp";
+
+			}
+
+			function logout() {
+
+				location.href = "mLogout.me";
+			}
+
+			/* function autoRefresh_div(){
 				
 				var currentLocation = window.location;
 				$("#refresh").load(currentLocation + ' #refresh')
@@ -487,10 +446,6 @@
 				});
 
 			});
-
-
-		});
-		
 
 		</script>
 

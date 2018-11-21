@@ -3,16 +3,17 @@
 	import="com.sheep.jsp.member.model.vo.Member, com.sheep.jsp.userLicense.model.vo.*,com.sheep.jsp.licenseinfo.model.vo.*, java.util.*"%>
 
 <%
-/* 	Member m = (Member)session.getAttribute("member"); */
-/* m.setUserId("test1");
-m.setUserName("test1"); */
+	/* 	Member m = (Member)session.getAttribute("member"); */
+	/* m.setUserId("test1");
+	m.setUserName("test1"); */
 
 	UserLicense ul = (UserLicense) request.getAttribute("userLicense");
 %>
 <!DOCTYPE html>
 <html>
 <head>
-<script src="<%=request.getContextPath()%>/resources/js/jquery-3.3.1.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/js/jquery-3.3.1.min.js"></script>
 <!-- <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -68,110 +69,165 @@ td {
 </head>
 <!-- HEADER -->
 <body>
-<%@ include file="/views/common/header.jsp"%>
-<!-- HEADER-END -->
+	<%@ include file="/views/common/header.jsp"%>
+	<!-- HEADER-END -->
 
-<br>
-<div class="container-fluid text-center">
-	<div class="row content">
-		<!-- NAV -->
-		<div class="col-sm-2 sidenav" style="display: inline-block;">
-			<%@ include file="/views/common/myPageNav.jsp"%>
-		</div>
-		<!-- NAV END-->
-		<br>
-		<div class="col-sm-2 sidenav"
-			style="display: inline-block; background: ivory"></div>
+	<br>
+	<div class="container-fluid text-center">
+		<div class="row content">
+			<!-- NAV -->
+			<div class="col-sm-2 sidenav" style="display: inline-block;">
+				<%@ include file="/views/common/myPageNav.jsp"%>
+			</div>
+			<!-- NAV END-->
+			<br>
+			<div class="col-sm-2 sidenav"
+				style="display: inline-block; background: ivory"></div>
 
-		<div id="showView"
-			style="width: 70%; height: 100%; display: inline-block;">
+			<div id="showView"
+				style="width: 70%; height: 100%; display: inline-block;">
 
-			<article class="container">
+				<article class="container">
 
 
-				<div class="page-header">
-					<h1>
-						<small>회원 정보 수정</small>
-					</h1>
-				</div>
-
-				<form class="form-horizontal" id="updateForm"
-					<%-- action="<%=request.getContextPath()%>/mUpdate.me" --%> method="post">
-					<div class="form-group">
-						<label class="col-sm-3 control-label" for="userId">유저아이디</label>
-						<div class="col-sm-6">
-							<input class="form-control" id="userId" name = "userId" type="text" readonly
-								placeholder="<%=m.getUserId()%>">
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<label class="col-sm-3 control-label" for="password">비밀번호</label>
-						<div class="col-sm-6">
-							<input class="form-control" id="password" name="password" type="password"
-								placeholder="비밀번호">
-							<p class="help-block">숫자, 특수문자 포함 8자 이상</p>
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<label class="col-sm-3 control-label" for="passwordCheck">비밀번호
-							확인</label>
-						<div class="col-sm-6">
-							<input class="form-control" id="passwordCheck"
-								type="password" placeholder="비밀번호 확인">
-							<p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label" for="userName">닉네임</label>
-						<div class="col-sm-6">
-							<input class="form-control" id="userName" name="userName" type="text"
-								placeholder="<%=m.getUserName()%>" value="<%=m.getUserName()%>">
-						</div>
+					<div class="page-header">
+						<h1>
+							<small>회원 정보 수정</small>
+						</h1>
 					</div>
 
-					<div class="form-group">
-						<label class="col-sm-3 control-label" for="email">이메일</label>
-						<div class="col-sm-6">
-							<input class="form-control" id="email" name="email" type="email"
-								placeholder="<%=m.getEmail()%>" value="<%=m.getEmail()%>" readonly>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label class="col-sm-3 control-label" for="userLi">관심자격증</label>
-						<div>
-							<select name="" id="">
-								<option value="">아이티</option>
-								<option value="">건축</option>
-								<option value="">기타</option>
-							</select> <select name="licenseName" id="">
-								<option value="">정처기</option>
-								<option value="">mos</option>
-								<option value="">컴활</option>
-							</select>
-
-
-						</div>
-						<br>
-
-
+					<form class="form-horizontal" id="updateForm"
+						<%-- action="<%=request.getContextPath()%>/mUpdate.me" --%> method="post">
 						<div class="form-group">
-							<div class="col-sm-12 text-center">
-								<button class="btn btn-primary" onclick="memberUpdate();">정보
-									수정</button>
-								<button class="btn btn-danger" onclick="memberDelete();">회원
-									탈퇴</button>
-								<button class="btn btn-danger" onclick="memberMain();">
-								뒤로가기</button>
+							<label class="col-sm-3 control-label" for="userId">유저아이디</label>
+							<div class="col-sm-6">
+								<input class="form-control" id="userId" name="userId"
+									type="text" readonly placeholder="<%=m.getUserId()%>">
 							</div>
 						</div>
-				</form>
-			</article>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="password">비밀번호</label>
+							<div class="col-sm-6">
+								<input class="form-control" id="password" name="password"
+									type="password" placeholder="비밀번호">
+								<p class="help-block">숫자, 특수문자 포함 8자 이상</p>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="passwordCheck">비밀번호
+								확인</label>
+							<div class="col-sm-6">
+								<input class="form-control" id="passwordCheck" type="password"
+									placeholder="비밀번호 확인">
+								<p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="userName">닉네임</label>
+							<div class="col-sm-6">
+								<input class="form-control" id="userName" name="userName"
+									type="text" placeholder="<%=m.getUserName()%>"
+									value="<%=m.getUserName()%>">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="email">이메일</label>
+							<div class="col-sm-6">
+								<input class="form-control" id="email" name="email" type="email"
+									placeholder="<%=m.getEmail()%>" value="<%=m.getEmail()%>"
+									readonly>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="userLi">관심자격증</label>
+							<div>
+								<select name="selectCategory" id="selectCategory">
+								<option>선택하세요</option>
+
+								</select> 
+								<select name="licenseName" id="licenseName">
+								<option>선택하세요</option>
+
+
+								</select>
+								<script>
+								/* var str = "<option>선택하세요</option>";
+
+								$('#selectCategory').append(str); */
+						
+									$.ajax({
+										url : '/allRight/lSelect.li',
+										type : 'get',
+										async: false,
+										dataType:'json',
+										success : function(data){
+										console.log(data);
+										console.log(data.list)
+											var list = data.lArray;
+											var l = data.list;
+											/* console.log(l);
+											console.log(l[0].listName); */
+										/* 	  console.log(l);  */
+											/* console.log(list.length);
+											console.log(list[0].category); */
+											/* console.log(lArray.category);  */
+											for(var i = 0; i<l.length;i++){
+												
+												$('#selectCategory').append("<option>"+l[i].listName+"</option>");
+										  
+											}
+											
+											 $('#selectCategory').change(sCategory);
+											  function sCategory(){
+									            
+									             $('#licenseName').children().remove();
+									             for(var i = 0; i<list.length;i++){
+														
+														 var value = $('option:selected').val();
+											             console.log(value);
+											            
+											             if(list[i].category==value){
+															 $('#licenseName').append("<option value="+list[i].lno+">"+list[i].name+"</option>"); 
+													  
+															}
+											             
+									         }}; 
+									         $('#licenseName').change(lCategory);
+									          function lCategory(){
+									             var value = $('#licenseName option:selected').val();
+									             console.log(value);
+									          }; 
+										
+										}, error : function(){
+											alert("실패");
+										}
+									});
+									
+								</script>
+
+							</div>
+							<br>
+
+
+							<div class="form-group">
+								<div class="col-sm-12 text-center">
+									<button class="btn btn-primary" onclick="memberUpdate();">정보
+										수정</button>
+									<button class="btn btn-danger" onclick="memberDelete();">회원
+										탈퇴</button>
+									<button class="btn btn-danger" onclick="memberMain();">
+										뒤로가기</button>
+								</div>
+							</div>
+					</form>
+				</article>
+			</div>
 		</div>
-	</div>
-	<script>
+		<script>
 		function memberDelete(){
 		console.log("delete 클릭");
     		$('#updateForm').attr("action", "<%=request.getContextPath()%>/mDelete.me");
@@ -200,10 +256,10 @@ td {
 		} */
       </script>
 
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="../../js/bootstrap.min.js"></script>
-	</body>
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<!-- 	<script src="../../js/bootstrap.min.js"></script> -->
+</body>
 </html>

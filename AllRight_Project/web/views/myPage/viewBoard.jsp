@@ -16,7 +16,7 @@
 	int ccurrentPage = (int) request.getAttribute("ccurrentPage");
 	int cmaxPage = (int) request.getAttribute("cmaxPage");
 	int cstartPage = (int) request.getAttribute("cstartPage");
-	int cendPage = (int) request.getAttribute("cendPage");
+	int cendPage = (int) request.getAttribute("cendPage"); 
 %>
 <!DOCTYPE html>
 <html>
@@ -94,7 +94,7 @@
 						
 					</table>
 
-					<div class="pagingArea" align="center">
+					 <div class="pagingArea" align="center">
 						
 						<button
 							onclick="location.href='<%=request.getContextPath()%>/bMyList.bo?bcurrentPage=1'"><<</button>
@@ -145,7 +145,7 @@
 							onclick="location.href='<%=request.getContextPath()%>/bMyList.bo?bcurrentPage=<%=bmaxPage%>'">>></button>
 
 
-					</div>
+					</div> 
 
 					<hr>
 					<h1>
@@ -195,7 +195,7 @@
 							%>
 						
 					</table>
-					<div class="pagingArea" align="center">
+					 <div class="pagingArea" align="center">
 						<button
 							onclick="location.href='<%=request.getContextPath()%>/bMyList.bo?ccurrentPage=1'"><<</button>
 
@@ -245,7 +245,7 @@
 							onclick="location.href='<%=request.getContextPath()%>/bMyList.bo?ccurrentPage=<%=cmaxPage%>'">>></button>
 
 
-					</div>
+					</div> 
 
 				</div>
 			</div>

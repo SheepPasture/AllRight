@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.sheep.jsp.member.model.service.MemberService;
 import com.sheep.jsp.member.model.vo.Member;
 import com.sheep.jsp.point.model.service.PointService;
+import com.sheep.jsp.userLicense.model.vo.UserLicense;
 
 /**
  * Servlet implementation class MemberInsertServlet
@@ -36,17 +37,23 @@ public class MemberInsertServlet extends HttpServlet {
 		String name = request.getParameter("inputName");
 		String email = request.getParameter("inputEmail");
 		
+		// 자격증 선택시 lno값
+		String lNo = request.getParameter("licenseName");
+		
 		MemberService ms = new MemberService();
 		PointService ps = new PointService();
 		
 		Member m = new Member(userId,pass,name,email);
 		
+		UserLicense u =new UserLicense();
+		
 		System.out.println(m);
 		
 		try{
-			ms.insertMember(m);
+			ms.insertMember(m,lNo);
 			ps.insertPoint(userId);
 			System.out.println("회원가입 성공");
+	
 			response.sendRedirect("index.jsp");
 		} catch(Exception e){
 			request.setAttribute("msg", "회원가입실패");
