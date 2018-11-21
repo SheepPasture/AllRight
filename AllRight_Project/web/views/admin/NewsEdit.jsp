@@ -57,12 +57,12 @@
    }
    
    .name{
-      width : 420px;
+      width : 450px;
       text-overflow : ellipsis;
       white-space : nowrap;
       overflow : hidden;
       display : block;
-      padding-left : 0px;
+      padding-left : 40px;
       
    }
    
@@ -158,7 +158,7 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#">공지 게시판 수정</a>
+                    <a class="navbar-brand" href="#">뉴스 게시판 수정</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -196,7 +196,8 @@
         <div class="content">
             <div class="container-fluid">   
          <div class="row content">
-            <div class="col-sm-8 text-center">
+         
+            <div class="col-sm-11 text-center">
                <!-- <h2 align="left">뉴스</h2> -->
                
                
@@ -233,7 +234,7 @@
             
                </table>
                
-               <hr style="border: solid 0.5px lightgray; width : 930px;">
+               <hr style="border: solid 0.5px lightgray; width : 980px;">
             
                
                <table class="table table-hover" id="listArea">
@@ -274,34 +275,36 @@
                </table> 
             </div>
             
-   
+ 
             <div class="col-md-11 text-center" align="center" >
             
-               <button class="btn btn-default" onclick="location.href='<%= request.getContextPath()%>/selectList.ne?currentPage=1'"><<</button>
+            	<br>
+            
+               <button class="btn btn-default" onclick="location.href='<%= request.getContextPath()%>/newsSelectList.ad?currentPage=1'"><<</button>
                <%   if(currentPage <= 1) {%>
                <button class="btn btn-default" disabled><</button>
                <% }else {%>
-               <button class="btn btn-default" onclick="location.href='<%= request.getContextPath()%>/selectList.ne?currentPage=<%= currentPage - 1 %>'"><</button>
+               <button class="btn btn-default" onclick="location.href='<%= request.getContextPath()%>/newsSelectList.ad?currentPage=<%= currentPage - 1 %>'"><</button>
                <% } %>   
                
                <% for(int p = startPage; p <= endPage; p++) { 
                      if(p == currentPage){ %>
                      <button class="btn btn-default" disabled><%= p %></button>
                <%   } else { %>
-                     <button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/selectList.ne?currentPage=<%= p%>'"><%= p %></button>
+                     <button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/newsSelectList.ad?currentPage=<%= p%>'"><%= p %></button>
                <%   } %>
                <% } %>      
                
                <% if(currentPage >= maxPage) {%>   
                <button class="btn btn-default" disabled>></button>
                <% } else { %>
-               <button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/selectList.ne?currentPage=<%= currentPage + 1%>'">></button>
+               <button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/newsSelectList.ad?currentPage=<%= currentPage + 1%>'">></button>
                <% } %>
-               <button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/selectList.ne?currentPage=<%= maxPage%>'">>></button>
+               <button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/newsSelectList.ad?currentPage=<%= maxPage%>'">>></button>
             </div>
             
             
-            <div class="col-sm-10 text-right">
+            <div class="col-sm-11 text-right">
                <button class="btn btn-default" type="button"><a href="views/admin/newsWrite.jsp">작성하기</a></button>
             </div>
             
@@ -326,7 +329,7 @@
             }).click(function(){
                
                var nno = $(this).parent().children().eq(0).text();
-               location.href="<%=request.getContextPath()%>/selectOne.ne?nno=" + nno;
+               location.href="<%=request.getContextPath()%>/selectOne.ad?nno=" + nno;
             });
          });
       </script>

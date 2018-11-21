@@ -7,16 +7,6 @@
 	Member m = (Member)session.getAttribute("member");
 	Point pt = (Point)session.getAttribute("point");
   	Object level=session.getAttribute("level");   
-  	
-  	ArrayList<News> list = (ArrayList<News>)request.getAttribute("list"); 
-    ArrayList<News> poplist = (ArrayList<News>)request.getAttribute("poplist");
-    ArrayList<News> firstlist = (ArrayList<News>)request.getAttribute("firstlist");
-    PageInfo pi = (PageInfo)request.getAttribute("pi");
-    int listCount = pi.getListCount();
-    int currentPage = pi.getCurrentPage();
-    int maxPage = pi.getMaxPage();
-    int startPage = pi.getStartPage();
-    int endPage = pi.getEndPage();
 
 %>
 
@@ -195,7 +185,7 @@
 
         <div class="content">
             <div class="container-fluid">   
-         <form action="<%= request.getContextPath()%>/nInsert.ne"
+         <form action="<%= request.getContextPath()%>/nInsert.ad"
 				method="post" enctype="multipart/form-data">
 				<div class="col-sm-8 text-left">
 					<br>
@@ -223,7 +213,7 @@
 			 		<script>
 			 			
 			 			function back(){
-			 				location.href="/allRight/selectList.";
+			 				location.href="/allRight/newsSelectList.ad";
 			 			}
 			 			
 			 		</script>
