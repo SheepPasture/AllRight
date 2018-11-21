@@ -55,10 +55,9 @@ public class BoardDao {
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, bid);
-			
-			System.out.println("getListCount dao: "+listCount);
-			
 			rset = pstmt.executeQuery();
+			if(rset.next())listCount = rset.getInt(1);
+			System.out.println("getListCount dao: "+listCount);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

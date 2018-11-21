@@ -50,7 +50,7 @@ public class BoardUpdateServlet extends HttpServlet {
 		
 		if(result>0){
 			System.out.println("업데이트서블릿결과완료");
-			response.sendRedirect("selectOne.bo?bid"+bid+"bno="+bno);
+			response.sendRedirect("selectOne.bo?bid"+bid+"&bno="+bno);
 		} else{
 			request.setAttribute("msg", "게시물 수정 실패");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);

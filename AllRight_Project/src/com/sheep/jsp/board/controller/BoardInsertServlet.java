@@ -32,7 +32,6 @@ public class BoardInsertServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int bid = Integer.parseInt(request.getParameter("bid"));
-		
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String bwriter = request.getParameter("userName");
@@ -56,7 +55,7 @@ public class BoardInsertServlet extends HttpServlet {
 		System.out.println("결과: " + result);
 		
 		if(result > 0){
-			/*response.sendRedirect("selectList.bo");*/
+			response.sendRedirect("selectList.bo?bid"+bid);
 			System.out.println("insert result 완료");
 		} else{
 			request.setAttribute("msg", "게시물 작성 실패");
