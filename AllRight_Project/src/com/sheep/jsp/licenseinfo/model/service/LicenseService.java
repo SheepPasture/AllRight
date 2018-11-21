@@ -55,6 +55,8 @@ public class LicenseService {
 		
 		return list;
 	}
+	
+	
 
 	public ArrayList<LicenseInfo> updateCost(ArrayList<LicenseInfo> list) {
 		
@@ -91,6 +93,18 @@ public class LicenseService {
 		close(con);
 		
 		return result;
+	}
+	public ArrayList<LicenseInfo> selectLicenseInfo() {
+		
+		ArrayList<LicenseInfo> list = null;
+		
+		Connection con = getConnection();
+		
+		list = lDao.selectLicenseInfo(con);
+		
+		close(con);
+		
+		return list;
 	}
 
 }

@@ -263,4 +263,50 @@ public class LicenseDao {
 
 	}
 
+	public ArrayList<LicenseInfo> selectLicenseInfo(Connection con) {
+		ArrayList<LicenseInfo> list = null;
+
+		Statement stmt = null;
+
+		ResultSet rset = null;
+
+		String sql = prop.getProperty("selectLicense");
+
+		try {
+
+			stmt = con.createStatement();
+
+			rset = stmt.executeQuery(sql);
+
+			list = new ArrayList<LicenseInfo>();
+
+			while (rset.next()) {
+
+				LicenseInfo l = new LicenseInfo();
+
+				l.setlNo(rset.getString(1));
+				l.setlName(rset.getString(2));
+				l.addlInfo(rset.getString(3));
+				l.addlInfo(rset.getString(4));
+				l.addlInfo(rset.getString(5));
+				l.setlCategory(rset.getString(6));
+				l.setlCost(rset.getString(7));
+				l.setlType(rset.getString(8));
+
+				list.add(l);
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+
+		} finally {
+
+			close(rset);
+			close(stmt);
+		}
+
+		return list;
+	}
+
 }

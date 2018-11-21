@@ -95,20 +95,20 @@ public class BoardMyListServlet extends HttpServlet {
 		
 		if(blist.size()!=0){
 			request.setAttribute("blist", blist);
-			request.setAttribute("listCount", blistCount);
-			request.setAttribute("startPage", bstartPage);
-			request.setAttribute("endPage", bendPage);
-			request.setAttribute("maxPage", bmaxPage);
-			request.setAttribute("currentPage", bcurrentPage);
+			request.setAttribute("blistCount", blistCount);
+			request.setAttribute("bstartPage", bstartPage);
+			request.setAttribute("bendPage", bendPage);
+			request.setAttribute("bmaxPage", bmaxPage);
+			request.setAttribute("bcurrentPage", bcurrentPage);
 			
 	
 		}else{
 			request.setAttribute("bmsg", "작성한 게시글이 없습니다.");
-			request.setAttribute("listCount", 1);
-			request.setAttribute("startPage", 1);
-			request.setAttribute("endPage", 1);
-			request.setAttribute("maxPage", 1);
-			request.setAttribute("currentPage", 1);
+			request.setAttribute("blistCount", 1);
+			request.setAttribute("bstartPage", 1);
+			request.setAttribute("bendPage", 1);
+			request.setAttribute("bmaxPage", 1);
+			request.setAttribute("bcurrentPage", 1);
 		}
 		
 		if(clist.size()!=0){

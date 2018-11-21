@@ -2,7 +2,7 @@ package com.sheep.jsp.userLicense.model.vo;
 
 public class UserLicense {
 
-	private int lNo;
+	private String lNo;
 	private int userNo;
 
 	// 생성자
@@ -11,7 +11,7 @@ public class UserLicense {
 		super();
 	}
 
-	public UserLicense(int lNo, int userNo) {
+	public UserLicense(String lNo, int userNo) {
 		super();
 		this.lNo = lNo;
 		this.userNo = userNo;
@@ -19,11 +19,11 @@ public class UserLicense {
 
 	// getter & setter
 
-	public int getlNo() {
+	public String getlNo() {
 		return lNo;
 	}
 
-	public void setlNo(int lNo) {
+	public void setlNo(String lNo) {
 		this.lNo = lNo;
 	}
 
@@ -42,14 +42,14 @@ public class UserLicense {
 	}
 
 	// hashCode()
-	@Override
+	/*@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + lNo;
 		result = prime * result + userNo;
 		return result;
-	}
+	}*/
 
 	@Override
 	public boolean equals(Object obj) {
