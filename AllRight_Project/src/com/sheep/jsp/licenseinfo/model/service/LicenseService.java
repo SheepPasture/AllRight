@@ -94,6 +94,7 @@ public class LicenseService {
 		
 		return result;
 	}
+
 	public ArrayList<LicenseInfo> selectLicenseInfo() {
 		
 		ArrayList<LicenseInfo> list = null;
@@ -101,6 +102,18 @@ public class LicenseService {
 		Connection con = getConnection();
 		
 		list = lDao.selectLicenseInfo(con);
+		
+		close(con);
+		
+		return list;
+	}
+
+	public ArrayList<LicenseInfo> selectMyLicenseInfo(int userNo) {
+		ArrayList<LicenseInfo> list = null;
+		
+		Connection con = getConnection();
+		
+		list = lDao.selectMyLicenseInfo(con,userNo);
 		
 		close(con);
 		

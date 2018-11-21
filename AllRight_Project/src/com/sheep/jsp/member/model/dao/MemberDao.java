@@ -313,7 +313,7 @@ public class MemberDao {
 	
 	
 	// 회원가입시 관심자격증 추가
-	public int insertUserLicense(Connection con, UserLicense u)  throws MemberException {
+	public int insertUserLicense(Connection con,int userNo, String[] lNo )  throws MemberException {
 		int result = 0;
 
 		PreparedStatement pstmt = null;
@@ -322,11 +322,14 @@ public class MemberDao {
 		try {
 			pstmt = con.prepareStatement(Sql);
 
-			pstmt.setInt(1, u.getUserNo());
-			pstmt.setString(2, u.getlNo());
-			
-			result = pstmt.executeUpdate();
-
+			for(int i = 0; i<lNo.length;i++){
+				if(lNo[i]!=null){
+				pstmt.setInt(1,userNo);
+				pstmt.setString(2, lNo[i]);
+				
+				result = pstmt.executeUpdate();
+				}
+			}
 		} catch (SQLException e) {
 			throw new MemberException(e.getMessage());
 		} finally {
@@ -334,6 +337,36 @@ public class MemberDao {
 		}
 
 		return result;
+	}
+
+	public int updateUserLicense(Connection con, int userNo, String[] lNo) throws Exception{
+		
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+
+		String sql = prop.getProperty("updateUserlicense");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+
+			for(int i = 0; i<lNo.length;i++){
+				if(lNo[i]!=null){
+				/*pstmt.setInt(1,lNo[i]);*/
+				pstmt.setInt(2,userNo);
+				pstmt.setInt(3,userNo);
+				result = pstmt.executeUpdate();
+				}
+			}
+		} catch (SQLException e) {
+			throw new MemberException(e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	
+		
 	}
 
 }

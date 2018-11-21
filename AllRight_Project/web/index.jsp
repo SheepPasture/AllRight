@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 
     pageEncoding="UTF-8" import="com.sheep.jsp.member.model.vo.Member"
-    import="com.sheep.jsp.point.model.vo.Point, com.sheep.jsp.news.model.vo.*,java.util.*, com.sheep.jsp.board.model.vo.*"%>
+    import="com.sheep.jsp.point.model.vo.Point, com.sheep.jsp.licenseinfo.model.vo.*, com.sheep.jsp.news.model.vo.*,java.util.*, com.sheep.jsp.board.model.vo.*,com.sheep.jsp.LicenseInfo.model.vo.*"%>
 <%
    Member m = (Member)session.getAttribute("member");
    Point pt = (Point)session.getAttribute("point");
      Object level=session.getAttribute("level");   
      ArrayList<Board> blist = (ArrayList<Board>)request.getAttribute("blist");
       ArrayList<News> nlist = (ArrayList<News>)request.getAttribute("list"); 
+      ArrayList<LicenseInfo> li = (ArrayList<LicenseInfo>)session.getAttribute("li");
 %>
 
 
