@@ -28,7 +28,7 @@
 
 		</div>
 		<hr>
-		<p>
+		<p><%if(m!=null) {%>
 			<a href="<%=request.getContextPath()%>/views/myPage/myPageMain.jsp">회원정보수정</a>
 		</p>
 		<p>
@@ -41,6 +41,20 @@
 		<p>
 			<a href="/allRight/views/myPage/viewTest.jsp">기출문제 관리</a>
 		</p>
+		<p>
+			<a href="/allRight/resources/apk/allright.apk" download>apk 다운로드</a>
+			
+		</p>
+		<%}else{ %>
+		<script>
+		alert("로그인 사용자만 가능합니다.");
+		
+		</script>
+		<%} %>
 	</div>
+	<script>
+		
+		
+	</script>
 </body>
 </html>

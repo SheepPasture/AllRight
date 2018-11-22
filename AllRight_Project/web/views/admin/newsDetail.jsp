@@ -236,7 +236,12 @@
                
             </div>
         </footer>
-
+		
+		<script type="text/javascript">
+    function logout(){
+		location.href = "/allRight/mLogout.me";
+	}
+    </script>
 		
     </div>
 </div>

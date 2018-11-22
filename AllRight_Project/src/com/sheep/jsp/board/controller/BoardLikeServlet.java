@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sheep.jsp.board.model.service.BoardService;
 import com.sheep.jsp.board.model.vo.Board;
+import com.sheep.jsp.board.model.vo.bPageInfo;
 import com.sheep.jsp.boardComment.model.service.BoardCommentService;
 import com.sheep.jsp.boardComment.model.vo.BoardComment;
 
@@ -37,19 +38,24 @@ public class BoardLikeServlet extends HttpServlet {
 		int bid = Integer.parseInt(request.getParameter("bid"));
 		int bno = Integer.parseInt(request.getParameter("bno"));
 
-		
+		int boardLikeCount = new BoardService().boardLikeCount(bid, bno);
 		Board b = new BoardService().boardLike(bid, bno);
 		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bno);
 		
 		System.out.println("b: "+b);
 		System.out.println("c:" +clist);
+		System.out.println("boardLikeCount: "+boardLikeCount);
 		
 		String page = "";
 		
 		if(b != null){
+			
+			bPageInfo bpi = new bPageInfo(boardLikeCount);
+			
 			page = "/views/board/boardDetail.jsp";
 			request.setAttribute("board", b);
 			request.setAttribute("clist", clist);
+			request.setAttribute("bpi", bpi);
 			
 		} else{
 			page="/views/common/errorPage.jsp";

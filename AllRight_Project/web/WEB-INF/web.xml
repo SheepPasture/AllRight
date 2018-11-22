@@ -6,5 +6,11 @@
   </welcome-file-list>
   <listener>
     <listener-class>com.sheep.jsp.visitCount.controller.VisitSessionListener</listener-class>
+    
   </listener>
+  	
+  <listener>
+  	<listener-class>com.sheep.jsp.popBoard.controller.boardPopListener</listener-class>
+  </listener>
+  
 </web-app>

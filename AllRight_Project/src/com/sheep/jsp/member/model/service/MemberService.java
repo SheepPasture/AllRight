@@ -6,8 +6,10 @@ import static com.sheep.jsp.common.JDBCTemplate.getConnection;
 import static com.sheep.jsp.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Collection;
 
+import com.sheep.jsp.licenseinfo.model.vo.LicenseInfo;
 import com.sheep.jsp.member.exception.MemberException;
 import com.sheep.jsp.member.model.dao.MemberDao;
 import com.sheep.jsp.member.model.vo.Member;
@@ -17,17 +19,17 @@ public class MemberService {
 
 	private MemberDao mDao = new MemberDao();
 
-	public int insertMember(Member m,String lNo) throws MemberException {
+	public int insertMember(Member m,String[] lNo) throws MemberException {
 
 		Connection con = getConnection();
 
 		int result = mDao.insertMember(con, m);
 		int userNo = mDao.selectUserNo(con, m.getUserId());
 		
-		UserLicense u =new UserLicense();
+		/*UserLicense u =new UserLicense();
 		u.setUserNo(userNo);
-		u.setlNo(lNo);
-		mDao.insertUserLicense(con, u);
+		u.setlNo(lNo[0]);*/
+		mDao.insertUserLicense(con, userNo,lNo);
 		
 		if (result > 0)
 			commit(con);
@@ -70,10 +72,10 @@ public class MemberService {
 		return result;
 	}
 
-	public int updateMember(Member m) {
+	public int updateMember(Member m,String[] lNo) throws Exception {
 		Connection con = getConnection();
 		int result = mDao.updateMember(con, m);
-
+		mDao.updateUserLicense(con, m.getUserNo(),lNo);
 		if (result > 0)
 			commit(con);
 		else
@@ -136,7 +138,7 @@ public class MemberService {
 	}
 
 	// 회원가입 자격증 추가
-	public int insertUserLicense(UserLicense u) throws MemberException{
+/*	public int insertUserLicense(UserLicense u) throws MemberException{
 		Connection con = getConnection();
 
 		int result = mDao.insertUserLicense(con, u);
@@ -150,6 +152,23 @@ public class MemberService {
 
 		return result;
 
+	}*/
+
+	public int getMemberCount() {
+		Connection con = getConnection();
+		
+		int memberCount = mDao.getMemberCount(con);
+		
+		close(con);
+		
+		return memberCount;
+	}
+	public ArrayList<Member> selectAll() {
+		Connection con = getConnection();
+		ArrayList<Member> result = new ArrayList<Member>();
+		result =mDao.selectAllMember(con);
+
+		return result;
 	}
 
 }

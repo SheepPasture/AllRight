@@ -1,6 +1,8 @@
 package com.sheep.jsp.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,42 +40,39 @@ public class MemberUpdateServlet extends HttpServlet {
 		String name = request.getParameter("userName");
 		String email =request.getParameter("email");
 		
-		String afterLNo = request.getParameter("licenseName");
 		
-		System.out.println("afterLNo" + afterLNo);
-		System.out.println("1번");
+		HttpSession session = request.getSession();
 		
-		HttpSession session = request.getSession(false);
 		Member m = (Member)session.getAttribute("member");
-		/*UserLicense u = (UserLicense)session.getAttribute("UserLicense");*/
-		UserLicense u =new UserLicense();
-		/*String beforeLNo = u.getlNo();*/
-		String beforeLNo = "0490";
+		ArrayList<LicenseInfo> li = (ArrayList<LicenseInfo>)session.getAttribute("li");
+		System.out.println("li : " + li);
+		
+		String lNo[]=new String[2];
+		lNo[0] = request.getParameter("licenseName");
+		lNo[1] = request.getParameter("licenseName1");
+		System.out.println(lNo[0]);
+		System.out.println("wwww : "+lNo[1]);
+
 		MemberService ms = new MemberService();
+		
 		System.out.println("2번");
 		UserLicenseService us = new UserLicenseService();
 		System.out.println("3번");
 		int userNo=m.getUserNo();
+		
 		m.setUserPwd(pwd);
 		m.setUserName(name);
 		m.setEmail(email);
-		
-		u.setUserNo(userNo);
-		u.setlNo(afterLNo);
-		
-		System.out.println("4번");
-		int lresult = ms.updateUserLicense(beforeLNo,u);
-		System.out.println("5번");
-		if(lresult !=0)System.out.println("성공");
-		else System.out.println("실패");
-		int result = ms.updateMember(m);
-		System.out.println("6번");
-		if(result!=0){
+		int result;
+		try {
+			result = ms.updateMember(m,lNo);
 			System.out.println("수정 성공");
 			response.sendRedirect("views/myPage/myPageMain.jsp");
-		}else{
+		
+		} catch (Exception e) {
 			System.out.println("수정 실패");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			e.printStackTrace();
 		}
 		
 	}

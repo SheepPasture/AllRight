@@ -118,7 +118,8 @@ public class BoardListServlet extends HttpServlet {
 				out.close();
 			}else{
 				page = "/views/common/errorPage.jsp";
-				request.setAttribute("msg", "공지사항 조회에 실패했습니다. 관리자에게 문의해주세요.");
+				request.setAttribute("msg", "게시판 조회에 실패했습니다. 관리자에게 문의해주세요.");
+
 			}
 		}
 		

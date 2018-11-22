@@ -1,14 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.sheep.jsp.member.model.vo.Member"
-    import="com.sheep.jsp.point.model.vo.Point ,java.util.*, com.sheep.jsp.board.model.vo.*"%>
+    import="com.sheep.jsp.point.model.vo.Point ,java.util.*, com.sheep.jsp.board.model.vo.*, com.sheep.jsp.licenseinfo.model.vo.*"%>
     
 
 <%
 	Member m = (Member)session.getAttribute("member");
 	Point pt = (Point)session.getAttribute("point");
   Object level=session.getAttribute("level"); 
-  int ttc = (Integer) session.getAttribute("totalCount"); // 총 방문자 수 
+  	int ttc = (Integer) session.getAttribute("totalCount"); // 총 방문자 수 
 	int tdc = (Integer) session.getAttribute("todayCount"); // 오늘 방문자 수
+	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+	int memberCount =(Integer) session.getAttribute("memberCount"); 
+	String bo1 = (String)session.getAttribute("pop1Board");
+	String bo2 = (String)session.getAttribute("pop2Board");
+	String bo3 = (String)session.getAttribute("pop3Board");
+	String bo4 = (String)session.getAttribute("pop4Board");
+	String bo5 = (String)session.getAttribute("pop5Board");
+	
+	int pop1 = (Integer) session.getAttribute("pop1Count"); 
+	int pop2 = (Integer) session.getAttribute("pop2Count");
+	int pop3 = (Integer) session.getAttribute("pop3Count");
+	int pop4 = (Integer) session.getAttribute("pop4Count");
+	int pop5 = (Integer) session.getAttribute("pop5Count");
+	
 
 %>
 
@@ -109,7 +123,7 @@
 
 	        var options = {
 	          title: '',
-	          chartArea: {width: '75%'},
+	          chartArea: {width: '80%'},
 	         hAxis: {
 	            title: '방문자 수',
 	            minValue: 0
@@ -124,6 +138,32 @@
 	        chart.draw(data, options);
 	      }
 	  </script>
+	  
+	  <!-- 구글 원 차트  -->
+	  <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['게시판', '클릭수'],
+          ['<%= bo1%>',     <%= pop1 %>],
+          ['<%= bo2%>',     <%= pop2 %>],
+          ['<%= bo3%>',  <%= pop3 %>],
+          ['<%= bo4%>', <%= pop4 %>],
+          ['<%= bo5%>',    <%= pop5 %>]
+        ]);
+
+        var options = {
+          title: ' '
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
 
 	
 	
@@ -260,13 +300,14 @@
                                 <div class="row">
                                     <div class="col-xs-5">
                                         <div class="icon-big icon-warning text-center">
-                                            <i class="ti-server"></i>
+                                            <i class="ti-user"></i>
                                         </div>
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Capacity</p>
-                                            105GB
+                                            <p>회원 수</p>
+                                           <%=memberCount%>
+                                          
                                         </div>
                                     </div>
                                 </div>
@@ -285,20 +326,20 @@
                                 <div class="row">
                                     <div class="col-xs-5">
                                         <div class="icon-big icon-success text-center">
-                                            <i class="ti-wallet"></i>
+                                            <i class="ti-mouse-alt"></i>
                                         </div>
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Revenue</p>
-                                            $1,345
+                                            <p>총 방문자 수</p>
+                                            <%= ttc %>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-calendar"></i> Last day
+                                        <i class="ti-timer"></i> In the last hour
                                     </div>
                                 </div>
                             </div>
@@ -310,13 +351,13 @@
                                 <div class="row">
                                     <div class="col-xs-5">
                                         <div class="icon-big icon-danger text-center">
-                                            <i class="ti-pulse"></i>
+                                            <i class="ti-home"></i>
                                         </div>
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Errors</p>
-                                            23
+                                            <p>오늘 방문자 수</p>
+                                            <%= tdc %>
                                         </div>
                                     </div>
                                 </div>
@@ -335,13 +376,13 @@
                                 <div class="row">
                                     <div class="col-xs-5">
                                         <div class="icon-big icon-info text-center">
-                                            <i class="ti-twitter-alt"></i>
+                                            <i class="ti-agenda"></i>
                                         </div>
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Followers</p>
-                                            +45
+                                            <p>자격증 수</p>
+                                            597
                                         </div>
                                     </div>
                                 </div>
@@ -357,14 +398,14 @@
                 </div>
                 <div class="row">
 
-                    <div class="col-md-12">
+                    <div class="col-md-12" id="chart">
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">방문자 통계</h4>
-                                <p class="category">24 Hours performance</p>
+                                <p class="category">오늘 방문자 수</p>
                             </div>
                             <div class="content">
-                                <div id="chart_div" style="width: 100%; height: 500;"></div>
+                                <div id="chart_div" style="width: 100%;"></div>
                                 <hr>
                                 <div class="stats">
                                    <i class="ti-reload"></i> Updated 3 minutes ago
@@ -377,21 +418,30 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Email Statistics</h4>
-                                <p class="category">Last Campaign Performance</p>
+                                <h4 class="title">인기 게시판 통계</h4>
+                                <p class="category">Board Performance</p>
                             </div>
                             <div class="content">
-                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+                            
+                            <div id="piechart" style="width: 100%; height: 335px;"></div>
+                                <!-- <div id="chartPreferences" class="ct-chart ct-perfect-fourth">
+                                
+                                <table id="boardTop5" class="top5">
+				<thead>
+					<tr>
+						
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+                                </div> -->
 
                                 <div class="footer">
-                                    <div class="chart-legend">
-                                        <i class="fa fa-circle text-info"></i> Open
-                                        <i class="fa fa-circle text-danger"></i> Bounce
-                                        <i class="fa fa-circle text-warning"></i> Unsubscribe
-                                    </div>
+                                    
                                     <hr>
                                     <div class="stats">
-                                        <i class="ti-timer"></i> Campaign sent 2 days ago
+                                        <i class="ti-timer"></i> Updated now
                                     </div>
                                 </div>
                             </div>
@@ -400,22 +450,13 @@
                     <div class="col-md-6">
                         <div class="card ">
                             <div class="header">
-                                <h4 class="title">2015 Sales</h4>
-                                <p class="category">All products including Taxes</p>
+                                <h4 class="title">ALLRIGHT</h4>
+                                <p class="category">made by 양치는 목장</p>
                             </div>
                             <div class="content">
-                                <div id="chartActivity" class="ct-chart"></div>
-
-                                <div class="footer">
-                                    <div class="chart-legend">
-                                        <i class="fa fa-circle text-info"></i> Tesla Model S
-                                        <i class="fa fa-circle text-warning"></i> BMW 5 Series
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="ti-check"></i> Data information certified
-                                    </div>
-                                </div>
+                                
+								<img src="/allRight/resources/images/allright.png" style="width: 100%"/>
+                                
                             </div>
                         </div>
                     </div>
@@ -449,14 +490,9 @@
     <!--  Notifications Plugin    -->
     <script src="assets/js/bootstrap-notify.js"></script>
 
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-
     <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
 	<script src="assets/js/paper-dashboard.js"></script>
 
-	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-	<script src="assets/js/demo.js"></script>
 
 
 	
@@ -466,6 +502,37 @@
 			location.href = "/allRight/mLogout.me";
 		}
 		
+		 $(function(){
+				
+				$.ajax({
+					
+					url: '/allRight/cTop5.ca',
+					dataType: "json",
+					type : "get",
+					success : function(data){
+						
+						$table = $('#boardTop5 tbody');
+						
+						$("#boardTop5").find("tr:gt(0)").remove();
+						
+						for(var i in data){
+							
+							console.log(data[i]);
+							var $trBoard = $('<tr>');
+							var $tdBoardTitle = $('<td>').text(data[i].ecount);
+							
+							$trBoard.append($tdBoardTitle);
+							
+							$table.append($trBoard);
+						}
+					}, error : function(data){
+						
+						console.log("top5 조회 실패!");
+					}
+					
+				});
+				
+			});
 		
 		</script>
 
