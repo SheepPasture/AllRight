@@ -6,8 +6,10 @@ import static com.sheep.jsp.common.JDBCTemplate.getConnection;
 import static com.sheep.jsp.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Collection;
 
+import com.sheep.jsp.licenseinfo.model.vo.LicenseInfo;
 import com.sheep.jsp.member.exception.MemberException;
 import com.sheep.jsp.member.model.dao.MemberDao;
 import com.sheep.jsp.member.model.vo.Member;
@@ -160,6 +162,14 @@ public class MemberService {
 		close(con);
 		
 		return memberCount;
+	}
+
+	public ArrayList<Member> selectAll() {
+		Connection con = getConnection();
+		ArrayList<Member> result = new ArrayList<Member>();
+		result =mDao.selectAllMember(con);
+
+		return result;
 	}
 
 }
