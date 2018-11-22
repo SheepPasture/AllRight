@@ -100,11 +100,15 @@ public class MemberLoginServlet extends HttpServlet {
 			System.out.println(m);
 			level = ((pt.getTotalPoint() / 100) + 1);
 			HttpSession session = request.getSession();
+			
+			
+			int memberCount = ms.getMemberCount();
 
 			session.setAttribute("member", m);
 			session.setAttribute("point", pt);
 			session.setAttribute("level", level);
 			session.setAttribute("li", li);
+			session.setAttribute("memberCount", memberCount);
 			System.out.println(pt);
 			System.out.println(li);
 			System.out.println(m);
