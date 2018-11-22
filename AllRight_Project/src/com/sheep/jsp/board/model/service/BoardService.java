@@ -231,6 +231,7 @@ public class BoardService {
 		close(con);
 		
 		return boardLikeCount;
+	}
 		
 
 	public int adminDeleteBoard(int bid, int bno) {
