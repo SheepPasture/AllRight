@@ -244,7 +244,7 @@
 
 					<!-- 로그인 폼  -->
 
-					<div class="loginArea" style="float: left; width: 70%; border:1px solid black;" >
+					<div class="loginArea" style="float: left; width: 100%; border:1px solid black;" >
 						<%
 							if (m == null) {
 						%>
@@ -258,7 +258,7 @@
 									</tr>
 									<tr>
 										<td><label class="text">PWD : </label></td>
-										<td><input type="password" name="inputPassword">
+										<td><input type="password" name="inputPassword" style="width:100%;">
 										</td>
 									</tr>
 								</table>
