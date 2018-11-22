@@ -39,7 +39,7 @@ public class MemberDeleteServlet extends HttpServlet {
 		
 		if(result!=0){
 			System.out.println("회원탈퇴 성공");
-			session.invalidate();
+			request.getSession().removeAttribute("member");
 			response.sendRedirect("index.jsp");
 		}else{
 			System.out.println("회원 탈퇴 실패");
