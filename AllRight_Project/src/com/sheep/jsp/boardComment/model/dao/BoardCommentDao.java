@@ -289,6 +289,8 @@ public class BoardCommentDao {
 				b.setUserId(rset.getString("USERID"));
 				b.setcDate(rset.getDate("CDATE"));
 				b.setReport(rset.getInt("REPORT"));
+				b.setcNo(rset.getInt("CNO"));
+				b.setcStatus(rset.getString("CSTATUS"));
 				
 				list.add(b);
 			}
@@ -302,6 +304,27 @@ public class BoardCommentDao {
 		}
 		
 		return list;
+	}
+
+	public int adminDeleteComment(Connection con, int cno) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("adminDeleteComment");
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, cno);
+			
+			result = pstmt.executeUpdate();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
 	}
 }
 
