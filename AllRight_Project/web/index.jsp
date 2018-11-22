@@ -114,6 +114,12 @@
 	overflow: auto;
 	height: 100px;
 }
+
+	td{
+	padding-left : 40px;
+	float:left;
+	font-size : 2em;
+}
 </style>
 
 <!-- <script>
@@ -156,18 +162,19 @@
 			<div class="row content">
 				<br />
 				<div class="col-sm-1 sidenav"></div>
-				<div class="col-sm-8 text-center" style="border: 1px solid gold">
+				<div class="col-sm-8 text-center" style="border: 1px solid black">
 					<!-- <h2 align="left">뉴스</h2> -->
 
 					<!-- <div class="main" > -->
 					<div class="realtime"
-						style="float: left; width: 50%; border: 1px solid black;">
+						style="float: left; width: 30%; border: 2px solid black;">
 						<div id="refresh">
 							<table id="boardTop5" class="top5">
 								<thead>
 									<tr>
 										<th></th>
-										<th scope="cols">실시간 게시판 순위</th>
+										<th></th>
+										<h3>실시간 게시판 순위</h2>
 									</tr>
 								</thead>
 								<tbody>
@@ -179,12 +186,12 @@
 					</div>
 					<div>
 						<div class="col-sm-4"
-							style="float: left; width: 50%; border: 1px solid gold">
+							style="float: left; width: 50%; border: 2px solid black">
 							<h1>공지사항</h1>
 							<div class="col-sm-4">
 								<table id="#">
 									<thead>
-
+							
 
 									</thead>
 									<tbody>
@@ -237,7 +244,7 @@
 
 					<!-- 로그인 폼  -->
 
-					<div class="loginArea" style="float: left; width: 50%;">
+					<div class="loginArea" style="float: left; width: 70%; border:1px solid black;" >
 						<%
 							if (m == null) {
 						%>
@@ -295,7 +302,7 @@
 				<br />
 				<div class="col-sm-1 sidenav"></div>
 				<!-- 왼쪽 공간 -->
-				<div class="col-sm-8 text-center" style="border: 1px solid gold">
+				<div class="col-sm-8 text-center" style="border: 1px solid black">
 					<h1>자격증 목록</h1>
 
 					<div id="html5" class="col-sm-3">

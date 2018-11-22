@@ -11,12 +11,17 @@
 	int tdc = (Integer) session.getAttribute("todayCount"); // 오늘 방문자 수
 	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
 	int memberCount =(Integer) session.getAttribute("memberCount"); 
-/* 	int mCnt = (Integer)session.getAttribute("memberCount"); */
-	/* int pop1 = (Integer) session.getAttribute("pop1Count");
+	String bo1 = (String)session.getAttribute("pop1Board");
+	String bo2 = (String)session.getAttribute("pop2Board");
+	String bo3 = (String)session.getAttribute("pop3Board");
+	String bo4 = (String)session.getAttribute("pop4Board");
+	String bo5 = (String)session.getAttribute("pop5Board");
+	
+	int pop1 = (Integer) session.getAttribute("pop1Count"); 
 	int pop2 = (Integer) session.getAttribute("pop2Count");
 	int pop3 = (Integer) session.getAttribute("pop3Count");
 	int pop4 = (Integer) session.getAttribute("pop4Count");
-	int pop5 = (Integer) session.getAttribute("pop1Count"); */
+	int pop5 = (Integer) session.getAttribute("pop5Count");
 	
 
 %>
@@ -143,11 +148,11 @@
 
         var data = google.visualization.arrayToDataTable([
           ['게시판', '클릭수'],
-          ['IT',     50],
-          ['의복',      40],
-          ['간호',  35],
-          ['조선', 30],
-          ['설계',    10]
+          ['<%= bo1%>',     <%= pop1 %>],
+          ['<%= bo2%>',     <%= pop2 %>],
+          ['<%= bo3%>',  <%= pop3 %>],
+          ['<%= bo4%>', <%= pop4 %>],
+          ['<%= bo5%>',    <%= pop5 %>]
         ]);
 
         var options = {
@@ -418,7 +423,7 @@
                             </div>
                             <div class="content">
                             
-                            <div id="piechart" style="width: 500px; height: 335px;"></div>
+                            <div id="piechart" style="width: 100%; height: 335px;"></div>
                                 <!-- <div id="chartPreferences" class="ct-chart ct-perfect-fourth">
                                 
                                 <table id="boardTop5" class="top5">

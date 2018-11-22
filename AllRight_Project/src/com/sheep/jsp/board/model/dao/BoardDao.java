@@ -564,7 +564,6 @@ public class BoardDao {
 		return list;
 	}
 
-
 	public int boardLikeCount(Connection con, int bid, int bno) {
 	
 		PreparedStatement pstmt = null;
@@ -572,30 +571,30 @@ public class BoardDao {
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("LikelistCount");
-  
-    	
+		
 		try {
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, bid);
 			pstmt.setInt(2, bno);
-      rset = pstmt.executeQuery();
+			rset = pstmt.executeQuery();
 			
 			if(rset.next())boardLikeCount = rset.getInt(1);
 			
 			System.out.println("dao boardLikeCount: "+boardLikeCount);
-      
-      	
-    } catch (SQLException e) {
+			
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-      close(rset);
+			close(rset);
 			close(pstmt);
 		}
 		
 		return boardLikeCount;
+
+		
 	}
-  
+	
 
 	public int adminDeleteBoard(Connection con, int bid, int bno) {
 		PreparedStatement pstmt = null;
@@ -604,18 +603,19 @@ public class BoardDao {
 		String sql = prop.getProperty("adminDeleteBoard");
 		
 		System.out.println("삭제 dao");
-    	
+		
 		try {
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, bid);
 			pstmt.setInt(2, bno);
-      
-      result = pstmt.executeUpdate();
-      	} catch (SQLException e) {
+			
+			result = pstmt.executeUpdate();
+			  
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-      	close(pstmt);
+			close(pstmt);
 		}
 		
 		return result;

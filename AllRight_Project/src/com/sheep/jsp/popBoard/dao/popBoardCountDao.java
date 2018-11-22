@@ -28,7 +28,7 @@ public class popBoardCountDao {
         
         try {
         	StringBuffer sql = new StringBuffer();
-        	sql.append("SELECT ECOUNT FROM(SELECT * FROM CATEGORY ORDER BY ECOUNT DESC) WHERE ROWNUM = 1");
+        	sql.append("SELECT ECOUNT FROM(SELECT ROWNUM RNUM, C.* FROM(SELECT * FROM CATEGORY ORDER BY ECOUNT DESC)C ) WHERE RNUM = 1");
         
         	conn = getConnection();
         
@@ -39,6 +39,7 @@ public class popBoardCountDao {
 			if(rs.next())
 				pop1Count = rs.getInt("ECOUNT");
 				
+			System.out.println("pop1Count: "+pop1Count);
 				return pop1Count;
 			
 			
@@ -64,7 +65,7 @@ public class popBoardCountDao {
         
         try {
         	StringBuffer sql = new StringBuffer();
-        	sql.append("SELECT ECOUNT FROM(SELECT * FROM CATEGORY ORDER BY ECOUNT DESC) WHERE ROWNUM = 2");
+        	sql.append("SELECT ECOUNT FROM(SELECT ROWNUM RNUM, C.* FROM(SELECT * FROM CATEGORY ORDER BY ECOUNT DESC)C ) WHERE RNUM = 2");
         
         	conn = getConnection();
         
@@ -99,7 +100,7 @@ public class popBoardCountDao {
         
         try {
         	StringBuffer sql = new StringBuffer();
-        	sql.append("SELECT ECOUNT FROM(SELECT * FROM CATEGORY ORDER BY ECOUNT DESC) WHERE ROWNUM = 3");
+        	sql.append("SELECT ECOUNT FROM(SELECT ROWNUM RNUM, C.* FROM(SELECT * FROM CATEGORY ORDER BY ECOUNT DESC)C ) WHERE RNUM = 3");
         
         	conn = getConnection();
         
@@ -134,7 +135,7 @@ public class popBoardCountDao {
         
         try {
         	StringBuffer sql = new StringBuffer();
-        	sql.append("SELECT ECOUNT FROM(SELECT * FROM CATEGORY ORDER BY ECOUNT DESC) WHERE ROWNUM = 4");
+        	sql.append("SELECT ECOUNT FROM(SELECT ROWNUM RNUM, C.* FROM(SELECT * FROM CATEGORY ORDER BY ECOUNT DESC)C ) WHERE RNUM = 4");
         
         	conn = getConnection();
         
@@ -169,7 +170,7 @@ public class popBoardCountDao {
         
         try {
         	StringBuffer sql = new StringBuffer();
-        	sql.append("SELECT ECOUNT FROM(SELECT * FROM CATEGORY ORDER BY ECOUNT DESC) WHERE ROWNUM = 5");
+        	sql.append("SELECT ECOUNT FROM(SELECT ROWNUM RNUM, C.* FROM(SELECT * FROM CATEGORY ORDER BY ECOUNT DESC)C ) WHERE RNUM = 5");
         
         	conn = getConnection();
         
@@ -181,6 +182,181 @@ public class popBoardCountDao {
 				pop5Count = rs.getInt("ECOUNT");
 				
 				return pop5Count;
+			
+			
+		} catch (Exception sqle) {
+            throw new RuntimeException(sqle.getMessage());
+		} finally {
+            // Connection, PreparedStatement를 닫는다.
+            try{
+                if ( pstmt != null ){ pstmt.close(); pstmt=null; }
+                if ( conn != null ){ conn.close(); conn=null;    }
+            }catch(Exception e){
+                throw new RuntimeException(e.getMessage());
+            }
+        }
+	}
+
+	public String getpop1Board() {
+		Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String pop1Board = null;
+        
+        try {
+        	StringBuffer sql = new StringBuffer();
+        	sql.append("SELECT ETITLE FROM(SELECT ROWNUM RNUM, C.* FROM(SELECT * FROM CATEGORY ORDER BY ECOUNT DESC)C ) WHERE RNUM = 1");
+        
+        	conn = getConnection();
+        
+			pstmt = conn.prepareStatement(sql.toString());
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next())
+				pop1Board = rs.getString("ETITLE");
+				
+				return pop1Board;
+			
+			
+		} catch (Exception sqle) {
+            throw new RuntimeException(sqle.getMessage());
+		} finally {
+            // Connection, PreparedStatement를 닫는다.
+            try{
+                if ( pstmt != null ){ pstmt.close(); pstmt=null; }
+                if ( conn != null ){ conn.close(); conn=null;    }
+            }catch(Exception e){
+                throw new RuntimeException(e.getMessage());
+            }
+        }
+	}
+
+	public String getpop2Board() {
+		Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String pop2Board = null;
+        
+        try {
+        	StringBuffer sql = new StringBuffer();
+        	sql.append("SELECT ETITLE FROM(SELECT ROWNUM RNUM, C.* FROM(SELECT * FROM CATEGORY ORDER BY ECOUNT DESC)C ) WHERE RNUM = 2");
+        
+        	conn = getConnection();
+        
+			pstmt = conn.prepareStatement(sql.toString());
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next())
+				pop2Board = rs.getString("ETITLE");
+				
+				return pop2Board;
+			
+			
+		} catch (Exception sqle) {
+            throw new RuntimeException(sqle.getMessage());
+		} finally {
+            // Connection, PreparedStatement를 닫는다.
+            try{
+                if ( pstmt != null ){ pstmt.close(); pstmt=null; }
+                if ( conn != null ){ conn.close(); conn=null;    }
+            }catch(Exception e){
+                throw new RuntimeException(e.getMessage());
+            }
+        }
+	}
+
+	public String getpop3Board() {
+		Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String pop3Board = null;
+        
+        try {
+        	StringBuffer sql = new StringBuffer();
+        	sql.append("SELECT ETITLE FROM(SELECT ROWNUM RNUM, C.* FROM(SELECT * FROM CATEGORY ORDER BY ECOUNT DESC)C ) WHERE RNUM = 3");
+        
+        	conn = getConnection();
+        
+			pstmt = conn.prepareStatement(sql.toString());
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next())
+				pop3Board = rs.getString("ETITLE");
+				
+				return pop3Board;
+			
+			
+		} catch (Exception sqle) {
+            throw new RuntimeException(sqle.getMessage());
+		} finally {
+            // Connection, PreparedStatement를 닫는다.
+            try{
+                if ( pstmt != null ){ pstmt.close(); pstmt=null; }
+                if ( conn != null ){ conn.close(); conn=null;    }
+            }catch(Exception e){
+                throw new RuntimeException(e.getMessage());
+            }
+        }
+	}
+
+	public String getpop4Board() {
+		Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String pop4Board = null;
+        
+        try {
+        	StringBuffer sql = new StringBuffer();
+        	sql.append("SELECT ETITLE FROM(SELECT ROWNUM RNUM, C.* FROM(SELECT * FROM CATEGORY ORDER BY ECOUNT DESC)C ) WHERE RNUM = 4");
+        
+        	conn = getConnection();
+        
+			pstmt = conn.prepareStatement(sql.toString());
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next())
+				pop4Board = rs.getString("ETITLE");
+				
+				return pop4Board;
+			
+			
+		} catch (Exception sqle) {
+            throw new RuntimeException(sqle.getMessage());
+		} finally {
+            // Connection, PreparedStatement를 닫는다.
+            try{
+                if ( pstmt != null ){ pstmt.close(); pstmt=null; }
+                if ( conn != null ){ conn.close(); conn=null;    }
+            }catch(Exception e){
+                throw new RuntimeException(e.getMessage());
+            }
+        }
+	}
+
+	public String getpop5Board() {
+		Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String pop5Board = null;
+        
+        try {
+        	StringBuffer sql = new StringBuffer();
+        	sql.append("SELECT ETITLE FROM(SELECT ROWNUM RNUM, C.* FROM(SELECT * FROM CATEGORY ORDER BY ECOUNT DESC)C ) WHERE RNUM = 5");
+        
+        	conn = getConnection();
+        
+			pstmt = conn.prepareStatement(sql.toString());
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next())
+				pop5Board = rs.getString("ETITLE");
+				
+				return pop5Board;
 			
 			
 		} catch (Exception sqle) {
