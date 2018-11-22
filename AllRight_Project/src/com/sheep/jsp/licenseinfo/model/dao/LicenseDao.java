@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.sheep.jsp.announcement.model.vo.Announcement;
 import com.sheep.jsp.licenseinfo.model.vo.LicenseInfo;
 import static com.sheep.jsp.common.JDBCTemplate.*;
 
@@ -351,6 +352,43 @@ public class LicenseDao {
 		}
 
 		return list;
+	}
+
+	public ArrayList<LicenseInfo> selectMainList(Connection con) {
+		
+		ArrayList<LicenseInfo> llist = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMainList");
+		
+		try {
+		
+			pstmt = con.prepareStatement(sql);
+			
+			llist = new ArrayList<LicenseInfo>();
+			
+			while(rset.next()){
+				LicenseInfo li = new LicenseInfo();
+				
+				li.setlName(rset.getString("lname"));
+				li.setlCategory(rset.getString("lcategory"));
+				
+				llist.add(li);		
+				
+				System.out.println("selectMainList llist: "+llist);
+
+			}
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return llist;
+		
 	}
 
 }

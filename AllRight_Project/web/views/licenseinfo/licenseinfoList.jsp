@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.sheep.jsp.announcement.model.vo.*" %> 
+    pageEncoding="UTF-8" import="java.util.*, com.sheep.jsp.licenseinfo.model.vo.*" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,8 +26,8 @@
 				<br>
 				<div class="col-sm-2 sidenav">
 					<p><a href="<%= request.getContextPath() %>/selectList.ann">공지사항</a></p>
-					<p><a href="<%= request.getContextPath() %>/views/community/communityList.jsp">커뮤니티</a></p>
-					<p><a href="/views/license/licenseinfo.jsp">자격증정보</a></p>
+					<p><a href="<%= request.getContextPath() %>/views/board/boardList.jsp">커뮤니티</a></p>
+					<p><a href="<%= request.getContextPath() %>/views/license/licenseinfo.jsp">자격증정보</a></p>
 					<br /><br /><br /><br /><br /><br /><br /><br />
 					<br /><br /><br /><br /><br /><br /><br /><br />
 					<br /><br /><br /><br /><br /><br /><br /><br />
@@ -38,15 +38,14 @@
 					<h2 align="left">자격증정보</h2>
 					<br />
 					<div class="autoonoff">
-					<div class="tabpanel" role="tabpanel">
-						<!-- Nav tabs -->
+<!-- 					<div class="tabpanel" role="tabpanel">
+						Nav tabs
 						<ul class="nav nav-tabs nav-justified" role="tablist">
 							<li class="tit" role="presentation"><a href="#건설기계운전" aria-controls="건설기계운전" role="tab" data-toggle="tab" id="건설기계운전"><span>건설기계운전</span></a></li>
 							<li class="tit" role="presentation"><a href="#건설배관" aria-controls="건설배관" role="tab" data-toggle="tab" id="건설배관">건설배관</a></li>
 							<li class="tit" role="presentation"><a href="#건축" aria-controls="건축" role="tab" data-toggle="tab" id="건축">건축</a></li>
 							<li class="tit" role="presentation"><a href="#경비청소" aria-controls="경비청소" role="tab" data-toggle="tab" id="경비청소">경비청소</a></li>
 						</ul>
-						<!-- Tab panes -->
 						<div class="tab-content" style="">
 							<div role="tabpanel" class="tab-pane" id="건설기계운전">
 								<table class="table table-justified">
@@ -105,18 +104,76 @@
 								</table>
 							</div>
 						</div>
-					</div></div>
-	
+					</div></div> -->
+					<div id="LicenseMain">
+						<div class='tab-pane'>
+						</div>
+					</div>
+					<script>
+						$.ajax({
+							url : '/allRight/lSelect.li',
+							type : 'get',
+							dataType : 'json',
+							success : function(data) {
+								console.log(data); 
+/* 								console.log(data.list); */
+								
+								$table = $('#LicenseMain');
+								
+								var list = data.lArray;
+								var l = data.list;
+
+								for(var i = 1; i < l.length; i++){
+								
+									$table.append(
+										"<ul class='nav nav-tabs nav-justified' role='tablist'><li class='tit' role='presentation'>"+
+										"<a href='#' id="+l[i].listName+">"
+										+l[i].listName + 
+										"</a></li></ul>"
+									);  
+								}			
+								
+								$('a').on("click", function(e){
+
+						 			console.log(4); 
+								for(var i = 1; i < list.length; i++){
+									console.log($('list[i].name'));
+									var value = $('list[i].lno').val();
+									
+									if (list[i].category == value) {
+							
+									$table.append(
+										"<div role='tabpanel' class='tab-pane'>"+"<table class='table table-justified'>"
+										+"<tr><td colspan='1' value="+list[i].lno+"><a href='#'>"
+										+ list[i].name
+										+"</a></td></tr>"
+										
+										
+									);  
+									
+									}
+							
+								}
+								
+								});
+				
+								
+							},
+							error : function() {
+								alert("실패");
+							}
+						});
+					</script>
 					<br>
 			
-					<!-- Nav tabs -->
+<!-- 					Nav tabs
 					<ul class="nav nav-tabs nav-justified" role="tablist">
 						<li role="presentation"><a href="#건설기계운전2" aria-controls="건설기계운전2" role="tab" data-toggle="tab" id="건설기계운전2"><span>건설기계운전2</span></a></li>
 						<li role="presentation"><a href="#건설배관2" aria-controls="건설배관2" role="tab" data-toggle="tab" id="건설배관2">건설배관2</a></li>
 						<li role="presentation"><a href="#건축2" aria-controls="건축2" role="tab" data-toggle="tab" id="건축2">건축2</a></li>
 						<li role="presentation"><a href="#경비청소2" aria-controls="경비청소2" role="tab" data-toggle="tab" id="경비청소2">경비청소2</a></li>
 					</ul>
-					<!-- Tab panes -->
+					Tab panes
 					<div class="tab-content">
 						<div role="tabpane1" class="tab-pane" id="건설기계운전2">
 							<table class="table table-justified">
@@ -174,7 +231,7 @@
 								</tr>
 							</table>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>		        

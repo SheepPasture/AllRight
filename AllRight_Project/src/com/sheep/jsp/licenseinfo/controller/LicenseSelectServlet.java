@@ -20,6 +20,8 @@ import org.json.simple.JSONObject;
 import com.sheep.jsp.licenseinfo.model.service.LicenseService;
 import com.sheep.jsp.licenseinfo.model.vo.LicenseInfo;
 
+import sun.awt.util.IdentityArrayList;
+
 /**
  * Servlet implementation class LicenseSelectServlet
  */
@@ -41,6 +43,7 @@ public class LicenseSelectServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		HttpSession session = request.getSession();
 		ArrayList<LicenseInfo> ml = (ArrayList<LicenseInfo>) session.getAttribute("li");
 
