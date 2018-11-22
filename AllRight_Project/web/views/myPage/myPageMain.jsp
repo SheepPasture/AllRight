@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="com.sheep.jsp.member.model.vo.Member, com.sheep.jsp.userPoint.model.vo.*,com.sheep.jsp.licenseinfo.model.vo.*, java.util.*"%>
+	import="com.sheep.jsp.member.model.vo.Member, com.sheep.jsp.point.model.vo.*,com.sheep.jsp.licenseinfo.model.vo.*, java.util.*"%>
 
 <%
 /* 	 Member m = (Member)session.getAttribute("member");  */ 

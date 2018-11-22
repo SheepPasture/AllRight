@@ -1,4 +1,4 @@
-package com.sheep.jsp.announcement.controller;
+package com.sheep.jsp.question.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,52 +7,39 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sheep.jsp.announcement.model.service.ANNService;
-import com.sheep.jsp.announcement.model.vo.Announcement;
-
 /**
- * Servlet implementation class ANNSelectOneServlet
+ * Servlet implementation class QuestionListServlet
  */
-@WebServlet("/selectOne.ann")
-public class ANNSelectOneServlet extends HttpServlet {
+@WebServlet("/question.li")
+public class QuestionListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ANNSelectOneServlet() {
+    public QuestionListServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String[] answerList = request.getParameterValues("answerList[]");
+		
+		for(String s : answerList){
 
-		int ano = Integer.parseInt(request.getParameter("ano"));
-		
-		Announcement a = new ANNService().selectOne(ano);
-
-		System.out.println("SelectOne ano: "+ano);
-		
-		String page = "";
-		
-		if(a != null){
-			page = "/views/announcement/ANNDetail.jsp";
-			request.setAttribute("announcement", a);
-		} else{
-			page="/views/common/errorPage.jsp";
-			request.setAttribute("msg", "공지사항 상세보기에 실패하였습니다. 관리자에게 문의바랍니다.");
+			System.out.println(s);
 		}
-		
-		request.getRequestDispatcher(page).forward(request, response);
-		
 	}
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
