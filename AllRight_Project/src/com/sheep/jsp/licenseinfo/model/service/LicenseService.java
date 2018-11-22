@@ -3,6 +3,7 @@ package com.sheep.jsp.licenseinfo.model.service;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.sheep.jsp.announcement.model.vo.Announcement;
 import com.sheep.jsp.common.util.ParseApi;
 import com.sheep.jsp.licenseinfo.model.dao.LicenseDao;
 import com.sheep.jsp.licenseinfo.model.vo.LicenseInfo;
@@ -118,6 +119,20 @@ public class LicenseService {
 		close(con);
 		
 		return list;
+	}
+
+	public ArrayList<LicenseInfo> selectMainLicense() {
+		
+		Connection con = getConnection();
+
+		ArrayList<LicenseInfo> llist = lDao.selectMainList(con);
+		
+		close(con);
+		
+		System.out.println("selectMainList service: "+llist);
+		
+		return llist;
+		
 	}
 
 }

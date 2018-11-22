@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"  import="java.util.*, com.sheep.jsp.licenseinfo.model.vo.*" %> 
+ <%
+ LicenseInfo li = (LicenseInfo)request.getAttribute("li");
+ArrayList<LicenseInfo> llist =  (ArrayList<LicenseInfo>)request.getAttribute("llist");
+ %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,23 +70,49 @@
 						<a href="#">자격증정보</a>
 					</p>
 				</div>
-				<div class="boardlist col-sm-8 text-center">
+				<div id="boardlist" class="boardlist col-sm-8 text-center">
 					<br /><br />
-					<input type="button" class="listbtn" value="IT" onclick="it();"/>
-					<input type="button" class="listbtn" value="요리" onclick="cook();"/>
-					<input type="button" class="listbtn" value="건축" onclick="#"/>
-					<input type="button" class="listbtn" value="도시" onclick="#"/>
-					<input type="button" class="listbtn" value="토목" onclick="#"/>
-					<br />
-					<input type="button" class="listbtn" value="IT" onclick="it();"/>
-					<input type="button" class="listbtn" value="요리" onclick="cook();"/>
-					<input type="button" class="listbtn" value="건축" onclick="#"/>
-					<input type="button" class="listbtn" value="도시" onclick="#"/>
-					<input type="button" class="listbtn" value="토목" onclick="#"/>
-					<script>
+					<input type="button" class="listbtn" value="아이티" id="button" name="1" onclick="it();"/>
+					<input type="button" class="listbtn" value="요리"  id="button" onclick="cook();"/>
+					<input type="button" class="listbtn" value="건축"  id="button" onclick="architecture();"/>
+					<input type="button" class="listbtn" value="도시"  id="button" onclick="city();"/>
+					<input type="button" class="listbtn" value="토목"  id="button"  onclick="civil();"/>
+
+					<script>		
 					
-						function it(){
+<%-- 					$( document ).ready( function() {
+		                 
+		                $("#button").click(function(){
+		 					var name = $(this).attr('name');
+		 					console.log(name);
+		 					
+		 					location.href="<%=request.getContextPath()%>/selectList.bo?bid=" + name;
+		                });
+		         
+		            }); --%>
+					
+ 						function it(){
 							var bid = 1;
+							location.href="<%=request.getContextPath()%>/selectList.bo?bid=" + bid;
+						}
+						
+						function cook(){
+							var bid = 2;
+							location.href="<%=request.getContextPath()%>/selectList.bo?bid=" + bid;
+						}
+						
+						function architecture(){
+							var bid = 3;
+							location.href="<%=request.getContextPath()%>/selectList.bo?bid=" + bid;
+						}
+						
+						function city(){
+							var bid = 4;
+							location.href="<%=request.getContextPath()%>/selectList.bo?bid=" + bid;
+						}
+						
+						function civil(){
+							var bid = 5;
 							location.href="<%=request.getContextPath()%>/selectList.bo?bid=" + bid;
 						}
 
