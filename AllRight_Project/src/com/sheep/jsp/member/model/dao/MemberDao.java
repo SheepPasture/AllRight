@@ -345,19 +345,31 @@ public class MemberDao {
 
 		PreparedStatement pstmt = null;
 
-		String sql = prop.getProperty("updateUserlicense");
+		String sql = prop.getProperty("deleteUserlicense");
 		
 		try {
 			pstmt = con.prepareStatement(sql);
-
-			for(int i = 0; i<lNo.length;i++){
-				if(lNo[i]!=null){
-				/*pstmt.setInt(1,lNo[i]);*/
-				pstmt.setInt(2,userNo);
-				pstmt.setInt(3,userNo);
-				result = pstmt.executeUpdate();
+			
+			pstmt.setInt(1,userNo);
+			result = pstmt.executeUpdate();
+			
+			
+			sql = prop.getProperty("insertUserLicense");
+			pstmt = con.prepareStatement(sql);
+			if(lNo.length==1){
+				pstmt.setInt(1, userNo);
+				pstmt.setString(2, lNo[0]);
+			}else{
+				
+				for(int i=0; i <lNo.length; i++){
+					pstmt.setInt(1,userNo);
+					pstmt.setInt(2,Integer.parseInt(lNo[i]));
 				}
+				
+			
 			}
+			result = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			throw new MemberException(e.getMessage());
 		} finally {

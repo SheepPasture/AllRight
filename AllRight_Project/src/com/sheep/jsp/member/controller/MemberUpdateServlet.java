@@ -63,7 +63,6 @@ public class MemberUpdateServlet extends HttpServlet {
 		m.setUserPwd(pwd);
 		m.setUserName(name);
 		m.setEmail(email);
-		
 		int result;
 		try {
 			result = ms.updateMember(m,lNo);

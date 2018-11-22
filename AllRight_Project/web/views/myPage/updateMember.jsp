@@ -6,8 +6,9 @@
 	/* 	Member m = (Member)session.getAttribute("member"); */
 	/* m.setUserId("test1");
 	m.setUserName("test1"); */
-	ArrayList<LicenseInfo> li = (ArrayList<LicenseInfo>) session.getAttribute("li");
+	ArrayList<LicenseInfo> al = (ArrayList<LicenseInfo>) request.getAttribute("li");
 	UserLicense ul = (UserLicense) request.getAttribute("userLicense");
+	/* System.out.println(li); */
 %>
 <!DOCTYPE html>
 <html>
@@ -80,72 +81,71 @@ td {
 				<%@ include file="/views/common/myPageNav.jsp"%>
 			</div>
 			<!-- NAV END-->
-			<br>
-			<div class="col-sm-2 sidenav"
+			<!-- 	<div class="col-sm-2 sidenav"
 				style="display: inline-block; background: ivory"></div>
-
-			<div id="showView"
+ -->
+			<!-- 		<div id="showView"
 				style="width: 70%; height: 100%; display: inline-block;">
+ -->
+			<!-- <article class="container"> -->
+			<div class="col-sm-8 text-center">
 
-				<article class="container">
+				<div class="page-header">
+					<h1>
+						<small>회원 정보 수정</small>
+					</h1>
+				</div>
 
-
-					<div class="page-header">
-						<h1>
-							<small>회원 정보 수정</small>
-						</h1>
+				<form class="form-horizontal" id="updateForm"
+					<%-- action="<%=request.getContextPath()%>/mUpdate.me" --%> method="post">
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="userId">유저아이디</label>
+						<div class="col-sm-6">
+							<input class="form-control" id="userId" name="userId" type="text"
+								readonly placeholder="<%=m.getUserId()%>">
+						</div>
 					</div>
 
-					<form class="form-horizontal" id="updateForm"
-						<%-- action="<%=request.getContextPath()%>/mUpdate.me" --%> method="post">
-						<div class="form-group">
-							<label class="col-sm-3 control-label" for="userId">유저아이디</label>
-							<div class="col-sm-6">
-								<input class="form-control" id="userId" name="userId"
-									type="text" readonly placeholder="<%=m.getUserId()%>">
-							</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="password">비밀번호</label>
+						<div class="col-sm-6">
+							<input class="form-control" id="password" name="password"
+								type="password" placeholder="비밀번호">
+							<p class="help-block">숫자, 특수문자 포함 8자 이상</p>
 						</div>
+					</div>
 
-						<div class="form-group">
-							<label class="col-sm-3 control-label" for="password">비밀번호</label>
-							<div class="col-sm-6">
-								<input class="form-control" id="password" name="password"
-									type="password" placeholder="비밀번호">
-								<p class="help-block">숫자, 특수문자 포함 8자 이상</p>
-							</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="passwordCheck">비밀번호
+							확인</label>
+						<div class="col-sm-6">
+							<input class="form-control" id="passwordCheck" type="password"
+								placeholder="비밀번호 확인">
+							<p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
 						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="userName">닉네임</label>
+						<div class="col-sm-6">
+							<input class="form-control" id="userName" name="userName"
+								type="text" placeholder="<%=m.getUserName()%>"
+								value="<%=m.getUserName()%>">
+						</div>
+					</div>
 
-						<div class="form-group">
-							<label class="col-sm-3 control-label" for="passwordCheck">비밀번호
-								확인</label>
-							<div class="col-sm-6">
-								<input class="form-control" id="passwordCheck" type="password"
-									placeholder="비밀번호 확인">
-								<p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
-							</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="email">이메일</label>
+						<div class="col-sm-6">
+							<input class="form-control" id="email" name="email" type="email"
+								placeholder="<%=m.getEmail()%>" value="<%=m.getEmail()%>"
+								readonly>
 						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label" for="userName">닉네임</label>
-							<div class="col-sm-6">
-								<input class="form-control" id="userName" name="userName"
-									type="text" placeholder="<%=m.getUserName()%>"
-									value="<%=m.getUserName()%>">
-							</div>
-						</div>
+					</div>
 
-						<div class="form-group">
-							<label class="col-sm-3 control-label" for="email">이메일</label>
-							<div class="col-sm-6">
-								<input class="form-control" id="email" name="email" type="email"
-									placeholder="<%=m.getEmail()%>" value="<%=m.getEmail()%>"
-									readonly>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-sm-3 control-label" for="userLi">관심자격증</label>
-							<div id="selectDiv">
-								<!-- <select name="selectCategory" id="selectCategory">
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="userLi">관심자격증</label>
+						<div id="selectDiv" class="col-sm-6">
+							<!-- <select name="selectCategory" id="selectCategory">
 									<option>선택하세요</option>
 
 								</select> <select name="licenseName" id="licenseName">
@@ -153,7 +153,7 @@ td {
 
 
 								</select> -->
-								<script>
+							<script>
 								/* var str = "<option>선택하세요</option>";
 
 								$('#selectCategory').append(str); */
@@ -175,19 +175,25 @@ td {
 								
 								
 								function selectOption(data) { /* selectOption 시작 */
-									
-									$('#selectDiv').append(
-											'<select name="selectCategory" id="selectCategory">'
-													+ '<option value="">선택하세요</option>'
-													+'</select> <select name="licenseName" id="licenseName">'
-													+ '<option value="">선택하세요</option>'
-													+'</select><button id="add" type="button">추가</button><br>')
-													.append(
-															'<select name="selectCategory1" id="selectCategory1" style="display:none">'
-															+ '<option value="">선택하세요</option>'
-															+'</select> <select name="licenseName1" id="licenseName1" style="display:none>'
-															+ '<option value="">선택하세요</option>'
-															+'</select>');
+									console.log(data);
+									console.log(data.myList.length);
+									if(data.myList.length=2){
+										$('#selectDiv').append(
+												'<select name="selectCategory" id="selectCategory">'
+														+'<option value="">선택하세요</option>'
+														+'</select> <select name="licenseName" id="licenseName">'
+														+ '<option value="">선택하세요</option>'
+														+'</select><button id="add" type="button">추가</button><br>')
+														.append(
+																'<select name="selectCategory1" id="selectCategory1" style="display:none">'
+																+ '<option value="">선택하세요</option>'
+																+'</select> <select name="licenseName1" id="licenseName1" style="display:none>'
+																+ '<option value="">선택하세요</option>'
+																+'</select>');
+										
+										
+									}
+								
 											
 			
 									var list = data.lArray;
@@ -216,10 +222,10 @@ td {
 										console.log(my.length);
 										console.log(data.myList[0].mCategory);
 										console.log(data.myList[1].mCategory);
-										$('#selectCategory').append("<option selected='selected'>" + data.myList[0].mCategory+ "</option>");
-										$('#licenseName').append("<option selected='selected'>" + data.myList[0].mLName+ "</option>");
-										$('#selectCategory1').append("<option selected='selected'>" + data.myList[1].mCategory+ "</option>");
-										$('#licenseName1').append("<option selected='selected'>" + data.myList[1].mLName+ "</option>");
+										$('#selectCategory').append("<option selected='selected' value='data.myList[0].mCategory'>" + data.myList[0].mCategory+ "</option>");
+										$('#licenseName').append("<option selected='selected' value='data.myList[0].mLNo'>" + data.myList[0].mLName+ "</option>");
+										$('#selectCategory1').append("<option selected='selected' value='data.myList[1].mCategory'>" + data.myList[1].mCategory+ "</option>");
+										$('#licenseName1').append("<option selected='selected' value='data.myList[0].mLNo'>" + data.myList[1].mLName+ "</option>");
 										
 										/* $('#selectCategory option').each(function(){
 											if($(this).val()==data.myList[0].mCategory){
@@ -246,8 +252,10 @@ td {
 										
 										
 									}else{
-										$('#selectCategory').append("<option>" + data.myList[0].mCategory+ "</option>");
-										$('#licenseName').append("<option>" + data.myList[0].mLName+ "</option>");
+										$('#selectCategory').append("<option selected='selected' value='data.myList[0].mCategory'>" + data.myList[0].mCategory+ "</option>");
+										$('#licenseName').append("<option selected='selected' value='data.myList[0].mLNo'>" + data.myList[0].mLName+ "</option>");
+										/* $('#selectCategory').append("<option value='data.myList[0].mCategory'>" + data.myList[0].mCategory+ "</option>");
+										$('#licenseName').append("<option>" + data.myList[0].mLName+ "</option>"); */
 									}
 									
 									
@@ -331,13 +339,15 @@ td {
 								
 									
 								</script>
-
-							</div>
 							<br>
+						</div>
 
+						
 
-							<div class="form-group">
-								<div class="col-sm-12 text-center">
+						<div class="form-group">
+							<div class="col-sm-3">
+								<div align="center"  class="col-sm-6">
+								<br>
 									<button class="btn btn-primary" onclick="memberUpdate();">정보
 										수정</button>
 									<button class="btn btn-danger" onclick="memberDelete();">회원
@@ -346,11 +356,14 @@ td {
 										뒤로가기</button>
 								</div>
 							</div>
-					</form>
-				</article>
+					
+					</div>
+				</form>
 			</div>
+			<!-- 	</article> -->
 		</div>
-		<script>
+	</div>
+	<script>
 		function memberDelete(){
 		console.log("delete 클릭");
     		$('#updateForm').attr("action", "<%=request.getContextPath()%>/mDelete.me");
@@ -379,10 +392,10 @@ td {
 		} */
       </script>
 
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script
-			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
-		<!-- 	<script src="../../js/bootstrap.min.js"></script> -->
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<!-- 	<script src="../../js/bootstrap.min.js"></script> -->
 </body>
 </html>
