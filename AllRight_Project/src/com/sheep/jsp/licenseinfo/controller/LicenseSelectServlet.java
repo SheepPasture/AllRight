@@ -47,12 +47,17 @@ public class LicenseSelectServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		ArrayList<LicenseInfo> ml = (ArrayList<LicenseInfo>) session.getAttribute("li");
 
+		
+
 		/* mylist.add(ml); */
 		System.out.println(ml);
 		LicenseInfo li = new LicenseInfo();
 
 		LicenseService ls = new LicenseService();
-
+		
+		int licenseCount = ls.getLicenseCount();
+		session.setAttribute("licenseCount", licenseCount);
+		
 		ArrayList<LicenseInfo> al = ls.selectLicenseInfo();
 		JSONObject result = new JSONObject();
 
