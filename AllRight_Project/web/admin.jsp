@@ -10,6 +10,13 @@
   	int ttc = (Integer) session.getAttribute("totalCount"); // 총 방문자 수 
 	int tdc = (Integer) session.getAttribute("todayCount"); // 오늘 방문자 수
 	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+	int memberCount =(Integer) session.getAttribute("memberCount"); 
+/* 	int mCnt = (Integer)session.getAttribute("memberCount"); */
+	/* int pop1 = (Integer) session.getAttribute("pop1Count");
+	int pop2 = (Integer) session.getAttribute("pop2Count");
+	int pop3 = (Integer) session.getAttribute("pop3Count");
+	int pop4 = (Integer) session.getAttribute("pop4Count");
+	int pop5 = (Integer) session.getAttribute("pop1Count"); */
 	
 
 %>
@@ -294,7 +301,8 @@
                                     <div class="col-xs-7">
                                         <div class="numbers">
                                             <p>회원수</p>
-                                            10
+                                           <%=memberCount%>
+                                          
                                         </div>
                                     </div>
                                 </div>
@@ -498,38 +506,38 @@
 			location.href = "/allRight/mLogout.me";
 		}
 		
-		
-		$(function(){
-			
-			$.ajax({
+		 $(function(){
 				
-				url: '/allRight/cTop5.ca',
-				dataType: "json",
-				type : "get",
-				success : function(data){
+				$.ajax({
 					
-					$table = $('#boardTop5 tbody');
-					
-					$("#boardTop5").find("tr:gt(0)").remove();
-					
-					for(var i in data){
+					url: '/allRight/cTop5.ca',
+					dataType: "json",
+					type : "get",
+					success : function(data){
 						
-						console.log(data[i]);
-						var $trBoard = $('<tr>');
-						var $tdBoardTitle = $('<td>').text(data[i].etitle);
+						$table = $('#boardTop5 tbody');
 						
-						$trBoard.append($tdBoardTitle);
+						$("#boardTop5").find("tr:gt(0)").remove();
 						
-						$table.append($trBoard);
+						for(var i in data){
+							
+							console.log(data[i]);
+							var $trBoard = $('<tr>');
+							var $tdBoardTitle = $('<td>').text(data[i].ecount);
+							
+							$trBoard.append($tdBoardTitle);
+							
+							$table.append($trBoard);
+						}
+					}, error : function(data){
+						
+						console.log("top5 조회 실패!");
 					}
-				}, error : function(data){
 					
-					console.log("top5 조회 실패!");
-				}
+				});
 				
 			});
-			
-		});
+		
 		</script>
 
 

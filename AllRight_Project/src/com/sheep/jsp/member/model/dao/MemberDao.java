@@ -399,6 +399,8 @@ public class MemberDao {
 				memberCount = rset.getInt(1);
 			}
 			
+			System.out.println("membercount:" + memberCount);
+			
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
