@@ -219,4 +219,18 @@ public class BoardService {
 		return list;
 	}
 
+	public int boardLikeCount(int bid, int bno) {
+		
+		Connection con = getConnection();
+		
+		int boardLikeCount = bDao.boardLikeCount(con, bid, bno);
+		
+		System.out.println("BoardService boardLikeCount: "+boardLikeCount);
+		
+		close(con);
+		
+		return boardLikeCount;
+		
+	}
+
 }

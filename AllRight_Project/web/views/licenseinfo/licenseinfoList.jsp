@@ -87,7 +87,6 @@ a {
 										
 									} else {
 										// 아직 선택하지 않았을 경우
-										
 										$('.atag1').each(function(index, value){
 											if ($(value).hasClass('active')){
 												$(value).children().remove();
@@ -108,28 +107,20 @@ a {
 										
 												$(this).parent().children().append(
 													"<div class='hi'>"
-													+ "<tr id='"+list[i].category+"'><td><a href='#' class='atag2' value='"+list[i].lno+"'>"
+													+ "<tr id='"+list[i].category+"'><td><a href='#' class='atag2' id='"+list[i].lno+"' value='"+list[i].lno+"'>"
 													+ list[i].name 
 													+"</a></td></tr></div>"); 
 												}
 											}	
+										
+										$('.atag2').on('click', function() {
+											var lno = this.id;
+											location.href="<%=request.getContextPath()%>/lView.li?lno=" + lno;
+										});
+										
 									}
 								});
-/* 								
-								$('.hi').on('click', function(){
-									
-									
-									
-								} */
 								
-/* 								$('.atag1').off('click', function(){
-									
-								});
-								
-								$('.hi').find('tr:lt(0)').on('click', function(){		
-									console.log(5);
-									$table.children().remove();
-								}); */
 								
 							},
 							error : function() {

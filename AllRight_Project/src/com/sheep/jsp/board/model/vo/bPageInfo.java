@@ -12,9 +12,18 @@ public class bPageInfo implements Serializable {
 	private int maxPage;
 	private int startPage;
 	private int endPage;
-	
-	public bPageInfo() {
+	private int boardLikeCount;
+
+	public bPageInfo(int currentPage, int listCount, int limit, int maxPage, int startPage, int endPage,
+			int boardLikeCount) {
 		super();
+		this.currentPage = currentPage;
+		this.listCount = listCount;
+		this.limit = limit;
+		this.maxPage = maxPage;
+		this.startPage = startPage;
+		this.endPage = endPage;
+		this.boardLikeCount = boardLikeCount;
 	}
 
 	public bPageInfo(int currentPage, int listCount, int limit, int maxPage, int startPage, int endPage) {
@@ -25,6 +34,11 @@ public class bPageInfo implements Serializable {
 		this.maxPage = maxPage;
 		this.startPage = startPage;
 		this.endPage = endPage;
+	}
+
+	public bPageInfo(int boardLikeCount) {
+		super();
+		this.boardLikeCount = boardLikeCount;
 	}
 
 	public int getCurrentPage() {
@@ -73,6 +87,14 @@ public class bPageInfo implements Serializable {
 
 	public void setEndPage(int endPage) {
 		this.endPage = endPage;
+	}
+
+	public int getBoardLikeCount() {
+		return boardLikeCount;
+	}
+
+	public void setBoardLikeCount(int boardLikeCount) {
+		this.boardLikeCount = boardLikeCount;
 	}
 	
 }

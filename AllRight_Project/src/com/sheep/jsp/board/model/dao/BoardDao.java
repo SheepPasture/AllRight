@@ -552,4 +552,34 @@ public class BoardDao {
 		return list;
 	}
 
+	public int boardLikeCount(Connection con, int bid, int bno) {
+	
+		PreparedStatement pstmt = null;
+		int boardLikeCount = 0;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("LikelistCount");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, bid);
+			pstmt.setInt(2, bno);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next())boardLikeCount = rset.getInt(1);
+			
+			System.out.println("dao boardLikeCount: "+boardLikeCount);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return boardLikeCount;
+		
+	}
+
 }

@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*, com.sheep.jsp.board.model.vo.*, com.sheep.jsp.boardComment.model.vo.*, com.sheep.jsp.member.model.vo.*" %>
 <% 
-
 	Board b = (Board)request.getAttribute("board"); 
 	ArrayList<BoardComment> clist = (ArrayList<BoardComment>) request.getAttribute("clist");
 	Member m = (Member)session.getAttribute("member");
- 
+  	bPageInfo bpi = (bPageInfo)request.getAttribute("bpi");
 %>
 <!DOCTYPE html>
 <html>
@@ -404,7 +403,7 @@ sns_update_list li .sns_list_title {
 				</div>
 
 				<div class="col-sm-8 text-center">
-					<h2 align="left">IT Community</h2>
+					<h2 align="left">Architecture Community</h2>
 
 					<div class="wrap" id="wrap">
 						<div class="conwrap">
@@ -452,7 +451,7 @@ sns_update_list li .sns_list_title {
 														</div --%>
 														<div class="goods" onclick="bLike();">
 															<a href="#"> <span class="icon on">icon</span>
-																<p><%= b.getbLike() %></p>
+											<%-- 					<p><%= bpi.getBoardLikeCount() %></p> --%>
 															</a>
 														</div>
 														<div class="declaration" onclick="bReport();">
@@ -571,7 +570,7 @@ sns_update_list li .sns_list_title {
 																	<div class="icon_wrap">
 																		<div class="goods">
 																			<a href="#"> <span class="icon on">icon</span>
-																				<p id="rplyRec_1"></p>
+																				<p id="rplyRec_1"><%= bpi.getBoardLikeCount() %></p>
 																			</a>
 																		</div>
 																	</div>

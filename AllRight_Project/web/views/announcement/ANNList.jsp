@@ -88,9 +88,9 @@
 				<button onclick="location.href='<%= request.getContextPath() %>/selectList.ann?currentPage=<%= maxPage %>'">>></button>
 			</div>
 			
- 		 	<div class="text-right">
+ <!-- 		 	<div class="text-right">
 				<button type="button"><a href="views/announcement/ANNInsertForm.jsp">작성하기</a></button>
-			</div> 
+			</div>  -->
 			</div>
 		</div>
 	</div>

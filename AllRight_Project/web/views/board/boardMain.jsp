@@ -19,20 +19,24 @@ ArrayList<LicenseInfo> llist =  (ArrayList<LicenseInfo>)request.getAttribute("ll
 }
 
 .listbtn {
-  margin: 10px 10px 5px 10px;
-  padding: 80px 80px; 
+  margin: 10px 10px 5px 10px; 
+/*   padding: 80px 140px 80px 80px;  */
+  padding: 80px 80px;
   background-color: white;
   border: 1px solid gray;
   color: gray;
   border-radius: 0;
   transition: .2s;
   text-decoration:none;
+/*    WIDTH: 100pt;  */
+	/*HEIGHT: 60pt; */
 }
 
 .listbtn a {
-  	margin: auto; 
+/*   	margin: auto;  */
+/*   	padding: auto; */
     text-decoration: none;
-    font-size: 100px;
+/*     font-size: 100px; */
 }
 .listbtn:hover, .btn:focus {
   border: 1px solid #767676;
@@ -72,11 +76,11 @@ ArrayList<LicenseInfo> llist =  (ArrayList<LicenseInfo>)request.getAttribute("ll
 				</div>
 				<div id="boardlist" class="boardlist col-sm-8 text-center">
 					<br /><br />
-					<input type="button" class="listbtn" value="아이티" id="button" name="1" onclick="it();"/>
+<!-- 					<input type="button" class="listbtn" value="아이티" id="button" name="1" onclick="it();"/>
 					<input type="button" class="listbtn" value="요리"  id="button" onclick="cook();"/>
 					<input type="button" class="listbtn" value="건축"  id="button" onclick="architecture();"/>
 					<input type="button" class="listbtn" value="도시"  id="button" onclick="city();"/>
-					<input type="button" class="listbtn" value="토목"  id="button"  onclick="civil();"/>
+					<input type="button" class="listbtn" value="토목"  id="button"  onclick="civil();"/> -->
 
 					<script>		
 					
@@ -90,8 +94,36 @@ ArrayList<LicenseInfo> llist =  (ArrayList<LicenseInfo>)request.getAttribute("ll
 		                });
 		         
 		            }); --%>
+		            
+					$.ajax({
+						url : '/allRight/lSelect.li',
+						type : 'get',
+						dataType : 'json',
+						success : function(data) {
+							$table = $('#boardlist');
+							
+							var list = data.lArray;
+							var l = data.list;
+							
+							console.log(l.length);
+
+							for(var i = 1; i < l.length; i++){
+								$table.append(
+									"<input type='button' class='listbtn' id='"+i+"' value='"+l[i].listName+"' id='button'/>" );
+							}
+							
+							$('.listbtn').on('click', function(){
+								
+								console.log(this.id);
+								var id = this.id;
+								
+								location.href="<%=request.getContextPath()%>/selectList.bo?bid=" + id; 
+							});
+						
+						}
+					});
 					
- 						function it(){
+<%--  						function it(){
 							var bid = 1;
 							location.href="<%=request.getContextPath()%>/selectList.bo?bid=" + bid;
 						}
@@ -114,7 +146,7 @@ ArrayList<LicenseInfo> llist =  (ArrayList<LicenseInfo>)request.getAttribute("ll
 						function civil(){
 							var bid = 5;
 							location.href="<%=request.getContextPath()%>/selectList.bo?bid=" + bid;
-						}
+						} --%>
 
 					</script>
 			</div>

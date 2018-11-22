@@ -517,7 +517,7 @@ a {
 													<div class="table_top">
 
 														<div class="table_top_input">
-															<h2 align="left"><a style="text-decoration:none" href="#">IT Community</a></h2>
+															<h2 align="left"><a style="text-decoration:none" href="#">Architecture Community</a></h2>
 															<br />
 														</div>
 													</div>
