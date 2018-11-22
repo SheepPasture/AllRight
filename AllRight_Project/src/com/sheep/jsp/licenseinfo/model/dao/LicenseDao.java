@@ -391,4 +391,35 @@ public class LicenseDao {
 		
 	}
 
+	public int getLicenseCount(Connection con) {
+		Statement stmt = null;
+		int licenseCount = 0;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("licenseCount");
+		
+		try {
+			
+			stmt = con.createStatement();
+			
+			rset = stmt.executeQuery(sql);
+			
+			if(rset.next()){
+				licenseCount = rset.getInt(1);
+			}
+			
+			System.out.println("membercount:" + licenseCount);
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally{
+			close(rset);
+			close(stmt);
+		}
+		
+		
+		return licenseCount;
+	}
+
 }

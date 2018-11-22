@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.sheep.jsp.member.model.vo.Member"
-    import="com.sheep.jsp.point.model.vo.Point ,java.util.*, com.sheep.jsp.board.model.vo.*"%>
+    import="com.sheep.jsp.point.model.vo.Point ,java.util.*, com.sheep.jsp.board.model.vo.*, com.sheep.jsp.licenseinfo.model.vo.*"%>
     
 
 <%
@@ -300,7 +300,7 @@
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>회원수</p>
+                                            <p>회원 수</p>
                                            <%=memberCount%>
                                           
                                         </div>
@@ -321,20 +321,20 @@
                                 <div class="row">
                                     <div class="col-xs-5">
                                         <div class="icon-big icon-success text-center">
-                                            <i class="ti-wallet"></i>
+                                            <i class="ti-mouse-alt"></i>
                                         </div>
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Revenue</p>
-                                            $1,345
+                                            <p>총 방문자 수</p>
+                                            <%= ttc %>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-calendar"></i> Last day
+                                        <i class="ti-timer"></i> In the last hour
                                     </div>
                                 </div>
                             </div>
@@ -346,13 +346,13 @@
                                 <div class="row">
                                     <div class="col-xs-5">
                                         <div class="icon-big icon-danger text-center">
-                                            <i class="ti-pulse"></i>
+                                            <i class="ti-home"></i>
                                         </div>
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Errors</p>
-                                            23
+                                            <p>오늘 방문자 수</p>
+                                            <%= tdc %>
                                         </div>
                                     </div>
                                 </div>
@@ -371,13 +371,13 @@
                                 <div class="row">
                                     <div class="col-xs-5">
                                         <div class="icon-big icon-info text-center">
-                                            <i class="ti-twitter-alt"></i>
+                                            <i class="ti-agenda"></i>
                                         </div>
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Followers</p>
-                                            +45
+                                            <p>자격증 수</p>
+                                            597
                                         </div>
                                     </div>
                                 </div>
