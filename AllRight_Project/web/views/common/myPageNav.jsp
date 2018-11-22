@@ -42,8 +42,13 @@
 			<a href="/allRight/views/myPage/viewTest.jsp">기출문제 관리</a>
 		</p>
 		<p>
-			<a href="#">apk 다운로드</a>
+			<a href="/allRight/resources/apk/allright.apk" download>apk 다운로드</a>
+			
 		</p>
 	</div>
+	<script>
+		
+		
+	</script>
 </body>
 </html>
