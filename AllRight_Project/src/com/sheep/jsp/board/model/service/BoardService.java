@@ -247,4 +247,16 @@ public class BoardService {
 
 	}
 
+	public void seteCount(int bid) {
+		Connection con = getConnection();
+		
+		bDao.seteCount(con, bid);
+		
+		System.out.println("게시판 count 추가");
+		
+		close(con);
+		
+		
+	}
+
 }

@@ -14,6 +14,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.sheep.jsp.announcement.model.vo.Announcement;
+import com.sheep.jsp.board.model.dao.BoardDao;
 import com.sheep.jsp.board.model.service.BoardService;
 import com.sheep.jsp.board.model.vo.Board;
 import com.sheep.jsp.board.model.vo.bPageInfo;
@@ -45,6 +46,7 @@ public class BoardListServlet extends HttpServlet {
 		String androidCheck = request.getParameter("android");
 		
 		BoardService bs = new BoardService();
+		
 		
 		PrintWriter out = response.getWriter();
 		
@@ -79,6 +81,8 @@ public class BoardListServlet extends HttpServlet {
 		
 		blist = bs.selectList(currentPage, limit, bid);
 		select2ANN = bs.selectList();
+		
+		bs.seteCount(bid);
 		
 		String page = "";
 		
