@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.sheep.jsp.licenseinfo.model.vo.*" %>   
+    pageEncoding="UTF-8" import="java.util.*, com.sheep.jsp.licenseinfo.model.vo.*" %>
+<%
+	LicenseInfo lf  = (LicenseInfo)request.getAttribute("licenseInfo");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,104 +54,49 @@
 					<p><a href="<%= request.getContextPath() %>/views/license/licenseinfo.jsp">자격증정보</a></p>
 				</div>
 
-				<div class="col-sm-8 text-center">
+				<div class="col-sm-8 text-left">
 					<h2 align="left">자격증정보</h2>
 					<br />
 					<div>
 						<!-- <div class="text-center"" id="LicenseMain" style="border: 1px solid gray;"> -->
-						<div class="board_area">
+						<div class="board_area" id="LicenseMain">
 						<table class="view col-sm-11">
 							<tbody>
 								<tr>
-									<th class="col-sm-2">제목</th>
- 									<td class="title col-sm-9">글제목</td>
+									<th class="col-sm-2">자격증 이름</th>
+ 									<td class="title col-sm-9"><%= lf.getlName() %></td>
 								</tr>
 								<tr>
-									<th class="col-sm-2">작성자</th>
-									<td>관리자</td>
-									
+									<th class="col-sm-2">카테고리</th>
+									<td><%= lf.getlCategory() %></td>
 								</tr> 
 								<tr>
-									<th class="col-sm-2">내용</th>
-								 	<td>내용</td>
+									<th class="col-sm-2">응시료</th>
+								 	<td><%= lf.getlCost() %></td>
 								</tr>	
 								<tr>
-									<td colspan="2" >
-
-									</td>
-									
-								</tr>
-								<tr>
-									<td colspan="2"></td>
-								</tr>
+									<th class="col-sm-2">내용</th>
+								 	<td>
+								 		<%= lf.getnInfo01() %> <br /><br />
+								 		<%= lf.getNlnfo02() %> <br /><br />
+								 		<%= lf.getNlnfo03() %> <br /><br />
+								 	</td>
+								</tr>	
 							</tbody>
-						</table>
-								<button onclick="back();">목록으로 바로가기</button></td>
-						<script>
-							function before(){
-								var ano = $("#ano").val();
-								location.href="/allRight/abefore.ann?"+"ano="+ano;
-							}
-							
-							function after(){
-								var ano = $("#ano").val();
-								location.href="/allRight/aAfter.ann?"+"ano="+ano;
-							}
-						
-							function edit(){
-								var ano = $("#ano").val();
-			 		 			$("#updateForm").attr("action", "<%=request.getContextPath()%>/aUpView.ann?ano="+ano);
-			 		 		}
-						
-							function back(){	
-								$("#updateForm").attr("action","<%=request.getContextPath() %>/selectList.ann");
-							}
-						</script>
-					</div>	
-						
+						</table> 
+						<div>
+							<button onclick="back();">목록으로 바로가기</button>				
 						</div>
-							<script>
-/* 						$.ajax({
-							url : '/allRight/lSelect.li',
-							type : 'get',
-							dataType : 'json',
-							success : function(data) {
-								console.log(data); 
-								
-								$table = $('#LicenseMain');
-								
-								var list = data.lArray;
-										
-										for(var i = 1; i < list.length; i++){
-											
-										     var value = $(this).parent().children().attr('value');
-			
-												if (list[i].category == value) {
-			/* 									
-												console.log("list[i].category: "+list[i].category);
-												console.log("대분류: "+value); 
-										
-												$(this).parent().children().append(
-													"<div class='hi'>"
-													+ "<tr id='"+list[i].category+"'><td><a href='#' class='atag2' id='"+list[i].lno+"' value='"+list[i].lno+"'>"
-													+ list[i].name 
-													+"</a></td></tr></div>"); 
-												}
-											}
-										
-									}
-								});
-								
-								
-							},
-							error : function() {
-								alert("실패");
+						<script>
+							function back(){	
+								location.href="<%=request.getContextPath()%>/views/licenseinfo/licenseinfoList.jsp";
 							}
-						}); */
-					</script>
+							</script>
+						</div>	
+						</div>
 						<br>
 					</div>
-				</div>
+				</div>`
 			</div>
 		</div>		        
 	<!-- </div> -->

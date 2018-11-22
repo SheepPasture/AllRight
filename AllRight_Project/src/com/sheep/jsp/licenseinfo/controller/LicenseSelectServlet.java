@@ -57,7 +57,6 @@ public class LicenseSelectServlet extends HttpServlet {
 		
 		int licenseCount = ls.getLicenseCount();
 		session.setAttribute("licenseCount", licenseCount);
-		System.out.println("licenseCount : " + licenseCount);
 		
 		ArrayList<LicenseInfo> al = ls.selectLicenseInfo();
 		JSONObject result = new JSONObject();
