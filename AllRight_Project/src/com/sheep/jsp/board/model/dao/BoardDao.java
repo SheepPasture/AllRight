@@ -537,6 +537,7 @@ public class BoardDao {
 				b.setbWriter(rset.getString("BWRITER"));
 				b.setbDate(rset.getDate("BDATE"));
 				b.setReport(rset.getInt("REPORT"));
+				b.setbStatus(rset.getString("BSTATUS"));
 				
 				list.add(b);
 			}
@@ -550,6 +551,31 @@ public class BoardDao {
 		}
 		
 		return list;
+	}
+
+	public int adminDeleteBoard(Connection con, int bid, int bno) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("adminDeleteBoard");
+		
+		System.out.println("삭제 dao");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, bid);
+			pstmt.setInt(2, bno);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 }
