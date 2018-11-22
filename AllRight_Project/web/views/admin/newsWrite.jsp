@@ -222,7 +222,14 @@
 			 				location.href="/allRight/newsSelectList.ad";
 			 			}
 			 			
+			 		    function logout(){
+			 				location.href = "/allRight/mLogout.me";
+			 			}
+			 		    
+			 			
 			 		</script>
+			 		
+			 		
          
          <br><br><br>
          <br><br><br>

@@ -186,6 +186,7 @@
                                     	<th>작성자</th>
                                     	<th>작성 날짜</th>
                                     	<th>신고 수</th>
+                                    	<th>관리</th>
                                     </thead>
                                     <tbody>
                                     <%for (Board b : list) { %>
@@ -196,7 +197,15 @@
                                         	<td><%= b.getbWriter() %></td>
                                         	<td><%= b.getbDate() %></td>
                                         	<td><%= b.getReport() %></td>
+                                        	<td><button class="btn btn-danger" onclick="boardDelete()">삭제하기</button></td>
                                     </tr>
+                                    
+                                    <script>
+                                    var bid = 1;
+                                    function boardDelete(){
+                                    	location.href="<%=request.getContextPath()%>/bDelete.bo?bid="+bid+"&bno="+<%= b.getbNO() %>;
+                                    }
+                                    </script>
                                     
                                     <% } %>
                                         <!-- <tr>
@@ -353,6 +362,14 @@
 
 
     </div>
+    <script type="text/javascript">
+    function logout(){
+		location.href = "/allRight/mLogout.me";
+	}
+    
+    
+    </script>
+    
 </div>
 
 
