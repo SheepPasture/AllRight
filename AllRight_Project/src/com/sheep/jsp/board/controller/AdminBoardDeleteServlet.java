@@ -1,29 +1,25 @@
-package com.sheep.jsp.member.controller;
+package com.sheep.jsp.board.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.sheep.jsp.member.model.service.MemberService;
-import com.sheep.jsp.member.model.vo.Member;
+import com.sheep.jsp.board.model.service.BoardService;
 
 /**
- * Servlet implementation class MemberListServlet
+ * Servlet implementation class AdminBoardDeleteServlet
  */
-@WebServlet("/mListcount.m")
-public class MemberListServlet extends HttpServlet {
+@WebServlet("/adBDelete.ad")
+public class AdminBoardDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberListServlet() {
+    public AdminBoardDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,18 +28,18 @@ public class MemberListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int bid = Integer.parseInt(request.getParameter("bid"));		
+		int bno = Integer.parseInt(request.getParameter("bno"));
 		
+		int result = new BoardService().adminDeleteBoard(bid, bno);
 		
-		MemberService ms = new MemberService();
-		
-		int memberCount = ms.getMemberCount();
-
-		System.out.println("회원수 : " + memberCount);
-		
-		HttpSession session = request.getSession();
-		
-		session.setAttribute("memberCount", memberCount);
-		/*response.sendRedirect("admin.jsp");*/
+		if(result>0){
+			response.sendRedirect("bReportList.ad");
+			System.out.println();
+		} else {
+			request.setAttribute("msg", "게시물 삭제 불가");
+			request.getRequestDispatcher("views/common/adminErrorPage.jsp").forward(request, response);
+		}
 	}
 
 	/**

@@ -163,7 +163,6 @@ public class MemberService {
 		
 		return memberCount;
 	}
-
 	public ArrayList<Member> selectAll() {
 		Connection con = getConnection();
 		ArrayList<Member> result = new ArrayList<Member>();

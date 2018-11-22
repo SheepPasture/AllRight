@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.sheep.jsp.member.model.vo.Member"
-    import="com.sheep.jsp.point.model.vo.Point ,java.util.*, com.sheep.jsp.board.model.vo.*"%>
+    import="com.sheep.jsp.point.model.vo.Point ,java.util.*, com.sheep.jsp.board.model.vo.*, com.sheep.jsp.licenseinfo.model.vo.*"%>
     
 
 <%
@@ -10,6 +10,13 @@
   	int ttc = (Integer) session.getAttribute("totalCount"); // 총 방문자 수 
 	int tdc = (Integer) session.getAttribute("todayCount"); // 오늘 방문자 수
 	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+	int memberCount =(Integer) session.getAttribute("memberCount"); 
+/* 	int mCnt = (Integer)session.getAttribute("memberCount"); */
+	/* int pop1 = (Integer) session.getAttribute("pop1Count");
+	int pop2 = (Integer) session.getAttribute("pop2Count");
+	int pop3 = (Integer) session.getAttribute("pop3Count");
+	int pop4 = (Integer) session.getAttribute("pop4Count");
+	int pop5 = (Integer) session.getAttribute("pop1Count"); */
 	
 
 %>
@@ -136,11 +143,11 @@
 
         var data = google.visualization.arrayToDataTable([
           ['게시판', '클릭수'],
-          ['IT',     11],
-          ['의복',      2],
-          ['간호',  2],
-          ['조선', 2],
-          ['설계',    7]
+          ['IT',     50],
+          ['의복',      40],
+          ['간호',  35],
+          ['조선', 30],
+          ['설계',    10]
         ]);
 
         var options = {
@@ -293,8 +300,9 @@
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>회원수</p>
-                                            10
+                                            <p>회원 수</p>
+                                           <%=memberCount%>
+                                          
                                         </div>
                                     </div>
                                 </div>
@@ -313,20 +321,20 @@
                                 <div class="row">
                                     <div class="col-xs-5">
                                         <div class="icon-big icon-success text-center">
-                                            <i class="ti-wallet"></i>
+                                            <i class="ti-mouse-alt"></i>
                                         </div>
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Revenue</p>
-                                            $1,345
+                                            <p>총 방문자 수</p>
+                                            <%= ttc %>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-calendar"></i> Last day
+                                        <i class="ti-timer"></i> In the last hour
                                     </div>
                                 </div>
                             </div>
@@ -338,13 +346,13 @@
                                 <div class="row">
                                     <div class="col-xs-5">
                                         <div class="icon-big icon-danger text-center">
-                                            <i class="ti-pulse"></i>
+                                            <i class="ti-home"></i>
                                         </div>
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Errors</p>
-                                            23
+                                            <p>오늘 방문자 수</p>
+                                            <%= tdc %>
                                         </div>
                                     </div>
                                 </div>
@@ -363,13 +371,13 @@
                                 <div class="row">
                                     <div class="col-xs-5">
                                         <div class="icon-big icon-info text-center">
-                                            <i class="ti-twitter-alt"></i>
+                                            <i class="ti-agenda"></i>
                                         </div>
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Followers</p>
-                                            +45
+                                            <p>자격증 수</p>
+                                            597
                                         </div>
                                     </div>
                                 </div>
@@ -437,22 +445,13 @@
                     <div class="col-md-6">
                         <div class="card ">
                             <div class="header">
-                                <h4 class="title">2015 Sales</h4>
-                                <p class="category">All products including Taxes</p>
+                                <h4 class="title">ALLRIGHT</h4>
+                                <p class="category">made by 양치는 목장</p>
                             </div>
                             <div class="content">
-                                <div id="chartActivity" class="ct-chart"></div>
-
-                                <div class="footer">
-                                    <div class="chart-legend">
-                                        <i class="fa fa-circle text-info"></i> Tesla Model S
-                                        <i class="fa fa-circle text-warning"></i> BMW 5 Series
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="ti-check"></i> Data information certified
-                                    </div>
-                                </div>
+                                
+								<img src="/allRight/resources/images/allright.png" style="width: 100%"/>
+                                
                             </div>
                         </div>
                     </div>
@@ -498,38 +497,38 @@
 			location.href = "/allRight/mLogout.me";
 		}
 		
-		
-		$(function(){
-			
-			$.ajax({
+		 $(function(){
 				
-				url: '/allRight/cTop5.ca',
-				dataType: "json",
-				type : "get",
-				success : function(data){
+				$.ajax({
 					
-					$table = $('#boardTop5 tbody');
-					
-					$("#boardTop5").find("tr:gt(0)").remove();
-					
-					for(var i in data){
+					url: '/allRight/cTop5.ca',
+					dataType: "json",
+					type : "get",
+					success : function(data){
 						
-						console.log(data[i]);
-						var $trBoard = $('<tr>');
-						var $tdBoardTitle = $('<td>').text(data[i].etitle);
+						$table = $('#boardTop5 tbody');
 						
-						$trBoard.append($tdBoardTitle);
+						$("#boardTop5").find("tr:gt(0)").remove();
 						
-						$table.append($trBoard);
+						for(var i in data){
+							
+							console.log(data[i]);
+							var $trBoard = $('<tr>');
+							var $tdBoardTitle = $('<td>').text(data[i].ecount);
+							
+							$trBoard.append($tdBoardTitle);
+							
+							$table.append($trBoard);
+						}
+					}, error : function(data){
+						
+						console.log("top5 조회 실패!");
 					}
-				}, error : function(data){
 					
-					console.log("top5 조회 실패!");
-				}
+				});
 				
 			});
-			
-		});
+		
 		</script>
 
 

@@ -564,11 +564,11 @@ a {
 										  						<tbody id="boardlist">
 											  						<% for(Board bl : blist){ %>
 																	<tr id="boardlist">
-																		<td class="col-md-1 text-left" name="bno"><%= bl.getbNO() %></td>
-																		<td class="col-md-6 text-center" name="btitle"><%= bl.getbTitle() %></td>
-																		<td class="col-md-1" name="userName"><%= bl.getbWriter() %></td>
-																		<td class="col-md-1" name="bcount"><%= bl.getbCount() %></td>
-																		<td class="col-md-1" name="bdate"><%= bl.getbDate() %></td>
+																		<td class="col-md-1 text-left" name="bno" <%if(bl.getReport()>4){ %>style="color: red;"<%} %>><%= bl.getbNO() %></td>
+																		<td class="col-md-6 text-center" name="btitle" <%if(bl.getReport()>4){ %>style="color: red;"<%} %>><%= bl.getbTitle() %></td>
+																		<td class="col-md-1" name="userName" <%if(bl.getReport()>4){ %>style="color: red;"<%} %>><%= bl.getbWriter() %></td>
+																		<td class="col-md-1" name="bcount" <%if(bl.getReport()>4){ %>style="color: red;"<%} %>><%= bl.getbCount() %></td>
+																		<td class="col-md-1" name="bdate" <%if(bl.getReport()>4){ %>style="color: red;"<%} %>><%= bl.getbDate() %></td>
 																	</tr>
 																	<% } %> 
 																</tbody>

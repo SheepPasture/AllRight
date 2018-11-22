@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import com.sheep.jsp.board.model.service.BoardService;
 import com.sheep.jsp.board.model.vo.Board;
 import com.sheep.jsp.member.model.vo.Member;
+import com.sheep.jsp.point.model.service.PointService;
+import com.sheep.jsp.point.model.vo.Point;
 
 
 
@@ -80,11 +82,22 @@ public class BoardInsertServlet extends HttpServlet {
 		System.out.println("결과: " + result);
 		
 		if(result > 0){
-			response.sendRedirect("selectList.bo?bid="+bid);
+			
+			
 			if(androidCheck != null){
 				System.out.println("안드로이드 글쓰기 성공");
 				out.println("success");
 				out.close();
+			}
+			else{
+				Point pt = new Point();
+				PointService ps = new PointService();
+				pt = ps.selectPoint(userNo);
+				pt.setPoint(pt.getPoint() + 5);
+				pt.setTotalPoint(pt.getTotalPoint() + 5);
+				ps.addPoint(pt);
+				session.setAttribute("point", pt);
+				response.sendRedirect("selectList.bo?bid="+bid);
 			}
 		} else{
 			request.setAttribute("msg", "게시물 작성 실패");

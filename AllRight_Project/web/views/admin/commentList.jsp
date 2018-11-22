@@ -186,6 +186,8 @@
                                     	<th>작성자</th>
                                     	<th>작성 날짜</th>
                                     	<th>신고 수</th>
+                                    	<th>삭제 유/무</th>
+                                    	<th>관리</th>
                                     </thead>
                                     <tbody>
                                     <%for (BoardComment b : list) { %>
@@ -196,6 +198,23 @@
                                         	<td><%= b.getUserId() %></td>
                                         	<td><%= b.getcDate() %></td>
                                         	<td><%= b.getReport() %></td>
+                                        	<td>
+                                        	<%if(b.getcStatus().equals("Y")) {%>
+                                        	삭제 안됨
+                                        	<% } else { %>
+                                        	삭제 완료
+                                        	<% } %>
+                                        	
+                                        	</td>
+                                        	<td>
+                                        	<form  method="post" enctype="multipart/form-data" action="<%=request.getContextPath()%>/addeleteComment.ad?bid=<%= b.getbId()%>&cno=<%= b.getcNo() %>&bno=<%= b.getbNo()%>">
+                                        	<%if (b.getcStatus().equals("Y")) {%>
+                                        	<button class="btn btn-danger" >삭제하기</button>
+                                        	<% } else { %>
+                                        	<button class="btn btn-danger" disabled>삭제하기</button>
+                                        	<%} %>
+                                        	</form>
+                                        	</td>
                                     </tr>
                                     
                                     <% } %>
@@ -351,7 +370,13 @@
             </div>
         </footer>
 
-
+	
+	<script type="text/javascript">
+    function logout(){
+		location.href = "/allRight/mLogout.me";
+	}
+    </script>
+    
     </div>
 </div>
 

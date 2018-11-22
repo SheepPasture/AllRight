@@ -1,14 +1,19 @@
 package com.sheep.jsp.boardComment.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sheep.jsp.boardComment.model.service.BoardCommentService;
 import com.sheep.jsp.boardComment.model.vo.BoardComment;
+import com.sheep.jsp.point.model.service.PointService;
+import com.sheep.jsp.point.model.vo.Point;
 
 /**
  * Servlet implementation class CommentInsertServlet
@@ -22,7 +27,6 @@ public class CommentInsertServlet extends HttpServlet {
      */
     public CommentInsertServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -38,6 +42,12 @@ public class CommentInsertServlet extends HttpServlet {
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		int cLevel = Integer.parseInt(request.getParameter("clevel"));
 		
+		HttpSession session = request.getSession();
+		
+		PrintWriter out = response.getWriter();
+		
+		String androidCheck = request.getParameter("android");
+		
 		BoardComment bco = new BoardComment();
 		bco.setbId(bid);
 		bco.setbNo(bno);
@@ -51,9 +61,32 @@ public class CommentInsertServlet extends HttpServlet {
 		int result = new BoardCommentService().insertComment(bco);
 		
 		if(result > 0){
-			response.sendRedirect(request.getContextPath()+"/selectOne.bo?bid="+bid+"&bno="+bno);
-			System.out.println("댓글 작성 성공!");
+			
+			if(androidCheck != null){
+				System.out.println("안드로이드에서 댓글 작성 성공!");
+				out.println("success");
+				out.close();
+				
+			} else{
+				Point pt = new Point();
+				PointService ps = new PointService();
+				
+				pt=ps.selectPoint(userNo);
+				pt.setPoint(pt.getPoint() + 3);
+				pt.setTotalPoint(pt.getTotalPoint() + 3);
+				ps.addPoint(pt);
+				
+				session.setAttribute("point", pt);
+
+				response.sendRedirect(request.getContextPath()+"/selectOne.bo?bid="+bid+"&bno="+bno);
+				System.out.println("댓글 작성 성공!");
+			}
 		} else {
+			if(androidCheck != null){
+				System.out.println("안드로이드에서 댓글 작성 실패!");
+				out.print("fail");
+				out.close();
+			}
 			request.setAttribute("msg", "댓글 작성 실패!");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
