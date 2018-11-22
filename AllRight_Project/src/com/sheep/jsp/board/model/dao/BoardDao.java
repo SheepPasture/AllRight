@@ -99,7 +99,11 @@ public class BoardDao {
 				b.setbWriter(rset.getString("BWRITER"));
 				b.setbCount(rset.getInt("bcount"));
 				b.setbDate(rset.getDate("bdate"));
-				
+				b.setReport(rset.getInt("report"));
+				//블라인드 처리
+				if(b.getReport()>4){
+					b.setbTitle("블라인드 처리 된 글입니다.");
+				}
 				blist.add(b);	
 			}
 		} catch (SQLException e) {
@@ -170,6 +174,12 @@ public class BoardDao {
 				b.setbCount(rset.getInt(6));
 				/*b.setbFile(rset.getString(7));*/
 				b.setbDate(rset.getDate(8));
+				b.setReport(rset.getInt("report"));
+				// 블라인드 처리
+				if(rset.getInt("report")>4){
+					b.setbTitle("블라인드 처리 된 글입니다.");
+					b.setbContent("블라인드 처리 된 글입니다.");
+				}
 				
 			}
 		} catch (SQLException e) {
@@ -380,6 +390,7 @@ public class BoardDao {
 				b.setbCount(rset.getInt("BCOUNT"));
 				b.setbDate(rset.getDate("BDATE"));
 				
+				
 				list.add(b);
 			}
 			
@@ -537,6 +548,7 @@ public class BoardDao {
 				b.setbWriter(rset.getString("BWRITER"));
 				b.setbDate(rset.getDate("BDATE"));
 				b.setReport(rset.getInt("REPORT"));
+				b.setbStatus(rset.getString("BSTATUS"));
 				
 				list.add(b);
 			}
@@ -552,6 +564,7 @@ public class BoardDao {
 		return list;
 	}
 
+
 	public int boardLikeCount(Connection con, int bid, int bno) {
 	
 		PreparedStatement pstmt = null;
@@ -559,27 +572,53 @@ public class BoardDao {
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("LikelistCount");
-		
+  
+    	
 		try {
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, bid);
 			pstmt.setInt(2, bno);
-			rset = pstmt.executeQuery();
+      rset = pstmt.executeQuery();
 			
 			if(rset.next())boardLikeCount = rset.getInt(1);
 			
 			System.out.println("dao boardLikeCount: "+boardLikeCount);
-			
-		} catch (SQLException e) {
+      
+      	
+    } catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			close(rset);
+      close(rset);
 			close(pstmt);
 		}
 		
 		return boardLikeCount;
+  
+
+	public int adminDeleteBoard(Connection con, int bid, int bno) {
+		PreparedStatement pstmt = null;
+		int result = 0;
 		
+		String sql = prop.getProperty("adminDeleteBoard");
+		
+		System.out.println("삭제 dao");
+    	
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, bid);
+			pstmt.setInt(2, bno);
+      
+      result = pstmt.executeUpdate();
+      	} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+      	close(pstmt);
+		}
+		
+		return result;
+
 	}
 
 }

@@ -79,6 +79,9 @@ public class MemberLoginServlet extends HttpServlet {
 			
 			li=ls.selectMyLicenseInfo(m.getUserNo());
 			
+			for(int i =0; i<li.size();i++){
+				
+			}
 			
 			System.out.println(li);
 			Date today = new Date(new java.util.Date().getTime());
@@ -93,14 +96,25 @@ public class MemberLoginServlet extends HttpServlet {
 
 			ms.addFinalDate(m);
 
+			
 			System.out.println(m);
 			level = ((pt.getTotalPoint() / 100) + 1);
 			HttpSession session = request.getSession();
-
+			
+			
+			int memberCount = ms.getMemberCount();
+			
+			
 			session.setAttribute("member", m);
 			session.setAttribute("point", pt);
 			session.setAttribute("level", level);
 			session.setAttribute("li", li);
+			session.setAttribute("memberCount", memberCount);
+			
+			System.out.println(pt);
+			System.out.println(li);
+			System.out.println(m);
+			System.out.println(level);
 			if (androidCheck != null) {
 				System.out.println("안드로이드에서 로그인을 시도합니다.");
 				JSONObject jsonMember = new JSONObject();

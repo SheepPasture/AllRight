@@ -137,13 +137,18 @@
         				
 		                	$('#tb').children().siblings().empty();
 		                	var str="";
+		                	console.log("길이 : " + list.length);
+		          
 			  	 				for(var k = 0 ; k<list.length; k++){
 									// dday 
 			  	 					if(list[k].dday<0){
 					  	 				// 버튼과 일치내용 all:전체	receipt원서 접수 일자	 testdate 시험일자	pass 합격일자
 				    					if(list[k].title.match(result)!=null){
 				    						console.log(list[k].title);
-					    					str = "<tr>"
+					    					if(list[k].title !=null){
+					    						
+					    					
+				    						str = "<tr>"
 					    					  +"<td>"+k+"</td>"
 					    					  +"<td>"+list[k].title+"</td>"
 					    					  +"<td>"+list[k].date+"</td>"
@@ -155,6 +160,13 @@
 											$('#tb').append(str);
 											j++;
 											if(j>6)break;
+					    					}else{
+					    						str="<tr><td colspan='5'>최근 일정이 없습니다.</td></tr>"
+						    					$('#tb').append(str);
+					    					}
+				    					}else{
+				    					/* 	str="<tr><td colspan='5'>최근 일정이 없습니다.</td></tr>"
+				    						$('#tb').append(str); */
 				    					}
 			  	 					}
 		    			     }//for end

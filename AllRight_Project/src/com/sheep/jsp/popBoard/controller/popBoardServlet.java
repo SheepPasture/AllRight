@@ -1,4 +1,4 @@
-package com.sheep.jsp.member.controller;
+package com.sheep.jsp.popBoard.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,50 +8,49 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.sheep.jsp.member.model.service.MemberService;
-import com.sheep.jsp.member.model.vo.Member;
+import com.sheep.jsp.popBoard.dao.popBoardCountDao;
 
 /**
- * Servlet implementation class MemberDeleteServlet
+ * Servlet implementation class popBoardServlet
  */
-@WebServlet("/mDelete.me")
-public class MemberDeleteServlet extends HttpServlet {
+@WebServlet("/pboard.po")
+public class popBoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberDeleteServlet() {
+    public popBoardServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("탈퇴실행");
-		MemberService ms = new MemberService();
-		HttpSession session = request.getSession(false);
+		popBoardCountDao dao = popBoardCountDao.getInstance();
 		
-		Member m = (Member)session.getAttribute("member");
-		System.out.println(m.getUserId());
-		int result =ms.deleteMember(m.getUserId());
+		int pop1Count = dao.getPop1Count();
+		int pop2Count = dao.getPop2Count();
+		int pop3Count = dao.getPop3Count();
+		int pop4Count = dao.getPop4Count();
+		int pop5Count = dao.getPop5Count();
 		
-		if(result!=0){
-			System.out.println("회원탈퇴 성공");
-			request.getSession().removeAttribute("member");
-			response.sendRedirect("index.jsp");
-		}else{
-			System.out.println("회원 탈퇴 실패");
-			request.getRequestDispatcher("views/myPage/updateMember.jsp").forward(request, response);
-		}
+		HttpSession session = request.getSession();
 		
+		session.setAttribute("pop1Count", pop1Count);
+		session.setAttribute("pop2Count", pop2Count);
+		session.setAttribute("pop3Count", pop3Count);
+		session.setAttribute("pop4Count", pop4Count);
+		session.setAttribute("pop5Count", pop5Count);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

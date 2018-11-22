@@ -1,6 +1,8 @@
 package com.sheep.jsp.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,46 +14,43 @@ import com.sheep.jsp.member.model.service.MemberService;
 import com.sheep.jsp.member.model.vo.Member;
 
 /**
- * Servlet implementation class MemberDeleteServlet
+ * Servlet implementation class MemberListServlet
  */
-@WebServlet("/mDelete.me")
-public class MemberDeleteServlet extends HttpServlet {
+@WebServlet("/mListcount.m")
+public class MemberListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberDeleteServlet() {
+    public MemberListServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("탈퇴실행");
+		
+		
 		MemberService ms = new MemberService();
-		HttpSession session = request.getSession(false);
 		
-		Member m = (Member)session.getAttribute("member");
-		System.out.println(m.getUserId());
-		int result =ms.deleteMember(m.getUserId());
+		int memberCount = ms.getMemberCount();
+
+		System.out.println("회원수 : " + memberCount);
 		
-		if(result!=0){
-			System.out.println("회원탈퇴 성공");
-			request.getSession().removeAttribute("member");
-			response.sendRedirect("index.jsp");
-		}else{
-			System.out.println("회원 탈퇴 실패");
-			request.getRequestDispatcher("views/myPage/updateMember.jsp").forward(request, response);
-		}
+		HttpSession session = request.getSession();
 		
+		session.setAttribute("memberCount", memberCount);
+		/*response.sendRedirect("admin.jsp");*/
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

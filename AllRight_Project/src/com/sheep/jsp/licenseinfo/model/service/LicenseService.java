@@ -135,4 +135,15 @@ public class LicenseService {
 		
 	}
 
+	public int getLicenseCount() {
+		Connection con = getConnection();
+		
+		int licenseCount = lDao.getLicenseCount(con);
+		
+		close(con);
+		
+		return licenseCount;
+
+	}
+
 }

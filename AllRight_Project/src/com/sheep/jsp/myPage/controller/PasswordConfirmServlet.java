@@ -2,6 +2,7 @@ package com.sheep.jsp.myPage.controller;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.sheep.jsp.licenseinfo.model.service.LicenseService;
+import com.sheep.jsp.licenseinfo.model.vo.LicenseInfo;
 import com.sheep.jsp.member.exception.MemberException;
 import com.sheep.jsp.member.model.service.MemberService;
 import com.sheep.jsp.member.model.vo.Member;
@@ -48,9 +51,13 @@ public class PasswordConfirmServlet extends HttpServlet {
 		String page="";
 		int num = ms.confirmPassword(m);
 		
-		
+		ArrayList<LicenseInfo> li = new ArrayList<LicenseInfo>();
+		LicenseService ls = new LicenseService();
+		li=ls.selectMyLicenseInfo(m.getUserNo());
+		request.setAttribute("li", li);
 		if(num >0){
 			System.out.println("일치하다");
+			
 			response.sendRedirect("views/myPage/updateMember.jsp");
 			
 		}else{

@@ -219,6 +219,7 @@ public class BoardService {
 		return list;
 	}
 
+
 	public int boardLikeCount(int bid, int bno) {
 		
 		Connection con = getConnection();
@@ -231,6 +232,18 @@ public class BoardService {
 		
 		return boardLikeCount;
 		
+
+	public int adminDeleteBoard(int bid, int bno) {
+		Connection con = getConnection();
+		
+		int result = bDao.adminDeleteBoard(con, bid, bno);
+		
+		System.out.println("삭제 서비스");
+		
+		close(con);
+		
+		return result;
+
 	}
 
 }

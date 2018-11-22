@@ -10,8 +10,11 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Properties;
 
+import com.sheep.jsp.licenseinfo.model.vo.LicenseInfo;
 import com.sheep.jsp.member.exception.MemberException;
 import com.sheep.jsp.member.model.vo.Member;
 import com.sheep.jsp.userLicense.model.vo.UserLicense;
@@ -296,7 +299,7 @@ public class MemberDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("updateUserlicense");
-	
+
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, u.getlNo());
@@ -310,10 +313,9 @@ public class MemberDao {
 		}
 		return result;
 	}
-	
-	
+
 	// 회원가입시 관심자격증 추가
-	public int insertUserLicense(Connection con,int userNo, String[] lNo )  throws MemberException {
+	public int insertUserLicense(Connection con, int userNo, String[] lNo) throws MemberException {
 		int result = 0;
 
 		PreparedStatement pstmt = null;
@@ -322,12 +324,12 @@ public class MemberDao {
 		try {
 			pstmt = con.prepareStatement(Sql);
 
-			for(int i = 0; i<lNo.length;i++){
-				if(lNo[i]!=null){
-				pstmt.setInt(1,userNo);
-				pstmt.setString(2, lNo[i]);
-				
-				result = pstmt.executeUpdate();
+			for (int i = 0; i < lNo.length; i++) {
+				if (lNo[i] != null) {
+					pstmt.setInt(1, userNo);
+					pstmt.setString(2, lNo[i]);
+
+					result = pstmt.executeUpdate();
 				}
 			}
 		} catch (SQLException e) {
@@ -339,25 +341,35 @@ public class MemberDao {
 		return result;
 	}
 
-	public int updateUserLicense(Connection con, int userNo, String[] lNo) throws Exception{
-		
+	public int updateUserLicense(Connection con, int userNo, String[] lNo) throws Exception {
+
 		int result = 0;
 
 		PreparedStatement pstmt = null;
 
-		String sql = prop.getProperty("updateUserlicense");
-		
+		String sql = prop.getProperty("deleteUserlicense");
+
 		try {
 			pstmt = con.prepareStatement(sql);
 
-			for(int i = 0; i<lNo.length;i++){
-				if(lNo[i]!=null){
-				/*pstmt.setInt(1,lNo[i]);*/
-				pstmt.setInt(2,userNo);
-				pstmt.setInt(3,userNo);
-				result = pstmt.executeUpdate();
+			pstmt.setInt(1, userNo);
+			result = pstmt.executeUpdate();
+
+			sql = prop.getProperty("insertUserLicense");
+			pstmt = con.prepareStatement(sql);
+			if (lNo.length == 1) {
+				pstmt.setInt(1, userNo);
+				pstmt.setString(2, lNo[0]);
+			} else {
+
+				for (int i = 0; i < lNo.length; i++) {
+					pstmt.setInt(1, userNo);
+					pstmt.setInt(2, Integer.parseInt(lNo[i]));
 				}
+
 			}
+			result = pstmt.executeUpdate();
+
 		} catch (SQLException e) {
 			throw new MemberException(e.getMessage());
 		} finally {
@@ -365,8 +377,69 @@ public class MemberDao {
 		}
 
 		return result;
-	
-		
+
 	}
+
+	public int getMemberCount(Connection con) {
+		Statement stmt = null;
+		int memberCount = 0;
+		ResultSet rset = null;
+
+		String sql = prop.getProperty("memberCount");
+
+		try {
+
+			stmt = con.createStatement();
+
+			rset = stmt.executeQuery(sql);
+
+			if (rset.next()) {
+				memberCount = rset.getInt(1);
+			}
+
+			
+			System.out.println("membercount:" + memberCount);
+			
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+
+		return memberCount;
+	}
+
+	public ArrayList<Member> selectAllMember(Connection con) {
+		ArrayList<Member> list=null;
+		Statement stmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAll");
+		try {
+			list =  new ArrayList<Member>();;
+			stmt = con.createStatement();
+
+			rset = stmt.executeQuery(sql);
+			list = new ArrayList<Member>(); 
+			while(rset.next()){
+				
+				Member m = new Member();
+				m.setUserId(rset.getString(1));
+				m.setEmail(rset.getString(2));
+				list.add(m);
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+
+		return list;
+	}
+
 
 }
