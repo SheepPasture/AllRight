@@ -152,4 +152,14 @@ public class MemberService {
 
 	}*/
 
+	public int getMemberCount() {
+		Connection con = getConnection();
+		
+		int memberCount = mDao.getMemberCount(con);
+		
+		close(con);
+		
+		return memberCount;
+	}
+
 }
