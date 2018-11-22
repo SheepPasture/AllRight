@@ -409,7 +409,7 @@ sns_update_list li .sns_list_title {
 					<div class="wrap" id="wrap">
 						<div class="conwrap">
 							<div class="sub_wrap">
-								<div class="list_wrap">
+								<div cl#ass="list_wrap">
 									<div class="table_wrap">
 										<div class="table_conts_wrap" style="margin-top: 0px;">
 
@@ -418,10 +418,10 @@ sns_update_list li .sns_list_title {
 											<div class="table_conts board02 sns">
 												<div class="conts_top">
 
-													<div align="left"><strong><%= b.getbTitle() %></strong></div>
+													<div align="left"><strong <%if(b.getReport()>4){ %>style="color: red;"<%} %>><%= b.getbTitle() %></strong></div>
 													<div class="board_detail_wrap">
 														<div class="board_top_detail">
-															<div class="writer" name="bwriter"><%= b.getbWriter() %></div>
+															<div class="writer" name="bwriter" <%if(b.getReport()>4){ %>style="color: red;"<%} %>><%= b.getbWriter() %></div>
 														</div>
 														<div class="conts_top_detail">
 															<div class="number"><%= b.getbCount() +1 %></div>
@@ -431,7 +431,7 @@ sns_update_list li .sns_list_title {
 												</div>
 
 												<div class="conts_main">
-													<div class="board_dt_wrap" align="left"><%= b.getbContent() %></div>
+													<div class="board_dt_wrap" align="left" <%if(b.getReport()>4){ %>style="color: red;"<%} %>><%= b.getbContent() %></div>
 												</div>
 					
 											</div>
@@ -546,7 +546,7 @@ sns_update_list li .sns_list_title {
 														<tr class="comment replyList<%=bco.getcLevel() %>">
 															<td colspan="3" style="background : transparent;">
 															<%-- <div class="sns_list_text" align="left"><%= bco.getcContent() %></div> --%>
-															<textarea class="reply-content" cols="105" rows="3" readonly="readonly" style="border: 0px solid black; resize: none; outline: none; overflow:visible;background: transparent; cursor: default; "><%= bco.getcContent() %></textarea>
+															<textarea class="reply-content" cols="105" rows="3" readonly="readonly" style="border: 0px solid black; resize: none; outline: none; overflow:visible;background: transparent; cursor: default;<%if(bco.getReport()>4){%>color: red;<%}%> "><%= bco.getcContent() %></textarea>
 															</td>
 														</tr>
 													</table>

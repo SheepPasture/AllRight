@@ -62,24 +62,25 @@ public class CommentInsertServlet extends HttpServlet {
 		
 		if(result > 0){
 			
-			Point pt = new Point();
-			PointService ps = new PointService();
-			
-			pt=ps.selectPoint(userNo);
-			pt.setPoint(pt.getPoint() + 3);
-			pt.setTotalPoint(pt.getTotalPoint() + 3);
-			ps.addPoint(pt);
-			
-			session.setAttribute("point", pt);
-			
 			if(androidCheck != null){
 				System.out.println("안드로이드에서 댓글 작성 성공!");
 				out.println("success");
 				out.close();
 				
+			} else{
+				Point pt = new Point();
+				PointService ps = new PointService();
+				
+				pt=ps.selectPoint(userNo);
+				pt.setPoint(pt.getPoint() + 3);
+				pt.setTotalPoint(pt.getTotalPoint() + 3);
+				ps.addPoint(pt);
+				
+				session.setAttribute("point", pt);
+
+				response.sendRedirect(request.getContextPath()+"/selectOne.bo?bid="+bid+"&bno="+bno);
+				System.out.println("댓글 작성 성공!");
 			}
-			response.sendRedirect(request.getContextPath()+"/selectOne.bo?bid="+bid+"&bno="+bno);
-			System.out.println("댓글 작성 성공!");
 		} else {
 			if(androidCheck != null){
 				System.out.println("안드로이드에서 댓글 작성 실패!");

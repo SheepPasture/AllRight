@@ -99,7 +99,11 @@ public class BoardDao {
 				b.setbWriter(rset.getString("BWRITER"));
 				b.setbCount(rset.getInt("bcount"));
 				b.setbDate(rset.getDate("bdate"));
-				
+				b.setReport(rset.getInt("report"));
+				//블라인드 처리
+				if(b.getReport()>4){
+					b.setbTitle("블라인드 처리 된 글입니다.");
+				}
 				blist.add(b);	
 			}
 		} catch (SQLException e) {
@@ -170,6 +174,12 @@ public class BoardDao {
 				b.setbCount(rset.getInt(6));
 				/*b.setbFile(rset.getString(7));*/
 				b.setbDate(rset.getDate(8));
+				b.setReport(rset.getInt("report"));
+				// 블라인드 처리
+				if(rset.getInt("report")>4){
+					b.setbTitle("블라인드 처리 된 글입니다.");
+					b.setbContent("블라인드 처리 된 글입니다.");
+				}
 				
 			}
 		} catch (SQLException e) {
@@ -379,6 +389,7 @@ public class BoardDao {
 				b.setbWriter(rset.getString("BWRITER"));
 				b.setbCount(rset.getInt("BCOUNT"));
 				b.setbDate(rset.getDate("BDATE"));
+				
 				
 				list.add(b);
 			}
