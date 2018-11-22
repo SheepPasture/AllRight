@@ -133,7 +133,6 @@
 	<td align='center'>응시전<br />10문제<br /></td><td>&nbsp;</td>
 	<td colspan='1' align='center'><a href="" style='color:#79a5e4; font-weight:bold'>응시하기</a></td>
 	<td colspan='1' align='center'><a href="" style='color:#79a5e4; font-weight:bold'>응시하기</a></td></td></tr>
-	
 	<tr style='padding:3px 2px 1px 2px' height='33'>
 	<td align='center'>3과목</td><td align='center'>응시전<br />20문제<br /></td><td>&nbsp;</td>
 	<td colspan='1' align='center'><a href="" style='color:#79a5e4; font-weight:bold'>응시하기</a></td>
