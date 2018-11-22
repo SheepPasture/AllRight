@@ -423,7 +423,7 @@
                             </div>
                             <div class="content">
                             
-                            <div id="piechart" style="width: 500px; height: 335px;"></div>
+                            <div id="piechart" style="width: 100%; height: 335px;"></div>
                                 <!-- <div id="chartPreferences" class="ct-chart ct-perfect-fourth">
                                 
                                 <table id="boardTop5" class="top5">
