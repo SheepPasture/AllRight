@@ -43,7 +43,7 @@
 				 <div class="col-sm-2 sidenav">
 					<p><a href="<%= request.getContextPath() %>/selectList.ann">공지사항</a></p>
 					<p><a href="<%= request.getContextPath() %>/views/board/boardList.jsp">커뮤니티</a></p>
-					<p><a href="#">자격증정보</a></p>
+					<p><a href="<%= request.getContextPath() %>/views/license/licenseinfo.jsp">자격증정보</a></p>
 				</div> 
 				<div class="col-sm-8 text-left">
 					<h2 align="left">공지사항</h2>
@@ -94,7 +94,7 @@
 						</table>
  						<div class="btn_area2">
  								<button onclick="back();">목록으로 바로가기</button>
-								<button onclick="edit();">수정</button>
+			<!-- 					<button onclick="edit();">수정</button> -->
 						</div> </form>
 						<script>
 							function before(){
