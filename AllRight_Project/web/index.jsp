@@ -352,6 +352,7 @@ td{
 					<!-- 로그인 폼  -->
 					<div class="loginArea" style="float: left; height:250px; border:1px solid lightgray;" >
 					<br />
+
 						<%
 							if (m == null) {
 						%>
@@ -379,7 +380,7 @@ td{
 									</tr>
 									<tr>
 										<td><label class="text">PWD : </label></td>
-										<td><input type="password" name="inputPassword">
+										<td><input type="password" name="inputPassword" style="width:100%;">
 										</td>
 									</tr> 
 								</t -->
