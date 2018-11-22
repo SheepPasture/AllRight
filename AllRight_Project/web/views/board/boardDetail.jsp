@@ -570,7 +570,11 @@ sns_update_list li .sns_list_title {
 																	<div class="icon_wrap">
 																		<div class="goods">
 																			<a href="#"> <span class="icon on">icon</span>
+
+																			<%-- 	<p id="rplyRec_1"><%= bpi.getBoardLikeCount() %></p> --%>
+
 																				<p id="rplyRec_1"></p>
+
 																			</a>
 																		</div>
 																	</div>

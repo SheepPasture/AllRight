@@ -253,19 +253,21 @@
 			<script>
 				$(function(){
 						$("td").mouseout(function(){
-							$(this).parent().removeAttr(css);
+							$(this).parent().removeAttr("css");
 						}).click(function(){
+							var bid=1;
 							var bno = $(this).parent().children().eq(0).text();
-							location.href="<%=request.getContextPath()%>/selectOne.bo?bno=" + bno;
+							location.href="<%=request.getContextPath()%>/selectOne.bo?bno=" + bno+"&bid="+bid;
 						});
 						
 
 						$("#cDetail td").mouseout(function(){
 
-							$(this).parent().removeAttr(css);
+							$(this).parent().removeAttr("css");
 						}).click(function(){
+							var bid=1;
 							var bno = $(this).parent().children().eq(0).text();
-							location.href="<%=request.getContextPath()%>/selectOne.bo?bno="	+ bno;
+							location.href="<%=request.getContextPath()%>/selectOne.bo?bno="	+ bno+"&bid="+bid;
 									});
 
 				});

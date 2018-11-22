@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.sheep.jsp.point.model.vo.*"%>
+    
+<%
+Point pt = (Point) session.getAttribute("point");
+%>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,7 +75,7 @@
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">2011년 1회</td>
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">60</td>
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">
-<button><a href="../answer/answerDetail.jsp">응시하기</a></td></button>
+<button><a href="../answer/answerDetail.jsp" class="stare">응시하기</a></td></button>
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_right">
 <span style="color:#bb8800">응시전</span></td></tr><tr>
 
@@ -80,7 +85,7 @@
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">2011년 2회</td>
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">60</td>
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">
-<button><a href="../answer/answerDetail.jsp">응시하기</a></td></button>
+<button><a href="../answer/answerDetail.jsp" class="stare">응시하기</a></td></button>
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_right">
 <span style="color:#bb8800">응시전</span>
 </tr>
@@ -91,7 +96,7 @@
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">2011년 4회</td>
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">60</td>
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">
-<button><a href="../answer/answerDetail.jsp">응시하기</a></td></button>
+<button><a href="../answer/answerDetail.jsp" class="stare">응시하기</a></td></button>
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_right">
 <span style="color:#bb8800">응시전</span>
 </tr>
@@ -102,10 +107,23 @@
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">2011년 5회</td>
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">60</td>
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">
-<button><a href="../answer/answerDetail.jsp">응시하기</a></td></button>
+<button><a href="../answer/answerDetail.jsp" class="stare">응시하기</a></td></button>
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_right">
 <span style="color:#bb8800">응시전</span>
 </tr>
+
+<script>
+$('.stare').click(function(){
+	if(<%=pt.getPoint() %><50){
+		$('.stare')
+		alert("포인트가 모자랍니다.");
+	}	
+	
+});
+
+
+
+</script>
 
 </tbody>
 </table>
