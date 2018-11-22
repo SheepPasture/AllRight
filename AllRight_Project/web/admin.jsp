@@ -9,6 +9,8 @@
   Object level=session.getAttribute("level"); 
   	int ttc = (Integer) session.getAttribute("totalCount"); // 총 방문자 수 
 	int tdc = (Integer) session.getAttribute("todayCount"); // 오늘 방문자 수
+	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+	
 
 %>
 
@@ -124,6 +126,32 @@
 	        chart.draw(data, options);
 	      }
 	  </script>
+	  
+	  <!-- 구글 원 차트  -->
+	  <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['게시판', '클릭수'],
+          ['IT',     11],
+          ['의복',      2],
+          ['간호',  2],
+          ['조선', 2],
+          ['설계',    7]
+        ]);
+
+        var options = {
+          title: ' '
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
 
 	
 	
@@ -260,13 +288,13 @@
                                 <div class="row">
                                     <div class="col-xs-5">
                                         <div class="icon-big icon-warning text-center">
-                                            <i class="ti-server"></i>
+                                            <i class="ti-user"></i>
                                         </div>
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Capacity</p>
-                                            105GB
+                                            <p>회원수</p>
+                                            10
                                         </div>
                                     </div>
                                 </div>
@@ -377,21 +405,30 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Email Statistics</h4>
-                                <p class="category">Last Campaign Performance</p>
+                                <h4 class="title">인기 게시판 통계</h4>
+                                <p class="category">Board Performance</p>
                             </div>
                             <div class="content">
-                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+                            
+                            <div id="piechart" style="width: 500px; height: 335px;"></div>
+                                <!-- <div id="chartPreferences" class="ct-chart ct-perfect-fourth">
+                                
+                                <table id="boardTop5" class="top5">
+				<thead>
+					<tr>
+						
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+                                </div> -->
 
                                 <div class="footer">
-                                    <div class="chart-legend">
-                                        <i class="fa fa-circle text-info"></i> Open
-                                        <i class="fa fa-circle text-danger"></i> Bounce
-                                        <i class="fa fa-circle text-warning"></i> Unsubscribe
-                                    </div>
+                                    
                                     <hr>
                                     <div class="stats">
-                                        <i class="ti-timer"></i> Campaign sent 2 days ago
+                                        <i class="ti-timer"></i> Updated now
                                     </div>
                                 </div>
                             </div>
@@ -449,14 +486,9 @@
     <!--  Notifications Plugin    -->
     <script src="assets/js/bootstrap-notify.js"></script>
 
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-
     <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
 	<script src="assets/js/paper-dashboard.js"></script>
 
-	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-	<script src="assets/js/demo.js"></script>
 
 
 	
@@ -467,6 +499,37 @@
 		}
 		
 		
+		$(function(){
+			
+			$.ajax({
+				
+				url: '/allRight/cTop5.ca',
+				dataType: "json",
+				type : "get",
+				success : function(data){
+					
+					$table = $('#boardTop5 tbody');
+					
+					$("#boardTop5").find("tr:gt(0)").remove();
+					
+					for(var i in data){
+						
+						console.log(data[i]);
+						var $trBoard = $('<tr>');
+						var $tdBoardTitle = $('<td>').text(data[i].etitle);
+						
+						$trBoard.append($tdBoardTitle);
+						
+						$table.append($trBoard);
+					}
+				}, error : function(data){
+					
+					console.log("top5 조회 실패!");
+				}
+				
+			});
+			
+		});
 		</script>
 
 

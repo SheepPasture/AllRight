@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
 import com.sheep.jsp.member.exception.MemberException;
@@ -334,6 +335,35 @@ public class MemberDao {
 		}
 
 		return result;
+	}
+
+	public int getMemberCount(Connection con) {
+		Statement stmt = null;
+		int memberCount = 0;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("memberCount");
+		
+		try {
+			
+			stmt = con.createStatement();
+			
+			rset = stmt.executeQuery(sql);
+			
+			if(rset.next()){
+				memberCount = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally{
+			close(rset);
+			close(stmt);
+		}
+		
+		
+		return memberCount;
 	}
 
 }
