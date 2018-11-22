@@ -73,6 +73,7 @@
 <button><a href="../answer/answerDetail.jsp">응시하기</a></td></button>
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_right">
 <span style="color:#bb8800">응시전</span></td></tr><tr>
+
 <tr>
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">2</td>
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">기능·기술 [기능사] &gt; 정보처리기능사 &gt; 2011년 2회</td>
@@ -83,6 +84,29 @@
 <td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_right">
 <span style="color:#bb8800">응시전</span>
 </tr>
+<tr>
+
+<td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">3</td>
+<td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">기능·기술 [기능사] &gt; 정보처리기능사 &gt; 2011년 4회</td>
+<td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">2011년 4회</td>
+<td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">60</td>
+<td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">
+<button><a href="../answer/answerDetail.jsp">응시하기</a></td></button>
+<td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_right">
+<span style="color:#bb8800">응시전</span>
+</tr>
+
+<tr>
+<td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">4</td>
+<td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">기능·기술 [기능사] &gt; 정보처리기능사 &gt; 2011년 5회</td>
+<td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">2011년 5회</td>
+<td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">60</td>
+<td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_common">
+<button><a href="../answer/answerDetail.jsp">응시하기</a></td></button>
+<td style="padding:3px 5px; line-height:24px; text-align:left;" class="td_border_right">
+<span style="color:#bb8800">응시전</span>
+</tr>
+
 </tbody>
 </table>
 
