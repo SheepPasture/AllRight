@@ -528,13 +528,13 @@ sns_update_list li .sns_list_title {
 																			<input type="hidden" name="clevel" value="<%=bco.getcLevel() %>" /> 
 																		 	
 																		 	<div class="sns_detail_btn">
-																				<a href="#">댓글</a> 
+																				<!-- <a href="#">댓글</a> --> 
 																				<a class="declaration" onclick="bcReport();">신고</a>
 																			</div>	
 																			
-																			<div class="sns_detail_btn" onclick="reConfirm(this);" style="display:none;">
+																<!-- 			<div class="sns_detail_btn" onclick="reConfirm(this);" style="display:none;">
 																				<a href="#">댓글</a> 
-																			</div>	
+																			</div>	 -->
  
 																		 <% } else {%>
 																		 <span>댓글 가능 회수를 초과하셨습니다.</span>
@@ -590,14 +590,14 @@ sns_update_list li .sns_list_title {
 																			<input type="hidden" name="clevel" value="<%=bco.getcLevel() %>" /> 
 																			
 																		 	
-																		 	<div class="sns_detail_btn">
+<!-- 																		 	<div class="sns_detail_btn">
 																				<a href="#">댓글</a> <a class="declaration"
 																					href="javascript:fnReportLayer('491967','1','0','rply','0');">신고</a>
 																			</div>	
 																			
 																			<div class="sns_detail_btn" onclick="reConfirm(this);" style="display:none;">
 																				<a href="#">댓글</a> 
-																			</div>	
+																			</div>	 -->
 																		 
 																		 <% } else {%>
 																		 <span>댓글 가능 회수를 초과하셨습니다.</span>
@@ -638,7 +638,7 @@ sns_update_list li .sns_list_title {
 													var cno = $('#cno').val();
 													var bno = $('#bno').val();
 													 if(confirm("정말 신고하시겠습니까?") == true){									
-														 location.href="/allRight/bcReport.bo?"+"cno="+cno+"&bno="+bno;														 
+														 location.href="/allRight/bcReport.bo?bid="+bid+"&cno="+cno+"&bno="+bno;														 
 													 } else{
 														 return;
 													 }
