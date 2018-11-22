@@ -229,58 +229,11 @@
 		
 		 -->
 
-					<%-- 
-						<!-- 로그인 폼  -->
-
-						<div class="loginArea" style="float: left; width: 50%;">
-							<%
-								if (m == null) {
-							%>
-
-							<form id="loginForm" action="/allRight/mLogin.me" method="post">
-								<table>
-									<tr>
-										<td><label class="text">ID : </label></td>
-										<td><input type="text" name="inputId"></td>
-									</tr>
-									<tr>
-										<td><label class="text">PWD : </label></td>
-										<td><input type="password" name="inputPassword">
-										</td>
-									</tr>
-								</table>
-
-								<div class="btns">
-									<input type="submit" value="로그인" /> <input type="button"
-										value="회원가입" onclick="insert()" />
-								</div>
-
-							</form>
-							<%
-								} else {
-							%>
-							<div id="userInfo">
-								<label><%=m.getUserName()%>님의 방문을 환영합니다.</label><br> <label>
-									현재 포인트 : <%=pt.getPoint()%> 누적 포인트 : <%=pt.getTotalPoint()%></label> <label>
-									현재 레벨 :Lv.<%=level%></label>
-								<div class="btns">
-									<input type="button" value="로그아웃" onclick="logout()" />
-								</div>
-
-							</div>
-							<%
-								}
-							%>
-
-						</div> --%>
-
-
-					<!-- </div> -->
 
 
 				</div>
 
-				<div class="col-sm-2" style="background: ivory">
+				<div class="col-sm-2" style="boder">
 
 					<!-- 로그인 폼  -->
 
@@ -306,8 +259,8 @@
 							<!-- <div class="btns"> -->
 							<div>
 								<div>
-									<input type="submit" value="로그인" /> <input type="button"
-										value="회원가입" onclick="insert()" />
+									<input type="submit" value="로그인" />
+									<input type="button" value="회원가입" onclick="insert()" />
 								</div>
 							</div>
 
