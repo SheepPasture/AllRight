@@ -19,7 +19,7 @@ public class QuestionListServlet extends HttpServlet {
      */
     public QuestionListServlet() {
         super();
-        // TODO Auto-generated constructor stub
+      
     }
 
 	/**
