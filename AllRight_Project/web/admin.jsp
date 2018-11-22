@@ -109,7 +109,7 @@
 
 	        var options = {
 	          title: '',
-	          chartArea: {width: '75%'},
+	          chartArea: {width: '80%'},
 	         hAxis: {
 	            title: '방문자 수',
 	            minValue: 0
@@ -357,14 +357,14 @@
                 </div>
                 <div class="row">
 
-                    <div class="col-md-12">
+                    <div class="col-md-12" id="chart">
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">방문자 통계</h4>
-                                <p class="category">24 Hours performance</p>
+                                <p class="category">오늘 방문자 수</p>
                             </div>
                             <div class="content">
-                                <div id="chart_div" style="width: 100%; height: 500;"></div>
+                                <div id="chart_div" style="width: 100%;"></div>
                                 <hr>
                                 <div class="stats">
                                    <i class="ti-reload"></i> Updated 3 minutes ago
