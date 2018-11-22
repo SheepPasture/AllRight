@@ -591,9 +591,11 @@ public class BoardDao {
 		}
 		
 		return boardLikeCount;
+
 		
 	}
 	
+
 	public int adminDeleteBoard(Connection con, int bid, int bno) {
 		PreparedStatement pstmt = null;
 		int result = 0;
