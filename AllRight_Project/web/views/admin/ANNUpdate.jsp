@@ -243,6 +243,12 @@
 						$("#updateForm").attr("action","<%=request.getContextPath() %>/annSelectOne.ad?ano=" + ano);
 					}
 					
+					
+				    function logout(){
+						location.href = "/allRight/mLogout.me";
+					}
+				   
+					
 		 		</script>
 			</div>
 			</div>
