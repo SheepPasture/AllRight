@@ -30,12 +30,12 @@
    }
    
    .name{
-      width : 530px;
+      width : 430px;
       text-overflow : ellipsis;
       white-space : nowrap;
       overflow : hidden;
       display : block;
-      padding-left : 130px;
+      padding-left : 30px;
       
    }
    
