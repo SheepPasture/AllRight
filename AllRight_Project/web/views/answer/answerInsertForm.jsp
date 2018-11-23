@@ -112,7 +112,7 @@ Point pt = (Point) session.getAttribute("point");
 <span style="color:#bb8800">응시전</span>
 </tr>
 
-<script>
+<%-- <script>
 $('.stare').click(function(){
 	if(<%=pt.getPoint() %><50){
 		$('.stare')
@@ -123,7 +123,7 @@ $('.stare').click(function(){
 
 
 
-</script>
+</script> --%>
 
 </tbody>
 </table>

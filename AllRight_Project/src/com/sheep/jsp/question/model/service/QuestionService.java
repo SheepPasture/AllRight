@@ -30,5 +30,22 @@ public class QuestionService {
 		return list;
 	}
 	
+	public ArrayList<Question> Qanswer(){
+		
+		ArrayList<Question> check = null;
+		
+		Connection con = getConnection();
+		
+		check = QuestionDao.Qanswer(con);
+		
+		if(check != null) commit(con);
+		else rollback(con);
+		
+		
+		close(con);
+		
+		return check;
+		
+	}
 
 }

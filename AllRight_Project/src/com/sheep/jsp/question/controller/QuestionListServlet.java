@@ -1,11 +1,16 @@
 package com.sheep.jsp.question.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.sheep.jsp.question.model.service.QuestionService;
+import com.sheep.jsp.question.model.vo.Question;
 
 /**
  * Servlet implementation class QuestionListServlet
@@ -19,7 +24,7 @@ public class QuestionListServlet extends HttpServlet {
      */
     public QuestionListServlet() {
         super();
-        // TODO Auto-generated constructor stub
+      
     }
 
 	/**
@@ -29,17 +34,37 @@ public class QuestionListServlet extends HttpServlet {
 		
 		String[] answerList = request.getParameterValues("answerList[]");
 		
-		for(String s : answerList){
-
-			System.out.println(s);
+		for(int i = 0; i < answerList.length; i++){
+			System.out.println(answerList[i]);	
 		}
+		
+		
+//		for(String s : answerList){
+//
+//			System.out.println(s);
+//		}
+		
+		ArrayList<Question> check = new ArrayList<Question>();
+		check = new QuestionService().Qanswer();
+		
+		for(int i = 0; i < check.size(); i++){
+			System.out.println(check.get(i).getqAnswer());	
+		}
+		
+		String page = "";
+		
+		page = "/views/answer/answerDetail.jsp";
+		request.setAttribute("check", check);
+		request.setAttribute("answerList", answerList);
+
+		request.getRequestDispatcher(page).forward(request, response);
 	}
+	
 	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
