@@ -219,7 +219,6 @@ public class BoardService {
 		return list;
 	}
 
-
 	public int boardLikeCount(int bid, int bno) {
 		
 		Connection con = getConnection();
@@ -231,8 +230,8 @@ public class BoardService {
 		close(con);
 		
 		return boardLikeCount;
+	
 	}
-		
 
 	public int adminDeleteBoard(int bid, int bno) {
 		Connection con = getConnection();
@@ -245,18 +244,6 @@ public class BoardService {
 		
 		return result;
 
-	}
-
-	public void seteCount(int bid) {
-		Connection con = getConnection();
-		
-		bDao.seteCount(con, bid);
-		
-		System.out.println("게시판 count 추가");
-		
-		close(con);
-		
-		
 	}
 
 }

@@ -52,7 +52,7 @@ a {
 					<h2 align="left">자격증정보</h2>
 					<br />
 					<div>
-						<div class="text-center"" id="LicenseMain" style="border: 1px solid gray;">
+						<div class="text-center" id="LicenseMain" style="border: 1px solid gray;">
 					</div>
 
 					<script>

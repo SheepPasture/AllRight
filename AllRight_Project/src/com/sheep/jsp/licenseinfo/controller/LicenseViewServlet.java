@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sheep.jsp.licenseinfo.model.service.LicenseService;
+import com.sheep.jsp.licenseinfo.model.vo.LicenseInfo;
+
 /**
  * Servlet implementation class LicenseViewServlet
  */
@@ -26,8 +29,26 @@ public class LicenseViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		int lno = Integer.parseInt(request.getParameter("lno"));
+		
+		LicenseInfo lf = new LicenseService().selectOne(lno);
+		
+		System.out.println("SelectLno lno: "+ lno);
+		System.out.println("LicenseInfo servelt: "+lf);
+		
+		String page = "";
+		
+		if(lf != null){
+			page = "/views/licenseinfo/licenseView.jsp";
+			request.setAttribute("licenseInfo", lf);
+		} else{
+			page="/views/common/errorPage.jsp";
+			request.setAttribute("msg", "자격증 상세보기에 실패하였습니다. 관리자에게 문의바랍니다.");
+		}
+		
+		request.getRequestDispatcher(page).forward(request, response);
+		
 	}
 
 	/**

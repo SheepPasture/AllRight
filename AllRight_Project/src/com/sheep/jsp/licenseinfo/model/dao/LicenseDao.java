@@ -422,4 +422,43 @@ public class LicenseDao {
 		return licenseCount;
 	}
 
+	public LicenseInfo selectOne(Connection con, int lno) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		LicenseInfo lf = null;
+		
+		String sql = prop.getProperty("selectOne");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, lno);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				lf = new LicenseInfo();
+				
+				lf.setlNo(rset.getString(1));
+				lf.setlName(rset.getString(2));
+				lf.setnInfo01(rset.getString(3));
+				lf.setNlnfo02(rset.getString(4));
+				lf.setNlnfo03(rset.getString(5));
+				lf.setlCategory(rset.getString(6));
+				lf.setlCost(rset.getString(7));
+				lf.setlType(rset.getString(8));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return lf;
+		
+	}
+
 }

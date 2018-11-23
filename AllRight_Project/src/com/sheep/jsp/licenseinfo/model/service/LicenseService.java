@@ -146,4 +146,28 @@ public class LicenseService {
 
 	}
 
+	public LicenseInfo selectOne(int lno) {
+		
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		LicenseInfo lf = lDao.selectOne(con, lno);
+		
+		System.out.println("lno" +lno);
+		System.err.println("con" + con);
+		
+		if(lf!=null){
+
+			if(result>0) commit(con);
+			else rollback(con);
+
+		}
+
+		close(con);
+		
+		return lf;
+		
+	}
+
 }

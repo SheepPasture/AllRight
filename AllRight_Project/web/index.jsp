@@ -41,7 +41,7 @@
 	margin-left: 300px;
 }
 
-.col-sm-8 {
+/* .col-sm-8 {
 	font: 12px/20px 돋움;
 	color: #424242;
 	background: #fff;
@@ -115,11 +115,108 @@
 	height: 100px;
 }
 
-	td{
+td{
 	padding-left : 40px;
 	float:left;
 	font-size : 2em;
+} */
+
+.table.table-striped {
+  width:100%;
+    border-collapse: collapse;
+      background: #fff;
+    overflow: hidden;
+    box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+    -o-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+    -ms-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
 }
+
+.table.table-striped thead {
+    background: #fff;
+    box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
+    -o-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
+    -ms-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
+}
+
+.table.table-striped th {
+    padding: 0.9rem 0.5rem;
+    font-weight: bold;
+      border: 1px solid #efefef;
+    text-align: left;
+    border-top: 0px;
+}
+
+.table.table-striped tbody tr:nth-child(odd){
+    background-color: rgba(0,0,0,.02);
+}
+
+.table.table-striped tbody tr td a {
+    color: #3c2f17;
+    font-size: 15px;
+    text-decoration:none;
+  font-weight:500;
+}
+
+.table.table-striped tr:nth-child(even) {
+    background-color: #fff;
+}
+
+.table.table-striped tbody tr td {
+    border: 1px solid #efefef;
+    padding: 0.7rem;
+    text-align: left;
+    border-top: 0px;
+}
+
+.login-form-1 {
+  max-width: 300px;
+  border-radius: 5px;
+  display: inline-block;
+}
+.main-login-form {
+  position: relative;
+}
+.login-form-1 .form-control {
+  border: 0;
+  box-shadow: 0 0 0;
+  border-radius: 0;
+  background: transparent;
+  color: #555555;
+  padding: 7px 0;
+  font-weight: bold;
+  height:auto;
+}
+.login-form-1 .form-control::-webkit-input-placeholder {
+  color: #999999;
+}
+.login-form-1 .form-control:-moz-placeholder,
+.login-form-1 .form-control::-moz-placeholder,
+.login-form-1 .form-control:-ms-input-placeholder {
+  color: #999999;
+}
+.login-form-1 .form-group {
+  margin-bottom: 0;
+  border-bottom: 2px solid #efefef;
+  padding-right: 20px;
+  position: relative;
+}
+.login-form-1 .form-group:last-child {
+  border-bottom: 0;
+}
+.login-group {
+  background: #ffffff;
+  color: #999999;
+  border-radius: 8px;
+  padding: 10px 20px;
+}
+.login-group-checkbox {
+  padding: 5px 0;
+}
+
 </style>
 
 <!-- <script>
@@ -162,19 +259,15 @@
 			<div class="row content">
 				<br />
 				<div class="col-sm-1 sidenav"></div>
-				<div class="col-sm-8 text-center" style="border: 1px solid black">
+				<div class="col-sm-8 text-center" style="border: 1px solid lightgray; padding: 50px 30px; ">
 					<!-- <h2 align="left">뉴스</h2> -->
-
 					<!-- <div class="main" > -->
-					<div class="realtime"
-						style="float: left; width: 30%; border: 2px solid black;">
-						<div id="refresh">
-							<table id="boardTop5" class="top5">
+					 <div class="realtime" style="float: left; border: 2px solid lightgray; margin-right:10px">
+						<div id="refresh" >
+							<table id="boardTop5" class="top5 table-striped">
 								<thead>
 									<tr>
-										<th></th>
-										<th></th>
-										<h3>실시간 게시판 순위</h2>
+										<th><h4>실시간 게시판 순위</h4></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -182,16 +275,30 @@
 							</table>
 						</div>
 
-
+					
 					</div>
 					<div>
 						<div class="col-sm-4"
-							style="float: left; width: 50%; border: 2px solid black">
-							<h1>공지사항</h1>
+							style="float: left; width: 50%; border: 2px solid lightgray">
+							<h4>공지사항</h4>
 							<div class="col-sm-4">
-								<table id="#">
+								<table>
 									<thead>
-							
+										<tr>
+											<td>공지사항입니다.</td>
+										</tr>
+										<tr>
+											<td>공지사항입니다.</td>
+										</tr>
+										<tr>
+											<td>공지사항입니다.</td>
+										</tr>
+										<tr>
+											<td>공지사항입니다.</td>
+										</tr>
+										<tr>
+											<td>공지사항입니다.</td>
+										</tr>
 
 									</thead>
 									<tbody>
@@ -202,7 +309,7 @@
 
 					</div>
 
-
+		</div>
 					<!-- 
 
 		<div class="notice" style="float:left; width:33%;">
@@ -238,50 +345,85 @@
 
 
 
-				</div>
+				
 
 				<div class="col-sm-2" style="boder">
 
 					<!-- 로그인 폼  -->
+					<div class="loginArea" style="float: left; height:250px; border:1px solid lightgray;" >
+					<br />
 
-					<div class="loginArea" style="float: left; width: 70%; border:1px solid black;" >
 						<%
 							if (m == null) {
 						%>
-
 						<form id="loginForm" action="/allRight/mLogin.me" method="post">
 							<div>
-								<table>
+								<div class="login-form-main-message"></div>
+									<div class="main-login-form">
+								<div class="login-group">
+									<div class="form-group">
+										<label for="lg_username" class="text"></label>
+										<input type="text" class="form-control" id="lg_username" name="inputId" placeholder="username">
+									</div>
+									<div class="form-group">
+										<label for="lg_password" class="text"></label>
+										<input type="password" class="form-control" id="lg_password" name="inputPassword" placeholder="password">
+									</div>
+								</div>					
+							</div>
+						</div>
+											
+<!-- 								<table>
 									<tr>
 										<td><label class="text">ID : </label></td>
 										<td><input type="text" name="inputId"></td>
 									</tr>
 									<tr>
 										<td><label class="text">PWD : </label></td>
-										<td><input type="password" name="inputPassword">
+										<td><input type="password" name="inputPassword" style="width:100%;">
 										</td>
-									</tr>
-								</table>
-							</div>
+									</tr> 
+								</t -->
 							<!-- <div class="btns"> -->
 							<div>
 								<div>
 									<input type="submit" value="로그인" />
 									<input type="button" value="회원가입" onclick="insert()" />
 								</div>
+								<br /><br />
 							</div>
 
 						</form>
 						<%
 							} else {
 						%>
-						<div id="userInfo">
+						
+							<div>
+								<div class="login-form-main-message"></div>
+									<div class="main-login-form">
+										<div class="login-group">
+											<div class="form-group">
+												<label><%=m.getUserName()%>님 <br />
+															환영합니다!
+												</label><br>
+												 <label>현재 포인트 : <%=pt.getPoint()%> <br />
+															누적 포인트 : <%=pt.getTotalPoint()%></label>
+												<label>현재 레벨 :Lv.<%=level%></label>
+											<div class="form-group">
+												<div class="btns">
+															<input type="button" value="로그아웃" onclick="logout()" />
+														</div>
+											</div>
+										</div>					
+									</div>
+								</div>
+<%-- 						<div id="userInfo">
 							<label><%=m.getUserName()%>님의 방문을 환영합니다.</label><br> <label>
 								현재 포인트 : <%=pt.getPoint()%> 누적 포인트 : <%=pt.getTotalPoint()%></label> <label>
 								현재 레벨 :Lv.<%=level%></label>
 							<div class="btns">
 								<input type="button" value="로그아웃" onclick="logout()" />
-							</div>
+							</div> --%>
 
 						</div>
 						<%
@@ -295,14 +437,12 @@
 
 				<br> <br> <br> <br> <br> <br>
 			</div>
-
-
-			<div class="row content">
+								<div class="row content">
 				<!-- 행 div  -->
 				<br />
 				<div class="col-sm-1 sidenav"></div>
 				<!-- 왼쪽 공간 -->
-				<div class="col-sm-8 text-center" style="border: 1px solid black">
+				<div class="col-sm-8 text-center" style="border: 1px solid gray">
 					<h1>자격증 목록</h1>
 
 					<div id="html5" class="col-sm-3">
@@ -329,13 +469,11 @@
 							<a>게시판</a>
 						</p>
 					</div>
-					
-
-
-
 
 				</div>
 			</div> 
+
+			
 
 		</div>
 
@@ -380,7 +518,6 @@
 							var $tdBoardTitle = $('<td>').text(data[i].etitle);
 
 							$trBoard.append($tdBoardTitle);
-
 							$table.append($trBoard);
 						}
 					},
