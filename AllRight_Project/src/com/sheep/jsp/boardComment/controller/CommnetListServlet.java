@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sheep.jsp.board.model.service.BoardService;
 import com.sheep.jsp.board.model.vo.Board;
-import com.sheep.jsp.board.model.vo.bPageInfo;
 import com.sheep.jsp.boardComment.model.service.BoardCommentService;
 import com.sheep.jsp.boardComment.model.vo.BoardComment;
+import com.sheep.jsp.boardComment.model.vo.bcPageInfo;
 
 /**
  * Servlet implementation class CommnetListServlet
@@ -73,7 +73,7 @@ public class CommnetListServlet extends HttpServlet {
 		
 		if(list != null){
 			
-			bPageInfo bpi = new bPageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
+			bcPageInfo bpi = new bcPageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 			
 			page="/views/admin/commentList.jsp";
 			request.setAttribute("bpi", bpi);

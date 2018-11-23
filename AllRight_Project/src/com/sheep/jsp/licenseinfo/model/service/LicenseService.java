@@ -3,6 +3,7 @@ package com.sheep.jsp.licenseinfo.model.service;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.sheep.jsp.announcement.model.vo.Announcement;
 import com.sheep.jsp.common.util.ParseApi;
 import com.sheep.jsp.licenseinfo.model.dao.LicenseDao;
 import com.sheep.jsp.licenseinfo.model.vo.LicenseInfo;
@@ -94,6 +95,7 @@ public class LicenseService {
 		
 		return result;
 	}
+
 	public ArrayList<LicenseInfo> selectLicenseInfo() {
 		
 		ArrayList<LicenseInfo> list = null;
@@ -105,6 +107,67 @@ public class LicenseService {
 		close(con);
 		
 		return list;
+	}
+
+	public ArrayList<LicenseInfo> selectMyLicenseInfo(int userNo) {
+		ArrayList<LicenseInfo> list = null;
+		
+		Connection con = getConnection();
+		
+		list = lDao.selectMyLicenseInfo(con,userNo);
+		
+		close(con);
+		
+		return list;
+	}
+
+	public ArrayList<LicenseInfo> selectMainLicense() {
+		
+		Connection con = getConnection();
+
+		ArrayList<LicenseInfo> llist = lDao.selectMainList(con);
+		
+		close(con);
+		
+		System.out.println("selectMainList service: "+llist);
+		
+		return llist;
+		
+	}
+
+	public int getLicenseCount() {
+		Connection con = getConnection();
+		
+		int licenseCount = lDao.getLicenseCount(con);
+		
+		close(con);
+		
+		return licenseCount;
+
+	}
+
+	public LicenseInfo selectOne(int lno) {
+		
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		LicenseInfo lf = lDao.selectOne(con, lno);
+		
+		System.out.println("lno" +lno);
+		System.err.println("con" + con);
+		
+		if(lf!=null){
+
+			if(result>0) commit(con);
+			else rollback(con);
+
+		}
+
+		close(con);
+		
+		return lf;
+		
 	}
 
 }

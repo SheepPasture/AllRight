@@ -1,58 +1,56 @@
-package com.sheep.jsp.announcement.controller;
+package com.sheep.jsp.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.sheep.jsp.announcement.model.service.ANNService;
-import com.sheep.jsp.announcement.model.vo.Announcement;
+import com.sheep.jsp.member.model.service.MemberService;
+import com.sheep.jsp.member.model.vo.Member;
 
 /**
- * Servlet implementation class ANNSelectOneServlet
+ * Servlet implementation class MemberListServlet
  */
-@WebServlet("/selectOne.ann")
-public class ANNSelectOneServlet extends HttpServlet {
+@WebServlet("/mListcount.m")
+public class MemberListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ANNSelectOneServlet() {
+    public MemberListServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		MemberService ms = new MemberService();
+		
+		int memberCount = ms.getMemberCount();
 
-		int ano = Integer.parseInt(request.getParameter("ano"));
+		System.out.println("회원수 : " + memberCount);
 		
-		Announcement a = new ANNService().selectOne(ano);
-
-		System.out.println("SelectOne ano: "+ano);
+		HttpSession session = request.getSession();
 		
-		String page = "";
-		
-		if(a != null){
-			page = "/views/announcement/ANNDetail.jsp";
-			request.setAttribute("announcement", a);
-		} else{
-			page="/views/common/errorPage.jsp";
-			request.setAttribute("msg", "공지사항 상세보기에 실패하였습니다. 관리자에게 문의바랍니다.");
-		}
-		
-		request.getRequestDispatcher(page).forward(request, response);
-		
+		session.setAttribute("memberCount", memberCount);
+		/*response.sendRedirect("admin.jsp");*/
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

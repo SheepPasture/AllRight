@@ -106,6 +106,10 @@ public class BoardCommentDao {
 				comment.setNickname(rset.getString("nickname"));
 				comment.setUserId(rset.getString("userId"));
 				comment.setRefcno(rset.getInt("refcno"));
+				// 블라인드 체크
+				if(comment.getReport() > 4){
+					comment.setcContent("블라인드 처리 된 댓글입니다.");
+				}
 				
 				clist.add(comment);
 				System.out.println("보드코멘트dao list완료");
@@ -289,6 +293,8 @@ public class BoardCommentDao {
 				b.setUserId(rset.getString("USERID"));
 				b.setcDate(rset.getDate("CDATE"));
 				b.setReport(rset.getInt("REPORT"));
+				b.setcNo(rset.getInt("CNO"));
+				b.setcStatus(rset.getString("CSTATUS"));
 				
 				list.add(b);
 			}
@@ -302,6 +308,27 @@ public class BoardCommentDao {
 		}
 		
 		return list;
+	}
+
+	public int adminDeleteComment(Connection con, int cno) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("adminDeleteComment");
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, cno);
+			
+			result = pstmt.executeUpdate();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
 	}
 }
 

@@ -73,8 +73,10 @@ public class BoardSelectOneServlet extends HttpServlet {
 				System.out.println("안드로이드에 보내기 실패");
 				out.close();
 			}
-			page="/views/common/errorPage.jsp";
-			request.setAttribute("msg", "게시물 상세보기 실패!");
+			request.setAttribute("msg", "게시물 조회 실패");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			/*page="/views/common/errorPage.jsp";*/
+			/*request.setAttribute("msg", "게시물 상세보기 실패!");*/
 		}
 		
 		request.getRequestDispatcher(page).forward(request, response);

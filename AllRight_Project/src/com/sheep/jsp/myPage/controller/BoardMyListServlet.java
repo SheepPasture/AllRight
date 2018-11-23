@@ -64,7 +64,7 @@ public class BoardMyListServlet extends HttpServlet {
 		
 		bmaxPage = (int)((double)blistCount / limit + 0.9);
 		bstartPage = ((int)((double)bcurrentPage / limit + 0.9) - 1 ) * limit + 1;
-		
+		System.out.println("bmaxPage"+bmaxPage);
 		bendPage = bstartPage + limit -1; 
 		
 		if(bendPage > bmaxPage){
@@ -78,7 +78,7 @@ public class BoardMyListServlet extends HttpServlet {
 		
 		cmaxPage = (int)((double)clistCount / limit + 0.9);
 		cstartPage = ((int)((double)ccurrentPage / limit + 0.9) - 1 ) * limit + 1;
-		
+		System.out.println("cmaxPage"+cmaxPage);
 		cendPage = cstartPage + limit -1; 
 		
 		if(cendPage > cmaxPage){

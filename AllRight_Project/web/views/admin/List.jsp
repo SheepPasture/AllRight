@@ -186,6 +186,8 @@
                                     	<th>작성자</th>
                                     	<th>작성 날짜</th>
                                     	<th>신고 수</th>
+                                    	<th>삭제 유/무</th>
+                                    	<th>관리</th>
                                     </thead>
                                     <tbody>
                                     <%for (Board b : list) { %>
@@ -196,7 +198,26 @@
                                         	<td><%= b.getbWriter() %></td>
                                         	<td><%= b.getbDate() %></td>
                                         	<td><%= b.getReport() %></td>
+                                        	<td>
+                                        	<%if(b.getbStatus().equals("Y")) {%>
+                                        	삭제 안됨
+                                        	<% } else { %>
+                                        	삭제 완료
+                                        	<% } %>
+                                        	
+                                        	</td>
+                                        	<td>
+                                        	<form  method="post" enctype="multipart/form-data" action="<%=request.getContextPath()%>/adBDelete.ad?bid=<%= b.getbId()%>&bno=<%= b.getbNO() %>">
+                                        	<%if (b.getbStatus().equals("Y")) {%>
+                                        	<button class="btn btn-danger" >삭제하기</button>
+                                        	<% } else { %>
+                                        	<button class="btn btn-danger" disabled>삭제하기</button>
+                                        	<%} %>
+                                        	</form>
+                                        	</td>
                                     </tr>
+
+                                   
                                     
                                     <% } %>
                                         <!-- <tr>
@@ -353,6 +374,14 @@
 
 
     </div>
+    <script type="text/javascript">
+    function logout(){
+		location.href = "/allRight/mLogout.me";
+	}
+    
+    
+    </script>
+    
 </div>
 
 

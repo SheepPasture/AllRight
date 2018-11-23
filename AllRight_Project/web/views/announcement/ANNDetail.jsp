@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"  import = "com.sheep.jsp.announcement.model.vo.*, java.util.*, com.oreilly.servlet.*"%>
 <% 
 	Announcement a = (Announcement)request.getAttribute("announcement"); 
-	ArrayList<Object> fAno = (ArrayList<Object>)request.getAttribute("fAno"); 
-	
 %>
 <!DOCTYPE html>
 <html>
@@ -45,7 +43,7 @@
 				 <div class="col-sm-2 sidenav">
 					<p><a href="<%= request.getContextPath() %>/selectList.ann">공지사항</a></p>
 					<p><a href="<%= request.getContextPath() %>/views/board/boardList.jsp">커뮤니티</a></p>
-					<p><a href="#">자격증정보</a></p>
+					<p><a href="<%= request.getContextPath() %>/views/license/licenseinfo.jsp">자격증정보</a></p>
 				</div> 
 				<div class="col-sm-8 text-left">
 					<h2 align="left">공지사항</h2>
@@ -85,21 +83,18 @@
 									<th>이전글&nbsp; ▲</th>
 									
 									<td colspan="3"><a href="#" onclick="before();">
-							 			<%= a.getAno()-1 %>번째 글입니다. 				 			
+										<%= a.getAno()-1 %>번째 글입니다.
 									</a></td>
 								</tr>
 								<tr>
 									<th>다음글&nbsp; ▼</th>
-									<td colspan="3"><a href="#" onclick="after();">
-						 			<%-- <%= a.getAno()+1 %>번째 글입니다.  --%>
-									 <%=a.getAtitle() %> <%--  <%= fAno.get(0) % --%> </a> 
-									</td>
+									<td colspan="3"><a href="#" onclick="after();"><%= a.getAno()+1 %>번째 글입니다.</a></td>
 								</tr>
 							</tbody>
 						</table>
  						<div class="btn_area2">
  								<button onclick="back();">목록으로 바로가기</button>
-								<button onclick="edit();">수정</button>
+			<!-- 					<button onclick="edit();">수정</button> -->
 						</div> </form>
 						<script>
 							function before(){

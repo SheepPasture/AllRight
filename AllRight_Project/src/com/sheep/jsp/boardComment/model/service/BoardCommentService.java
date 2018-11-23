@@ -119,5 +119,18 @@ public class BoardCommentService {
 		return list;
 	}
 
+	public int adminDeleteComment(int cno) {
+		Connection con = getConnection();
+		
+		int result = bcDao.adminDeleteComment(con, cno);
+		
+		if(result > 0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+	}
+
 }
 

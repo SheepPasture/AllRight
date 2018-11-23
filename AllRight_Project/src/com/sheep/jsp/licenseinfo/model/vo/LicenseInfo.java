@@ -13,13 +13,16 @@ public class LicenseInfo {
 	private String lCost;
 	private String dDay;
 	private String lType;
+	private String nInfo01;
+	private String nlnfo02;
+	private String nlnfo03;
 	
 	// 생성자
 	
 	public LicenseInfo() {}
-	
+
 	public LicenseInfo(String lNo, String lName, List<String> lInfo, String lDate, String lCategory, String lCost,
-			String dDay , String lType) {
+			String dDay, String lType, String nInfo01, String nlnfo02, String nlnfo03) {
 		super();
 		this.lNo = lNo;
 		this.lName = lName;
@@ -28,7 +31,25 @@ public class LicenseInfo {
 		this.lCategory = lCategory;
 		this.lCost = lCost;
 		this.dDay = dDay;
-		this.lType=lType;
+		this.lType = lType;
+		this.nInfo01 = nInfo01;
+		this.nlnfo02 = nlnfo02;
+		this.nlnfo03 = nlnfo03;
+	}
+
+	public LicenseInfo(String lNo, String lName, String lDate, String lCategory, String lCost, String dDay,
+			String lType, String nInfo01, String nlnfo02, String nlnfo03) {
+		super();
+		this.lNo = lNo;
+		this.lName = lName;
+		this.lDate = lDate;
+		this.lCategory = lCategory;
+		this.lCost = lCost;
+		this.dDay = dDay;
+		this.lType = lType;
+		this.nInfo01 = nInfo01;
+		this.nlnfo02 = nlnfo02;
+		this.nlnfo03 = nlnfo03;
 	}
 
 	public LicenseInfo(String lNo, String lName, List<String> lInfo, String lDate, String lCategory, String lCost) {
@@ -147,9 +168,11 @@ public class LicenseInfo {
 	// toString()
 	@Override
 	public String toString() {
-		return "자격증 번호 =" + lNo + ", 자격증 명 =" + lName + ", 자격증 정보 =" + lInfo + ", 시험 일자 =" + lDate + ", 자격증 분류 ="
-				+ lCategory + ", 응시 비용 =" + lCost + ", 디데이" + dDay+", 타입=" +lType ;
+		return "LicenseInfo [lNo=" + lNo + ", lName=" + lName + ", lInfo=" + lInfo + ", lDate=" + lDate + ", lCategory="
+				+ lCategory + ", lCost=" + lCost + ", dDay=" + dDay + ", lType=" + lType + ", nInfo01=" + nInfo01
+				+ ", nlnfo02=" + nlnfo02 + ", nlnfo03=" + nlnfo03 + "]";
 	}
+
 
 	//hashCode()
 	@Override
@@ -164,6 +187,7 @@ public class LicenseInfo {
 		result = prime * result + ((lNo == null) ? 0 : lNo.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -205,6 +229,36 @@ public class LicenseInfo {
 		} else if (!lNo.equals(other.lNo))
 			return false;
 		return true;
+	}
+
+
+	public String getnInfo01() {
+		return nInfo01;
+	}
+
+
+	public void setnInfo01(String nInfo01) {
+		this.nInfo01 = nInfo01;
+	}
+
+
+	public String getNlnfo02() {
+		return nlnfo02;
+	}
+
+
+	public void setNlnfo02(String nlnfo02) {
+		this.nlnfo02 = nlnfo02;
+	}
+
+
+	public String getNlnfo03() {
+		return nlnfo03;
+	}
+
+
+	public void setNlnfo03(String nlnfo03) {
+		this.nlnfo03 = nlnfo03;
 	}
 	
 
