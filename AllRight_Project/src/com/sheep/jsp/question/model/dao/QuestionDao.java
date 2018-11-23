@@ -72,7 +72,7 @@ public class QuestionDao {
 		return list;
 	}
 
-	public static ArrayList<Question> answer(Connection con) {
+	public static ArrayList<Question> Qanswer(Connection con) {
 		ArrayList<Question> check = null;
 		Statement stmt = null;
 		ResultSet rset = null;
@@ -88,15 +88,10 @@ public class QuestionDao {
 			
 			while(rset.next()){
 				Question qt = new Question();
-				qt.settNo(rset.getInt("tno"));
-				qt.setqNo(rset.getInt("qno"));
-				qt.setqContent(rset.getString("qcontent"));
-				qt.setqPre(rset.getString("qpre"));
 				qt.setqAnswer(rset.getInt("qanswer"));
 				
 				check.add(qt);
-				
-				System.out.println("qt 값 확인");
+		
 			}
 			
 		} catch (SQLException e){

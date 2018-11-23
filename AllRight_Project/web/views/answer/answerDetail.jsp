@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="com.sheep.jsp.question.model.vo.*, java.util.*"%>
+<%
+	ArrayList<Question> check = (ArrayList<Question>) request.getAttribute("check");
+	String[] answerList= (String[])request.getAttribute("answerList");
+
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,9 +131,10 @@
 		</tr>
 	
 	<tr style='padding:3px 2px 1px 2px' height='33'>
+	
 	<td align='center'>1과목</td>
-	<td align='center'>응시전<br />20문제<br /></td><td>&nbsp;</td>
-	<td colspan='1' align='center'><a href="<%=request.getContextPath() %>/question.qu" style='color:#79a5e4; font-weight:bold'>응시하기</a></td>
+	<td align='center'>응시전<br />20문제<br /></td><td>정답수 넣을거야</td>
+	<td colspan='1' align='center'><a href="<%=request.getContextPath() %>/question.li" style='color:#79a5e4; font-weight:bold'>응시하기</a></td>
 	<td colspan='1' align='center'><a href="<%=request.getContextPath() %>/question.qu" style='color:#79a5e4; font-weight:bold'>응시하기</a></td></td></tr>
 	<tr style='padding:3px 2px 1px 2px' height='33'>
 	<td align='center'>2과목</td>
@@ -148,8 +155,11 @@
 	</tr>
 	</table>
 
+<script>
 
 
+
+</script>
 </div><!--Mobile, PC 페이지 컨테이너 가운데 정렬 끝.-->
 </body>
 </html>
