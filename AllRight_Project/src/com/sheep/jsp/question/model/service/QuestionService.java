@@ -30,5 +30,22 @@ public class QuestionService {
 		return list;
 	}
 	
+	public ArrayList<Question> answer(){
+		
+		ArrayList<Question> check = null;
+		
+		Connection con = getConnection();
+		
+		check = QuestionDao.answer(con);
+		
+		if(check != null){ commit(con);
+		rollback(con);
+		
+		}
+		close(con);
+		
+		return check;
+		
+	}
 
 }

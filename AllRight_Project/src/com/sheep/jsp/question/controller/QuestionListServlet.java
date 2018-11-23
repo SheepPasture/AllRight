@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sheep.jsp.question.model.service.QuestionService;
+
 /**
  * Servlet implementation class QuestionListServlet
  */
@@ -33,6 +35,8 @@ public class QuestionListServlet extends HttpServlet {
 
 			System.out.println(s);
 		}
+		
+		QuestionService qs = new QuestionService();
 	}
 	
 	

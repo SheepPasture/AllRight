@@ -14,8 +14,7 @@ import com.sheep.jsp.question.model.vo.Question;
 
 
 public class QuestionDao {
-	private Properties prop = new Properties();
-
+	private static Properties prop = null;
 	
 	public QuestionDao(){
 		prop = new Properties();
@@ -57,7 +56,7 @@ public class QuestionDao {
 				
 				list.add(qs);
 				
-				System.out.println("qs 확인");
+				System.out.println("Question 값 확인");
 			}
 			
 		} catch (SQLException e){
@@ -73,7 +72,43 @@ public class QuestionDao {
 		return list;
 	}
 
-	
-
-
+	public static ArrayList<Question> answer(Connection con) {
+		ArrayList<Question> check = null;
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		
+		String sql = prop.getProperty("answer");
+		
+		try {
+			
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			check = new ArrayList<Question>();
+			
+			while(rset.next()){
+				Question qt = new Question();
+				qt.settNo(rset.getInt("tno"));
+				qt.setqNo(rset.getInt("qno"));
+				qt.setqContent(rset.getString("qcontent"));
+				qt.setqPre(rset.getString("qpre"));
+				qt.setqAnswer(rset.getInt("qanswer"));
+				
+				check.add(qt);
+				
+				System.out.println("qt 값 확인");
+			}
+			
+		} catch (SQLException e){
+			e.printStackTrace();
+			
+			System.out.println("?");
+		
+		} finally {
+		
+			close(rset);
+			close(stmt);
+		}
+		return check;
+	}
 }
