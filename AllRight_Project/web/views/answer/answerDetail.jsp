@@ -63,27 +63,8 @@
 	
 <table style="margin:0px 0px 5px 0px; width:100%; border:1px solid #ccc; background:#f8f8f8" align="center"><!-- 상단 타이틀 시작. -->
 	<tr style="height:45px;">
-	<td style="font-family:MalgunGothic,Sans-serif; font-weight:bolder; color:lightskyblue; font-size:11pt" align="center" valign="middle">
+	<td style="font-family:MalgunGothic,Sans-serif; font-weight:bolder; color:lightskyblue; font-size:13pt" align="center" valign="middle">
 	정보처리기능사 필기 (2011년 1회 기출문제) 응시
-	<span style="font-size:10pt; font-weight:500">
-		<span style="padding-left:8px; font-weight:500">Timer</span>
-		<span id="min" style="width:15px; font-weight:500; text-align:right"></span>분
-		<span id="sec" style="width:15px; font-weight:500; text-align:right"></span>초
-	</span>
-
-	<script type="text/javascript" language="javascript">
-	function updateTime() {
-		var now = new Date();
-		var t = now.getTime() - startDate.getTime();
-		var s = Math.round(t/1000);
-
-		min.innerHTML = Math.floor(s/60);
-		sec.innerHTML = s%60;
-		setTimeout("updateTime()",500);
-	}
-	var startDate = new Date();
-	updateTime();
-	</script>
 </td>
 <td style="padding-right:5px; text-align:right;" valign="middle">
 	<input type="button" value="첫화면" class="btn01_qpass" style="width:60px; border:1px solid #008000;" onclick="move2main()">
