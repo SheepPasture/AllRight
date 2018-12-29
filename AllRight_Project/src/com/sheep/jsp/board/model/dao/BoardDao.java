@@ -622,4 +622,27 @@ public class BoardDao {
 
 	}
 
+public void seteCount(Connection con, int bid) {
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("eCountPlus");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, bid);
+			
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			close(pstmt);
+		}
+	}
+
 }

@@ -80,6 +80,8 @@ public class BoardListServlet extends HttpServlet {
 		blist = bs.selectList(currentPage, limit, bid);
 		select2ANN = bs.selectList();
 		
+		bs.seteCount(bid);
+		
 		String page = "";
 		
 		if(blist != null){
